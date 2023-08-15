@@ -29,7 +29,7 @@ tool
 - notion (agile)
 - github proejcts, issues
 - slack
-- figam
+- figma
 
 
 
