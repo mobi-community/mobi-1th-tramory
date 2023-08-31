@@ -9,18 +9,22 @@ stack
 - jotai
 - story-book
 - sentry
+<br/>
 
 test
 - jest (unit, integration)
 - cypress (e2e)
+<br/>
 
 infra
 - vercel, github-action
+<br/>
 
 package manager
 - yarn-berry-workspace
 - monorepo
-
+- 
+<br/>
 tool
 - notion (agile)<br/>
 <a href="https://cotton-moon-593.notion.site/Mobi-Tramory-3508e10b8a964725b1fce1530640fb7a?pvs=4">link</a>
