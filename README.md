@@ -23,6 +23,8 @@ package manager
 
 tool
 - notion (agile)
+<a href="https://cotton-moon-593.notion.site/Mobi-Tramory-3508e10b8a964725b1fce1530640fb7a?pvs=4">link</a>
+
 - github proejcts, issues
 - slack
 - figma
