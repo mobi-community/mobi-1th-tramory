@@ -1,25 +1,21 @@
-# mobi-exmaple-web
-mobi-exmaple-web
+# mobi-1th-final
+모비 1기 인원들의 파이널 프로젝트를 위한 레포입니다.
 
 # mobi-project
 stack
 - nextJS
 - nextAuth
-- oAuth (sns-login)
 - typescript
 - jotai
 - story-book
 - sentry
 
 test
-- vitest (unit, integration)
+- jest (unit, integration)
 - cypress (e2e)
 
 infra
-- vercel, git-action
-
-app 
-- react-native
+- vercel, github-action
 
 package manager
 - yarn-berry-workspace
@@ -30,10 +26,3 @@ tool
 - github proejcts, issues
 - slack
 - figma
-
-
-
-
-
-
-
