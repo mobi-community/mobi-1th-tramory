@@ -10,7 +10,7 @@ stack
 - story-book
 - sentry
 - tailwind, cva
-- shdcn css
+- shadcn css
 <br/>
 
 test
