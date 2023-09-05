@@ -9,6 +9,8 @@ stack
 - jotai
 - story-book
 - sentry
+- tailwind, cva
+- shdcn css
 <br/>
 
 test
