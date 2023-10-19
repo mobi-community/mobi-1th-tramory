@@ -25,5 +25,6 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'newline-after-var': 'error',
     camelcase: 'warn',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };

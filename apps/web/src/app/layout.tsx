@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import { ModeToggle, ThemeProvider } from 'ui';
+import { ThemeProvider } from 'ui';
 
 export const metadata: Metadata = {
   title: 'Web App',
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <main className='flex min-h-[70vh] w-full flex-col overflow-hidden p-4 md:container'>
             <div className='flex w-full justify-end'>
-              <ModeToggle />
+              {/* <ModeToggle /> */}
             </div>
             {children}
           </main>
