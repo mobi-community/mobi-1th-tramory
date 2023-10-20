@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Button } from 'ui';
 
 import { landingConfig } from '../../constants';
-import landingBg from './_mock/landing_bg.jpg';
 import logo from './_mock/logo_white.svg';
 
 const Landing = () => {
@@ -60,7 +59,7 @@ const Landing = () => {
       </div>
       <div className='absolute z-10 h-screen w-full bg-gradient-to-t from-black to-transparent opacity-40'></div>
       <Image
-        src={landingBg}
+        src={landingConfig.bg}
         alt='랜딩 페이지 이미지'
         fill
         style={{ objectFit: 'cover' }}
