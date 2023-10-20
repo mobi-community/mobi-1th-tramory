@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from 'ui';
 
 import landingBg from './_mock/landing_bg.jpg';
 import logo from './_mock/logo_white.svg';
@@ -33,11 +34,16 @@ const Landing = () => {
               Tramory, <br />
               Your Travel Memories.
             </h1>
-            <p className='text-right text-2xl text-white'>
+            <p className='mb-9 text-right text-2xl text-white'>
               특별한 나만의 여행을 기록하고 공유하세요 <br />
               여행을 떠나보세요, 당신만의 방식으로
             </p>
-            <button className='text-right text-white'>Start the jorney</button>
+            <Button
+              variant='outline'
+              className='rounded-none bg-transparent px-12 py-8 text-xl italic text-white'
+            >
+              Start the jorney
+            </Button>
           </div>
         </div>
       </div>
