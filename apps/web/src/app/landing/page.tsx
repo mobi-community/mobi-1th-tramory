@@ -59,7 +59,7 @@ const Landing = () => {
       </div>
       <div className='absolute z-10 h-screen w-full bg-gradient-to-t from-black to-transparent opacity-40'></div>
       <Image
-        src={landingConfig.bg}
+        src={landingConfig.landingBgImage}
         alt='랜딩 페이지 이미지'
         fill
         style={{ objectFit: 'cover' }}
