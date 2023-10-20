@@ -1,6 +1,7 @@
 /**
  * Todo
  * 마이페이지 - 설정 라우팅 이후 href 부여할 것
+ * landingBgImage - 임시 이미지, 변경할 예정
  */
 export type LandingConfig = typeof landingConfig;
 import landingBgImage from '../app/landing/_mock/landing_bg.jpg';
