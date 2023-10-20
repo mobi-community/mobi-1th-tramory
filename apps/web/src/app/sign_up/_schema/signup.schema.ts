@@ -31,7 +31,7 @@ export const SIGNUP_SCHEMA = yup.object({
     })
     .required('비밀번호를 입력해주세요'),
 
-  Nickname: yup
+  nickName: yup
     .string()
     .min(3, '3자 이상 입력해주세요.')
     .max(15, '15자 이하로 입력해주세요.')
