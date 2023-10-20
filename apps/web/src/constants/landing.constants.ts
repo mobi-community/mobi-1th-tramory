@@ -5,11 +5,9 @@
 export type LandingConfig = typeof landingConfig;
 
 export const landingConfig = {
-  title: ['Tramory,', 'Your Travel Memories.'],
-  description: [
-    '특별한 나만의 여행을 기록하고 공유하세요',
-    '여행을 떠나보세요, 당신만의 방식으로',
-  ],
+  title: 'Tramory,<br />Your Travel Memories.',
+  description:
+    '특별한 나만의 여행을 기록하고 공유하세요 <br /> 여행을 떠나보세요, 당신만의 방식으로',
   button: 'Start the jorney',
   footer: [
     {
