@@ -1,10 +1,10 @@
-export const AuthIcon = () => {
+export const AuthSloganSection = () => {
   const circleArray = new Array(5).fill(null);
 
   return (
     <>
       <div className='h-px w-full bg-[#166C63]'></div>
-      <div className='flex items-center text-5xl font-bold text-[#166C63]'>
+      <div className='flex items-center justify-between text-5xl font-bold text-[#166C63]'>
         <p>TRA</p>
         {circleArray.map((_, idx) => (
           <div
@@ -12,7 +12,9 @@ export const AuthIcon = () => {
             className='mr-1 h-1 w-1 rounded-full bg-[#166C63]'
           ></div>
         ))}
-        <span>icon</span>
+        <span className='material-icons-outlined rotate-90'>
+          airplanemode_active
+        </span>
         {circleArray.map((_, idx) => (
           <div
             key={idx}

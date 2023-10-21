@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { AuthIcon } from '../../components';
+import { AuthSloganSection } from '../../components';
 import { loginContants } from '../../constants/login.constants';
 
 const LoginPage = () => {
@@ -26,7 +26,7 @@ const LoginPage = () => {
               alt='로그인 페이지 메인 이미지'
             />
             <div className='w-[420px]'>
-              <AuthIcon />
+              <AuthSloganSection />
             </div>
           </div>
         </div>
