@@ -5,6 +5,8 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { ThemeProvider } from 'ui';
 
+import Providers from './providers';
+
 export const metadata: Metadata = {
   title: 'Web App',
   description: 'Welcome to Next.js 13',
@@ -15,6 +17,12 @@ const inter = Inter({ subsets: ['latin'] });
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <link
+          href='https://fonts.googleapis.com/icon?family=Material+Icons+Outlined'
+          rel='stylesheet'
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           {children}

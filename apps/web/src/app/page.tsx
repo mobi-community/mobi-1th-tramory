@@ -1,5 +1,7 @@
 import { Button } from 'ui';
 
+import FloatingMenu from '../components/Floating_menu/FloatingMenu';
+
 const buttonVariants = [
   'default',
   'destructive',
@@ -25,6 +27,7 @@ export default function Page() {
             </li>
           ))}
         </ul>
+        <FloatingMenu />
       </div>
     </div>
   );
