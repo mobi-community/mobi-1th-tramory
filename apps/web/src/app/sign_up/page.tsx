@@ -11,6 +11,7 @@ const SignUpPage = () => {
           src={signupConstants.image.mainLogo}
           width={120}
           alt='Logo_Image'
+          priority
         />
         <div>{signupConstants.info}</div>
       </div>
@@ -20,11 +21,13 @@ const SignUpPage = () => {
             src={signupConstants.image.mainImage}
             width={320}
             alt='signup_main_image'
+            priority
           />
           <Image
             src={signupConstants.image.subImage}
             width={320}
             alt='signup_sub_image'
+            priority
           />
         </div>
         <div>
@@ -35,6 +38,7 @@ const SignUpPage = () => {
               src={signupConstants.image.subImage2}
               width={320}
               alt='signup_sub_image2'
+              priority
             />
           </div>
           <div>
