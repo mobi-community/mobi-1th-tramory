@@ -5,21 +5,23 @@ import React, { useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
 import { FaCalendarAlt, FaPencilAlt } from 'react-icons/fa';
 
+import ViewTravelRecordType from '../Floating_modal/view_travel_record_type';
+import ViewTravelRecordTypeModal from '../Floating_modal/view_travel_record_type_modal';
+
 type FloatingMenuProps = {
   PlanIcon?: IconType;
   travelPlan?: () => void;
   RecordIcon?: IconType;
-  travelRecord?: () => void;
 };
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({
   PlanIcon: PlanIcon = FaCalendarAlt,
   travelPlan,
   RecordIcon: RecordIcon = FaPencilAlt,
-  travelRecord,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [hovered, setHovered] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -31,7 +33,15 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
   }
 
   const toTravelPlan = travelPlan || (() => router.push('/'));
-  const toTravelRecord = travelRecord || (() => router.push('/'));
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // 모달을 닫는 함수
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='fixed bottom-0 right-0 p-5'>
@@ -55,7 +65,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
         <div className='group relative'>
           <button
             className='flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg focus:outline-none'
-            onClick={toTravelRecord}
+            onClick={openModal}
             onMouseEnter={() => setHovered('기록하기')}
             onMouseLeave={() => setHovered('')}
           >
@@ -68,6 +78,9 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
           )}
         </div>
       </div>
+      <ViewTravelRecordTypeModal isOpen={isModalOpen} onClose={closeModal}>
+        <ViewTravelRecordType />
+      </ViewTravelRecordTypeModal>
     </div>
   );
 };
