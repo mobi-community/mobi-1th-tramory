@@ -7,9 +7,9 @@ export default function MyPageLayout({
   asideContent: React.ReactNode;
 }) {
   return (
-    <>
+    <div>
       <Header />
       <div>{children}</div>
-    </>
+    </div>
   );
 }

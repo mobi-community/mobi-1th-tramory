@@ -28,7 +28,7 @@ const Switch = React.forwardRef<
     />
     <div
       className={`ml-[${isDarkMode ? '0' : '20'}px] text-[12px] text-${
-        isDarkMode ? 'white' : 'primaryGray-300'
+        isDarkMode ? 'white' : 'primaryGray-100'
       }`}
     >
       {isDarkMode ? 'DARK' : 'LIGHT'}
