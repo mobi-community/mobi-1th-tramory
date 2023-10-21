@@ -17,17 +17,19 @@ const inter = Inter({ subsets: ['latin'] });
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <link
+          href='https://fonts.googleapis.com/icon?family=Material+Icons+Outlined'
+          rel='stylesheet'
+        />
+      </head>
       <body className={inter.className}>
-        <Providers>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-            <main className='flex min-h-[70vh] w-full flex-col overflow-hidden md:container'>
-              <div className='flex w-full justify-end'>
-                {/* <ModeToggle /> */}
-              </div>
-              {children}
-            </main>
-          </ThemeProvider>
-        </Providers>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <main className='flex min-h-[70vh] w-full flex-col overflow-hidden md:container'>
+            <div className='flex w-full justify-end'></div>
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
