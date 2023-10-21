@@ -3,13 +3,13 @@ export const AuthSloganSection = () => {
 
   return (
     <>
-      <div className='h-px w-full bg-[#166C63]'></div>
+      <div className='bg-primaryGreen h-px w-full'></div>
       <div className='flex items-center justify-between text-5xl font-bold text-[#166C63]'>
-        <p>TRA</p>
+        <p className='my-4'>TRA</p>
         {circleArray.map((_, idx) => (
           <div
             key={idx}
-            className='mr-1 h-1 w-1 rounded-full bg-[#166C63]'
+            className='bg-primaryGreen mr-1 h-1 w-1 rounded-full'
           ></div>
         ))}
         <span className='material-icons-outlined rotate-90'>
@@ -18,12 +18,12 @@ export const AuthSloganSection = () => {
         {circleArray.map((_, idx) => (
           <div
             key={idx}
-            className='mr-1 h-1 w-1 rounded-full bg-[#166C63]'
+            className='bg-primaryGreen mr-1 h-1 w-1 rounded-full'
           ></div>
         ))}
         <p>MORY</p>
       </div>
-      <div className='h-px w-[420px] bg-[#166C63]'></div>
+      <div className='bg-primaryGreen h-px w-full'></div>
     </>
   );
 };
