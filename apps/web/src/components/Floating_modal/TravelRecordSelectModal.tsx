@@ -1,5 +1,3 @@
-import { FaTimes } from 'react-icons/fa';
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -18,7 +16,7 @@ const ViewTravelRecordTypeModal: React.FC<ModalProps> = ({
       <div className='m-auto flex w-96 flex-col rounded-lg border border-gray-300 bg-white p-5 shadow-md'>
         <div className='mb-1 flex justify-end'>
           <button className='h-6 w-6 cursor-pointer' onClick={onClose}>
-            <FaTimes />
+            <span className='material-icons-outlined'>close</span>
           </button>
         </div>
         <div className='flex-1'>{children}</div>
