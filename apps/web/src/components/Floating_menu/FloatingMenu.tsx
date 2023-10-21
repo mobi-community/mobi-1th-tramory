@@ -2,20 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { IconType } from 'react-icons';
-import { FaCalendarAlt, FaPencilAlt } from 'react-icons/fa';
 
-type FloatingMenuProps = {
-  PlanIcon?: IconType;
-  travelPlan?: () => void;
-  RecordIcon?: IconType;
-  travelRecord?: () => void;
-};
+import { FloatingMenuProps } from './FloatingMenuProps.types';
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({
-  PlanIcon: PlanIcon = FaCalendarAlt,
   travelPlan,
-  RecordIcon: RecordIcon = FaPencilAlt,
   travelRecord,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -43,7 +34,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
             onMouseEnter={() => setHovered('계획하기')}
             onMouseLeave={() => setHovered('')}
           >
-            <PlanIcon className='text-gray-800' />
+            <span className='material-symbols-outlined'>calendar_month</span>
           </button>
           {hovered === '계획하기' && (
             <div className='absolute -left-28 top-1 w-24 rounded-lg bg-gray-500 p-3 text-center text-sm font-bold text-white'>
@@ -59,7 +50,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
             onMouseEnter={() => setHovered('기록하기')}
             onMouseLeave={() => setHovered('')}
           >
-            <RecordIcon className='text-gray-800' />
+            <span className='material-symbols-outlined'>edit</span>
           </button>
           {hovered === '기록하기' && (
             <div className='text-bold absolute  -left-28 top-2 w-24 rounded-lg bg-gray-500 p-3 text-center text-sm font-bold text-white'>
