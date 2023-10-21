@@ -34,7 +34,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
             onMouseEnter={() => setHovered('계획하기')}
             onMouseLeave={() => setHovered('')}
           >
-            <span className='material-symbols-outlined'>calendar_month</span>
+            <span className='material-icons-outlined'>calendar_month</span>
           </button>
           {hovered === '계획하기' && (
             <div className='absolute -left-28 top-1 w-24 rounded-lg bg-gray-500 p-3 text-center text-sm font-bold text-white'>
@@ -50,7 +50,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
             onMouseEnter={() => setHovered('기록하기')}
             onMouseLeave={() => setHovered('')}
           >
-            <span className='material-symbols-outlined'>edit</span>
+            <span className='material-icons-outlined'>edit</span>
           </button>
           {hovered === '기록하기' && (
             <div className='text-bold absolute  -left-28 top-2 w-24 rounded-lg bg-gray-500 p-3 text-center text-sm font-bold text-white'>
