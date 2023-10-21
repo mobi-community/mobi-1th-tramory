@@ -2,6 +2,7 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { Button } from 'ui';
 
 import { ValidatorInput } from '../../../../components';
 import { SIGNUP_SCHEMA } from '../../_schema';
@@ -26,7 +27,7 @@ export const SignUpForm = () => {
           placeholder='예)example@gmail.com'
         />
         <div>
-          <button type='button'>중복 확인</button>
+          <Button type='button'>중복 확인</Button>
         </div>
       </div>
       <div className='flex items-center justify-center'>
@@ -58,7 +59,7 @@ export const SignUpForm = () => {
           control={control}
         />
         <div>
-          <button>중복 확인</button>
+          <Button>중복 확인</Button>
         </div>
       </div>
     </form>
