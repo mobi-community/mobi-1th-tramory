@@ -5,13 +5,11 @@ import { signupConstants } from '../../../constants/sign_up.constants';
 export const SIGNUP_SCHEMA = yup.object({
   id: yup
     .string()
-    .min(5, '5자 이상 입력해주세요.')
-    .max(12, '12자 이하로 입력해주세요.')
     .matches(signupConstants.REGEX.id, {
-      message: '영문과 숫자만 입력해주세요.',
+      message: '이메일 형식에 맞지 않습니다',
       excludeEmptyString: true,
     })
-    .required('아이디을 입력해주세요.'),
+    .required('이메일을 입력해주세요.'),
 
   password: yup
     .string()
@@ -29,15 +27,15 @@ export const SIGNUP_SCHEMA = yup.object({
     .matches(signupConstants.REGEX.password, {
       message: '영문, 숫자, 특수문자를 조합해서 입력해주세요.',
     })
-    .required('비밀번호를 입력해주세요'),
+    .required('비밀번호를 다시 입력해주세요'),
 
   nickName: yup
     .string()
-    .min(3, '3자 이상 입력해주세요.')
-    .max(15, '15자 이하로 입력해주세요.')
+    .min(2, '2자 이상 입력해주세요.')
+    .max(10, '10자 이하로 입력해주세요.')
     .matches(signupConstants.REGEX.nickName, {
-      message: '닉네임에 영문, 한글, 숫자만 입력해주세요.',
+      message: '한글, 영문, 숫자 10자 이내로 입력해주세요',
       excludeEmptyString: true,
     })
-    .required('아이디을 입력해주세요.'),
+    .required('닉네임을 입력해주세요.'),
 });

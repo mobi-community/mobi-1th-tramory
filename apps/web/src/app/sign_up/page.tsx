@@ -14,7 +14,7 @@ const SignUpPage = () => {
         />
         <div>{signupConstants.info}</div>
       </div>
-      <div className='flex'>
+      <div className='flex flex-row'>
         <div>
           <Image
             src={signupConstants.image.mainImage}
@@ -27,7 +27,21 @@ const SignUpPage = () => {
             alt='signup_sub_image'
           />
         </div>
-        <SignUpForm />
+        <div>
+          <SignUpForm />
+          <div>
+            <button>회원가입</button>
+            <Image
+              src={signupConstants.image.subImage2}
+              width={320}
+              alt='signup_sub_image2'
+            />
+          </div>
+          <div>
+            <button>Sign In with Google</button>
+            <button>로그인 하러 가기</button>
+          </div>
+        </div>
       </div>
     </div>
   );

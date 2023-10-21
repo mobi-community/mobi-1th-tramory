@@ -1,14 +1,21 @@
 'use client';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 import { ValidatorInput } from '../../../../components';
+import { SIGNUP_SCHEMA } from '../../_schema';
+import { SignUpFormType } from './SignUpForm.types';
 
 export const SignUpForm = () => {
-  const { control } = useForm();
+  const { control } = useForm<SignUpFormType>({
+    mode: 'onChange',
+    resolver: yupResolver(SIGNUP_SCHEMA),
+    defaultValues: { id: '', password: '', pwconfirm: '', nickName: '' },
+  });
 
   return (
-    <div>
+    <form>
       <div className='flex items-center justify-center'>
         <ValidatorInput
           label={'ID'}
@@ -19,7 +26,7 @@ export const SignUpForm = () => {
           placeholder='예)example@gmail.com'
         />
         <div>
-          <button>중복 확인</button>
+          <button type='button'>중복 확인</button>
         </div>
       </div>
       <div className='flex items-center justify-center'>
@@ -54,6 +61,6 @@ export const SignUpForm = () => {
           <button>중복 확인</button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
