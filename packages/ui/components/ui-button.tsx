@@ -12,10 +12,10 @@ const buttonVariants = cva(
       variant: {
         // 초록 직사각형 버튼
         default:
-          'bg-primaryGreen text-primary-foreground rounded-[0px] hover:opacity-80 transition-all duration-300',
+          'bg-primaryGreen text-[12px] text-primary-foreground rounded-[0px] hover:opacity-80 transition-all duration-300',
         // 희색 직사각형 버튼
         nonrounded:
-          'bg-white text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
+          'bg-white text-[12px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:

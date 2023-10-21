@@ -1,5 +1,5 @@
 export interface SignUpFormType {
-  id?: string;
+  email?: string;
   password?: string;
   pwconfirm?: string;
   nickName?: string;

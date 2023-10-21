@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { signupConstants } from '../../../constants/sign_up.constants';
 
 export const SIGNUP_SCHEMA = yup.object({
-  id: yup
+  email: yup
     .string()
     .matches(signupConstants.REGEX.id, {
       message: '이메일 형식에 맞지 않습니다',
