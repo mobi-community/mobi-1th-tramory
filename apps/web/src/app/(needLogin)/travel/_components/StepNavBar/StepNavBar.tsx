@@ -14,17 +14,17 @@ const StepNavbar: React.FC = () => {
     <>
       <div className='mt-10 flex h-20 items-center justify-center'>
         <ul className='bg-primaryBlue-100 absolute  flex h-20 w-full max-w-[969px] justify-center'>
-          {stepArray.map(({ id, key, value, url }) => (
+          {stepArray.map(({ id, step, title, url }) => (
             <Link href={url} key={id}>
               <li
                 key={id}
                 className='relative relative z-10 z-50 mx-11 list-none	'
               >
                 <div className='border-primaryGray-300 text-primaryGray-300	mx-5 mt-5 flex h-10 w-10 items-center justify-center rounded-full border-4 bg-white text-xs font-semibold'>
-                  {key}
+                  {step}
                 </div>
                 <div className='text-primaryGray-400 mx-4	mt-5 flex h-12 w-12 items-center justify-center font-semibold'>
-                  {value}
+                  {title}
                 </div>
               </li>
             </Link>
