@@ -14,5 +14,11 @@
     "shared-lib": "*",
     "tsconfig": "*",
     "ui": "*"
+  },
+  "devDependencies": {
+    "msw": "^1.3.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
