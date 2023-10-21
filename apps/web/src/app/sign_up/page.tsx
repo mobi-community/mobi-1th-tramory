@@ -6,32 +6,32 @@ import { SignUpForm } from './_components';
 
 const SignUpPage = () => {
   return (
-    <div className='w-auto'>
-      <div className='flex justify-between'>
+    <div className=' flex h-screen w-auto flex-col items-center justify-center'>
+      <div className='flex w-[775px] items-center justify-between font-semibold'>
         <Image
           src={signupConstants.image.mainLogo}
           width={120}
           alt='Logo_Image'
           priority
         />
-        <div>{signupConstants.info}</div>
+        <div className='text-[12px]'>{signupConstants.info}</div>
       </div>
-      <div className='flex flex-row'>
-        <div>
+      <div className=' flex flex-row'>
+        <div className='bg-primaryBeige rounded-br-[28px] rounded-tr-[28px] p-7'>
           <Image
             src={signupConstants.image.mainImage}
-            width={320}
+            width={280}
             alt='signup_main_image'
             priority
           />
           <Image
             src={signupConstants.image.subImage}
-            width={320}
+            width={280}
             alt='signup_sub_image'
             priority
           />
         </div>
-        <div>
+        <div className='bg-primaryBeige rounded-bl-[28px] rounded-tl-[28px] p-7'>
           <SignUpForm />
           <div>
             <Button>회원가입</Button>
