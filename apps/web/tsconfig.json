@@ -5,7 +5,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "../../packages/ui/components/input.tsx"
+    "../../packages/ui/components/ui-input.tsx"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
