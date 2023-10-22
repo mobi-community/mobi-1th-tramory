@@ -1,5 +1,10 @@
-import Image from 'next/image';
+'use client';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
+import Image from 'next/image';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 /**
  *
  * @todo
@@ -9,7 +14,6 @@ import Image from 'next/image';
  */
 export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage }) => {
   const { title, description } = item;
-  // const badgeArray = Array.from({ length: description.length }).fill(null);
 
   return (
     <div>
@@ -25,28 +29,41 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage }) => {
         </span>
       </div>
       <div className='bg-primaryGray-200 flex items-center rounded-[30px] px-8 py-16'>
-        <span
-          className='material-icons-outlined text-primaryGray-200 mr-16 rounded-full bg-white p-3'
-          style={{ fontSize: '36px' }}
+        <Swiper
+          modules={[Navigation]}
+          navigation={{
+            nextEl: '.next-btn',
+            prevEl: '.prev-btn',
+          }}
+          slidesPerView={5}
+          spaceBetween={1}
+          className='mySwiper'
+          style={{ paddingRight: '80px' }}
         >
-          arrow_back_ios
-        </span>
-        <div className='flex'>
-          {description.map((desc, i: number) => (
-            <div key={i} className='relative mr-16'>
-              <Image
-                src={badgeDefault}
-                width={126}
-                height={152}
-                alt='배지 디폴트 이미지'
-                className='relative'
-              />
-              <div className='text-primaryGray-300 absolute left-2/4 top-[40px] w-full -translate-x-2/4 text-center font-bold'>
-                <h1
-                  className='text-sm '
-                  dangerouslySetInnerHTML={{ __html: defaultMessage }}
-                />
-                {/* 배지 발급 받았을 때, css 수정해야함
+          <span
+            className='material-icons-outlined prev-btn text-primaryGray-200 absolute top-[40px] z-10 rounded-full bg-white/80 p-3'
+            style={{ fontSize: '32px', cursor: 'pointer' }}
+          >
+            arrow_back_ios
+          </span>
+          <div className='flex'>
+            {description.map((desc, i: number) => (
+              <SwiperSlide key={i}>
+                <div key={i} className='relative'>
+                  <div className='flex justify-center pl-[80px]'>
+                    <Image
+                      src={badgeDefault}
+                      width={126}
+                      height={152}
+                      alt='배지 디폴트 이미지'
+                      priority
+                    />
+                    <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
+                      <h1
+                        className='text-sm'
+                        dangerouslySetInnerHTML={{ __html: defaultMessage }}
+                      />
+                      {/* 배지 발급 받았을 때, css 수정해야함
                 <h1
                   className='text-sm '
                   dangerouslySetInnerHTML={{ __html: desc.title }}
@@ -55,16 +72,19 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage }) => {
                   className='text-xs'
                   dangerouslySetInnerHTML={{ __html: desc.subtitle || null }}
                 /> */}
-              </div>
-            </div>
-          ))}
-        </div>
-        <span
-          className='material-icons-outlined text-primaryGray-200 rounded-full bg-white p-3'
-          style={{ fontSize: '36px' }}
-        >
-          arrow_forward_ios
-        </span>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </div>
+          <span
+            className='material-icons-outlined next-btn text-primaryGray-200 next-btn absolute right-0 top-[40px] z-10 rounded-full bg-white/80 p-3'
+            style={{ fontSize: '32px', cursor: 'pointer' }}
+          >
+            arrow_forward_ios
+          </span>
+        </Swiper>
       </div>
     </div>
   );
