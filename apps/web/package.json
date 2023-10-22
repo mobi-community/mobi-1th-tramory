@@ -15,6 +15,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@types/google.maps": "^3.54.4",
     "config": "*",
+    "jotai": "^2.4.3",
     "shared-lib": "*",
     "tsconfig": "*",
     "ui": "*",
