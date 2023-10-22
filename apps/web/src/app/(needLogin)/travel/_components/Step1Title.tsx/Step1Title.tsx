@@ -5,10 +5,14 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Input } from 'ui';
 
-import { travelStep1config } from '../../../../../constants';
+import { TravelPlanStep1config } from '../../../../../constants';
 import { inputAtom } from '../../../../../store';
 
-const Step1Title = () => {
+interface Step1TitleProps {
+  config: TravelPlanStep1config;
+}
+
+const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [inputValue, setInputValue] = useAtom(inputAtom);
   const router = useRouter();
 
@@ -50,16 +54,16 @@ const Step1Title = () => {
           <div className='absolute left-1/2 top-3/4 z-20 -translate-x-1/2 -translate-y-1/2 transform'>
             <div className='flex flex-col text-center'>
               <h2 className='text-2xl font-bold tracking-wide text-white'>
-                {travelStep1config.title}
+                {config.title}
               </h2>
               <div className='my-[10px] h-[1px] w-[210px] bg-white'></div>
               <p className='mt-[5px] text-xs text-white'>
-                {travelStep1config.description}
+                {config.description}
               </p>
             </div>
           </div>
           <Image
-            src={travelStep1config.step1Image}
+            src={config.step1Image}
             width={370}
             alt='Left_Intro_Image'
             priority
@@ -71,16 +75,16 @@ const Step1Title = () => {
               <span className='material-icons-outlined mr-[15px] rotate-90 '>
                 flight
               </span>
-              {travelStep1config.rightSectionTitle}
+              {config.rightSectionTitle}
             </div>
             <div className='flex w-full flex-col items-center justify-center pb-[30px] pl-[40px] pr-[40px]'>
               <div className='text-primaryGray-400 pt-[170px] text-3xl font-bold'>
-                {travelStep1config.planDescription}
+                {config.rightSectionDescription}
               </div>
               <div className='mt-[20px] flex w-full items-center items-center justify-center gap-2'>
                 <Input
                   className='w-[80%] border-b-2 border-gray-300 bg-transparent text-center text-lg'
-                  placeholder={travelStep1config.inputPlaceholder}
+                  placeholder={config.inputPlaceholder}
                   value={inputValue}
                   onChange={handleInputChange}
                 />
