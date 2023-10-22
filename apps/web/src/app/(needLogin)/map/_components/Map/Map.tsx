@@ -4,11 +4,14 @@ import useDeepCompareEffect from 'use-deep-compare-effect';
 import { MapPageConfig } from '../../../../../constants';
 import type { MapProps } from './Map.types';
 
-export const Map: React.FC<MapProps> = ({ onClick, children, ...options }) => {
+export const Map: React.FC<MapProps> = ({
+  onClick,
+  children,
+  styles,
+  ...options
+}) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
-
-  // const localityLayer = map?.getFeatureLayer("LOCALITY")
 
   useEffect(() => {
     if (mapRef.current && !map) {
@@ -18,10 +21,20 @@ export const Map: React.FC<MapProps> = ({ onClick, children, ...options }) => {
     }
   }, [mapRef, map]);
 
-  // MapProps의 옵션들에 변화가 생길 때 map에 덥데이트를 적용하기 위해 사용된다.
   useDeepCompareEffect(() => {
-    if (map) map.setOptions(options);
-  }, [map, options]);
+    if (map) {
+      const styledMapType = new google.maps.StyledMapType(styles || [], {
+        name: 'Styled Map',
+      });
+
+      map.mapTypes.set('styled_map', styledMapType);
+      map.setOptions({
+        mapTypeId: 'styled_map',
+        ...options,
+        styles: undefined,
+      });
+    }
+  }, [map, options, styles]);
 
   useEffect(() => {
     if (map) {
