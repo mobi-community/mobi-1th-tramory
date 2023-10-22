@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 import { MapPageConfig } from '../../../constants';
 import { MapAtom } from '../../../store';
-import { Map, Marker } from './_components';
+import { AnimatedArrow, Map, Marker } from './_components';
 
 const MapPage: React.FC = () => {
   const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
@@ -21,9 +21,9 @@ const MapPage: React.FC = () => {
     setClicks([...clicks, e.latLng!]);
   };
 
-  const editedVal = clicks.map((latLng) => latLng.toJSON());
+  const editedLocation = clicks.map((latLng) => latLng.toJSON());
 
-  console.log('click', editedVal);
+  console.log('click', editedLocation);
 
   if (apiKey)
     return (
@@ -41,6 +41,7 @@ const MapPage: React.FC = () => {
             ))}
           </Map>
         </Wrapper>
+        <AnimatedArrow />
       </div>
     );
   return null;
