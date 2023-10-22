@@ -1,6 +1,12 @@
 import { StaticImageData } from 'next/image';
 
+export interface Badge {
+  image: StaticImageData;
+  name?: string;
+}
+
 export interface MypageCardSectionProps {
   title: string;
-  badge?: StaticImageData[];
+  image: Badge[];
+  defaultImage: StaticImageData;
 }

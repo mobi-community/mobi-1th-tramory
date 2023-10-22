@@ -2,18 +2,17 @@
 
 import Image from 'next/image';
 
-import badgeIcon from '/public/images/badge-default.png';
-
 import { useImageSlider } from '../../../../../hooks';
 import type { MypageCardSectionProps } from './MypageCardSection.types';
 
 export const MypageCardSection = ({
   title,
-  badge = [],
+  image = [],
+  defaultImage,
 }: MypageCardSectionProps) => {
-  const additionalBadges =
-    3 - badge.length > 0 ? new Array(3 - badge.length).fill(badgeIcon) : [];
-  const allBadges = [...badge, ...additionalBadges];
+  const additionalImages =
+    3 - image.length > 0 ? new Array(3 - image.length).fill(defaultImage) : [];
+  const allBadges = [...image, ...additionalImages];
 
   const { visibleImages, goToPreviousSlide, goToNextSlide } =
     useImageSlider(allBadges);
@@ -30,15 +29,17 @@ export const MypageCardSection = ({
           ﹤
         </span>
         <div className='flex items-center justify-center'>
-          <div className='flex items-center justify-center'>
+          <div className='flex items-center justify-center transition-all duration-300'>
             {visibleImages.map((icon, index) => (
-              <Image
-                // 키값은 실제 데이터로 연동하면서 좀더 유니크한 값으료 변경 예정
-                key={index}
-                src={icon}
-                alt={index < badge.length ? '진짜 icon' : '기본 badgeIcon'}
-                width={90}
-              />
+              <div key={index} className='flex flex-col'>
+                <Image
+                  // 키값은 실제 데이터로 연동하면서 좀더 유니크한 값으료 변경 예정
+                  src={icon.image}
+                  alt={index < image.length ? '진짜 icon' : '기본 badgeIcon'}
+                  width={90}
+                />
+                {icon.name && <div>{icon.name}</div>}
+              </div>
             ))}
           </div>
         </div>
