@@ -1,4 +1,4 @@
-import { Header } from '../../components/Header';
+// import { Header } from '../../components/Header';
 
 // 로그인 하지 않은 사람이 접속하면 되돌리게 처리
 
@@ -10,7 +10,7 @@ export default function NeedLoginLayout({
 }) {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div>{children}</div>
     </>
   );
