@@ -20,18 +20,30 @@ export const MypageCardSection = ({
   return (
     <div className='flex w-[380px] flex-col items-start justify-center'>
       <div className='flex w-full justify-between'>
-        <div>{title}</div>
-        <div>전체보기</div>
+        <div className='text-[15px] font-bold'>{title}</div>
+        <div className='cursor-pointer text-[12px]'>전체보기</div>
       </div>
-      <div>선</div>
-      <div className='bg-primaryGray-200 flex w-full items-center justify-center rounded-[30px] px-8 py-6'>
-        <span className=' cursor-pointer' onClick={goToPreviousSlide}>
-          ﹤
+      <div className='border-primaryGray-300 mb-6 w-full border-t-[1px]'></div>
+      <div
+        className={`bg-primaryGray-200 flex w-full items-center justify-between rounded-[30px] px-4 ${
+          title === '방문 국가' ? 'py-10' : 'py-6'
+        }`}
+      >
+        <span
+          className='material-icons-outlined cursor-pointer'
+          onClick={goToPreviousSlide}
+        >
+          arrow_back_ios
         </span>
         <div className='flex items-center justify-center'>
           <div className='flex items-center justify-center transition-all duration-300'>
             {visibleImages.map((icon, index) => (
-              <div key={index} className='flex flex-col'>
+              <div
+                key={index}
+                className={`flex flex-col items-center justify-center ${
+                  index !== 0 && 'ml-1'
+                } ${index !== visibleImages.length - 1 && 'mr-1'}`}
+              >
                 <Image
                   // 키값은 실제 데이터로 연동하면서 좀더 유니크한 값으료 변경 예정
                   src={icon.image}
@@ -43,8 +55,11 @@ export const MypageCardSection = ({
             ))}
           </div>
         </div>
-        <span className=' cursor-pointer' onClick={goToNextSlide}>
-          ＞
+        <span
+          className='material-icons-outlined cursor-pointer'
+          onClick={goToNextSlide}
+        >
+          arrow_forward_ios
         </span>
       </div>
     </div>

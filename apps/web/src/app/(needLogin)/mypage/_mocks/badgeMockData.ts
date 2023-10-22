@@ -16,6 +16,15 @@ export const badgeImages = [
   {
     image: badgeImage3,
   },
+  {
+    image: badgeImage1,
+  },
+  {
+    image: badgeImage2,
+  },
+  {
+    image: badgeImage3,
+  },
 ];
 
 export const badgeImages2 = [
