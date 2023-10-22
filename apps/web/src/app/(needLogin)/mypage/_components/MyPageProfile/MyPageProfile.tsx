@@ -3,8 +3,8 @@ import { Button } from 'ui';
 
 import profileImage from '/public/images/profile-image.svg';
 
-import { headerConfig } from '../../../../../constants';
-import materialIcon from '../../../../../utils/materialIcon';
+// import { headerConfig } from '../../../../../constants';
+// import materialIcon from '../../../../../utils/materialIcon';
 import { MyPageContainer } from '../MyPageContainer';
 
 export const MyPageProfile = () => {
@@ -28,7 +28,7 @@ export const MyPageProfile = () => {
               이미지 삭제
             </Button>
           </div>
-          <div className='absolute left-[453px] top-[140px] '>
+          <div className='absolute left-[451px] top-[140px] '>
             <Image
               className='rounded-full'
               src={profileImage}
@@ -50,14 +50,22 @@ export const MyPageProfile = () => {
           <div className='flex items-center justify-center'>
             <div className='ml-4'>소개문구를 작성해주세요.</div>
             <div>
-              {materialIcon({
+              <div className='border-primaryBlue-700 hover:bg-primaryBlue-700 ml-2 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border p-1 hover:text-white hover:opacity-80'>
+                <span
+                  className='material-icons-outlined'
+                  style={{ fontSize: '14px' }}
+                >
+                  edit
+                </span>
+              </div>
+              {/* {materialIcon({
                 iconName: 'edit',
                 size: '18',
                 ...headerConfig.iconStyle,
-              })}
+              })} */}
             </div>
           </div>
-          <div>
+          <div className='mt-2'>
             <Button
               className='h-[25px] w-[70px] text-[10px]'
               variant='roundednavy'
