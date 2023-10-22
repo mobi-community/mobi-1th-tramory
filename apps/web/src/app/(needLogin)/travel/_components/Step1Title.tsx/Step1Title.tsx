@@ -1,8 +1,31 @@
+'use client';
+
+import { useAtom } from 'jotai';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { Input } from 'ui';
 
 import { travelStep1config } from '../../../../../constants';
+import { inputAtom } from '../../../../../store';
 
 const Step1Title = () => {
+  const [inputValue, setInputValue] = useAtom(inputAtom);
+  const router = useRouter();
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (inputValue.trim() === '') {
+      return;
+    } else {
+      console.log('클릭함');
+      // 데이터 임시저장 코드는 추후 작업 예정
+      router.push('/');
+    }
+  };
+
   return (
     <div className=' flex h-screen w-auto flex-col items-center justify-center'>
       <div className='flex  items-center justify-between font-semibold'></div>
@@ -51,13 +74,28 @@ const Step1Title = () => {
               {travelStep1config.rightSectionTitle}
             </div>
             <div className='flex w-full flex-col items-center justify-center pb-[30px] pl-[40px] pr-[40px]'>
-              <div className='text-primaryGray-400 pt-[200px] text-3xl font-bold'>
+              <div className='text-primaryGray-400 pt-[170px] text-3xl font-bold'>
                 {travelStep1config.planDescription}
               </div>
-              <input />
-              <span className='material-icons-outlined'>
-                arrow_circle_right
-              </span>
+              <div className='mt-[20px] flex w-full items-center items-center justify-center gap-2'>
+                <Input
+                  className='w-[80%] border-b-2 border-gray-300 bg-transparent text-center text-lg'
+                  placeholder={travelStep1config.inputPlaceholder}
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                <span
+                  className={`material-icons-outlined ${
+                    inputValue.trim()
+                      ? 'cursor-pointer'
+                      : 'pointer-events-none opacity-40'
+                  }`}
+                  style={{ fontSize: '30px' }}
+                  onClick={handleSubmit}
+                >
+                  arrow_circle_right
+                </span>
+              </div>
             </div>
           </div>
         </div>
