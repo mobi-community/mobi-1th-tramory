@@ -1,6 +1,14 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/ui/components/input.tsx",
+    "../../packages/ui/components/switch.tsx",
+    "../../packages/ui/components/popover.tsx"
+  ],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "plugins": [

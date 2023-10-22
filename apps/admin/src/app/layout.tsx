@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import { ModeToggle, ThemeProvider } from 'ui';
+import { ThemeProvider } from 'ui';
 
 export const metadata: Metadata = {
   title: 'Doc App',
@@ -18,9 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={inter.className}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <main className='flex min-h-[70vh] w-full flex-col overflow-hidden p-4 md:container'>
-            <div className='flex w-full justify-end'>
-              <ModeToggle />
-            </div>
+            <div className='flex w-full justify-end'></div>
             {children}
           </main>
         </ThemeProvider>
