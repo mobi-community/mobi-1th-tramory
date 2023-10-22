@@ -3,8 +3,8 @@ export const AuthSloganSection = () => {
 
   return (
     <>
-      <div className='bg-primaryGreen h-px w-full'></div>
-      <div className='flex items-center justify-between text-5xl font-bold text-[#166C63]'>
+      <div className='bg-primaryGreen mt-6 h-px w-full'></div>
+      <div className='flex w-full items-center justify-between text-4xl font-bold text-[#166C63]'>
         <p className='my-4'>TRA</p>
         {circleArray.map((_, idx) => (
           <div

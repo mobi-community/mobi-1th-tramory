@@ -1,39 +1,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import LogoImage from '/public/assets/logo_black.svg';
+
 import { AuthSloganSection } from '../../components';
 import { loginContants } from '../../constants/login.constants';
 import { LoginForm } from './_components';
 
 const LoginPage = () => {
   return (
-    <div className='my-12 flex justify-center'>
-      <div className='flex w-[500px] flex-col items-center  justify-between'>
-        <div className='mb-7 flex w-full items-end justify-between'>
+    <div className='m-12 flex justify-center'>
+      <div className='flex flex-col items-center justify-between p-7'>
+        <div className='mb-4 flex w-full items-end justify-between font-semibold'>
           <Link href='/landing'>
             <Image
-              src={loginContants.images.mainLogo}
+              src={LogoImage}
+              width={120}
               alt='트래모리 메인 로고'
+              priority
             />
           </Link>
-          <p className='font-bold'>{loginContants.info}</p>
+          <div className='text-[12px]'>{loginContants.info}</div>
         </div>
         <div className='bg-primaryBeige w-full rounded-b-[40px]'>
-          <div className='my-[40px] flex flex-col items-center'>
+          <div className='flex flex-col items-center px-[30px] py-[35px]'>
             <Image
               src={loginContants.images.mainImage}
-              width={420}
-              height={362}
+              width={394}
               alt='로그인 페이지 메인 이미지'
-              className='mb-[25px]'
+              priority
             />
-            <div className='w-[420px]'>
-              <AuthSloganSection />
-            </div>
+            <AuthSloganSection />
           </div>
         </div>
-        <div className='h-px w-[430px] bg-[#D3CEBE]' />
-        <div className='bg-primaryBeige w-full rounded-t-[40px] p-[40px]'>
+        <div className='h-px w-[378px] bg-[#D3CEBE]' />
+        <div className='bg-primaryBeige w-full rounded-t-[40px] px-[30px] py-[35px]'>
           <LoginForm />
         </div>
       </div>
