@@ -5,6 +5,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    "../../packages/ui/components/input.tsx",
     "../../packages/ui/components/switch.tsx",
     "../../packages/ui/components/popover.tsx"
   ],
