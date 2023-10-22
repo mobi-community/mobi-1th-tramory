@@ -4,11 +4,12 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 
-import { MapPageConfig } from '../../../constants';
-import { MapAtom } from '../../../store';
+import { MapPageConfig } from '../../../../../constants';
+import smoothScroll from '../../../../../hooks/smoothScroll';
+import { MapAtom } from '../../../../../store';
 import { AnimatedArrow, Map, Marker } from './_components';
 
-const MapPage: React.FC = () => {
+export const MapPage: React.FC = () => {
   const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
   const [clicks, setClicks] = useState<google.maps.LatLng[]>([]);
   const [zoom] = useAtom(MapAtom.zoom);
@@ -20,6 +21,8 @@ const MapPage: React.FC = () => {
   const onClick = (e: google.maps.MapMouseEvent) => {
     setClicks([...clicks, e.latLng!]);
   };
+
+  smoothScroll('/recommendation_by_country');
 
   const editedLocation = clicks.map((latLng) => latLng.toJSON());
 
@@ -46,5 +49,3 @@ const MapPage: React.FC = () => {
     );
   return null;
 };
-
-export default MapPage;

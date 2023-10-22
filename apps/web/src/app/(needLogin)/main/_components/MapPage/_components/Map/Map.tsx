@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
-import { MapPageConfig } from '../../../../../constants';
+import { MapPageConfig } from '../../../../../../../constants';
 import type { MapProps } from './Map.types';
 
 export const Map: React.FC<MapProps> = ({
