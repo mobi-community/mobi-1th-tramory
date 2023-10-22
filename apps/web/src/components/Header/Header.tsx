@@ -8,8 +8,7 @@ import logo from '/public/assets/logo_black.svg';
 
 import { headerConfig } from '../../constants';
 import materialIcon from '../../utils/materialIcon';
-import { ModeSwitchButton } from './_components';
-import { UserButton } from './_components/UserButton';
+import { ModeSwitchButton, UserButton } from './_components';
 
 export const Header: React.FC = () => {
   return (

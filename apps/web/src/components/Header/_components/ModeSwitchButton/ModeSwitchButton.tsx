@@ -1,10 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useAtom } from 'jotai';
+import React from 'react';
 import { Switch } from 'ui';
 
+import { MapAtom } from '../../../../store/atom';
+
 export const ModeSwitchButton: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useAtom(MapAtom.isDarkMode);
   const handleMode = () => {
     setIsDarkMode((prev: boolean) => !prev);
   };

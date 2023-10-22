@@ -5,6 +5,8 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { ThemeProvider } from 'ui';
 
+import Providers from './providers';
+
 export const metadata: Metadata = {
   title: 'Web App',
   description: 'Welcome to Next.js 13',
