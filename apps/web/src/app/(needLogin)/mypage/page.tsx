@@ -1,5 +1,11 @@
+import { MyPageProfile } from './_components';
+
 const MyPage = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <MyPageProfile />
+    </div>
+  );
 };
 
 export default MyPage;

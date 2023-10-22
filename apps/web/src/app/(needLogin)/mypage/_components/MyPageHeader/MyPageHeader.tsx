@@ -7,7 +7,7 @@ import materialIcon from '../../../../../utils/materialIcon';
 
 export const MyPageHeader = () => {
   return (
-    <div className='mx-20 mt-10 flex justify-end'>
+    <div className='mx-20 mt-5 flex justify-end'>
       <div className='flex'>
         <ModeSwitchButton />
         <div className='flex pt-2'>
