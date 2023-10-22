@@ -1,0 +1,4 @@
+/*해당 월이 아닌 다른 날의 일자는 회색 처리 */
+.react-datepicker__triangle {
+  display: none;
+}
