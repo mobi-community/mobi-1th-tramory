@@ -3,16 +3,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
+import { MapPageConfig } from '../../../../../constants';
 import type { MapProps } from './Map.types';
 
 export const Map: React.FC<MapProps> = ({ onClick, children, ...options }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
-  const style = {
-    width: '100%',
-    height: '550px',
-    margin: '10px auto',
-  };
 
   useEffect(() => {
     if (mapRef.current && !map) {
@@ -38,7 +34,7 @@ export const Map: React.FC<MapProps> = ({ onClick, children, ...options }) => {
 
   return (
     <>
-      <div ref={mapRef} id='map' style={style} />
+      <div ref={mapRef} id='map' style={MapPageConfig.wrapperStyle} />
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child))
           // @ts-ignore

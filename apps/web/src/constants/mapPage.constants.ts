@@ -1,5 +1,14 @@
 export const MapPageConfig = {
   arrowText: '다른 사람의 여행이 궁금하신가요?',
+  initialLocation: {
+    lat: 37.569227,
+    lng: 126.9777256,
+  },
+  wrapperStyle: {
+    width: '91%',
+    minHeight: '650px',
+    margin: '50px auto',
+  },
   mapStyle: {
     dark: [
       {
@@ -52,6 +61,7 @@ export const MapPageConfig = {
             saturation: '0',
           },
           {
+            // eslint-disable-next-line camelcase
             invert_lightness: true,
           },
           {

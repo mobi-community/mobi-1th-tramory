@@ -8,16 +8,15 @@ import logo from '/public/assets/logo_black.svg';
 
 import { headerConfig } from '../../constants';
 import materialIcon from '../../utils/materialIcon';
-import { ModeSwitchButton } from './_components';
-import { UserButton } from './_components/UserButton';
+import { ModeSwitchButton, UserButton } from './_components';
 
 export const Header: React.FC = () => {
   return (
-    <div className='ml-20 mt-10 flex justify-between'>
+    <div className='mx-20 mt-10 flex justify-between'>
       <Link href='./map'>
         <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
       </Link>
-      <div className='absolute right-20 top-8 flex'>
+      <div className='flex'>
         <ModeSwitchButton />
         <div className='flex pt-2'>
           <Link href='./story_community'>
