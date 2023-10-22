@@ -7,7 +7,7 @@ export const MyPageContainer: React.FC<MyPageContainerProps> = ({
   title,
 }) => {
   return (
-    <div className='h-screen w-[1024px] rounded-tl-[80px] shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
+    <div className='h-auto w-[1024px] rounded-tl-[80px] shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
       {title && (
         <div className='p-12'>
           <p className='text-primaryBlue-700 mb-5 text-2xl font-bold'>
