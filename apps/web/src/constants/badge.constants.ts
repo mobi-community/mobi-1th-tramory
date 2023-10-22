@@ -4,6 +4,7 @@ export type BadgeConfig = typeof badgeConfig;
 
 export const badgeConfig = {
   badgeDefault,
+  defaultMessage: '배지를<br />획득해보세요!',
   badges: [
     {
       title: '여행 계획',

@@ -7,7 +7,7 @@ import Image from 'next/image';
  * 추후 개발 시 발급된 배지 개수로 수정 예정
  * 구글 아이콘 추후 util 컴포넌트로 수정 예정
  */
-export const OneBadgeSlide = ({ item, badgeDefault }) => {
+export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage }) => {
   const { title, description } = item;
   // const badgeArray = Array.from({ length: description.length }).fill(null);
 
@@ -41,7 +41,12 @@ export const OneBadgeSlide = ({ item, badgeDefault }) => {
                 alt='배지 디폴트 이미지'
                 className='relative'
               />
-              <div className='text-primaryGray-300 absolute left-2/4 top-2/4 w-full -translate-x-2/4 -translate-y-2/4 text-center font-bold'>
+              <div className='text-primaryGray-300 absolute left-2/4 top-[40px] w-full -translate-x-2/4 text-center font-bold'>
+                <h1
+                  className='text-sm '
+                  dangerouslySetInnerHTML={{ __html: defaultMessage }}
+                />
+                {/* 배지 발급 받았을 때, css 수정해야함
                 <h1
                   className='text-sm '
                   dangerouslySetInnerHTML={{ __html: desc.title }}
@@ -49,7 +54,7 @@ export const OneBadgeSlide = ({ item, badgeDefault }) => {
                 <p
                   className='text-xs'
                   dangerouslySetInnerHTML={{ __html: desc.subtitle || null }}
-                />
+                /> */}
               </div>
             </div>
           ))}

@@ -4,11 +4,17 @@ import { OneBadgeSlide } from '../OneBadgeSlide';
 
 export const BadgeSlide = () => {
   const badgeDefault = badgeConfig.badgeDefault;
+  const defaultMessage = badgeConfig.defaultMessage;
 
   return (
     <div>
       {badgeConfig.badges.map((item, index) => (
-        <OneBadgeSlide key={index} item={item} badgeDefault={badgeDefault} />
+        <OneBadgeSlide
+          key={index}
+          item={item}
+          badgeDefault={badgeDefault}
+          defaultMessage={defaultMessage}
+        />
       ))}
     </div>
   );
