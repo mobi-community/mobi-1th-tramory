@@ -1,14 +1,15 @@
-// import { badgeConfig } from '../../../../../../constants';
 import { badgeConfig } from '@/constants';
 
+import { OneBadgeSlide } from '../OneBadgeSlide';
+
 export const BadgeSlide = () => {
+  const badgeDefault = badgeConfig.badgeDefault;
+
   return (
     <div>
-      <h1>
-        {badgeConfig.badges.map((item) => (
-          <>{item.title}</>
-        ))}
-      </h1>
+      {badgeConfig.badges.map((item, index) => (
+        <OneBadgeSlide key={index} item={item} badgeDefault={badgeDefault} />
+      ))}
     </div>
   );
 };

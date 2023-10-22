@@ -31,7 +31,7 @@ export const badgeConfig = {
       },
     },
     {
-      title: '여행 계획',
+      title: '여행 기록',
       description: [
         {
           title: '첫 여행<br/>기록 작성!',
