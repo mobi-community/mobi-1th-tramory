@@ -1,21 +1,23 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
+import { hoveredAtom, isModalOpenAtom, isMountedAtom } from '../../store';
 import ViewTravelRecordType from '../Floating_modal/TravelRecordSelect';
 import ViewTravelRecordTypeModal from '../Floating_modal/TravelRecordSelectModal';
-import { FloatingMenuProps } from './FloatingMenuProps.types';
+import type { FloatingMenuProps } from './FloatingMenuProps.types';
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [hovered, setHovered] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMounted, setIsMounted] = useAtom(isMountedAtom);
+  const [hovered, setHovered] = useAtom(hoveredAtom);
+  const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
   const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+  }, [setIsMounted]);
 
   if (!isMounted) {
     return null;

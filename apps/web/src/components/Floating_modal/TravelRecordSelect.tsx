@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { TRAVEL_RECORD_OPTION } from './TravelRecordModal.types';
+import { travelRecordOptionConfig } from '../../constants';
 
 const ViewTravelRecordType: React.FC<{}> = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const ViewTravelRecordType: React.FC<{}> = () => {
       <div className='flex w-full flex-col items-center px-2.5'>
         <h2 className='mb-4 text-center text-lg font-bold'>기록하기</h2>
         <div className='flex w-full gap-4'>
-          {TRAVEL_RECORD_OPTION.map((item) => (
+          {travelRecordOptionConfig.map((item) => (
             <button
               key={item.id}
               id={item.id}

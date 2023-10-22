@@ -1,4 +1,6 @@
-export const TRAVEL_RECORD_OPTION = [
+export type TravelRecordOptionConfig = typeof travelRecordOptionConfig;
+
+export const travelRecordOptionConfig = [
   {
     id: 'SIMPLE_RECORD',
     label: '간편 기록하기',
