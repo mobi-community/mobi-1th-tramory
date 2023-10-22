@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Controller } from 'react-hook-form';
+import { Input } from 'ui';
 
 import type { ValidatorInputProps } from './ValidatorInput.types';
 
@@ -33,7 +34,7 @@ export const ValidatorInput: FC<ValidatorInputProps> = ({
           fieldState: { error },
         }) => (
           <div className='flex flex-col'>
-            <input
+            <Input
               className={`${
                 type === 'password' ? 'w-[284px]' : 'w-[190px]'
               } ml-2 ${error ? 'mb-0' : 'mb-6'}`}
