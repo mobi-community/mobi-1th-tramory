@@ -1,28 +1,37 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import { FloatingMenuProps } from './FloatingMenuProps.types';
+import { hoveredAtom, isModalOpenAtom, isMountedAtom } from '../../store';
+import ViewTravelRecordType from '../Floating_modal/TravelRecordSelect';
+import ViewTravelRecordTypeModal from '../Floating_modal/TravelRecordSelectModal';
+import type { FloatingMenuProps } from './FloatingMenuProps.types';
 
-const FloatingMenu: React.FC<FloatingMenuProps> = ({
-  travelPlan,
-  travelRecord,
-}) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [hovered, setHovered] = useState<string>('');
+const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
+  const [isMounted, setIsMounted] = useAtom(isMountedAtom);
+  const [hovered, setHovered] = useAtom(hoveredAtom);
+  const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
   const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+  }, [setIsMounted]);
 
   if (!isMounted) {
     return null;
   }
 
   const toTravelPlan = travelPlan || (() => router.push('/'));
-  const toTravelRecord = travelRecord || (() => router.push('/'));
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='fixed bottom-0 right-0 p-5'>
@@ -46,7 +55,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
         <div className='group relative'>
           <button
             className='flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg focus:outline-none'
-            onClick={toTravelRecord}
+            onClick={openModal}
             onMouseEnter={() => setHovered('기록하기')}
             onMouseLeave={() => setHovered('')}
           >
@@ -59,6 +68,9 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({
           )}
         </div>
       </div>
+      <ViewTravelRecordTypeModal isOpen={isModalOpen} onClose={closeModal}>
+        <ViewTravelRecordType />
+      </ViewTravelRecordTypeModal>
     </div>
   );
 };
