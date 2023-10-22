@@ -24,12 +24,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          <main className='flex min-h-[70vh] w-full flex-col overflow-hidden md:container'>
-            <div className='flex w-full justify-end'></div>
+        <Providers>
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
             {children}
-          </main>
-        </ThemeProvider>
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
