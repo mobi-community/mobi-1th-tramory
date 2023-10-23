@@ -1,3 +1,3 @@
-export default function travelRecord() {
-  return <div> travelRecord</div>;
+export default function TravelRecord() {
+  return <div>record page</div>;
 }
