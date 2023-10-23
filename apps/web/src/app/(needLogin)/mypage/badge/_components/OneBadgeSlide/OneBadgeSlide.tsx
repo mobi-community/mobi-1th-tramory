@@ -81,15 +81,17 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
                         className='text-sm'
                         dangerouslySetInnerHTML={{ __html: defaultMessage }}
                       />
-                      {/* 배지 발급 받았을 때, css 수정해야함
-                <h1
-                  className='text-sm '
-                  dangerouslySetInnerHTML={{ __html: desc.title }}
-                />
-                <p
-                  className='text-xs'
-                  dangerouslySetInnerHTML={{ __html: desc.subtitle || null }}
-                /> */}
+                      {/* 배지 발급 받았을 때, css 수정해야함 */}
+                      <h1
+                        className='text-sm '
+                        dangerouslySetInnerHTML={{ __html: desc.title }}
+                      />
+                      <p
+                        className='text-xs'
+                        dangerouslySetInnerHTML={{
+                          __html: desc.subtitle || null,
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
