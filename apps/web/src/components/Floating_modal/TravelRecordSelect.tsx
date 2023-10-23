@@ -1,6 +1,6 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 
 import { travelRecordOptionConfig } from '../../constants';
@@ -12,7 +12,7 @@ const ViewTravelRecordType: React.FC<{}> = () => {
   const handleButtonClick = (url: string) => {
     router.push(url);
   };
-  const [, setOpenSimpleRecordMoadl] = useAtom(openSimpleRecordModalAtom);
+  const setOpenSimpleRecordModal = useSetAtom(openSimpleRecordModalAtom);
 
   return (
     <div className='inline-flex items-center justify-center'>
@@ -33,7 +33,7 @@ const ViewTravelRecordType: React.FC<{}> = () => {
                   className='material-icons-outlined'
                   style={{ fontSize: '40px' }}
                   onClick={() => {
-                    setOpenSimpleRecordMoadl(true);
+                    setOpenSimpleRecordModal(true);
                   }}
                 >
                   edit_location
