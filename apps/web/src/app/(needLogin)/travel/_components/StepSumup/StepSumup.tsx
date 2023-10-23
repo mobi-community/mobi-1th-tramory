@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 
-import { checkBoxAtom } from '../../../../../store';
+import { checkBoxAtom, selectedCountryAtom } from '../../../../../store';
 import ImageSlider from './_component/ImageSlider';
 
 async function fetchCountries(): Promise<{ countries: string[] }> {
@@ -21,6 +21,8 @@ async function fetchCountries(): Promise<{ countries: string[] }> {
 
 const StepSumup = () => {
   const [checked, setChecked] = useAtom(checkBoxAtom);
+  const [selectedCountry, setSelectedCountry] = useAtom(selectedCountryAtom);
+
   const queryOptions: UseQueryOptions<unknown, Error, { countries: string[] }> =
     {
       queryKey: ['countries'],
@@ -33,12 +35,21 @@ const StepSumup = () => {
     error,
   }: UseQueryResult<{ countries: string[] }, Error> = useQuery(queryOptions);
 
-  const images = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
+  const images = [
+    '/images/travel_record_img01.png',
+    '/images/travel_record_img02.png',
+    '/images/travel_record_img03.png',
+    '/images/travel_record_img04.png',
+  ];
 
   const headerHeight = 90;
 
   if (isLoading) return '로딩중...';
   if (error) return '에러가 발생하였습니다: ' + error;
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountry(e.target.value);
+  };
 
   return (
     <div
@@ -59,16 +70,26 @@ const StepSumup = () => {
           소중한 여행의 추억을 생생하게 기록으로 남겨보세요!
         </span>
         {data && (
-          <div className='my-4'>
-            총 {data.countries.length}개의 국가를 등록하셨습니다
-            <ul>
-              {data.countries.map((country, index) => (
-                <li key={index}>{country}</li>
-              ))}
-            </ul>
+          <div className='my-5'>
+            <label>
+              <select
+                value={selectedCountry || ''}
+                onChange={handleCountryChange}
+                className='rounded px-3 py-2 text-sm'
+              >
+                <option value=''>
+                  총 {data.countries.length}개의 국가를 등록하셨습니다
+                </option>
+                {data.countries.map((country, index) => (
+                  <option key={index} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
         )}
-        <div>
+        <div style={{ width: '100vw' }}>
           <ImageSlider images={images} />
         </div>
         <div className='my-4 flex items-center'>
@@ -76,9 +97,15 @@ const StepSumup = () => {
             type='checkbox'
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
-            className={`${checked ? 'text-black' : 'text-gray-500'} rounded`}
+            className='rounded'
           />
-          <span className='ml-2'>여행 기록 나만보기</span>
+          <span
+            className={`${
+              checked ? 'text-black' : 'text-gray-400'
+            } ml-2 rounded`}
+          >
+            여행 기록 나만보기
+          </span>
         </div>
         <div className='flex justify-end'>
           <button className='mt-auto'>저장하기</button>

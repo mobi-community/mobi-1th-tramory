@@ -13,7 +13,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
     dots: true,
     infinite: false,
     speed: 0,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
 
@@ -21,7 +21,13 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
     <Slider {...sliderSettings}>
       {images.map((image, index) => (
         <div key={index}>
-          <Image src={image} alt={`Image ${index + 1}`} />
+          <Image
+            src={image}
+            alt={`Image ${index + 1}`}
+            width={500}
+            height={250}
+            className='rounded-2xl object-cover pl-[5px]'
+          />
         </div>
       ))}
     </Slider>
