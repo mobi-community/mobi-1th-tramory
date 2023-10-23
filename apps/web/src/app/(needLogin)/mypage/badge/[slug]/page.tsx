@@ -1,9 +1,13 @@
 'use client';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { MyPageContainer } from '@/components';
 import { badgeConfig } from '@/constants';
+import { isOneHowToAtom } from '@/store/mypageBadge.atom';
+
+import { HowToNotification } from '../_components';
 
 const MyPageTabs = () => {
   const pathname = usePathname();
@@ -14,19 +18,32 @@ const MyPageTabs = () => {
 
   const badgeImgInfo = badgeConfig;
 
+  const [isOneHowTo, setIsOneHowTo] = useAtom(isOneHowToAtom);
+
+  const handleToggleHowTo = (event: React.MouseEvent) => {
+    event.stopPropagation(); // 상위 요소 이벤트 버블링 막기
+    setIsOneHowTo((prev) => !prev);
+  };
+
+  const handleBackgroundClick = () => {
+    setIsOneHowTo(false);
+  };
+
   return (
-    <div>
+    <div onClick={handleBackgroundClick}>
       <MyPageContainer title='나의 배지'>
-        <div className='mb-8 flex items-center'>
+        <div className='relative mb-8 flex items-center'>
           <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
             {currentBadge.title} (0/{currentBadge.description.length})
           </p>
           <span
+            onClick={handleToggleHowTo}
             className='material-icons-outlined'
             style={{ color: '#70D1E6', cursor: 'pointer', fontSize: '18px' }}
           >
             info
           </span>
+          {isOneHowTo && <HowToNotification info={currentBadge.info} />}
         </div>
         <div className='bg-primaryGray-200 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
