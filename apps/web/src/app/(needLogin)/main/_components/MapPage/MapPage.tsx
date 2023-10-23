@@ -5,9 +5,8 @@ import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 
 import { MapPageConfig } from '../../../../../constants';
-import smoothScroll from '../../../../../hooks/smoothScroll';
 import { MapAtom } from '../../../../../store';
-import { AnimatedArrow, Map, Marker } from './_components';
+import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
 
 export const MapPage: React.FC = () => {
   const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
@@ -22,15 +21,14 @@ export const MapPage: React.FC = () => {
     setClicks([...clicks, e.latLng!]);
   };
 
-  smoothScroll('/recommendation_by_country');
-
   const editedLocation = clicks.map((latLng) => latLng.toJSON());
 
   console.log('click', editedLocation);
 
   if (apiKey)
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div className='text-center'>
+        <SearchBar />
         <Wrapper apiKey={apiKey}>
           <Map
             center={center}

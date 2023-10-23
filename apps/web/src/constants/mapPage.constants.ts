@@ -1,4 +1,6 @@
 export const MapPageConfig = {
+  searchBarText: '국가명 또는 도시명을 입력해주세요',
+  selectArray: ['국가', '스토리'],
   arrowText: '다른 사람의 여행이 궁금하신가요?',
   initialLocation: {
     lat: 37.569227,
