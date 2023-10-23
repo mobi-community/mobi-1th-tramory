@@ -7,22 +7,23 @@
 .react-datepicker__header {
   background-color: white;
   height: 100px;
+  margin-bottom: -9px;
   border: none;
 }
 
 /*현재 날짜와 년도 나타냄 ex) Octoer 2023*/
 .react-datepicker__current-month {
-  font-size: 1.2em;
+  font-size: 1.16em;
   margin-right: 220px;
   margin-top: 13px;
-  font-weight: 300;
-  color: rgb(12, 12, 172);
+  font-weight: 600;
+  color: #2c5c84;
 }
 
 /*헤더 제외 나머지 영역이라고 볼 수 있음 */
 .react-datepicker__month-container {
   width: 440px;
-  height: 400px;
+  height: 390px;
 }
 
 /* 일자들을 가르킴 */
@@ -66,6 +67,7 @@
 .react-datepicker__navigation {
   margin-top: 25px;
 }
+
 .react-datepicker__navigation--previous {
   border-right-color: #ccc;
   margin-left: 3px;

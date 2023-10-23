@@ -1,14 +1,20 @@
-import WhenCalener from './components/WhenCalendar';
+import NavigateButton from '../NavigateButton/NavigateButton';
+import WhenCalener from './components/WhenCalendar/WhenCalendar';
 
-const WhenTravel = () => {
+const WhenTravel = ({ title }) => {
   return (
     <div className='mt-[57px] flex h-[600px] items-center justify-center '>
-      <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center'>
+      <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
         <div>
-          <div className='text-[30px] font-semibold'>언제 떠나셨나요?</div>
-          <WhenCalener />
+          <div className='text-primaryGray-500 ml-[103px] mt-[40px] text-[30px] font-semibold'>
+            {title}
+          </div>
+          <div className='mt-[20px]'>
+            <WhenCalener />
+          </div>
         </div>
       </div>
+      <NavigateButton />
     </div>
   );
 };
