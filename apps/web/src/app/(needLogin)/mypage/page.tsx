@@ -1,6 +1,14 @@
-import { Button } from 'ui';
+'use client';
 
-import { MyPageContainer } from './_components';
+import badgeDefaultImage from '/public/images/badge-default.png';
+import badgeDefaultImage2 from '/public/images/badge-default2.png';
+
+import {
+  MypageCardSection,
+  MyPageContainer,
+  MyPageProfile,
+} from './_components';
+import { badgeImages, badgeImages2 } from './_mocks';
 
 const MyPage = () => {
   return (

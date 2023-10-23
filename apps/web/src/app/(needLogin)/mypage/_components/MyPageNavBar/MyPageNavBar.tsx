@@ -26,7 +26,7 @@ export const MyPageNavBar = () => {
   };
 
   return (
-    <div className='border-primaryGray-300 text-primaryGray-400 h-screen w-[280px] border-r-[1px] border-opacity-60 font-medium'>
+    <div className='border-primaryGray-300 text-primaryGray-400 h-[108vh] w-[280px] border-r-[1px] border-opacity-60 font-medium'>
       <div className='pb-6 pl-10 pt-8'>
         <Image
           src={mypageNavConfig.logoImage}
