@@ -12,7 +12,7 @@ export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
 
   if (isSearchModalOpen)
     return (
-      <div className='border-primaryGray-200 absolute z-20 mt-2 max-h-[200px] w-[430px] overflow-y-scroll border bg-white drop-shadow-xl'>
+      <div className='no-scroll border-primaryGray-200 absolute z-20 mt-2 max-h-[200px] w-[420px] overflow-y-scroll border bg-white drop-shadow-xl'>
         {suggestedKeyword.map((word, i, array) => (
           <li
             key={word.id}
