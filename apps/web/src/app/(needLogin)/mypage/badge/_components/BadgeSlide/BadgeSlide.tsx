@@ -10,6 +10,7 @@ export const BadgeSlide = () => {
     <div>
       {badgeConfig.badges.map((item, index) => (
         <OneBadgeSlide
+          id={index}
           key={index}
           item={item}
           badgeDefault={badgeDefault}

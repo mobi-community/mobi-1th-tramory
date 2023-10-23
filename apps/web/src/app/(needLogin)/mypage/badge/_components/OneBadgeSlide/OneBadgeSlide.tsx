@@ -2,9 +2,13 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { atom, useAtom } from 'jotai';
+import { atomFamily } from 'jotai/utils';
 import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { HowToNotification } from '../HowToNotification';
 /**
  *
  * @todo
@@ -12,21 +16,37 @@ import { Swiper, SwiperSlide } from 'swiper/react';
  * 추후 개발 시 발급된 배지 개수로 수정 예정
  * 구글 아이콘 추후 util 컴포넌트로 수정 예정
  */
-export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage }) => {
-  const { title, description } = item;
+
+const isHowToAtom = atomFamily(() => atom(false));
+
+export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
+  const { title, description, info } = item;
+  const [isHowtoOpen, setIsHowToOpen] = useAtom(isHowToAtom(id));
+
+  const handleToggleHowTo = (event: React.MouseEvent) => {
+    event.stopPropagation(); // 상위 요소 이벤트 버블링 막기
+    setIsHowToOpen((prev) => !prev);
+  };
+
+  // span 아이콘 클릭하지 않고 해당 div 영역 클릭할 경우 HowToNotification이 false 상태가되어 꺼짐
+  const handleBackgroundClick = () => {
+    setIsHowToOpen(false);
+  };
 
   return (
-    <div>
-      <div className='my-8 flex items-center'>
+    <div onClick={handleBackgroundClick}>
+      <div className='relative my-8 flex items-center'>
         <p className='text-primaryBlue-700 mr-2 text-2xl font-bold'>
           {title} (0/{description.length})
         </p>
         <span
+          onClick={handleToggleHowTo}
           className='material-icons-outlined'
           style={{ color: '#70D1E6', cursor: 'pointer' }}
         >
           info
         </span>
+        {isHowtoOpen && <HowToNotification info={info} />}
       </div>
       <div className='bg-primaryGray-200 flex items-center rounded-[30px] px-8 py-16'>
         <Swiper

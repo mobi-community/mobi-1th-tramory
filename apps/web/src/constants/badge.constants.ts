@@ -119,7 +119,7 @@ export const badgeConfig = {
       },
     },
     {
-      title: '카테고리별',
+      title: '카테고리',
       description: [
         {
           title: '액티비티',
