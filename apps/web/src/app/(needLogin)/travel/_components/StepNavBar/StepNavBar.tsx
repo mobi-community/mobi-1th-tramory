@@ -19,7 +19,7 @@ const StepNavbar: React.FC = () => {
       <div className='mt-10 flex h-20 items-center justify-center'>
         <ul className='bg-primaryBlue-100 absolute  flex h-20 w-full max-w-[969px] justify-center'>
           {stepArray.map(({ id, step, title }) => (
-            <Link href={`/travel/${state}/${id}`} key={id}>
+            <Link href={`/travel/${state}`} key={id}>
               <li
                 key={id}
                 className='relative relative z-10 z-50 mx-11 list-none	'

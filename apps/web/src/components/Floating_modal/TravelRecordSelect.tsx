@@ -1,6 +1,6 @@
 'use client';
 
-import { useAtom, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 
 import { travelRecordOptionConfig } from '../../constants';
@@ -9,13 +9,11 @@ import { openSimpleRecordModalAtom } from '../../store/simpleRecordModal.atom';
 
 const ViewTravelRecordType: React.FC<{}> = () => {
   const router = useRouter();
-  const [state, setState] = useAtom(registerStateAtom);
+  const setState = useSetAtom(registerStateAtom);
   const handleButtonClick = (url: string) => {
     router.push(url);
   };
   const setOpenSimpleRecordModal = useSetAtom(openSimpleRecordModalAtom);
-
-  const toTravelRecord = () => router.push('/travel/record/0');
 
   return (
     <div className='inline-flex items-center justify-center'>
@@ -46,9 +44,7 @@ const ViewTravelRecordType: React.FC<{}> = () => {
                   className='material-icons-outlined'
                   style={{ fontSize: '50px' }}
                   onClick={() => {
-                    toTravelRecord();
                     setState('record');
-                    console.log(state);
                   }}
                 >
                   note_alt

@@ -4,25 +4,46 @@ import './style.css';
 
 import { useAtom } from 'jotai';
 import DatePicker from 'react-datepicker';
+import { Controller } from 'react-hook-form';
 
 import { dateRangeAtom } from '../../../../../../../store/simpleRecordModal.atom';
 
-const WhenCalener = () => {
+const WhenCalener = ({ control, name }) => {
   const [dateRange, setDateRange] = useAtom(dateRangeAtom);
   const [startDate, endDate] = dateRange;
 
   return (
-    <DatePicker
-      dateFormat='yyyy.MM.dd'
-      selected={startDate}
-      selectsRange={true}
-      startDate={startDate} // 시작 날짜
-      endDate={endDate}
-      onChange={(update) => {
-        setDateRange(update);
-      }}
-      inline
-    />
+    <>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <>
+            <DatePicker
+              dateFormat='yyyy.MM.dd'
+              selected={startDate}
+              selectsRange={true}
+              startDate={startDate} // 시작 날짜
+              endDate={endDate}
+              onChange={(update) => {
+                setDateRange(update);
+                field.onChange(update);
+              }}
+              inline
+            />
+            <div className='mt-2 flex'>
+              <div className='jusify-center border-primaryGray flex  h-[40px] w-[214px] items-center justify-center border bg-white font-semibold text-[#2c5c84]'>
+                start : {startDate && startDate.toLocaleDateString()}
+              </div>
+
+              <div className='jusify-center border-primaryGray ml-[13px] flex h-[40px] w-[214px]  items-center justify-center border bg-white font-semibold text-[#2c5c84]'>
+                end : {endDate && endDate.toLocaleDateString()}
+              </div>
+            </div>
+          </>
+        )}
+      />
+    </>
   );
 };
 

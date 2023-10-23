@@ -25,7 +25,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
     return null;
   }
 
-  const toTravelPlan = travelPlan || (() => router.push('/travel/plan/0'));
+  const toTravelPlan = travelPlan || (() => router.push('/travel/plan'));
 
   const openModal = () => {
     setIsModalOpen(true);
