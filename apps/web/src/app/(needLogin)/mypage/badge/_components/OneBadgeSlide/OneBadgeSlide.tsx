@@ -36,13 +36,13 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
   return (
     <div onClick={handleBackgroundClick}>
       <div className='relative my-8 flex items-center'>
-        <p className='text-primaryBlue-700 mr-2 text-2xl font-bold'>
+        <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
           {title} (0/{description.length})
         </p>
         <span
           onClick={handleToggleHowTo}
           className='material-icons-outlined'
-          style={{ color: '#70D1E6', cursor: 'pointer' }}
+          style={{ color: '#70D1E6', cursor: 'pointer', fontSize: '18px' }}
         >
           info
         </span>
