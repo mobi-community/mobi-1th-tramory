@@ -2,11 +2,12 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { atom, useAtom } from 'jotai';
-import { atomFamily } from 'jotai/utils';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { isHowToAtom } from '@/store/mypageBadge.atom';
 
 import { HowToNotification } from '../HowToNotification';
 /**
@@ -14,10 +15,7 @@ import { HowToNotification } from '../HowToNotification';
  * @todo
  * 배지 발급 개수 부분 현재 0으로 하드코딩 되어있음
  * 추후 개발 시 발급된 배지 개수로 수정 예정
- * 구글 아이콘 추후 util 컴포넌트로 수정 예정
  */
-
-const isHowToAtom = atomFamily(() => atom(false));
 
 export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
   const { title, description, info } = item;

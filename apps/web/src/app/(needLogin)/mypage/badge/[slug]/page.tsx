@@ -1,6 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 
+import { MyPageContainer } from '@/components';
 import { badgeConfig } from '@/constants';
 
 const MyPageTabs = () => {
@@ -12,7 +13,9 @@ const MyPageTabs = () => {
 
   return (
     <div>
-      <h1>{currentBadge.title}</h1>
+      <MyPageContainer title={currentBadge.title}>
+        <div></div>
+      </MyPageContainer>
     </div>
   );
 };

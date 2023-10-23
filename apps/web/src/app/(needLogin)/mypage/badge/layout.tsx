@@ -15,11 +15,15 @@ export default function BagdeLayout({
   return (
     <div>
       <div className='flex justify-end'>
-        <Link className='mr-4' href='badge'>
-          all
+        <Link className='mr-4' href='/mypage/badge'>
+          ALL
         </Link>
         {badgeConfig.badges.map((badge, index) => (
-          <Link className='mr-4' key={index} href={`badge/${badge.slug}`}>
+          <Link
+            className='mr-4'
+            key={index}
+            href={`/mypage/badge/${badge.slug}`}
+          >
             {badge.title}
           </Link>
         ))}
