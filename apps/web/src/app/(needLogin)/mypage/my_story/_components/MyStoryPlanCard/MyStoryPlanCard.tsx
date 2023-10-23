@@ -32,14 +32,14 @@ export const MyStoryPlanCard = ({ planData }: MyStoryPlanCardProps) => {
             variant='roundednavy'
             className='text-primaryBlue-700 hover:bg-primaryBlue-500 flex items-center justify-center rounded-3xl border-none bg-white text-[13px] font-semibold transition-all duration-300 hover:text-white'
           >
-            상세 계획 보러가기
+            상세 기록 보러가기
           </Button>
         ) : (
           <Button
             variant='roundednavy'
             className='bg-primaryBlue-700 hover:border-primaryGray-300 flex items-center justify-center rounded-3xl bg-opacity-70 text-[13px] font-semibold text-white transition-all duration-300 hover:border-opacity-70 hover:bg-opacity-40'
           >
-            상세 계획 보러가기
+            상세 기록 남기기
           </Button>
         )}
       </div>
