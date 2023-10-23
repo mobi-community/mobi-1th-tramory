@@ -1,6 +1,7 @@
 import { Button } from 'ui';
 
 import FloatingMenu from '../components/Floating_menu/FloatingMenu';
+import SimpleRecordModal from '../components/SimpleRecordModal/SimpleRecordModal';
 
 const buttonVariants = [
   'default',
@@ -29,6 +30,7 @@ export default function Page() {
         </ul>
         <FloatingMenu />
       </div>
+      <SimpleRecordModal />
     </div>
   );
 }
