@@ -5,13 +5,13 @@ import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
 import { openSimpleRecordModalAtom } from '../../store/simpleRecordModal.atom';
-import CalendarCustom from './_components/ValidateCaleander/ValiedateCaleander';
+import ValidatorCalendar from '../ValidatorCalendar/ValiedatorCaleander';
 import ValidateSelect from './_components/ValidateSelect/ValidateSelect';
 
 const SimpleRecordModal = () => {
   const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
-  const [openSimpleRecordMoadl, setOpenSimpleRecordMoadl] = useAtom(
+  const [openSimpleRecordMoadl, setOpenSimpleRecordModal] = useAtom(
     openSimpleRecordModalAtom
   );
 
@@ -23,7 +23,7 @@ const SimpleRecordModal = () => {
             <span
               className='material-icons-outlined ml-[460px] mt-[10px]'
               style={{ fontSize: '20px', color: 'gray', cursor: 'pointer' }}
-              onClick={() => setOpenSimpleRecordMoadl(false)}
+              onClick={() => setOpenSimpleRecordModal(false)}
             >
               close
             </span>
@@ -38,7 +38,10 @@ const SimpleRecordModal = () => {
               <div className='relative z-10'>
                 <ValidateSelect control={control} />
               </div>
-              <CalendarCustom control={control} />
+              <div className='text-primaryGray-500 ml-12  mt-7 flex'>
+                일자<p className='text-primaryGreen mb-1 ml-1'>*</p>
+              </div>
+              <ValidatorCalendar control={control} name='date' />
               <div className='mt-14 flex justify-center'>
                 <div className='mr-4 mt-[10px] cursor-pointer text-[13px] font-semibold'>
                   취소

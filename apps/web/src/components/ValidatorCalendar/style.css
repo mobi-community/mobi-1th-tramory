@@ -1,0 +1,14 @@
+/*해당 월이 아닌 다른 날의 일자는 회색 처리 */
+.react-datepicker__triangle {
+  display: none;
+}
+.react-datepicker__navigation--previous {
+  border-right-color: #ccc;
+  top: 7px;
+  margin-left: 10px;
+}
+.react-datepicker__navigation--next {
+  border-left-color: #ccc;
+  top: 7px;
+  margin-right: 8px;
+}
