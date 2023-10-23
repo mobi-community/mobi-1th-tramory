@@ -8,6 +8,7 @@ export const badgeConfig = {
   badges: [
     {
       title: '여행 계획',
+      slug: 'plan',
       description: [
         {
           title: '첫 여행<br/>축하합니다!',
@@ -33,6 +34,7 @@ export const badgeConfig = {
     },
     {
       title: '여행 기록',
+      slug: 'record',
       description: [
         {
           title: '첫 여행<br/>기록 작성!',
@@ -58,6 +60,7 @@ export const badgeConfig = {
     },
     {
       title: '이벤트',
+      slug: 'event',
       description: [
         {
           title: '메리 크리스마스',
@@ -92,6 +95,7 @@ export const badgeConfig = {
     },
     {
       title: '방문 대륙',
+      slug: 'continent',
       description: [
         {
           title: '남아메리카',
@@ -120,6 +124,7 @@ export const badgeConfig = {
     },
     {
       title: '카테고리',
+      slug: 'category',
       description: [
         {
           title: '액티비티',
