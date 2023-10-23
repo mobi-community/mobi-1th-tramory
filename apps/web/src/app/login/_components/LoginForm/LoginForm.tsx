@@ -6,7 +6,7 @@ import { Button } from 'ui';
 
 import { ValidatorInput } from '../../../../components';
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
-import { LoginFormType } from './LoginForm.type';
+import type { LoginFormType } from './LoginForm.type';
 
 export const LoginForm = () => {
   const { control } = useForm<LoginFormType>({

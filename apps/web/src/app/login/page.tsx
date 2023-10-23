@@ -23,7 +23,7 @@ const LoginPage = () => {
           <div className='text-[12px]'>{loginContants.info}</div>
         </div>
         <div className='bg-primaryBeige w-full rounded-b-[40px]'>
-          <div className='flex flex-col items-center px-[30px] py-[35px]'>
+          <div className='flex flex-col items-center px-[30px] pb-[35px] pt-[33px]'>
             <Image
               src={loginContants.images.mainImage}
               width={394}
