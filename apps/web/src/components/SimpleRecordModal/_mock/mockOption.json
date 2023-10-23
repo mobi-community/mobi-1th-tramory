@@ -1,0 +1,24 @@
+{
+  "selectMock": [
+    {
+      "code": 0,
+      "country": "스위스"
+    },
+    {
+      "code": 1,
+      "country": "프랑스"
+    },
+    {
+      "code": 2,
+      "country": "영국"
+    },
+    {
+      "code": 3,
+      "country": "일본"
+    },
+    {
+      "code": 4,
+      "country": "터키"
+    }
+  ]
+}
