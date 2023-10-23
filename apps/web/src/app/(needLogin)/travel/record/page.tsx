@@ -1,13 +1,3 @@
-import TravelLayout from '../TravelLayout';
-
-const TravelRecord = () => {
-  return (
-    <>
-      <TravelLayout>
-        <div>Travel Record</div>
-      </TravelLayout>
-    </>
-  );
-};
-
-export default TravelRecord;
+export default function TravelRecord() {
+  return <div>record page</div>;
+}
