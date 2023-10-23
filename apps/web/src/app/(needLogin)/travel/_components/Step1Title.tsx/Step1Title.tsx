@@ -20,6 +20,8 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     setInputValue(event.target.value);
   };
 
+  const headerHeight = 90;
+
   const handleSubmit = () => {
     if (inputValue.trim() === '') {
       return;
@@ -31,7 +33,12 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   };
 
   return (
-    <div className=' flex h-screen w-auto flex-col items-center justify-center'>
+    <div
+      style={{
+        height: `calc(100vh - ${headerHeight}px)`,
+      }}
+      className=' flex min-h-full w-auto flex-col items-center justify-center'
+    >
       <div className='flex  items-center justify-between font-semibold'></div>
       <div className=' flex flex-row'>
         <div className='bg-primaryBlue-100 relative rounded-br-[28px] rounded-tr-[28px] '>
