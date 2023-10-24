@@ -34,7 +34,10 @@ const MyPageTabs = () => {
   };
 
   return (
-    <div className='ml-[60px]' onClick={handleBackgroundClick}>
+    <div
+      className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'
+      onClick={handleBackgroundClick}
+    >
       <MyPageContainer title={navTitle}>
         <div className='relative mb-8 flex items-center'>
           <p className='text-primaryBlue-700/80 mx-12 mr-2 text-xl font-bold'>
