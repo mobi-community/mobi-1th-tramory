@@ -39,7 +39,7 @@ const InformModal = ({ atom, title, size, setAtom }) => {
               <Image
                 src={img}
                 width={`${size == 'small' ? 30 : size == 'big' ? 50 : 150}`}
-                alt='배지 디폴트 이미지'
+                alt='알림 모달 디폴트 이미지'
                 priority
               />
             </div>
