@@ -1,11 +1,13 @@
 import { Button } from 'ui';
 
+import type { PaginationProps } from './Pagination.types';
+
 export const Pagination = ({
   currentPage,
   setCurrentPage,
   itemsPerPage,
   testData,
-}) => {
+}: PaginationProps) => {
   const pageNumbers = [];
 
   for (let i = 0; i < Math.ceil(testData / itemsPerPage); i++) {

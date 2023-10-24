@@ -27,7 +27,7 @@ const MyStoryRecordPage = () => {
           ))} */}
         </div>
         {/* 추후 공용 페이지네이션 적용 예정 */}
-        <div className='flex w-full items-center justify-center'>
+        <div className='flex w-full items-center justify-center p-8'>
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
