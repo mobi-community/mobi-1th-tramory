@@ -1,12 +1,13 @@
-import Step3What from '../_components/Step3What/Step3What';
 import TravelLayout from '../TravelLayout';
 
-export default function TravelPlan() {
+const TravelPlan = () => {
   return (
     <>
       <TravelLayout>
-        <Step3What title='d어떠' />
+        <div>계획 페이지</div>
       </TravelLayout>
     </>
   );
-}
+};
+
+export default TravelPlan;
