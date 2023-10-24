@@ -8,7 +8,7 @@ import { Controller } from 'react-hook-form';
 
 import { dateRangeAtom } from '../../../../../../../store/simpleRecordModal.atom';
 
-const WhenCalener = ({ control, name }) => {
+const Step2Calendar = ({ control, name }) => {
   const [dateRange, setDateRange] = useAtom(dateRangeAtom);
   const [startDate, endDate] = dateRange;
 
@@ -47,4 +47,4 @@ const WhenCalener = ({ control, name }) => {
   );
 };
 
-export default WhenCalener;
+export default Step2Calendar;

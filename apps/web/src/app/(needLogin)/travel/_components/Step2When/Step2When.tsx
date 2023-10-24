@@ -2,9 +2,9 @@
 import { useForm } from 'react-hook-form';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
-import WhenCalener from './components/WhenCalendar/WhenCalendar';
+import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
-const WhenTravel = ({ title }) => {
+const Step2When = ({ title }) => {
   const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -17,7 +17,7 @@ const WhenTravel = ({ title }) => {
               {title}
             </div>
             <div className='mt-[14px]'>
-              <WhenCalener control={control} name='planDate' />
+              <Step2Calendar control={control} name='planDate' />
             </div>
           </div>
         </div>
@@ -27,4 +27,4 @@ const WhenTravel = ({ title }) => {
   );
 };
 
-export default WhenTravel;
+export default Step2When;
