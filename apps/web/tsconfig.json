@@ -7,7 +7,8 @@
     ".next/types/**/*.ts",
     "../../packages/ui/components/input.tsx",
     "../../packages/ui/components/switch.tsx",
-    "../../packages/ui/components/popover.tsx"
+    "../../packages/ui/components/popover.tsx",
+    "src/app/(needLogin)/travel/_components/Step1Title"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {

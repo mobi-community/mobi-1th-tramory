@@ -6,6 +6,7 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
+import { Button } from 'ui';
 
 import { checkBoxAtom, selectedCountryAtom } from '../../../../../store';
 import ImageSlider from './_component/ImageSlider';
@@ -19,7 +20,16 @@ async function fetchCountries(): Promise<{ countries: string[] }> {
   return response.json();
 }
 
-const StepSumup = () => {
+interface Step5SumupProps {
+  config: {
+    title: string;
+    description: string;
+    button: string;
+    privateSetting?: string;
+  };
+}
+
+const Step5Sumup: React.FC<Step5SumupProps> = ({ config }) => {
   const [checked, setChecked] = useAtom(checkBoxAtom);
   const [selectedCountry, setSelectedCountry] = useAtom(selectedCountryAtom);
 
@@ -56,19 +66,14 @@ const StepSumup = () => {
       style={{ height: `calc(100vh - ${headerHeight}px)` }}
       className='flex min-h-full w-auto flex-col items-center justify-center'
     >
-      <div className='bg-primaryBlue-100 min-h-[600px] w-[969px] rounded-2xl pb-[50px] pl-[70px] pr-[70px] pt-[50px]'>
+      <div className='bg-primaryBlue-100 min-h-[550px] w-[1000px] rounded-2xl pb-[50px] pl-[70px] pr-[70px] pt-[50px]'>
         <div className='flex gap-2'>
-          <h2 className='pb-[30px] text-xl font-bold '>
-            나만의 여행 기록 남기기
-          </h2>
-          <span className='material-icons-outlined rotate-45 text-blue-400'>
+          <h2 className='pb-[30px] text-xl font-bold '>{config.title}</h2>
+          <span className='material-icons-outlined rotate-[-45deg] pl-[40px] text-blue-300'>
             send
           </span>
         </div>
-        <span>
-          즐거운 여행 되셨나요? <br />
-          소중한 여행의 추억을 생생하게 기록으로 남겨보세요!
-        </span>
+        <span dangerouslySetInnerHTML={{ __html: config.description }}></span>
         {data && (
           <div className='my-5'>
             <label>
@@ -89,30 +94,36 @@ const StepSumup = () => {
             </label>
           </div>
         )}
-        <div style={{ width: '100vw' }}>
+        <div className='relative min-h-[300px]'>
           <ImageSlider images={images} />
         </div>
         <div className='my-4 flex items-center'>
-          <input
-            type='checkbox'
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
-            className='rounded'
-          />
-          <span
-            className={`${
-              checked ? 'text-black' : 'text-gray-400'
-            } ml-2 rounded`}
-          >
-            여행 기록 나만보기
-          </span>
+          {config.privateSetting && (
+            <>
+              <input
+                type='checkbox'
+                checked={checked}
+                onChange={(e) => setChecked(e.target.checked)}
+                className='rounded'
+              />
+              <span
+                className={`${
+                  checked ? 'text-black' : 'text-gray-400'
+                } ml-2 rounded text-sm`}
+              >
+                {config.privateSetting}
+              </span>
+            </>
+          )}
         </div>
         <div className='flex justify-end'>
-          <button className='mt-auto'>저장하기</button>
+          <Button variant='blue' size='lg' className='mt-auto font-bold'>
+            {config.button}
+          </Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default StepSumup;
+export default Step5Sumup;

@@ -1,5 +1,5 @@
 import { travelRecordStep1config } from '../../../../constants';
-import Step1Title from '../_components/Step1Title.tsx/Step1Title';
+import Step1Title from '../_components/Step1Title/Step1Title';
 
 export default function travelRecordStep1() {
   return (
