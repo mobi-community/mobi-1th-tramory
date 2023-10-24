@@ -1,6 +1,6 @@
 import { Controller } from 'react-hook-form';
 
-import { travelCategory } from '../../../../../../../constants/Step3Category.constants';
+import { travelCategory } from '../../../../../../../constants/travelStep3Category.constants';
 
 const Step3Category = ({ title, control }) => {
   return (
