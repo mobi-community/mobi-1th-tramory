@@ -1,9 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
+import React, { useEffect } from 'react';
+
+import { MapAtom } from '../../../../../../../store';
 
 export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
-  const [mapMarker, setMapMarker] = useState<google.maps.Marker>();
+  const [mapMarker, setMapMarker] = useAtom(MapAtom.marker);
 
   useEffect(() => {
     if (!mapMarker) {
@@ -13,7 +16,7 @@ export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
     return () => {
       if (mapMarker) mapMarker.setMap(null);
     };
-  }, [mapMarker]);
+  }, [mapMarker, setMapMarker]);
 
   useEffect(() => {
     if (mapMarker) mapMarker.setOptions(options);

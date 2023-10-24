@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useAtom } from 'jotai';
+import React, { useEffect, useRef } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import { MapPageConfig } from '../../../../../../../constants';
+import { MapAtom } from '../../../../../../../store';
 import type { MapProps } from './Map.types';
 
 export const Map: React.FC<MapProps> = ({
@@ -13,7 +15,7 @@ export const Map: React.FC<MapProps> = ({
   ...options
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<google.maps.Map>();
+  const [map, setMap] = useAtom(MapAtom.map);
 
   useEffect(() => {
     if (mapRef.current && !map) {
@@ -21,7 +23,7 @@ export const Map: React.FC<MapProps> = ({
 
       setMap(newMap);
     }
-  }, [mapRef, map]);
+  }, [mapRef, map, setMap]);
 
   useDeepCompareEffect(() => {
     if (map) {

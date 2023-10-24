@@ -29,5 +29,5 @@ export const usePageScroll = (wrapperRef: RefObject<HTMLDivElement>) => {
     return () => {
       window.removeEventListener('wheel', handleWheel);
     };
-  }, []);
+  }, [wrapperRef]);
 };
