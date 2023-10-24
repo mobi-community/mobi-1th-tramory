@@ -9,7 +9,7 @@ export const MyStoryPlanCard = ({ planData }: MyStoryPlanCardProps) => {
     <div
       className={`${
         isRecord ? 'bg-primaryBlue-100' : 'bg-primaryGray-200'
-      } mt-5 w-[440px] rounded-[30px] p-6`}
+      } mt-7 w-[440px] rounded-[30px] p-6`}
     >
       <div className='flex justify-between'>
         <div className='text-[16px] font-semibold'>{title}</div>

@@ -17,6 +17,7 @@ const MyStoryPlanPage = () => {
             <MyStoryPlanCard key={planData.title} planData={planData} />
           ))}
         </div>
+        {/* 추후 공용 페이지네이션 적용 예정 */}
       </MyPageContainer>
     </div>
   );
