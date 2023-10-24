@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useAtom, useSetAtom } from 'jotai';
 import { Controller } from 'react-hook-form';
 
 import { travelCategory } from '../../../../../../../constants/travelStep3Category.constants';
+import {
+  categoryArrayAtom,
+  selectedCategoryIdAtom,
+} from '../../../../../../../store/step3Category.atom';
 
 const Step3Category = ({ title, control }) => {
-  const [labalArray, setLabelArray] = useState([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState([]);
+  const setCategoryArray = useSetAtom(categoryArrayAtom);
+  const [selectedCategoryId, setSelectedCategoryId] = useAtom(
+    selectedCategoryIdAtom
+  );
 
   return (
     <>
@@ -28,9 +34,25 @@ const Step3Category = ({ title, control }) => {
                       : 'bg-white'
                   }`}
                   onClick={() => {
-                    setSelectedCategoryId((prev) => [...prev, cat.id]);
-                    setLabelArray((prev) => [...prev, cat.label]);
-                    field.onChange(labalArray);
+                    setCategoryArray((prev) => {
+                      let newArray;
+
+                      if (prev.includes(cat.label)) {
+                        newArray = prev.filter((label) => label !== cat.label);
+                      } else {
+                        newArray = [...prev, cat.label];
+                      }
+
+                      field.onChange(newArray); // 새 배열을 필드 값으로 설정
+                      return newArray; // 새 배열을 상태로 설정
+                    });
+                    setSelectedCategoryId((prev) => {
+                      if (prev.includes(cat.id)) {
+                        return prev.filter((id) => id !== cat.id);
+                      } else {
+                        return [...prev, cat.id];
+                      }
+                    });
                   }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
@@ -63,9 +85,25 @@ const Step3Category = ({ title, control }) => {
                       : 'bg-white'
                   }`}
                   onClick={() => {
-                    setSelectedCategoryId((prev) => [...prev, cat.id]);
-                    setLabelArray((prev) => [...prev, cat.label]);
-                    field.onChange(labalArray);
+                    setCategoryArray((prev) => {
+                      let newArray;
+
+                      if (prev.includes(cat.label)) {
+                        newArray = prev.filter((label) => label !== cat.label);
+                      } else {
+                        newArray = [...prev, cat.label];
+                      }
+
+                      field.onChange(newArray); // 새 배열을 필드 값으로 설정
+                      return newArray; // 새 배열을 상태로 설정
+                    });
+                    setSelectedCategoryId((prev) => {
+                      if (prev.includes(cat.id)) {
+                        return prev.filter((id) => id !== cat.id);
+                      } else {
+                        return [...prev, cat.id];
+                      }
+                    });
                   }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
