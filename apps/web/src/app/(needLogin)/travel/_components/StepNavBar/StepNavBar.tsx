@@ -1,8 +1,10 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Link from 'next/link';
 
 import { stepArray } from '../../../../../constants/stepnavbar.constants';
+import { registerStateAtom } from '../../../../../store/registerState.atom';
 
 // * url 확정 후 기능 구현 시 추가할 사항
 // 기본 : border + primaryGray-300
@@ -10,12 +12,14 @@ import { stepArray } from '../../../../../constants/stepnavbar.constants';
 // 내용을 저장하고 다음 페이지로 넘어간 경우 : bg + primaryBlue-400
 
 const StepNavbar: React.FC = () => {
+  const [state] = useAtom(registerStateAtom);
+
   return (
     <>
       <div className='mt-10 flex h-20 items-center justify-center'>
         <ul className='bg-primaryBlue-100 absolute  flex h-20 w-full max-w-[969px] justify-center'>
-          {stepArray.map(({ id, step, title, url }) => (
-            <Link href={url} key={id}>
+          {stepArray.map(({ id, step, title }) => (
+            <Link href={`/travel/${state}`} key={id}>
               <li
                 key={id}
                 className='relative relative z-10 z-50 mx-11 list-none	'

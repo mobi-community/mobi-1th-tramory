@@ -1,10 +1,12 @@
-import { travelPlanStep1config } from '../../../../constants';
-import Step1Title from '../_components/Step1Title.tsx/Step1Title';
+import Step3What from '../_components/Step3What/Step3What';
+import TravelLayout from '../TravelLayout';
 
-export default function travelPlanStep1() {
+export default function travelPlan() {
   return (
-    <div>
-      <Step1Title config={travelPlanStep1config} />
-    </div>
+    <>
+      <TravelLayout>
+        <Step3What title='어떤 여행을 즐기셨나요?' />
+      </TravelLayout>
+    </>
   );
 }
