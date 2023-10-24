@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
-import { ValidatorInput } from '../../../../components';
+import { ValidatorInput } from '@/components';
+
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
 import type { LoginFormType } from './LoginForm.type';
 

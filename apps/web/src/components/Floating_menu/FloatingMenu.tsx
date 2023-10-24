@@ -1,10 +1,11 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 import { hoveredAtom, isModalOpenAtom, isMountedAtom } from '../../store';
+import { registerStateAtom } from '../../store/registerState.atom';
 import ViewTravelRecordType from '../Floating_modal/TravelRecordSelect';
 import ViewTravelRecordTypeModal from '../Floating_modal/TravelRecordSelectModal';
 import type { FloatingMenuProps } from './FloatingMenuProps.types';
@@ -14,6 +15,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
   const [hovered, setHovered] = useAtom(hoveredAtom);
   const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom);
   const router = useRouter();
+  const setState = useSetAtom(registerStateAtom);
 
   useEffect(() => {
     setIsMounted(true);
@@ -23,7 +25,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
     return null;
   }
 
-  const toTravelPlan = travelPlan || (() => router.push('/'));
+  const toTravelPlan = travelPlan || (() => router.push('/travel/plan'));
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -36,7 +38,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
   return (
     <div className='fixed bottom-0 right-0 p-5'>
       <div className='space-y-2 rounded-[50px] border bg-gray-200 bg-opacity-50 p-2 py-3'>
-        <div className='group relative'>
+        <div className='group relative' onClick={() => setState('plan')}>
           <button
             className='flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg focus:outline-none'
             onClick={toTravelPlan}

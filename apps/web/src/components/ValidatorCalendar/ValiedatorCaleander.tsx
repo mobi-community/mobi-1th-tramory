@@ -34,7 +34,7 @@ const ValidatorCalendar = ({ control, name }) => {
               }}
               showDisabledMonthNavigation
               maxDate={new Date()}
-              customInput={<CustomInput />}
+              customInput={<CustomInput value={''} onClick={undefined} />}
               popperModifiers={[
                 {
                   name: 'offset',
