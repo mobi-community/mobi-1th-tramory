@@ -1,10 +1,10 @@
 import TravelLayout from '../TravelLayout';
 
-export default function travelPlan() {
+export default function TravelPlan() {
   return (
     <>
       <TravelLayout>
-        <div></div>
+        <div>travel</div>
       </TravelLayout>
     </>
   );
