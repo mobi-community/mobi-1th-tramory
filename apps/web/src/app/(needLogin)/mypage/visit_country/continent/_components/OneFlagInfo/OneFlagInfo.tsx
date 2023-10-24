@@ -2,9 +2,11 @@ import Image from 'next/image';
 
 const OneFlagInfo = ({ item }) => {
   return (
-    <div>
-      <Image src={item.img} width={500} height={300} alt='국기 이미지' />
-      <div>{item.name}</div>
+    <div className='flex flex-col items-center'>
+      <div className='flex h-[93px] items-center'>
+        <Image src={item.img} width={140} alt='국기 이미지' priority />
+      </div>
+      <div className='text-primaryGray-500 mt-2 font-bold'>{item.name}</div>
     </div>
   );
 };
