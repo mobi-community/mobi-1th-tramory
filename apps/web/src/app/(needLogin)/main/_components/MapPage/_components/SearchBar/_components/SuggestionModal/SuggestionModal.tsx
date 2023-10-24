@@ -1,7 +1,8 @@
 import { useAtom } from 'jotai';
 
-import { MapAtom } from '../../../../../../../../../store';
-import materialIcon from '../../../../../../../../../utils/materialIcon';
+import { MapAtom } from '@/store';
+import materialIcon from '@/utils/materialIcon';
+
 import { suggestedKeyword } from '../../../../_mocks';
 import type { modalProps } from './SuggestionModal.types';
 

@@ -1,9 +1,10 @@
 import { useSetAtom } from 'jotai';
 import { Controller, useForm } from 'react-hook-form';
 
-import { MapPageConfig } from '../../../../../../../../../constants';
-import { MapAtom } from '../../../../../../../../../store';
-import materialIcon from '../../../../../../../../../utils/materialIcon';
+import { MapPageConfig } from '@/constants';
+import { MapAtom } from '@/store';
+import materialIcon from '@/utils/materialIcon';
+
 import { SuggestionModal } from '../SuggestionModal';
 
 export const SearchInput: React.FC = () => {

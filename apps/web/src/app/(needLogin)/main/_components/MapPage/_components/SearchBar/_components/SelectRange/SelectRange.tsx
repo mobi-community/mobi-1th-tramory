@@ -2,8 +2,9 @@
 
 import { useAtom, useAtomValue } from 'jotai';
 
-import { MapAtom } from '../../../../../../../../../store';
-import materialIcon from '../../../../../../../../../utils/materialIcon';
+import { MapAtom } from '@/store';
+import materialIcon from '@/utils/materialIcon';
+
 import { SelectRangeModal } from './SelectRangeModal';
 
 export const SelectRange: React.FC = () => {

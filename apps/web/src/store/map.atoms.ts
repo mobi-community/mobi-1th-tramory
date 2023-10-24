@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-import { MapPageConfig } from '../constants';
+import { MapPageConfig } from '@/constants';
 
 export const MapAtom = {
   isDarkMode: atom<boolean>(false),

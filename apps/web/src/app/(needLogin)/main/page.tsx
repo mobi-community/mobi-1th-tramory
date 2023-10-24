@@ -2,7 +2,8 @@
 
 import { useRef } from 'react';
 
-import { usePageScroll } from '../../../hooks';
+import { usePageScroll } from '@/hooks';
+
 import { MapPage, RecommendByCountryPage } from './_components';
 
 const MainPage: React.FC = () => {

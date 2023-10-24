@@ -4,8 +4,9 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 import { useAtom, useAtomValue } from 'jotai';
 import React from 'react';
 
-import { MapPageConfig } from '../../../../../constants';
-import { MapAtom } from '../../../../../store';
+import { MapPageConfig } from '@/constants';
+import { MapAtom } from '@/store';
+
 import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
 
 export const MapPage: React.FC = () => {

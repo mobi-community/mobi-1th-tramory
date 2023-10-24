@@ -5,9 +5,9 @@ import Link from 'next/link';
 import React from 'react';
 
 import logo from '/public/assets/logo_black.svg';
+import { headerConfig } from '@/constants';
+import materialIcon from '@/utils/materialIcon';
 
-import { headerConfig } from '../../constants';
-import materialIcon from '../../utils/materialIcon';
 import { ModeSwitchButton, UserButton } from './_components';
 
 export const Header: React.FC = () => {

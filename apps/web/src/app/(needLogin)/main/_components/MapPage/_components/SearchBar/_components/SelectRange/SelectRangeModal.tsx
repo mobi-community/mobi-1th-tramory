@@ -1,7 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import { MapPageConfig } from '../../../../../../../../../constants';
-import { MapAtom } from '../../../../../../../../../store';
+import { MapPageConfig } from '@/constants';
+import { MapAtom } from '@/store';
 
 export const SelectRangeModal: React.FC = () => {
   const setSearchRange = useSetAtom(MapAtom.range);

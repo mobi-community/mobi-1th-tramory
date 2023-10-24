@@ -3,7 +3,7 @@
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
 
-import { MapAtom } from '../../../../../../../store';
+import { MapAtom } from '@/store';
 
 export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [mapMarker, setMapMarker] = useAtom(MapAtom.marker);

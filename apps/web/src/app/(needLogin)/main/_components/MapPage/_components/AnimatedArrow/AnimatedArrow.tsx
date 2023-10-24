@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
-import { MapPageConfig } from '../../../../../../../constants';
-import materialIcon from '../../../../../../../utils/materialIcon';
+import { MapPageConfig } from '@/constants';
+import materialIcon from '@/utils/materialIcon';
 
 export const AnimatedArrow: React.FC = () => {
   return (
