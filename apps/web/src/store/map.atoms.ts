@@ -4,4 +4,5 @@ export const MapAtom = {
   isDarkMode: atom(false),
   zoom: atom(2),
   isSearchModalOpen: atom(false),
+  range: atom('국가'),
 };
