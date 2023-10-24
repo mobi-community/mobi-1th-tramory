@@ -14,7 +14,7 @@ export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
     return (
       <div>
         <div
-          className='z-15 display-block fixed h-[100%] w-[100vw]'
+          className='z-15 fixed h-[100%] w-[100vw]'
           onClick={() => setIsSearchModalOpen(false)}
         ></div>
         <div className='no-scroll border-primaryGray-200 absolute z-20 mt-2 max-h-[200px] w-[420px] overflow-y-scroll border bg-white drop-shadow-xl'>
