@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import LogoImage from '/public/assets/logo_black.svg';
+import { AuthSloganSection } from '@/components';
+import { loginContants } from '@/constants/login.constants';
 
-import { AuthSloganSection } from '../../components';
-import { loginContants } from '../../constants/login.constants';
 import { LoginForm } from './_components';
 
 const LoginPage = () => {

@@ -24,9 +24,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          <Providers>{children}</Providers>
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+            {children}
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
