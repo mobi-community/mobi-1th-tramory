@@ -1,21 +1,22 @@
-'use client';
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-import { useAtom } from 'jotai';
-import Image from 'next/image';
-import { Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import { isHowToAtom } from '@/store/mypageBadge.atom';
-
-import { HowToNotification } from '../HowToNotification';
 /**
  *
  * @todo
  * 배지 발급 개수 부분 현재 0으로 하드코딩 되어있음
  * 추후 개발 시 발급된 배지 개수로 수정 예정
  */
+'use client';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+import { atom, useAtom } from 'jotai';
+import { atomFamily } from 'jotai/utils';
+import Image from 'next/image';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { HowToNotification } from '../HowToNotification';
+
+const isHowToAtom = atomFamily(() => atom(false));
 
 export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
   const { title, description, info } = item;
@@ -76,19 +77,27 @@ export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
                       alt='배지 디폴트 이미지'
                       priority
                     />
-                    <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
-                      {/* subtitle이 없는 배지 추가해야함, css 위치 문제 */}
-                      <h1
-                        className='text-sm '
-                        dangerouslySetInnerHTML={{ __html: desc.title }}
-                      />
-                      <p
-                        className='text-xs'
-                        dangerouslySetInnerHTML={{
-                          __html: desc.subtitle || null,
-                        }}
-                      />
-                    </div>
+                    {!desc.subtitle ? (
+                      <div className='text-primaryGray-300 absolute top-[50px] text-center font-bold'>
+                        <h1
+                          className='text-sm'
+                          dangerouslySetInnerHTML={{ __html: desc.title }}
+                        />
+                      </div>
+                    ) : (
+                      <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
+                        <h1
+                          className='text-sm'
+                          dangerouslySetInnerHTML={{ __html: desc.title }}
+                        />
+                        <p
+                          className='text-sm'
+                          dangerouslySetInnerHTML={{
+                            __html: desc.subtitle || null,
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </SwiperSlide>

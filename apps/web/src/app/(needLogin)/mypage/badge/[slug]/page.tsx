@@ -1,13 +1,14 @@
 'use client';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { badgeConfig, mypageNavConfig } from '@/constants';
-import { isOneHowToAtom } from '@/store/mypageBadge.atom';
 
 import { MyPageContainer } from '../../_components';
 import { HowToNotification } from '../_components';
+
+const isOneHowToAtom = atom(false);
 
 const MyPageTabs = () => {
   const pathname = usePathname();
@@ -58,16 +59,25 @@ const MyPageTabs = () => {
                 alt='배지 디폴트 이미지'
                 priority
               />
-              <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
-                <h1
-                  className='text-sm '
-                  dangerouslySetInnerHTML={{ __html: item.title }}
-                />
-                <p
-                  className='text-xs'
-                  dangerouslySetInnerHTML={{ __html: item.subtitle || null }}
-                />
-              </div>
+              {!item.subtitle ? (
+                <div className='text-primaryGray-300 absolute top-[50px] text-center font-bold'>
+                  <h1
+                    className='text-sm'
+                    dangerouslySetInnerHTML={{ __html: item.title }}
+                  />
+                </div>
+              ) : (
+                <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
+                  <h1
+                    className='text-sm'
+                    dangerouslySetInnerHTML={{ __html: item.title }}
+                  />
+                  <p
+                    className='text-sm'
+                    dangerouslySetInnerHTML={{ __html: item.subtitle || null }}
+                  />
+                </div>
+              )}
             </div>
           ))}
         </div>

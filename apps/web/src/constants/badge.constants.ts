@@ -11,19 +11,24 @@ export const badgeConfig = {
       slug: 'plan',
       description: [
         {
-          title: '첫 여행<br/>축하합니다!',
+          title: '첫 여행',
+          subtitle: '축하합니다!',
         },
         {
-          title: '여행<br/>5회 달성!',
+          title: '여행',
+          subtitle: '5회 달성!',
         },
         {
-          title: '여행<br/>10회 달성!',
+          title: '여행',
+          subtitle: '10회 달성!',
         },
         {
-          title: '여행<br/>50회 달성!',
+          title: '여행',
+          subtitle: '50회 달성!',
         },
         {
-          title: '여행<br/>100회 달성!',
+          title: '여행',
+          subtitle: '100회 달성!',
         },
       ],
       info: {
@@ -37,19 +42,24 @@ export const badgeConfig = {
       slug: 'record',
       description: [
         {
-          title: '첫 여행<br/>기록 작성!',
+          title: '첫 여행',
+          subtitle: '기록 작성!',
         },
         {
-          title: '여행 기록<br/>5회 작성!',
+          title: '여행 기록',
+          subtitle: '5회 작성!',
         },
         {
-          title: '여행 기록<br/>10회 작성!',
+          title: '여행 기록',
+          subtitle: '10회 작성!',
         },
         {
-          title: '여행 기록<br/>50회 작성!',
+          title: '여행 기록',
+          subtitle: '50회 작성!',
         },
         {
-          title: '여행 기록<br/>100회 작성!',
+          title: '여행 기록',
+          subtitle: '100회 작성!',
         },
       ],
       info: {
@@ -113,7 +123,7 @@ export const badgeConfig = {
           title: '오세아니아',
         },
         {
-          title: '유럽 ',
+          title: '유럽',
         },
       ],
       info: {
