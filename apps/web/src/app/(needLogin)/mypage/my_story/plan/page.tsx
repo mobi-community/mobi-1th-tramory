@@ -9,12 +9,12 @@ const MyStoryPlanPage = () => {
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <div className='mr-10 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
-        <Tab title={'여행 계획'} bgColor={'white'} zIndex={'10'} />
-        <Tab
-          title={'임시 저장 계획'}
-          bgColor={'primaryGray-200'}
-          zIndex={'0'}
-        />
+        <Tab bgColor={'white'} zIndex={'10'}>
+          여행 계획
+        </Tab>
+        <Tab bgColor={'primaryGray-200'} zIndex={'0'}>
+          임시 저장 계획
+        </Tab>
       </div>
       <MyPageContainer title='나의 스토리 - 여행 계획'>
         <div className='mt-5 flex items-center px-12 text-[13px]'>
