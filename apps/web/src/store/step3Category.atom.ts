@@ -1,4 +1,3 @@
 import { atom } from 'jotai';
 
-export const categoryArrayAtom = atom([]);
-export const selectedCategoryIdAtom = atom([]);
+export const selectedCategoryIdAtom = atom(6);
