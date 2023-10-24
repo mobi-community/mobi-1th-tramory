@@ -17,7 +17,7 @@ import { HowToNotification } from '../HowToNotification';
  * 추후 개발 시 발급된 배지 개수로 수정 예정
  */
 
-export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
+export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
   const { title, description, info } = item;
   const [isHowtoOpen, setIsHowToOpen] = useAtom(isHowToAtom(id));
 
@@ -32,8 +32,8 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
   };
 
   return (
-    <div onClick={handleBackgroundClick}>
-      <div className='relative my-8 flex items-center'>
+    <div className='mb-12 px-12' onClick={handleBackgroundClick}>
+      <div className='relative mb-8 flex items-center'>
         <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
           {title} (0/{description.length})
         </p>
@@ -53,14 +53,14 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
             nextEl: '.next-btn',
             prevEl: '.prev-btn',
           }}
-          slidesPerView={5}
+          slidesPerView={4}
           spaceBetween={1}
           className='mySwiper'
           style={{ paddingRight: '80px' }}
         >
           <span
             className='material-icons-outlined prev-btn text-primaryGray-200 absolute top-[40px] z-10 rounded-full bg-white/80 p-3'
-            style={{ fontSize: '32px', cursor: 'pointer' }}
+            style={{ fontSize: '20px', cursor: 'pointer' }}
           >
             arrow_back_ios
           </span>
@@ -77,11 +77,7 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
                       priority
                     />
                     <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
-                      <h1
-                        className='text-sm'
-                        dangerouslySetInnerHTML={{ __html: defaultMessage }}
-                      />
-                      {/* 배지 발급 받았을 때, css 수정해야함 */}
+                      {/* subtitle이 없는 배지 추가해야함, css 위치 문제 */}
                       <h1
                         className='text-sm '
                         dangerouslySetInnerHTML={{ __html: desc.title }}
@@ -100,7 +96,7 @@ export const OneBadgeSlide = ({ item, badgeDefault, defaultMessage, id }) => {
           </div>
           <span
             className='material-icons-outlined next-btn text-primaryGray-200 next-btn absolute right-0 top-[40px] z-10 rounded-full bg-white/80 p-3'
-            style={{ fontSize: '32px', cursor: 'pointer' }}
+            style={{ fontSize: '20px', cursor: 'pointer' }}
           >
             arrow_forward_ios
           </span>

@@ -3,16 +3,19 @@ import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import { MyPageContainer } from '@/components';
-import { badgeConfig } from '@/constants';
+import { badgeConfig, mypageNavConfig } from '@/constants';
 import { isOneHowToAtom } from '@/store/mypageBadge.atom';
 
+import { MyPageContainer } from '../../_components';
 import { HowToNotification } from '../_components';
 
 const MyPageTabs = () => {
   const pathname = usePathname();
-
   const slug = pathname.split('/').pop();
+  const basePath = pathname.replace(/\/[^/]+$/, '');
+  const navTitle = mypageNavConfig.nav.find(
+    (nav) => nav.href === basePath
+  ).title;
 
   const currentBadge = badgeConfig.badges.find((badge) => badge.slug === slug);
 
@@ -30,10 +33,10 @@ const MyPageTabs = () => {
   };
 
   return (
-    <div onClick={handleBackgroundClick}>
-      <MyPageContainer title='나의 배지'>
+    <div className='ml-[60px]' onClick={handleBackgroundClick}>
+      <MyPageContainer title={navTitle}>
         <div className='relative mb-8 flex items-center'>
-          <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
+          <p className='text-primaryBlue-700/80 mx-12 mr-2 text-xl font-bold'>
             {currentBadge.title} (0/{currentBadge.description.length})
           </p>
           <span
@@ -45,7 +48,7 @@ const MyPageTabs = () => {
           </span>
           {isOneHowTo && <HowToNotification info={currentBadge.info} />}
         </div>
-        <div className='bg-primaryGray-200 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
+        <div className='bg-primaryGray-200 mx-12 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
               <Image
@@ -56,13 +59,6 @@ const MyPageTabs = () => {
                 priority
               />
               <div className='text-primaryGray-300 absolute top-[40px] text-center font-bold'>
-                {/* 디폴트 메세지 */}
-                {/* <h1
-                  className='text-sm'
-                  dangerouslySetInnerHTML={{
-                    __html: badgeImgInfo.defaultMessage,
-                  }}
-                /> */}
                 <h1
                   className='text-sm '
                   dangerouslySetInnerHTML={{ __html: item.title }}

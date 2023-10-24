@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
 
-import { MyPageContainer } from '../../../../components';
+import { MyPageContainer } from '../_components';
 import { BadgeSlide } from './_components';
 
 const MyBadge = () => {
@@ -18,7 +18,7 @@ const MyBadge = () => {
   ).title;
 
   return (
-    <div className='mb-[100px] flex flex-col justify-center'>
+    <div className='mb-[100px] ml-[60px] flex flex-col justify-center'>
       <MyPageContainer title={navTitle}>
         <BadgeSlide />
       </MyPageContainer>
