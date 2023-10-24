@@ -32,7 +32,7 @@ export const mypageNavConfig = {
     {
       icon: 'military_tech',
       title: '나의 배지',
-      href: '/mypage/badge/all',
+      href: '/mypage/badge',
     },
     {
       icon: 'travel_explore',
