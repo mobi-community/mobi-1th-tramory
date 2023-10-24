@@ -9,11 +9,7 @@ export const MyPageContainer: React.FC<MyPageContainerProps> = ({
   const isMyStoryPanePage = title === '나의 스토리 - 여행 계획';
 
   return (
-    <div
-      className={`${
-        isMyStoryPanePage && 'mt-[60px]'
-      } h-auto w-[1024px] rounded-tl-[80px] shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]`}
-    >
+    <div className=' h-auto w-[1024px] rounded-tl-[80px] shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
       {title && (
         <div className={`${isMyStoryPanePage ? 'px-12 pt-12' : 'p-12'}`}>
           <p className='text-primaryBlue-700 mb-5 text-xl font-bold'>{title}</p>
