@@ -8,19 +8,18 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { atom, useAtom } from 'jotai';
-import { atomFamily } from 'jotai/utils';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { HowToNotification } from '../HowToNotification';
+import { isToggleAtom } from '@/store';
 
-const isHowToAtom = atomFamily(() => atom(false));
+import { HowToNotification } from '../HowToNotification';
 
 export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
   const { title, description, info } = item;
-  const [isHowtoOpen, setIsHowToOpen] = useAtom(isHowToAtom(id));
+  const [isHowtoOpen, setIsHowToOpen] = useAtom(isToggleAtom(id));
 
   const handleToggleHowTo = (event: React.MouseEvent) => {
     event.stopPropagation(); // 상위 요소 이벤트 버블링 막기

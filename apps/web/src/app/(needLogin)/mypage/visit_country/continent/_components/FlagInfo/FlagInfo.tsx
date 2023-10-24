@@ -1,13 +1,11 @@
 'use client';
-import { atom, useAtom } from 'jotai';
-import { atomFamily } from 'jotai/utils';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 
+import { isToggleAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
-
-const isToggleAtom = atomFamily(() => atom(false));
 
 const FlagInfo = ({ data, id }) => {
   const [isToggle, setIsToggle] = useAtom(isToggleAtom(id));
