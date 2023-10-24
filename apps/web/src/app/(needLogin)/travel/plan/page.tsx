@@ -1,10 +1,11 @@
+import Step3What from '../_components/Step3What/Step3What';
 import TravelLayout from '../TravelLayout';
 
-export default function travelPlan() {
+export default function TravelPlan() {
   return (
     <>
       <TravelLayout>
-        <div></div>
+        <Step3What title='d어떠' />
       </TravelLayout>
     </>
   );

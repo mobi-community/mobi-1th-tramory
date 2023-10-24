@@ -1,14 +1,11 @@
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
+// import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 
-import { travelCategory } from '../../../../../../../constants/travelStep3Category.constants';
-import {
-  categoryArrayAtom,
-  selectedCategoryIdAtom,
-} from '../../../../../../../store/step3Category.atom';
+import { travelCategory } from '@/constants/travelStep3Category.constants';
+import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
 
 const Step3Category = ({ title, control }) => {
-  const setCategoryArray = useSetAtom(categoryArrayAtom);
   const [selectedCategoryId, setSelectedCategoryId] = useAtom(
     selectedCategoryIdAtom
   );
@@ -25,38 +22,23 @@ const Step3Category = ({ title, control }) => {
               {title}
             </div>
             <div className='mt-[20px] flex'>
-              {travelCategory.slice(0, 3).map((cat) => (
+              {travelCategory.slice(0, 3).map((category) => (
                 <div
-                  key={cat.id}
+                  key={category.id}
                   className={`m-3 flex h-[50px] w-[170px] cursor-pointer rounded-sm  ${
-                    selectedCategoryId.includes(cat.id)
+                    selectedCategoryId === category.id
                       ? 'bg-[#AFCDF2]'
                       : 'bg-white'
                   }`}
                   onClick={() => {
-                    setCategoryArray((prev) => {
-                      let newArray;
-
-                      if (prev.includes(cat.label)) {
-                        newArray = prev.filter((label) => label !== cat.label);
-                      } else {
-                        newArray = [...prev, cat.label];
-                      }
-
-                      field.onChange(newArray); // 새 배열을 필드 값으로 설정
-                      return newArray; // 새 배열을 상태로 설정
-                    });
-                    setSelectedCategoryId((prev) => {
-                      if (prev.includes(cat.id)) {
-                        return prev.filter((id) => id !== cat.id);
-                      } else {
-                        return [...prev, cat.id];
-                      }
-                    });
+                    setSelectedCategoryId(category.id);
+                    field.onChange(category.label);
                   }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
-                    <span className='material-icons-outlined'>{cat.icon}</span>
+                    <span className='material-icons-outlined'>
+                      {category.icon}
+                    </span>
                   </div>
                   <div>
                     <div className='bg-primaryBlue-100 ml-[10px] mt-[-13px] h-[20px] w-[20px] rounded-[50%] '></div>
@@ -67,47 +49,32 @@ const Step3Category = ({ title, control }) => {
                   </div>
                   <li
                     className={`flex list-none items-center justify-center text-[19px] font-semibold ${
-                      cat.id == 1 ? 'ml-[30px]' : 'ml-[13px]'
+                      category.id == 1 ? 'ml-[30px]' : 'ml-[13px]'
                     }`}
                   >
-                    {cat.label}
+                    {category.label}
                   </li>
                 </div>
               ))}
             </div>
             <div className='flex '>
-              {travelCategory.slice(3, 6).map((cat) => (
+              {travelCategory.slice(3, 6).map((category) => (
                 <div
-                  key={cat.id}
+                  key={category.id}
                   className={`m-3 flex h-[50px] w-[170px] cursor-pointer rounded-sm  ${
-                    selectedCategoryId.includes(cat.id)
+                    selectedCategoryId === category.id
                       ? 'bg-[#AFCDF2]'
                       : 'bg-white'
                   }`}
                   onClick={() => {
-                    setCategoryArray((prev) => {
-                      let newArray;
-
-                      if (prev.includes(cat.label)) {
-                        newArray = prev.filter((label) => label !== cat.label);
-                      } else {
-                        newArray = [...prev, cat.label];
-                      }
-
-                      field.onChange(newArray); // 새 배열을 필드 값으로 설정
-                      return newArray; // 새 배열을 상태로 설정
-                    });
-                    setSelectedCategoryId((prev) => {
-                      if (prev.includes(cat.id)) {
-                        return prev.filter((id) => id !== cat.id);
-                      } else {
-                        return [...prev, cat.id];
-                      }
-                    });
+                    field.onChange(category.label);
+                    setSelectedCategoryId(category.id);
                   }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
-                    <span className='material-icons-outlined'>{cat.icon}</span>
+                    <span className='material-icons-outlined'>
+                      {category.icon}
+                    </span>
                   </div>
                   <div>
                     <div className='bg-primaryBlue-100 ml-[10px] mt-[-13px] h-[20px] w-[20px] rounded-[50%] '></div>
@@ -118,10 +85,10 @@ const Step3Category = ({ title, control }) => {
                   </div>
                   <li
                     className={`flex list-none items-center justify-center text-[19px] font-semibold ${
-                      cat.id == 3 ? 'ml-[10px]' : 'ml-[30px]'
+                      category.id == 3 ? 'ml-[10px]' : 'ml-[30px]'
                     }`}
                   >
-                    {cat.label}
+                    {category.label}
                   </li>
                 </div>
               ))}
