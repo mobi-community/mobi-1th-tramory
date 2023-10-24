@@ -10,6 +10,7 @@ import { Button } from 'ui';
 
 import { checkBoxAtom, selectedCountryAtom } from '../../../../../store';
 import ImageSlider from './_component/ImageSlider';
+import type { Step5SumupProps } from './Step5Sumup.types';
 
 async function fetchCountries(): Promise<{ countries: string[] }> {
   const response = await fetch('/api/countries');
@@ -18,15 +19,6 @@ async function fetchCountries(): Promise<{ countries: string[] }> {
     throw new Error('에러');
   }
   return response.json();
-}
-
-interface Step5SumupProps {
-  config: {
-    title: string;
-    description: string;
-    button: string;
-    privateSetting?: string;
-  };
 }
 
 const Step5Sumup: React.FC<Step5SumupProps> = ({ config }) => {
