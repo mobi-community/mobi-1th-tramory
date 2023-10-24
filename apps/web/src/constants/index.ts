@@ -1,3 +1,4 @@
+export * from './badge.constants';
 export * from './header.constants';
 export * from './landing.constants';
 export * from './mapPage.constants';

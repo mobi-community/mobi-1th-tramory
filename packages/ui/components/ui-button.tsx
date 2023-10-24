@@ -13,23 +13,28 @@ const buttonVariants = cva(
         // 초록 직사각형 버튼
         default:
           'bg-primaryGreen text-[12px] text-primary-foreground rounded-[0px] hover:opacity-80 transition-all duration-300',
-        // 희색 직사각형 버튼
+        // 흰색 직사각형 버튼
         nonrounded:
           'bg-white text-[12px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
-        destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        // 네이비 라인 투명 배경 버튼
+        roundednavy:
+          'bg-transparent p-0 border border-solid border-primaryBlue-500 text-primaryBlue-500 hover:bg-primaryBlue-700 hover:text-white hover:bg-opacity-70 transition-all duration-300',
+
         outline:
           'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        // 네이비 라인 투명 배경 버튼
       },
       size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
+        // 패딩없는 사이즈로 쓰고싶다면 사용
+        xsm: 'h-9 rounded-sm',
       },
     },
     defaultVariants: {
