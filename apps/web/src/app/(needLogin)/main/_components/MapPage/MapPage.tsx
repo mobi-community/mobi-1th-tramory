@@ -27,7 +27,7 @@ export const MapPage: React.FC = () => {
 
   if (apiKey)
     return (
-      <div className='text-center'>
+      <div className='min-h-[calc(100vh-80px)] w-[100%] text-center'>
         <SearchBar />
         <Wrapper apiKey={apiKey}>
           <Map
