@@ -1,24 +1,37 @@
+import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 
 import { travelCategory } from '../../../../../../../constants/travelStep3Category.constants';
 
 const Step3Category = ({ title, control }) => {
+  const [labalArray, setLabelArray] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState([]);
+
   return (
     <>
       <Controller
         name='category'
         control={control}
+        defaultValue={''}
         render={({ field }) => (
           <div>
-            <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[25px] text-[30px] font-semibold'>
+            <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[60px] text-[30px] font-semibold'>
               {title}
             </div>
-            <div className='flex'>
+            <div className='mt-[20px] flex'>
               {travelCategory.slice(0, 3).map((cat) => (
                 <div
                   key={cat.id}
-                  className='m-3 flex h-[50px] w-[170px] cursor-pointer rounded-sm bg-white'
-                  onClick={() => field.onChange(cat.label)}
+                  className={`m-3 flex h-[50px] w-[170px] cursor-pointer rounded-sm  ${
+                    selectedCategoryId.includes(cat.id)
+                      ? 'bg-[#AFCDF2]'
+                      : 'bg-white'
+                  }`}
+                  onClick={() => {
+                    setSelectedCategoryId((prev) => [...prev, cat.id]);
+                    setLabelArray((prev) => [...prev, cat.label]);
+                    field.onChange(labalArray);
+                  }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
                     <span className='material-icons-outlined'>{cat.icon}</span>
@@ -44,8 +57,16 @@ const Step3Category = ({ title, control }) => {
               {travelCategory.slice(3, 6).map((cat) => (
                 <div
                   key={cat.id}
-                  className='m-3 flex h-[50px] w-[170px] cursor-pointer  rounded-sm bg-white'
-                  onClick={() => field.onChange(cat.label)}
+                  className={`m-3 flex h-[50px] w-[170px] cursor-pointer rounded-sm  ${
+                    selectedCategoryId.includes(cat.id)
+                      ? 'bg-[#AFCDF2]'
+                      : 'bg-white'
+                  }`}
+                  onClick={() => {
+                    setSelectedCategoryId((prev) => [...prev, cat.id]);
+                    setLabelArray((prev) => [...prev, cat.label]);
+                    field.onChange(labalArray);
+                  }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
                     <span className='material-icons-outlined'>{cat.icon}</span>
