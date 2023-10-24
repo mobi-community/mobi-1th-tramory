@@ -1,12 +1,11 @@
-'use client';
-import { useState } from 'react';
 import { Button } from 'ui';
 
-export const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
-  //testData는 추후 실제 데이터 로직으로 변경예정
-  const testData = 80;
+export const Pagination = ({
+  currentPage,
+  setCurrentPage,
+  itemsPerPage,
+  testData,
+}) => {
   const pageNumbers = [];
 
   for (let i = 0; i < Math.ceil(testData / itemsPerPage); i++) {
@@ -49,7 +48,12 @@ export const Pagination = () => {
             handlePaginationClick('-2');
           }}
         >
-          -2
+          <span
+            style={{ fontSize: '17px' }}
+            className='material-icons-outlined'
+          >
+            keyboard_double_arrow_left
+          </span>
         </Button>
         <Button
           size='xsm'
@@ -59,7 +63,12 @@ export const Pagination = () => {
             handlePaginationClick('-1');
           }}
         >
-          -1
+          <span
+            style={{ fontSize: '17px' }}
+            className='material-icons-outlined'
+          >
+            keyboard_arrow_left
+          </span>
         </Button>
         {pageNumbers.map((pageNum) => (
           <>
@@ -87,7 +96,12 @@ export const Pagination = () => {
             handlePaginationClick('+1');
           }}
         >
-          +1
+          <span
+            style={{ fontSize: '17px' }}
+            className='material-icons-outlined'
+          >
+            keyboard_arrow_right
+          </span>
         </Button>
         <Button
           size='xsm'
@@ -97,7 +111,12 @@ export const Pagination = () => {
             handlePaginationClick('+2');
           }}
         >
-          +2
+          <span
+            className='material-icons-outlined'
+            style={{ fontSize: '17px' }}
+          >
+            keyboard_double_arrow_right
+          </span>
         </Button>
       </div>
     </div>
