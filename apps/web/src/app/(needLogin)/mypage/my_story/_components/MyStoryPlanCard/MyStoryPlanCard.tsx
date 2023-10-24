@@ -1,6 +1,6 @@
 import { Button } from 'ui';
 
-import { MyStoryPlanCardProps } from './MyStoryPlanCard.types';
+import type { MyStoryPlanCardProps } from './MyStoryPlanCard.types';
 
 export const MyStoryPlanCard = ({ planData }: MyStoryPlanCardProps) => {
   const { title, location, date, isRecord } = planData;
