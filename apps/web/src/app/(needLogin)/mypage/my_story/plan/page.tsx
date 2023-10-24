@@ -1,9 +1,9 @@
 import { Checkbox } from 'ui';
 
+import { Tab } from '../../../../../components/Tab';
 import { MyPageContainer } from '../../_components';
 import { MyStoryPlanCard } from '../_components';
 import { planDescription } from '../_mocks';
-import { Tab } from '../../../../../components/Tab';
 
 const MyStoryPlanPage = () => {
   return (

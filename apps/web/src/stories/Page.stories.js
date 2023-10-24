@@ -1,4 +1,5 @@
-import { within, userEvent } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/testing-library';
+
 import { Page } from './Page';
 
 export default {
@@ -19,6 +20,7 @@ export const LoggedIn = {
     const loginButton = await canvas.getByRole('button', {
       name: /Log in/i,
     });
+
     await userEvent.click(loginButton);
   },
 };
