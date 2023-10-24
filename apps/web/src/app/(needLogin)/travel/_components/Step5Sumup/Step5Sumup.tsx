@@ -117,7 +117,7 @@ const Step5Sumup: React.FC<Step5SumupProps> = ({ config }) => {
           )}
         </div>
         <div className='flex justify-end'>
-          <Button variant='blue' size='lg' className='mt-auto font-bold'>
+          <Button variant='defaultnavy' size='lg' className='mt-auto font-bold'>
             {config.button}
           </Button>
         </div>
