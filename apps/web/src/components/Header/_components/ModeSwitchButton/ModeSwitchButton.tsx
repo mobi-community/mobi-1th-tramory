@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 import React from 'react';
 import { Switch } from 'ui';
 
-import { MapAtom } from '../../../../store';
+import { MapAtom } from '@/store';
 
 export const ModeSwitchButton: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useAtom(MapAtom.isDarkMode);

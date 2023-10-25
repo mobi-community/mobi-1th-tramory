@@ -2,6 +2,7 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import { Page } from './Page';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: 'Example/Page',
   component: Page,

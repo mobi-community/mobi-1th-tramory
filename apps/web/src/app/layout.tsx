@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { ThemeProvider } from 'ui';
 
+import UseQueryProviders from '../store/queryClient';
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -24,11 +25,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className={inter.className}>
-        <Providers>
+        <UseQueryProviders>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-            {children}
+            <Providers>{children}</Providers>
           </ThemeProvider>
-        </Providers>
+        </UseQueryProviders>
       </body>
     </html>
   );

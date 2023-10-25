@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from 'ui';
 
-import { headerConfig } from '../../../../constants';
-import materialIcon from '../../../../utils/materialIcon';
+import { headerConfig } from '@/constants';
+import materialIcon from '@/utils/materialIcon';
 
 export const UserButton: React.FC = () => {
   // 버튼 클릭 시 발생하는 이벤트 + setIsLogin은 페이지 생성 및 로그아웃 기능 구현 후 추가하겠습니다.

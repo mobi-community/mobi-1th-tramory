@@ -5,15 +5,15 @@ import Link from 'next/link';
 import React from 'react';
 
 import logo from '/public/assets/logo_black.svg';
+import { headerConfig } from '@/constants';
+import materialIcon from '@/utils/materialIcon';
 
-import { headerConfig } from '../../constants';
-import materialIcon from '../../utils/materialIcon';
 import { ModeSwitchButton, UserButton } from './_components';
 
 export const Header: React.FC = () => {
   return (
-    <div className='mx-20 mt-10 flex justify-between'>
-      <Link href='./map'>
+    <div className='z-50 mx-20 mt-10 flex justify-between'>
+      <Link href='./main'>
         <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
       </Link>
       <div className='flex'>
