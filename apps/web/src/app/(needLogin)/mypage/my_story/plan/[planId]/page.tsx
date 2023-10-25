@@ -9,14 +9,12 @@ import { detailPageConfig } from '@/constants/detailPage.constans';
 
 import { planDescription } from '../../_mocks';
 import fakeImage from '../../_mocks/fake-profile-image.png';
-import DetailCardSection from './_components/DetailCardSection/DetailCardSection';
+import { DetailCardSection, DropdownFormSection } from './_components';
 
 const MyStoryPlanDetailPage = () => {
   const { planId } = useParams();
-
   const planDetail = planDescription.filter((detail) => detail.id === planId);
 
-  console.log(planDetail);
   return (
     <div className='ml-16 flex w-[60vw] flex-col items-center justify-center p-20'>
       <div className='flex w-full items-center justify-between'>
@@ -53,6 +51,7 @@ const MyStoryPlanDetailPage = () => {
         </Button>
       </div>
       <div className='bg-primaryGray-200 mt-5 h-[300px] w-full'>지도 위치</div>
+      <DropdownFormSection />
     </div>
   );
 };

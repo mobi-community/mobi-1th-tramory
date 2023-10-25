@@ -4,13 +4,9 @@ import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
 
-import { PlanDataType } from '../../../../_components';
+import { DetailCardSectionProps } from './DetailCardSection.types';
 
-interface DetailCardSectionProps {
-  planDetail: PlanDataType;
-}
-
-const DetailCardSection = ({ planDetail }: DetailCardSectionProps) => {
+export const DetailCardSection = ({ planDetail }: DetailCardSectionProps) => {
   const handleSubtitleDescription = (subtitle) => {
     // 여행지는 한국어로 된 여행지 data를 받아야할듯
     if (subtitle === '여행지') return planDetail.location;
@@ -25,19 +21,16 @@ const DetailCardSection = ({ planDetail }: DetailCardSectionProps) => {
       <div>
         <Image src={flagImage} alt='national_flag' width={210} />
         <div className='mt-3 flex w-full items-center justify-center gap-2'>
-          {country.map((num) => (
-            <>
-              <div
-                key={num}
-                className=' bg-primaryGray-300 hover:bg-primaryGray-400 h-[9px] w-[9px] cursor-pointer rounded-full'
-              />
-            </>
+          {country.map((_, index) => (
+            <div key={index}>
+              <div className=' bg-primaryGray-300 hover:bg-primaryGray-400 h-[9px] w-[9px] cursor-pointer rounded-full' />
+            </div>
           ))}
         </div>
       </div>
       <div className='flex w-full flex-col gap-2'>
-        {detailPageConfig.subtitle.map((subtitle) => (
-          <div key={subtitle} className='ml-10 flex items-center gap-5'>
+        {detailPageConfig.subtitle.map((subtitle, index) => (
+          <div key={index} className='ml-10 flex items-center gap-5'>
             <div className='border-primaryGray-500 flex h-[30px] w-[120px] items-center justify-center rounded-sm border border-[1px] border-opacity-60 text-[14px] '>
               {subtitle}
             </div>
