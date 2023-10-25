@@ -1,12 +1,12 @@
-import Step3What from '../_components/Step3What/Step3What';
-import TravelLayout from '../TravelLayout';
+import { travelPlanStep1config } from '../../../../constants';
+import Step1Title from '../_components/Step1Title/Step1Title';
 
-export default function travelPlan() {
+const travelPlanStep1 = () => {
   return (
-    <>
-      <TravelLayout>
-        <Step3What title='어떤 여행을 즐기셨나요?' />
-      </TravelLayout>
-    </>
+    <div>
+      <Step1Title config={travelPlanStep1config} />
+    </div>
   );
-}
+};
+
+export default travelPlanStep1;

@@ -6,22 +6,22 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
     <>
       <Link
         href={`/`}
-        className='relative z-10  mr-[380px] flex h-[70px] w-[70px] items-center justify-center rounded-[50%] bg-white pr-1'
+        className='relative z-10  mr-[380px] flex h-[60px] w-[60px] items-center justify-center rounded-[50%] bg-white pr-1'
       >
         <span
           className='material-icons-outlined'
-          style={{ fontSize: '55px', color: '#ECF1F7' }}
+          style={{ fontSize: '50px', color: '#ECF1F7' }}
         >
           arrow_back_ios
         </span>
       </Link>
       <Link
         href={`/travel/plan`}
-        className='relative z-10 ml-[380px]  flex  h-[70px] w-[70px] items-center justify-center rounded-[50%] bg-white pl-1'
+        className='relative z-10 ml-[380px]  flex  h-[60px] w-[60px] items-center justify-center rounded-[50%] bg-white pl-1'
       >
         <span
           className='material-icons-outlined '
-          style={{ fontSize: '55px', color: '#ECF1F7' }}
+          style={{ fontSize: '50px', color: '#ECF1F7' }}
           onClick={(e) => {
             e.preventDefault();
             handleSubmit(onSubmit)();

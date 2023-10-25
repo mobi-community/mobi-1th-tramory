@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import './page.css';
 
 import React from 'react';
@@ -36,7 +37,7 @@ export const Page = () => {
         <ul>
           <li>
             Use a higher-level connected component. Storybook helps you compose
-            such data from the {'args'} of child component stories
+            such data from the "args" of child component stories
           </li>
           <li>
             Assemble data in the page component from your services. You can mock

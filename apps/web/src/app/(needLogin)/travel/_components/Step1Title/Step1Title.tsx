@@ -27,7 +27,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       return;
     } else {
       console.log('클릭함');
-      // 데이터 임시저장 코드는 추후 작업 예정
+      // 데이터 임시저장 코드 + 고유 id 값을 부여하는 작업 예정
       router.push('/');
     }
   };

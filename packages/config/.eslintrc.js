@@ -4,6 +4,7 @@ module.exports = {
     'prettier',
     'next/core-web-vitals',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
   plugins: ['simple-import-sort', 'prettier'],
   settings: {

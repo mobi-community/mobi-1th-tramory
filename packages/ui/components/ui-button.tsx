@@ -16,10 +16,14 @@ const buttonVariants = cva(
         // 흰색 직사각형 버튼
         nonrounded:
           'bg-white text-[12px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
+        //남색 저장하기 버튼
+        defaultnavy:
+          'bg-primaryBlue-default text-[14px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
+        destructive:
+          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         // 네이비 라인 투명 배경 버튼
         roundednavy:
           'bg-transparent p-0 border border-solid border-primaryBlue-500 text-primaryBlue-500 hover:bg-primaryBlue-700 hover:text-white hover:bg-opacity-70 transition-all duration-300',
-
         outline:
           'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         secondary:
