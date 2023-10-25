@@ -19,7 +19,7 @@ export const MyPageContainer: React.FC<MyPageContainerProps> = ({
             </p>
             {isMyStoryRecordPage && (
               <Button
-                className='h-[20px] w-[80px]'
+                className='bg-primaryBlue-200 ml-4 mt-1 h-[22px] w-[90px] rounded-2xl border-none'
                 size='xsm'
                 variant='roundednavy'
               >
