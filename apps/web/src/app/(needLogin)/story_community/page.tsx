@@ -1,9 +1,10 @@
 'use client';
 
 import { useAtomValue } from 'jotai';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CommonStory } from '@/components';
+import { Pagination } from '@/components/Pagination';
 import { storyCommunityAtoms } from '@/store/storyCommunity.atoms';
 
 import { CategoryTab, SearchBar } from './_components';
@@ -11,6 +12,7 @@ import { storyMock } from './_mocks';
 
 const StoryCommunityPage: React.FC = () => {
   const searchKeyword = useAtomValue(storyCommunityAtoms.searchKeywordAtom);
+  const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <div>
@@ -28,6 +30,14 @@ const StoryCommunityPage: React.FC = () => {
         {storyMock.map((story) => (
           <CommonStory story={story} key={Math.random() * 1000} />
         ))}
+      </div>
+      <div className='ml-[700px] mt-[80px] h-[100px] w-full'>
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          itemsPerPage={10}
+          testData={100}
+        />
       </div>
     </div>
   );
