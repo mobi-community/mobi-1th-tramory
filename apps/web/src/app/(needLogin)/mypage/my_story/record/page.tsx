@@ -16,7 +16,7 @@ const MyStoryRecordPage = () => {
   const [recordTabColor, setRecordTabColor] = useState('white');
   const [draftTabColor, setDraftTabColor] = useState('primaryGray-200');
 
-  const handleClickTab = (page) => {
+  const handleClickTab = (page: string) => {
     if (page === 'record') {
       setRecordTabColor('white');
       setDraftTabColor('primaryGray-200');
