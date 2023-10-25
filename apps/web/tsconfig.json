@@ -8,6 +8,7 @@
     "../../packages/ui/components/input.tsx",
     "../../packages/ui/components/switch.tsx",
     "../../packages/ui/components/popover.tsx",
+    "src/app/(needLogin)/travel/_components/Step1Title"
     "../../packages/ui/components/label.tsx",
     "../../packages/ui/components/radio-group.tsx",
     "../../packages/ui/components/checkbox.tsx"
