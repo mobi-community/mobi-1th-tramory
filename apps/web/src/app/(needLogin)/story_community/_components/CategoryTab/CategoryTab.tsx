@@ -1,10 +1,12 @@
 import { useAtom } from 'jotai';
 
 import { storyCommunityPageConfig } from '@/constants';
-import { selectedCategoryAtom } from '@/store';
+import { storyCommunityAtoms } from '@/store';
 
 export const CategoryTab: React.FC = () => {
-  const [selectedCategory, setSelectedCagetory] = useAtom(selectedCategoryAtom);
+  const [selectedCategory, setSelectedCagetory] = useAtom(
+    storyCommunityAtoms.selectedCategoryAtom
+  );
 
   const isSelected = (category: string) =>
     category === selectedCategory ? 'text-black' : 'text-primaryGray-300';
@@ -13,7 +15,7 @@ export const CategoryTab: React.FC = () => {
     i !== arr.length - 1 ? 'border-primaryGray-300  border-r-[0.5px]' : '';
 
   return (
-    <div className='mb-[40px] ml-[140px] flex'>
+    <div className='my-[40px] ml-[140px] flex'>
       {storyCommunityPageConfig.category.map((category, i, arr) => (
         <div
           onClick={() => setSelectedCagetory(category)}
