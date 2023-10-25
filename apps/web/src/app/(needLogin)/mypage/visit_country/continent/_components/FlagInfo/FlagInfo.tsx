@@ -2,16 +2,18 @@
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 
-import { isToggleAtom } from '@/store';
+import { isIndividualToggleAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
 
 const FlagInfo = ({ data, id }) => {
-  const [isToggle, setIsToggle] = useAtom(isToggleAtom(id));
+  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
+    isIndividualToggleAtom(id)
+  );
 
   const handleToggleFlags = () => {
-    setIsToggle((prev) => !prev);
+    setIsIndividualToggle((prev) => !prev);
   };
 
   return (
@@ -23,7 +25,7 @@ const FlagInfo = ({ data, id }) => {
         </div>
         <p onClick={handleToggleFlags} className='cursor-pointer'>
           {materialIcon({
-            iconName: isToggle ? 'expand_less' : 'expand_more',
+            iconName: isIndividualToggle ? 'expand_less' : 'expand_more',
             size: 32,
           })}
         </p>
@@ -37,7 +39,7 @@ const FlagInfo = ({ data, id }) => {
         alt='대륙별 국기 이미지'
         priority
       />
-      {isToggle && (
+      {isIndividualToggle && (
         <div className='my-7 grid grid-cols-5 gap-y-7'>
           {data.continentData.map((item) => (
             <OneFlagInfo key={item.name} item={item} />

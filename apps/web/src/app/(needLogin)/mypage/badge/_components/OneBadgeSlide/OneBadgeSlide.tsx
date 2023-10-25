@@ -13,22 +13,24 @@ import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { isToggleAtom } from '@/store';
+import { isIndividualToggleAtom } from '@/store';
 
 import { HowToNotification } from '../HowToNotification';
 
 export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
   const { title, description, info } = item;
-  const [isHowtoOpen, setIsHowToOpen] = useAtom(isToggleAtom(id));
+  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
+    isIndividualToggleAtom(id)
+  );
 
   const handleToggleHowTo = (event: React.MouseEvent) => {
     event.stopPropagation(); // 상위 요소 이벤트 버블링 막기
-    setIsHowToOpen((prev) => !prev);
+    setIsIndividualToggle((prev) => !prev);
   };
 
   // span 아이콘 클릭하지 않고 해당 div 영역 클릭할 경우 HowToNotification이 false 상태가되어 꺼짐
   const handleBackgroundClick = () => {
-    setIsHowToOpen(false);
+    setIsIndividualToggle(false);
   };
 
   return (
@@ -44,7 +46,7 @@ export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
         >
           info
         </span>
-        {isHowtoOpen && <HowToNotification info={info} />}
+        {isIndividualToggle && <HowToNotification info={info} />}
       </div>
       <div className='bg-primaryGray-200 flex items-center rounded-[30px] px-8 py-16'>
         <Swiper
