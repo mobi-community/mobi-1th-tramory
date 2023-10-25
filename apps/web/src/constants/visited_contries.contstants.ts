@@ -56,7 +56,7 @@ export const visitedContriesConfig = {
     },
     {
       lastPathname: 'my_visited',
-      tabTitle: '내 방문 국가 모아보기',
+      tabTitle: '방문국가별',
     },
   ],
 };

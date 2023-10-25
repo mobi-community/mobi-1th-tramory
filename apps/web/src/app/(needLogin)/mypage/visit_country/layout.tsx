@@ -1,23 +1,35 @@
+'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-/**
- * @todo
- * 추후 공용 컴포넌트 탭으로 수정 예정
- */
+import { Tab } from '@/components/Tab';
+import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
+
 export default function VistedContriesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const pathArray = pathname.split('/');
+  const lastElement = pathArray[pathArray.length - 1];
+
   return (
     <div>
-      <div className='flex justify-end'>
-        <Link className='mr-4' href='/mypage/visit_country/continent'>
-          대륙별
-        </Link>
-        <Link className='mr-4' href='/mypage/visit_country/my_visited'>
-          내 방문 국가 모아보기
-        </Link>
+      <div className='ml-5 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
+        {visitedContriesConfig.tabs.map((tab, index) => (
+          <Tab
+            key={index}
+            bgColor={
+              lastElement === tab.lastPathname ? 'white' : 'primaryGray-200'
+            }
+            zIndex={lastElement === tab.lastPathname ? '10' : '0'}
+          >
+            <Link href={`/mypage/visit_country/${tab.lastPathname}`}>
+              {tab.tabTitle}
+            </Link>
+          </Tab>
+        ))}
       </div>
       {children}
     </div>
