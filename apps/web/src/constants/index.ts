@@ -6,6 +6,7 @@ export * from './mypageNav.constants';
 export * from './sign_up.constants';
 export * from './sign_up.constants';
 export * from './stepnavbar.constants';
+export * from './storyCommunity.constants';
 export * from './travelRecordModal.constants';
 export * from './travelStep1.constants';
 export * from './travelStep5.constants';
