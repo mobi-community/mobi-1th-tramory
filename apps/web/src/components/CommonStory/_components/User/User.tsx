@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import type { storyUserType } from '../../CommonStory.types';
-import { StoryButtons } from '../StoryButtons/StoryButtons';
+import { StoryButtons } from '../StoryButtons';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;
@@ -16,7 +16,7 @@ export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const isMyStory = pathName.includes('mypage');
 
   return (
-    <div className='flex'>
+    <div className='flex justify-between'>
       <div className='flex pt-[30px]'>
         <div className='relative mr-[15px] h-[40px] w-[40px]'>
           <Image
@@ -32,7 +32,7 @@ export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
         </div>
       </div>
       {isMyStory && <StoryButtons />}
-      {/* <StoryButtons /> */}
+      <div></div>
     </div>
   );
 };

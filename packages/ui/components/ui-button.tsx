@@ -31,6 +31,11 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         // 네이비 라인 투명 배경 버튼
+        // 하늘색 버튼
+        skyblue:
+          'bg-skyblue hover:bg-primaryBlue-400 rounded-[30px] transition-all duration-150 text-[10px] font-bold text-white',
+        coralpink:
+          'bg-coralpink-100 hover:bg-coralpink-300 rounded-[30px] transition-all duration-150 text-[10px] font-bold text-white',
       },
       size: {
         default: 'h-10 px-4 py-2',
