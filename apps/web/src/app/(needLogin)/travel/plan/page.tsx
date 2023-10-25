@@ -1,13 +1,12 @@
-import TravelLayout from '../TravelLayout';
+import { travelPlanStep1config } from '../../../../constants';
+import Step1Title from '../_components/Step1Title/Step1Title';
 
-const TravelPlan = () => {
+const travelPlanStep1 = () => {
   return (
-    <>
-      <TravelLayout>
-        <div>계획 페이지</div>
-      </TravelLayout>
-    </>
+    <div>
+      <Step1Title config={travelPlanStep1config} />
+    </div>
   );
 };
 
-export default TravelPlan;
+export default travelPlanStep1;

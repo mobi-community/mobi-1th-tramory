@@ -1,5 +1,6 @@
 import { Tab } from './Tab';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: 'Components/Tab',
   component: Tab,

@@ -7,7 +7,7 @@ export const planDescription = [
     isDraft: false,
   },
   {
-    title: '태국 일주일 여행 계획2',
+    title: '태국 일주일 여행 계획222222',
     location: 'Thailand, Bangkok',
     date: '2022 6. 12 - 6. 20',
     isRecord: false,
