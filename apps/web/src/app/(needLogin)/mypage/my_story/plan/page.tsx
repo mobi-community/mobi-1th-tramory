@@ -1,3 +1,6 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { Checkbox } from 'ui';
 
 import { Tab } from '../../../../../components/Tab';
@@ -6,6 +9,11 @@ import { MyStoryPlanCard } from '../_components';
 import { planDescription } from '../_mocks';
 
 const MyStoryPlanPage = () => {
+  const router = useRouter();
+  const handleMoveToDetail = (id) => {
+    router.push(`/mypage/my_story/plan/${id}`);
+  };
+
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <div className='mr-10 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
@@ -23,7 +31,11 @@ const MyStoryPlanPage = () => {
         </div>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
           {planDescription.map((planData) => (
-            <MyStoryPlanCard key={planData.title} planData={planData} />
+            <MyStoryPlanCard
+              handleMoveToDetail={handleMoveToDetail}
+              key={planData.id}
+              planData={planData}
+            />
           ))}
         </div>
         {/* 추후 공용 페이지네이션 적용 예정 */}

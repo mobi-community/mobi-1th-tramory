@@ -2,14 +2,21 @@ import { Button } from 'ui';
 
 import type { MyStoryPlanCardProps } from './MyStoryPlanCard.types';
 
-export const MyStoryPlanCard = ({ planData }: MyStoryPlanCardProps) => {
-  const { title, location, date, isRecord } = planData;
+export const MyStoryPlanCard = ({
+  planData,
+  handleMoveToDetail,
+}: MyStoryPlanCardProps) => {
+  const { title, id, location, date, isRecord } = planData;
 
   return (
     <div
+      onClick={(e) => {
+        e.preventDefault();
+        handleMoveToDetail(id);
+      }}
       className={`${
         isRecord ? 'bg-primaryBlue-100' : 'bg-primaryGray-200'
-      } mt-7 w-[440px] rounded-[30px] p-6`}
+      } mt-7 w-[440px] cursor-pointer rounded-[30px] p-6`}
     >
       <div className='flex justify-between'>
         <div className='text-[16px] font-semibold'>{title}</div>
