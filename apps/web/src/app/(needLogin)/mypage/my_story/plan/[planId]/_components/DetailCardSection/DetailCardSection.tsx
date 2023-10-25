@@ -22,6 +22,7 @@ export const DetailCardSection = ({ planDetail }: DetailCardSectionProps) => {
         <Image src={flagImage} alt='national_flag' width={210} />
         <div className='mt-3 flex w-full items-center justify-center gap-2'>
           {country.map((_, index) => (
+            //  key 유니크한 값으로 변경 예정
             <div key={index}>
               <div className=' bg-primaryGray-300 hover:bg-primaryGray-400 h-[9px] w-[9px] cursor-pointer rounded-full' />
             </div>
@@ -30,6 +31,7 @@ export const DetailCardSection = ({ planDetail }: DetailCardSectionProps) => {
       </div>
       <div className='flex w-full flex-col gap-2'>
         {detailPageConfig.subtitle.map((subtitle, index) => (
+          //  key 유니크한 값으로 변경 예정
           <div key={index} className='ml-10 flex items-center gap-5'>
             <div className='border-primaryGray-500 flex h-[30px] w-[120px] items-center justify-center rounded-sm border border-[1px] border-opacity-60 text-[14px] '>
               {subtitle}
