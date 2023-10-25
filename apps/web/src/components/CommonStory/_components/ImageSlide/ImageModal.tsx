@@ -5,7 +5,6 @@ import Image, { StaticImageData } from 'next/image';
 export const ImageModal: React.FC<{ images: StaticImageData[] }> = ({
   images,
 }) => {
-  // if (isImageModalOpen)
   return (
     <div className='absolute right-[175px] top-0 flex flex-row-reverse'>
       {images.map((image) => (
