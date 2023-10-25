@@ -34,9 +34,12 @@ const MyPageTabs = () => {
   };
 
   return (
-    <div className='ml-[60px]' onClick={handleBackgroundClick}>
+    <div
+      className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'
+      onClick={handleBackgroundClick}
+    >
       <MyPageContainer title={navTitle}>
-        <div className='relative mb-8 flex items-center'>
+        <div className='relative my-8 flex items-center'>
           <p className='text-primaryBlue-700/80 mx-12 mr-2 text-xl font-bold'>
             {currentBadge.title} (0/{currentBadge.description.length})
           </p>
@@ -49,7 +52,7 @@ const MyPageTabs = () => {
           </span>
           {isOneHowTo && <HowToNotification info={currentBadge.info} />}
         </div>
-        <div className='bg-primaryGray-200 mx-12 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
+        <div className='bg-primaryGray-200 mx-12 mb-12 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
               <Image
