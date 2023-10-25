@@ -73,7 +73,7 @@ export const Pagination = ({
           </span>
         </Button>
         {pageNumbers.map((pageNum) => (
-          <>
+          <div key={pageNum}>
             <Button
               size='xsm'
               className={`${
@@ -88,7 +88,7 @@ export const Pagination = ({
             >
               {pageNum + 1}
             </Button>
-          </>
+          </div>
         ))}
         <Button
           size='xsm'
