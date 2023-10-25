@@ -16,6 +16,9 @@ const buttonVariants = cva(
         // 희색 직사각형 버튼
         nonrounded:
           'bg-white text-[12px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
+        //남색 저장하기 버튼
+        defaultnavy:
+          'bg-primaryBlue-default text-[14px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         outline:
