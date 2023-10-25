@@ -35,7 +35,7 @@ export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
 
   return (
     <div className='mb-12 px-12' onClick={handleBackgroundClick}>
-      <div className='relative mb-8 flex items-center'>
+      <div className='relative my-8 flex items-center'>
         <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
           {title} (0/{description.length})
         </p>

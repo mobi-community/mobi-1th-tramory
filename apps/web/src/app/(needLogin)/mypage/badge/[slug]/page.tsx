@@ -39,7 +39,7 @@ const MyPageTabs = () => {
       onClick={handleBackgroundClick}
     >
       <MyPageContainer title={navTitle}>
-        <div className='relative mb-8 flex items-center'>
+        <div className='relative my-8 flex items-center'>
           <p className='text-primaryBlue-700/80 mx-12 mr-2 text-xl font-bold'>
             {currentBadge.title} (0/{currentBadge.description.length})
           </p>
