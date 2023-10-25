@@ -26,9 +26,6 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        // 네이비 라인 투명 배경 버튼
-        roundednavy:
-          'bg-transparent p-0 border border-solid border-primaryBlue-500 text-primaryBlue-500 hover:bg-primaryBlue-700 hover:text-white hover:bg-opacity-70 transition-all duration-300',
       },
       size: {
         default: 'h-10 px-4 py-2',
