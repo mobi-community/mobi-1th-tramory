@@ -73,22 +73,21 @@ export const Pagination = ({
           </span>
         </Button>
         {pageNumbers.map((pageNum) => (
-          <div key={pageNum}>
-            <Button
-              size='xsm'
-              className={`${
-                isClickToPagination(pageNum)
-                  ? 'bg-primaryGray-500 hover:bg-primaryGray-300 text-white '
-                  : 'hover:bg-primaryGray-500 text-primaryGray-500 bg-white'
-              }  border-primaryGray-500  hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]`}
-              variant='roundednavy'
-              onClick={() => {
-                handlePaginationClick(pageNum);
-              }}
-            >
-              {pageNum + 1}
-            </Button>
-          </div>
+          <Button
+            key={pageNum}
+            size='xsm'
+            className={`${
+              isClickToPagination(pageNum)
+                ? 'bg-primaryGray-500 hover:bg-primaryGray-300 text-white '
+                : 'hover:bg-primaryGray-500 text-primaryGray-500 bg-white'
+            }  border-primaryGray-500  hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]`}
+            variant='roundednavy'
+            onClick={() => {
+              handlePaginationClick(pageNum);
+            }}
+          >
+            {pageNum + 1}
+          </Button>
         ))}
         <Button
           size='xsm'
