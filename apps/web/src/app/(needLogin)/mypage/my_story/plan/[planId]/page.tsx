@@ -50,7 +50,9 @@ const MyStoryPlanDetailPage = () => {
           계획 {detailPageConfig.buttons[1]}
         </Button>
       </div>
-      <div className='bg-primaryGray-200 mt-5 h-[300px] w-full'>지도 위치</div>
+      <div className='bg-primaryGray-200 mb-4 mt-5 h-[300px] w-full'>
+        지도 위치
+      </div>
       <DropdownFormSection />
     </div>
   );
