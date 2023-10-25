@@ -1,20 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-
 import { Checkbox } from 'ui';
 
+import { Pagination } from '@/components/Pagination';
+
+import { Tab } from '../../../../../components/Tab';
 import { MyPageContainer } from '../../_components';
 import { MyStoryPlanCard } from '../_components';
 import { planDescription } from '../_mocks';
-import { Tab } from '../../../../../components/Tab';
-import { Pagination } from '@/components/Pagination';
 
 const MyStoryPlanPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
   //추후 실제 데이터로 변경 예정
   const testData = 80;
+
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <div className='mr-10 mt-10 flex w-full items-end justify-end space-x-[-30px]'>

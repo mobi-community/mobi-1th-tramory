@@ -1,2 +1,2 @@
 module.exports = require('config/.eslintrc');
-export const extends = ['plugin:storybook/recommended'];
+// export const extends = ['plugin:storybook/recommended'];
