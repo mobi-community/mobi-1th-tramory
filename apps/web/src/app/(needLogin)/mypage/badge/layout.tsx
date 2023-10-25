@@ -11,14 +11,15 @@ export default function BagdeLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const paths = [
+    '/mypage/badge',
+    ...badgeConfig.badges.map((badge) => `/mypage/badge/${badge.slug}`),
+  ];
 
   return (
     <div>
       <div className='ml-5 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
-        {[
-          '/mypage/badge',
-          ...badgeConfig.badges.map((badge) => `/mypage/badge/${badge.slug}`),
-        ].map((path, index) => (
+        {paths.map((path, index) => (
           <Tab
             key={index}
             bgColor={pathname === path ? 'white' : 'primaryGray-200'}
