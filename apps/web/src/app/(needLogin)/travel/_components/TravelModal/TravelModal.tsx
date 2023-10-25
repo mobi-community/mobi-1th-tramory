@@ -62,42 +62,55 @@ const TravelModal: React.FC = () => {
             </div>
 
             <div className='relative flex bg-gray-100'>
-              <button
-                className='absolute left-0 top-1/2 z-20 h-[30px] w-[30px] -translate-y-1/2 transform rounded-full border bg-white pt-[3px]'
-                onClick={prevSlide}
-              >
-                <span className='material-icons-outlined'>chevron_left</span>
-              </button>
-              <button
-                className='absolute right-0 top-1/2 z-20 h-[30px] w-[30px] -translate-y-1/2 transform rounded-full border bg-white pt-[3px]'
-                onClick={nextSlide}
-              >
-                <span className='material-icons-outlined rotate-180'>
-                  chevron_left
-                </span>
-              </button>
-              {uploadedImages
-                .slice(sliderIndex, sliderIndex + 4)
-                .map((image, idx) => (
-                  <div className='relative mr-2' key={idx}>
-                    <img
-                      src={URL.createObjectURL(image)}
-                      alt={`Uploaded ${idx}`}
-                      className='mr-2 h-[100px] w-[150px] rounded object-cover'
-                    />
-                    <button
-                      className='absolute right-[10px] top-0 h-[20px] w-[20px] rounded bg-black'
-                      onClick={() => deleteImage(sliderIndex + idx)}
-                    >
-                      <span
-                        className='material-icons-outlined text-white'
-                        style={{ fontSize: '15px' }}
-                      >
-                        close
-                      </span>
-                    </button>
-                  </div>
-                ))}
+              {uploadedImages.length === 0 ? (
+                <div
+                  className='flex h-[100px] w-[150px] cursor-pointer items-center justify-center rounded border-2 border-dashed'
+                  onClick={() => inputFileRef.current?.click()}
+                >
+                  <span className='material-icons-outlined'>add_box</span>
+                </div>
+              ) : (
+                <>
+                  <button
+                    className='absolute left-0 top-1/2 z-20 h-[30px] w-[30px] -translate-y-1/2 transform rounded-full border bg-white pt-[3px]'
+                    onClick={prevSlide}
+                  >
+                    <span className='material-icons-outlined'>
+                      chevron_left
+                    </span>
+                  </button>
+                  <button
+                    className='absolute right-0 top-1/2 z-20 h-[30px] w-[30px] -translate-y-1/2 transform rounded-full border bg-white pt-[3px]'
+                    onClick={nextSlide}
+                  >
+                    <span className='material-icons-outlined rotate-180'>
+                      chevron_left
+                    </span>
+                  </button>
+                  {uploadedImages
+                    .slice(sliderIndex, sliderIndex + 4)
+                    .map((image, idx) => (
+                      <div className='relative mr-2' key={idx}>
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt={`Uploaded ${idx}`}
+                          className='mr-2 h-[100px] w-[150px] rounded object-cover'
+                        />
+                        <button
+                          className='absolute right-[10px] top-0 h-[20px] w-[20px] rounded bg-black'
+                          onClick={() => deleteImage(sliderIndex + idx)}
+                        >
+                          <span
+                            className='material-icons-outlined text-white'
+                            style={{ fontSize: '15px' }}
+                          >
+                            close
+                          </span>
+                        </button>
+                      </div>
+                    ))}
+                </>
+              )}
             </div>
             <div>
               위치 바뀌는 영역
