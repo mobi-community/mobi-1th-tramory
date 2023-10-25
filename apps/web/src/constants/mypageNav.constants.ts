@@ -19,7 +19,7 @@ export const mypageNavConfig = {
           href: '/mypage/my_story/plan',
         },
         {
-          title: '나의 여행 계획',
+          title: '나의 여행 기록',
           href: '/mypage/my_story/record',
         },
       ],

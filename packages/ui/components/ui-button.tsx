@@ -34,16 +34,17 @@ const buttonVariants = cva(
         // 하늘색 버튼
         skyblue:
           'bg-skyblue hover:bg-primaryBlue-400 rounded-[30px] transition-all duration-150 text-[10px] font-bold text-white',
+        // 분홍색 버튼
         coralpink:
           'bg-coralpink-100 hover:bg-coralpink-300 rounded-[30px] transition-all duration-150 text-[10px] font-bold text-white',
       },
       size: {
         default: 'h-10 px-4 py-2',
+        // 패딩없는 사이즈로 쓰고싶다면 사용
+        xsm: 'h-9 rounded-sm',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
-        // 패딩없는 사이즈로 쓰고싶다면 사용
-        xsm: 'h-9 rounded-sm',
       },
     },
     defaultVariants: {
