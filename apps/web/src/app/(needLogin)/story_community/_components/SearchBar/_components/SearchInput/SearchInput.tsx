@@ -1,3 +1,5 @@
+'use client';
+
 import { useSetAtom } from 'jotai';
 import { Controller, useForm } from 'react-hook-form';
 

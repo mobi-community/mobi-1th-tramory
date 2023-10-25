@@ -1,3 +1,5 @@
+'use client';
+
 import { useAtom } from 'jotai';
 
 import { mockKeywordsArray } from '@/app/(needLogin)/story_community/_mocks';
