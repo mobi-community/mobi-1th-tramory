@@ -16,18 +16,18 @@ export const Pagination = ({
 
   const handlePaginationClick = (cur) => {
     switch (cur) {
-      case '-1':
+      case 'prevPage':
         setCurrentPage((prev) => (prev >= 1 ? prev - 1 : prev));
         break;
-      case '+1':
+      case 'nextPage':
         setCurrentPage((prev) =>
           prev < pageNumbers.length - 1 ? prev + 1 : prev
         );
         break;
-      case '-2':
+      case 'firstPage':
         setCurrentPage(0);
         break;
-      case '+2':
+      case 'lastPage':
         setCurrentPage(pageNumbers.length - 1);
         break;
       default:
@@ -47,7 +47,7 @@ export const Pagination = ({
           className='border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]'
           variant='roundednavy'
           onClick={() => {
-            handlePaginationClick('-2');
+            handlePaginationClick('lastPage');
           }}
         >
           <span
@@ -62,7 +62,7 @@ export const Pagination = ({
           className='border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]'
           variant='roundednavy'
           onClick={() => {
-            handlePaginationClick('-1');
+            handlePaginationClick('prevPage');
           }}
         >
           <span
@@ -94,7 +94,7 @@ export const Pagination = ({
           className='border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]'
           variant='roundednavy'
           onClick={() => {
-            handlePaginationClick('+1');
+            handlePaginationClick('nextPage');
           }}
         >
           <span
@@ -109,7 +109,7 @@ export const Pagination = ({
           className='border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]'
           variant='roundednavy'
           onClick={() => {
-            handlePaginationClick('+2');
+            handlePaginationClick('lastPage');
           }}
         >
           <span
