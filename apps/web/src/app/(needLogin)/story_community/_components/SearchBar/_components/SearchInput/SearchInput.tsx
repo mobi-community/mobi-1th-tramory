@@ -1,15 +1,18 @@
+'use client';
+
 import { useSetAtom } from 'jotai';
 import { Controller, useForm } from 'react-hook-form';
 
-import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
+import { storyCommunityAtoms } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import { SuggestionModal } from '../SuggestionModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const setIsSearchModalOpen = useSetAtom(MapAtom.isSearchModalOpen);
+  const setIsSearchModalOpen = useSetAtom(
+    storyCommunityAtoms.isSearchModalOpenAtom
+  );
 
   return (
     <>
@@ -21,16 +24,16 @@ export const SearchInput: React.FC = () => {
           control={control}
           defaultValue=''
           render={({ field }) => (
-            <div className='relative mt-1'>
-              <div className='flex w-[450px]'>
+            <div className=''>
+              <div className='flex'>
                 <input
                   {...field}
                   onClick={() => setIsSearchModalOpen((prev: boolean) => !prev)}
-                  className='text-align-center text-s ml-12 w-[430px] focus:outline-none'
-                  placeholder={MapPageConfig.searchBarText}
+                  className='outline-none'
+                  placeholder='스토리 검색'
                   autoComplete='off'
                 />
-                <div className='absolute ml-[380px] cursor-pointer pt-2'>
+                <div>
                   {materialIcon({
                     iconName: 'search',
                     size: 30,
