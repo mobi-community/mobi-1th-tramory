@@ -33,12 +33,21 @@ export const ModifyForm = ({ type }) => {
 
   const [isPWVisible, setIsPWVisible] = useAtom(isPWVisibleAtom);
 
-  const inputStyle = {
+  const defaultStyle = {
     width: '530px',
     marginLeft: '0',
     marginRight: '104px',
     border: '1px solid #ccc',
     borderRadius: '4px',
+  };
+
+  const emailStyle = {
+    border: 'none',
+    background: '#eee',
+  };
+
+  const nicknameConfirmStyle = {
+    marginRight: '23px',
   };
 
   const handleVisibleState = () => {
@@ -65,13 +74,7 @@ export const ModifyForm = ({ type }) => {
                   name={'email'}
                   type={'text'}
                   control={control}
-                  style={{
-                    width: '530px',
-                    marginLeft: '0',
-                    marginRight: '104px',
-                    background: '#eee',
-                    borderRadius: '4px',
-                  }}
+                  style={{ ...defaultStyle, ...emailStyle }}
                   placeholder={userInfo.email}
                 />
               </div>
@@ -84,13 +87,7 @@ export const ModifyForm = ({ type }) => {
                     name={'nickName'}
                     type={'text'}
                     control={control}
-                    style={{
-                      width: '530px',
-                      marginLeft: '0',
-                      marginRight: '18px',
-                      border: '1px solid #ccc',
-                      borderRadius: '4px',
-                    }}
+                    style={{ ...defaultStyle, ...nicknameConfirmStyle }}
                   />
                   <Button variant='roundednavy' font='xs' className='h-[36px]'>
                     중복 확인
@@ -106,7 +103,7 @@ export const ModifyForm = ({ type }) => {
                   name={'password'}
                   type={isPWVisible ? 'text' : 'password'}
                   control={control}
-                  style={inputStyle}
+                  style={defaultStyle}
                   placeholder='영문, 숫자, 특수기호를 포함한 8자 이상으로 설정해주세요'
                 />
                 <p
@@ -126,7 +123,7 @@ export const ModifyForm = ({ type }) => {
                   name={'pwconfirm'}
                   type={isPWVisible ? 'text' : 'password'}
                   control={control}
-                  style={inputStyle}
+                  style={defaultStyle}
                   placeholder='같은 패스워드를 다시 입력해주세요'
                 />
               </div>
