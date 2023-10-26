@@ -18,7 +18,7 @@ const MyBadge = () => {
   ).title;
 
   return (
-    <div className='mb-[100px] ml-[60px] flex flex-col justify-center'>
+    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer title={navTitle}>
         <BadgeSlide />
       </MyPageContainer>
