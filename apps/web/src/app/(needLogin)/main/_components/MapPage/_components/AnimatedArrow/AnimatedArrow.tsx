@@ -5,7 +5,7 @@ import materialIcon from '@/utils/materialIcon';
 
 export const AnimatedArrow: React.FC = () => {
   return (
-    <div>
+    <div className='mt-[-40px]'>
       {MapPageConfig.arrowText}
       <motion.div
         initial={{ scale: 1, y: 0 }}
