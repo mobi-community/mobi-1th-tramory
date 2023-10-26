@@ -2,9 +2,9 @@ import { recommendPageConfig } from '@/constants';
 
 import { ContinentSlide, ReadMoreButton } from './_components';
 
-export const RecommendByCountryPage: React.FC = () => {
+const RecommendCountryPage: React.FC = () => {
   return (
-    <div className='min-h-[calc(100vh-80px)]'>
+    <div>
       <div className='m-auto w-[80%]'>
         {recommendPageConfig.continentsArray.map((continent) => (
           <ContinentSlide continent={continent} key={continent.id} />
@@ -16,3 +16,5 @@ export const RecommendByCountryPage: React.FC = () => {
     </div>
   );
 };
+
+export default RecommendCountryPage;

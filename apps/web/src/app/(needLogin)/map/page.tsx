@@ -9,7 +9,7 @@ import { MapAtom } from '@/store';
 
 import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
 
-export const MapPage: React.FC = () => {
+const MapPage: React.FC = () => {
   const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
   const [clicks, setClicks] = useAtom(MapAtom.click);
   const zoom = useAtomValue(MapAtom.zoom);
@@ -27,7 +27,7 @@ export const MapPage: React.FC = () => {
 
   if (apiKey)
     return (
-      <div className='min-h-[calc(100vh-80px)] w-[100%] text-center'>
+      <div className='w-[100%] text-center'>
         <SearchBar />
         <Wrapper apiKey={apiKey}>
           <Map
@@ -47,3 +47,5 @@ export const MapPage: React.FC = () => {
     );
   return null;
 };
+
+export default MapPage;
