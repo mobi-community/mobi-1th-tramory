@@ -15,6 +15,8 @@ const buttonVariants = [
   'roundednavy',
   'deepnavy',
   'lightblue',
+  'skyblue',
+  'coralpink',
 ] as const;
 
 export default function Page() {

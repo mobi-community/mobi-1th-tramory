@@ -63,7 +63,7 @@ export const PrivacyModifyForm = () => {
             variant='defaultnavy'
             weight='bold'
             shape='full'
-            className='m-auto my-5 w-[200px] text-white'
+            className='m-auto my-5 w-[200px]'
           >
             개인정보 수정하기
           </Button>

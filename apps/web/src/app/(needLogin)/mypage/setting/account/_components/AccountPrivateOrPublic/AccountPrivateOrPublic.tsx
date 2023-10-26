@@ -53,7 +53,7 @@ export const AccountPrivateOrPublic = () => {
               variant='defaultnavy'
               weight='bold'
               shape='full'
-              className='w-[200px] text-white'
+              className='w-[200px]'
             >
               계정공개 여부 변경하기
             </Button>
