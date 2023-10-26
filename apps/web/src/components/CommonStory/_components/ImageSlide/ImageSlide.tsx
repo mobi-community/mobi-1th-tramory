@@ -23,7 +23,7 @@ export const ImageSlide: React.FC<{ images: StaticImageData[] }> = ({
         >
           <Image
             src={mainImage}
-            alt='여행 사진'
+            alt='대표 여행 사진'
             key={Math.random() * 1000}
             layout='fill'
             className='rounded-[8px]'
