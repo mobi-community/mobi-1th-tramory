@@ -16,9 +16,9 @@ const buttonVariants = cva(
         // 흰색 직사각형 버튼
         nonrounded:
           'bg-white text-[12px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
-        //남색 저장하기 버튼
+        // 남색 저장하기 버튼
         defaultnavy:
-          'bg-primaryBlue-default text-[14px] text-primaryGray-400 rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
+          'bg-primaryBlue-default text-[14px] text-white rounded-[0px] hover:bg-primaryGray-100 transition-all duration-300',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         // 네이비 라인 투명 배경 버튼
@@ -30,6 +30,12 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        // 하늘색 버튼
+        skyblue:
+          'bg-skyblue hover:bg-primaryBlue-400 rounded-[30px] transition-all duration-150 text-[10px] font-bold text-white',
+        // 분홍색 버튼
+        coralpink:
+          'bg-coralpink-100 hover:bg-coralpink-300 rounded-[30px] transition-all duration-150 text-[10px] font-bold text-white',
         // 진한 네이비 버튼
         deepnavy:
           'bg-primaryBlue-700 text-[14px] text-white rounded-[0px] hover:bg-primaryBlue-700/80 transition-all duration-300',

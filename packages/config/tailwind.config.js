@@ -34,7 +34,11 @@ module.exports = {
           700: '#021666',
         },
         skyblue: '#B3CDD6',
-        coralpink: '#F6B9B9',
+        coralpink: {
+          100: '#FFB0B0',
+          200: '#F6B9B9',
+          300: '#FF8989',
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

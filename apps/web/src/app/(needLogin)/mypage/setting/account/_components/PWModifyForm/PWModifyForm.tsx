@@ -78,7 +78,7 @@ export const PWModifyForm = () => {
             variant='defaultnavy'
             weight='bold'
             shape='full'
-            className='m-auto my-5 w-[200px] text-white'
+            className='m-auto my-5 w-[200px]'
           >
             비밀번호 변경하기
           </Button>
