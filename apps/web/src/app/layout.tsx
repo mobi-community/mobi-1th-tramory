@@ -1,7 +1,6 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { ThemeProvider } from 'ui';
 
@@ -13,8 +12,6 @@ export const metadata: Metadata = {
   description: 'Welcome to Next.js 13',
 };
 
-const inter = Inter({ subsets: ['latin'] });
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
@@ -24,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           rel='stylesheet'
         />
       </head>
-      <body className={inter.className}>
+      <body className='font-display'>
         <UseQueryProviders>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
             <Providers>{children}</Providers>
