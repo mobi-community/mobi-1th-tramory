@@ -53,12 +53,17 @@ export const PrivacyModifyForm = () => {
                   borderRadius: '4px',
                 }}
               />
-              <Button variant='roundednavy' className='h-[36px] text-xs'>
+              <Button variant='roundednavy' font='xs' className='h-[36px]'>
                 중복 확인
               </Button>
             </div>
           </div>
-          <Button className='m-auto my-5 w-[200px] rounded-full font-bold'>
+          <Button
+            variant='defaultnavy'
+            weight='bold'
+            shape='full'
+            className='m-auto my-5 w-[200px] text-white'
+          >
             개인정보 수정하기
           </Button>
         </div>

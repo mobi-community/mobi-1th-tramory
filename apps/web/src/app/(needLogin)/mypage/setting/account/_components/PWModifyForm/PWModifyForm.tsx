@@ -73,7 +73,12 @@ export const PWModifyForm = () => {
               placeholder='같은 패스워드를 다시 입력해주세요'
             />
           </div>
-          <Button className='m-auto my-5 w-[200px] rounded-full font-bold'>
+          <Button
+            variant='defaultnavy'
+            weight='bold'
+            shape='full'
+            className='m-auto my-5 w-[200px] text-white'
+          >
             비밀번호 변경하기
           </Button>
         </div>
