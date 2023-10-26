@@ -47,7 +47,7 @@ export const Pagination = ({
           className='border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]'
           variant='roundednavy'
           onClick={() => {
-            handlePaginationClick('lastPage');
+            handlePaginationClick('firstPage');
           }}
         >
           <span
