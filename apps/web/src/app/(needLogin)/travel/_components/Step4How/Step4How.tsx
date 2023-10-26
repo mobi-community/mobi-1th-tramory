@@ -35,6 +35,7 @@ const Step4How = ({ label }) => {
                     setCurrentPage={setCurrentPage}
                     itemsPerPage={itemsPerPage}
                     testData={dates.length}
+                    bgColor='blue'
                   />
                 </div>
               </div>
