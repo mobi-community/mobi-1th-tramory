@@ -7,17 +7,21 @@ import { Button } from 'ui';
 import { selectedDateIdAtom } from '@/store/selectedDateIdAtom.atom';
 import { travelDateAtom } from '@/store/travelDate.atom';
 
-const Step4Dates = ({ control }) => {
+const Step4Dates = ({ control, itemsPerPage, currentPage }) => {
   const [date, setDate] = useAtom(travelDateAtom);
   const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
-  const getRandom = async () => {
+  const startIdx = currentPage * itemsPerPage;
+
+  const endIdx = (currentPage + 1) * itemsPerPage;
+  const getDates = async () => {
     const res = await fetch('/dates').then((res) => res.json());
 
+    console.log(res);
     setDate(res);
   };
 
   useEffect(() => {
-    getRandom();
+    getDates();
   }, []);
 
   return (
@@ -28,11 +32,11 @@ const Step4Dates = ({ control }) => {
         defaultValue={''}
         render={({ field }) => (
           <div>
-            <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[30px] text-[30px] font-semibold'></div>
+            <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[50px] text-[30px] font-semibold'></div>
             <div className='mt-[20px] flex  flex-wrap justify-center'>
-              {date.slice(0, 4).map((date) => (
+              {date.slice(startIdx, endIdx).map((date) => (
                 <div
-                  key={date.id} //date id
+                  key={date.id}
                   className={` m-3 flex h-[90px] w-[320px] cursor-pointer  rounded-sm  bg-white
                   ${
                     selectedDateId == date.id

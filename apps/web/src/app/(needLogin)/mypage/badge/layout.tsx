@@ -1,10 +1,8 @@
-/**
- * @todo
- * 추후 공용 컴포넌트 탭으로 수정 예정
- */
-
+'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
+import { Tab } from '@/components/Tab';
 import { badgeConfig } from '@/constants';
 
 export default function BagdeLayout({
@@ -12,20 +10,25 @@ export default function BagdeLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const paths = [
+    '/mypage/badge',
+    ...badgeConfig.badges.map((badge) => `/mypage/badge/${badge.slug}`),
+  ];
+
   return (
     <div>
-      <div className='flex justify-end'>
-        <Link className='mr-4' href='/mypage/badge'>
-          ALL
-        </Link>
-        {badgeConfig.badges.map((badge, index) => (
-          <Link
-            className='mr-4'
+      <div className='ml-5 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
+        {paths.map((path, index) => (
+          <Tab
             key={index}
-            href={`/mypage/badge/${badge.slug}`}
+            bgColor={pathname === path ? 'white' : 'primaryGray-200'}
+            zIndex={pathname === path ? '10' : '0'}
           >
-            {badge.title}
-          </Link>
+            <Link href={path}>
+              {index === 0 ? 'ALL' : badgeConfig.badges[index - 1].title}
+            </Link>
+          </Tab>
         ))}
       </div>
       {children}
