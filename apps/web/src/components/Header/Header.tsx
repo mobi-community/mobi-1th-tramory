@@ -13,7 +13,7 @@ import { ModeSwitchButton, UserButton } from './_components';
 export const Header: React.FC = () => {
   return (
     <div className='z-50 mx-20 mt-10 flex justify-between'>
-      <Link href='./main'>
+      <Link href='./map'>
         <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
       </Link>
       <div className='flex'>
