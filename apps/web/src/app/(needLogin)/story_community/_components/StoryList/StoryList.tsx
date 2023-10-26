@@ -12,7 +12,7 @@ export const StoryList: React.FC = () => {
 
   return (
     <>
-      <div className='ml-[150px] grid grid-cols-2 gap-8'>
+      <div className='m-auto grid w-[80%] grid-cols-2 gap-8'>
         {storyMock.map((story) => (
           <CommonStory story={story} key={Math.random() * 1000} />
         ))}

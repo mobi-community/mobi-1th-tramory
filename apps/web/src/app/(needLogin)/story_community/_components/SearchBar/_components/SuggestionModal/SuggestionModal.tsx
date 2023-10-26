@@ -22,7 +22,10 @@ export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
           {mockKeywordsArray.map((keyword, i, array) => (
             <li
               key={Math.random() * 1000}
-              className={`list-none px-[20px] py-[5px] ${isLast(i, array)}`}
+              className={`hover:bg-primaryGray-100 cursor-pointer list-none px-[20px] py-[5px] ${isLast(
+                i,
+                array
+              )}`}
               onClick={() => {
                 setIsSearchModalOpen((prev: boolean) => !prev);
                 field.onChange(keyword);
