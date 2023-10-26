@@ -1,14 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useAtom } from 'jotai';
 
 import { CommonStory } from '@/components';
 import { Pagination } from '@/components/Pagination';
+import { storyCommunityAtoms } from '@/store';
 
 import { storyMock } from '../../_mocks';
 
 export const StoryList: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useAtom(
+    storyCommunityAtoms.storyPageAtom
+  );
 
   return (
     <>
