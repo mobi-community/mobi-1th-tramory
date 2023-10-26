@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
+import { userInfo } from '@/app/(needLogin)/mypage/_mocks';
 import { ValidatorInput } from '@/components';
 
 import { PRIVACY_MODIFY_SCHEMA } from '../../_schema/account.schema';
@@ -11,7 +12,7 @@ export const PrivacyModifyForm = () => {
   const { control } = useForm<PrivacyModifyType>({
     mode: 'onChange',
     resolver: yupResolver(PRIVACY_MODIFY_SCHEMA),
-    defaultValues: { nickName: '유저 닉네임' },
+    defaultValues: { nickName: userInfo.nickName },
   });
 
   return (
@@ -35,7 +36,7 @@ export const PrivacyModifyForm = () => {
                 background: '#eee',
                 borderRadius: '4px',
               }}
-              placeholder='example@gmail.com'
+              placeholder={userInfo.email}
             />
           </div>
           <div className='flex justify-between'>

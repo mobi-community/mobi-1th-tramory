@@ -3,6 +3,7 @@ import { atom, useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
+import { userInfo } from '@/app/(needLogin)/mypage/_mocks';
 import { ValidatorInput } from '@/components';
 import materialIcon from '@/utils/materialIcon';
 
@@ -15,7 +16,7 @@ export const PWModifyForm = () => {
   const { control } = useForm<PWModifyType>({
     mode: 'onChange',
     resolver: yupResolver(PW_MODIFY_SCHEMA),
-    defaultValues: { password: 'test123#$', pwconfirm: '' },
+    defaultValues: { password: userInfo.password, pwconfirm: '' },
   });
 
   const [isPWVisible, setIsPWVisible] = useAtom(isPWVisibleAtom);
