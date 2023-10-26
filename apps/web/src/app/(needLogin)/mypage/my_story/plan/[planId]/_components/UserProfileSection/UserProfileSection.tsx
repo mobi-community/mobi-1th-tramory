@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import React from 'react';
 
-import fakeImage from '../../_mocks/fake-profile-image.png';
+import fakeImage from '../../../../_mocks/fake-profile-image.png';
 import { DetailSectionProps } from '../../DetailSection.types';
 
 export const UserProfileSection = ({ planDetail }: DetailSectionProps) => {
+  const { title, date } = planDetail;
+
   return (
     <div>
       <div className='flex w-full items-center justify-between'>
-        <div className='text-[24px] font-bold'>{planDetail[0].title}</div>
-        <div className=' text-primaryGray-400 text-[14px]'>
-          {planDetail[0].date}
-        </div>
+        <div className='text-[24px] font-bold'>{title}</div>
+        <div className=' text-primaryGray-400 text-[14px]'>{date}</div>
       </div>
       <div className='mt-3 flex w-full items-center justify-start gap-3'>
         <div
