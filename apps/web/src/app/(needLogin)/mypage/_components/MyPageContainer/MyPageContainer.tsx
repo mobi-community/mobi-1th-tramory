@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'ui';
-import { Button } from 'ui';
 
 import type { MyPageContainerProps } from './MyPageContainer.types';
 
@@ -9,10 +8,8 @@ export const MyPageContainer: React.FC<MyPageContainerProps> = ({
   title,
 }) => {
   const isMyStoryRecordPage = title === '나의 스토리 - 여행 기록';
-  const isMyStoryRecordPage = title === '나의 스토리 - 여행 기록';
 
   return (
-    <div className='h-auto w-[1024px] rounded-tl-[80px] shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
     <div className='h-auto w-[1024px] rounded-tl-[80px] shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
       {title && (
         <div className='px-12 pt-12'>
@@ -22,7 +19,7 @@ export const MyPageContainer: React.FC<MyPageContainerProps> = ({
             </p>
             {isMyStoryRecordPage && (
               <Button
-                className='h-[20px] w-[80px]'
+                className='bg-primaryBlue-200 ml-4 mt-1 h-[22px] w-[90px] rounded-2xl border-none'
                 size='xsm'
                 variant='roundednavy'
               >
