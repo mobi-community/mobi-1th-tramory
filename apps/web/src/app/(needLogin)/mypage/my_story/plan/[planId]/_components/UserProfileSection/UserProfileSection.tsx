@@ -8,7 +8,7 @@ export const UserProfileSection = ({ planDetail }: DetailSectionProps) => {
   const { title, date } = planDetail;
 
   return (
-    <div>
+    <div className='flex w-full flex-col justify-between'>
       <div className='flex w-full items-center justify-between'>
         <div className='text-[24px] font-bold'>{title}</div>
         <div className=' text-primaryGray-400 text-[14px]'>{date}</div>
