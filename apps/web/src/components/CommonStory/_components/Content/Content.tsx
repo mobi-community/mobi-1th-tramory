@@ -2,9 +2,10 @@ import type { storyContentType } from '../../CommonStory.types';
 import { ImageSlide } from '../ImageSlide';
 import { ReactionBox } from '../ReactionBox';
 
-export const Content: React.FC<{ content: storyContentType }> = ({
-  content,
-}) => {
+export const Content: React.FC<{
+  content: storyContentType;
+  postId: number;
+}> = ({ content, postId }) => {
   const { title, text, images, liked, viewed, tags } = content;
 
   return (
@@ -32,7 +33,7 @@ export const Content: React.FC<{ content: storyContentType }> = ({
         </div>
       </div>
       <div>
-        <ImageSlide images={images} />
+        <ImageSlide images={images} postId={postId} />
       </div>
     </div>
   );
