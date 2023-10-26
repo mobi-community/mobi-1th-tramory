@@ -3,6 +3,7 @@ export * from './header.constants';
 export * from './landing.constants';
 export * from './mapPage.constants';
 export * from './mypageNav.constants';
+export type * from './recommendByCountryPage.constants';
 export * from './recommendByCountryPage.constants';
 export * from './sign_up.constants';
 export * from './sign_up.constants';

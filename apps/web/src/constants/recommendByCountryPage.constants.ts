@@ -1,6 +1,8 @@
+import { StaticImageData } from 'next/image';
+
+// 아프리카
 import egyptImage from '/public/images/recom_country/africa/recom_egypt.jpg';
 import madagascarImage from '/public/images/recom_country/africa/recom_madagascar.jpg';
-// 아프리카
 import mauritiusImage from '/public/images/recom_country/africa/recom_mauritius.jpg';
 import moroccoImage from '/public/images/recom_country/africa/recom_morocco.jpg';
 import namibiaImage from '/public/images/recom_country/africa/recom_namibia.jpg';
@@ -23,11 +25,10 @@ import thailandImage from '/public/images/recom_country/asia/recom_thailand.jpg'
 import uaeImage from '/public/images/recom_country/asia/recom_united_arab_emirates.jpg';
 import vietnamImage from '/public/images/recom_country/asia/recom_vietnam.jpg';
 
-// split을 위한 띄어쓰기 구현을 위해 camel case를 사용하지 않았습니다.
 const asia = [
   { id: 0, country: 'china', coverImage: chinaImage },
   { id: 1, country: 'japan', coverImage: japanImage },
-  { id: 2, country: 'south_korea', coverImage: southKoreaImage },
+  { id: 2, country: 'south korea', coverImage: southKoreaImage },
   { id: 3, country: 'taiwan', coverImage: taiwanImage },
   { id: 4, country: 'thailand', coverImage: thailandImage },
   { id: 5, country: 'vietnam', coverImage: vietnamImage },
@@ -53,21 +54,17 @@ const europe = [
 
 // 북아메리카
 import canadaImage from '/public/images/recom_country/northamerica/recom_canada.jpg';
-import chicagoImage from '/public/images/recom_country/northamerica/recom_chicago.jpg';
-import hawaiiImage from '/public/images/recom_country/northamerica/recom_hawaii.jpg';
-import losAngelesImage from '/public/images/recom_country/northamerica/recom_los_angeles.jpg';
+import jamaicaImage from '/public/images/recom_country/northamerica/recom_jamaica.jpg';
+import kubaImage from '/public/images/recom_country/northamerica/recom_kuba.jpg';
 import mexicoImage from '/public/images/recom_country/northamerica/recom_mexico.jpg';
-import newYorkImage from '/public/images/recom_country/northamerica/recom_newyork.jpg';
-import sanfranCiscoImage from '/public/images/recom_country/northamerica/recom_san_francisco.jpg';
+import usaImage from '/public/images/recom_country/northamerica/recom_usa.jpg';
 
 const northAmerica = [
-  { id: 0, country: 'usa, newyork', coverImage: newYorkImage },
-  { id: 1, country: 'usa, chicago', coverImage: chicagoImage },
-  { id: 2, country: 'usa, hawaii', coverImage: hawaiiImage },
-  { id: 3, country: 'usa, la', coverImage: losAngelesImage },
-  { id: 4, country: 'usa, sanfrancisco', coverImage: sanfranCiscoImage },
-  { id: 5, country: 'canada', coverImage: canadaImage },
-  { id: 6, country: 'mexico', coverImage: mexicoImage },
+  { id: 0, country: 'usa', coverImage: usaImage },
+  { id: 1, country: 'canada', coverImage: canadaImage },
+  { id: 2, country: 'mexico', coverImage: mexicoImage },
+  { id: 3, country: 'jamaica', coverImage: jamaicaImage },
+  { id: 4, country: 'kuba', coverImage: kubaImage },
 ];
 
 // 남아메리카
@@ -88,19 +85,31 @@ const southAmerica = [
 ];
 
 // 오세아니아
-import aucklandImage from '/public/images/recom_country/oceania/recom_auckland.jpg';
+import australiaImage from '/public/images/recom_country/oceania/recom_australia.jpg';
 import fijiImage from '/public/images/recom_country/oceania/recom_fiji.jpg';
-import melbourneImage from '/public/images/recom_country/oceania/recom_melbourne.jpg';
-import queenstownImage from '/public/images/recom_country/oceania/recom_queenstown.jpg';
-import sydneyImage from '/public/images/recom_country/oceania/recom_sydney.jpg';
+import newZealandImage from '/public/images/recom_country/oceania/recom_new_zealand.jpg';
+import papuaNewGuineaImage from '/public/images/recom_country/oceania/recom_papua_new_guinea.jpg';
+import samoaImage from '/public/images/recom_country/oceania/recom_samoa.jpg';
 
 const oceania = [
-  { id: 0, country: 'australia, sydney', coverImage: sydneyImage },
-  { id: 1, country: 'australia, melbourne', coverImage: melbourneImage },
-  { id: 2, country: 'new_zealand, auckland', coverImage: aucklandImage },
-  { id: 3, country: 'new_zealand, queenstown', coverImage: queenstownImage },
-  { id: 4, country: 'fiji', coverImage: fijiImage },
+  { id: 0, country: 'australia', coverImage: australiaImage },
+  { id: 1, country: 'new zealand', coverImage: newZealandImage },
+  { id: 2, country: 'fiji', coverImage: fijiImage },
+  { id: 3, country: 'papua new guinea', coverImage: papuaNewGuineaImage },
+  { id: 4, country: 'samoa', coverImage: samoaImage },
 ];
+
+export type recomCountryType = {
+  id: number;
+  country: string;
+  coverImage: StaticImageData;
+};
+
+export type recomContinentType = {
+  id: number;
+  continent: string;
+  countries: recomCountryType[];
+};
 
 export const recommendPageConfig = {
   readmoreIcon: materialIcon({
@@ -111,8 +120,8 @@ export const recommendPageConfig = {
     { id: 0, continent: 'africa', countries: africa },
     { id: 1, continent: 'asia', countries: asia },
     { id: 2, continent: 'europe', countries: europe },
-    { id: 3, continent: 'north_america', countries: northAmerica },
-    { id: 4, continent: 'south_america', countries: southAmerica },
+    { id: 3, continent: 'north america', countries: northAmerica },
+    { id: 4, continent: 'south america', countries: southAmerica },
     { id: 5, continent: 'oceania', countries: oceania },
   ],
 };
