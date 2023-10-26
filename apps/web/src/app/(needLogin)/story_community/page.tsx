@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { CommonStory } from '@/components';
-
-import { storyMock } from './_mocks';
+import { CategoryTab, SearchBar, StoryList, Title } from './_components';
 
 const StoryCommunityPage: React.FC = () => {
   return (
-    <div>
-      <div className='mb-[100px] text-center'>스토리 커뮤니티 페이지</div>
-      <div className='ml-[150px] grid grid-cols-2 gap-8'>
-        {storyMock.map((story) => (
-          <CommonStory story={story} key={Math.random() * 1000} />
-        ))}
+    <div className='w-full overflow-x-hidden'>
+      <div className='mr-[200px] flex justify-end pt-[30px]'>
+        <Title />
+        <SearchBar />
       </div>
+      <CategoryTab />
+      <StoryList />
     </div>
   );
 };
