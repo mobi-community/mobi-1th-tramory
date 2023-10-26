@@ -4,9 +4,9 @@ import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
 
-import { DetailCardSectionProps } from './DetailCardSection.types';
+import { DetailSectionProps } from '../../DetailSection.types';
 
-export const DetailCardSection = ({ planDetail }: DetailCardSectionProps) => {
+export const DetailCardSection = ({ planDetail }: DetailSectionProps) => {
   const handleSubtitleDescription = (subtitle) => {
     // 여행지는 한국어로 된 여행지 data를 받아야할듯
     if (subtitle === '여행지') return planDetail.location;
