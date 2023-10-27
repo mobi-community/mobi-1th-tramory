@@ -1,11 +1,14 @@
 'use client';
 import { useState } from 'react';
 
+import { ContentInfo, DateHeader, PlaceInfo } from '@/components';
 import { getDatesBetween } from '@/utils';
 
-import { ContentInfo, DateHeader, PlaceInfo } from '../../../../_components';
+export const DropdownFormSection = ({ planDetail }) => {
+  const dayData = planDetail.detailDescription;
 
-export const DropdownFormSection = () => {
+  console.log(dayData);
+
   const [toggleState, setToggleState] = useState([]);
   const [count] = useState(1);
   //실제 데이터로 변경 예정
@@ -31,6 +34,7 @@ export const DropdownFormSection = () => {
       {dates.map((date, index) => (
         <div key={index}>
           <DateHeader
+            index={index}
             date={date}
             handleToggleUpdate={handleToggleUpdate}
             isToggleOpen={isToggleOpen}

@@ -6,6 +6,27 @@ export const planDescription = [
     date: '2023 9. 24 - 10. 4',
     isRecord: true,
     isDraft: false,
+    detailDescription: [
+      {
+        day: 1,
+        country: '일본',
+        location: '1 Chome Dotonbori, Chuo Ward, Osaka, 542-0071 도쿄',
+        description:
+          '안녕하세요! 일본을 누비며 맛있는 여행을 즐겨보았어요. 오사카의 타코야끼, 도쿄의 초밥, 교토의 유자라멘과 함께한 식도락 여행은 정말 특별했습니다. 현지 음식과 문화의 매력을 느끼며 여행의 색다른 맛을 만끽할 수 있었어요....',
+      },
+      {
+        day: 2,
+        country: '일본',
+        location: '1 Chome Dotonbori, Chuo Ward, Osaka, 542-0071 도쿄',
+        description: '',
+      },
+      {
+        day: 3,
+        country: '',
+        location: '',
+        description: '',
+      },
+    ],
   },
   {
     id: 'E56F78GH',

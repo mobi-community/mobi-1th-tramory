@@ -1,7 +1,14 @@
-export const DateHeader = ({ date, handleToggleUpdate, isToggleOpen }) => {
+export const DateHeader = ({
+  index,
+  date,
+  handleToggleUpdate,
+  isToggleOpen,
+}) => {
   return (
     <div className='border-primaryBlue-700 mt-4 flex w-full items-center justify-between border-[1px] border-opacity-90 py-2 font-semibold text-black'>
-      <div className=' ml-3'>Day({date})</div>
+      <div className=' ml-3'>
+        Day{index + 1} ({date})
+      </div>
       <span
         onClick={() => handleToggleUpdate(date)}
         className='material-icons-outlined mr-2 cursor-pointer'

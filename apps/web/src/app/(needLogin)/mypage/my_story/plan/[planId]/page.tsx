@@ -6,13 +6,13 @@ import { Button } from 'ui';
 import { Line } from '@/components';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 
-import { planDescription } from '../../_mocks';
 import {
   DetailCardSection,
   DropdownFormSection,
   MapSections,
   UserProfileSection,
-} from './_components';
+} from '../../../_components';
+import { planDescription } from '../../_mocks';
 
 const MyStoryPlanDetailPage = () => {
   const { planId } = useParams();
@@ -40,7 +40,7 @@ const MyStoryPlanDetailPage = () => {
         </Button>
       </div>
       <MapSections />
-      <DropdownFormSection />
+      <DropdownFormSection planDetail={planDetail[0]} />
     </div>
   );
 };
