@@ -1,11 +1,11 @@
 'use client';
 import { usePathname } from 'next/navigation';
 
+import FlagInfo from '@/components/Profile/_components/FlagInfo/FlagInfo';
 import { mypageNavConfig } from '@/constants';
 import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
 
 import { MyPageContainer } from '../../_components';
-import FlagInfo from './_components/FlagInfo/FlagInfo';
 
 const VisitedContriesPage = () => {
   const pathname = usePathname();
