@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 
-import { Header } from '../../components/Header';
+import { Header } from '@/components';
 
 // 로그인 하지 않은 사람이 접속하면 되돌리게 처리
 

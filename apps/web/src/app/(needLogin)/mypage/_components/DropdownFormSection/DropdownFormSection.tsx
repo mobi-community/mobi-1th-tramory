@@ -5,9 +5,12 @@ import { ContentInfo, DateHeader, PlaceInfo } from '@/components';
 import { getDatesBetween } from '@/utils';
 
 export const DropdownFormSection = ({ planDetail }) => {
-  const dayData = planDetail.detailDescription;
+  const [dayData, setDayData] = useState(planDetail.detailDescription);
 
-  console.log(dayData);
+  const handleToggleData = (index) => {
+    setDayData(dayData.filter((data) => data.day === index + 1));
+    console.log(dayData);
+  };
 
   const [toggleState, setToggleState] = useState([]);
   const [count] = useState(1);
@@ -32,13 +35,14 @@ export const DropdownFormSection = ({ planDetail }) => {
   return (
     <div className='w-full'>
       {dates.map((date, index) => (
-        <div key={index}>
-          <DateHeader
-            index={index}
-            date={date}
-            handleToggleUpdate={handleToggleUpdate}
-            isToggleOpen={isToggleOpen}
-          />
+        <div
+          key={index}
+          onClick={() => {
+            handleToggleUpdate(date);
+            handleToggleData(index);
+          }}
+        >
+          <DateHeader index={index} date={date} isToggleOpen={isToggleOpen} />
           {isToggleOpen(date) && (
             <>
               <PlaceInfo count={count} />

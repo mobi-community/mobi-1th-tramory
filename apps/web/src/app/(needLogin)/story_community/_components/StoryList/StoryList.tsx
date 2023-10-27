@@ -2,8 +2,7 @@
 
 import { useAtom } from 'jotai';
 
-import { CommonStory } from '@/components';
-import { Pagination } from '@/components/Pagination';
+import { CommonStory, Pagination } from '@/components';
 import { storyCommunityAtoms } from '@/store';
 
 import { storyMock } from '../../_mocks';

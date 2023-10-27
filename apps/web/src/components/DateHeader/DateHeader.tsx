@@ -1,7 +1,7 @@
 export const DateHeader = ({
   index,
   date,
-  handleToggleUpdate,
+
   isToggleOpen,
 }) => {
   return (
@@ -9,10 +9,7 @@ export const DateHeader = ({
       <div className=' ml-3'>
         Day{index + 1} ({date})
       </div>
-      <span
-        onClick={() => handleToggleUpdate(date)}
-        className='material-icons-outlined mr-2 cursor-pointer'
-      >
+      <span className='material-icons-outlined mr-2 cursor-pointer'>
         {isToggleOpen(date) ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}
       </span>
     </div>

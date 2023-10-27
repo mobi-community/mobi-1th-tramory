@@ -10,6 +10,7 @@ import {
   DetailCardSection,
   DropdownFormSection,
   MapSections,
+  SlideImages,
   UserProfileSection,
 } from '../../_components';
 import { planDescription } from '../_mocks';
@@ -19,7 +20,7 @@ const MyStoryPlanDetailPage = () => {
   const params = useSearchParams();
   const page = params.get('page');
 
-  console.log(page);
+  const isPlanPage = page === 'plan';
 
   const planDetail = planDescription.filter((detail) => detail.id === postId);
 
@@ -34,17 +35,18 @@ const MyStoryPlanDetailPage = () => {
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-300 hover:border-primaryGray-300 h-[35px] w-[115px] rounded-2xl border-opacity-40 hover:text-white'
           variant='roundednavy'
         >
-          계획 {detailPageConfig.buttons[0]}
+          {isPlanPage ? '계획' : '기록'} {detailPageConfig.buttons[0]}
         </Button>
         <Button
           size='xsm'
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-300 hover:border-primaryGray-300 h-[35px] w-[115px] rounded-2xl border-opacity-40 hover:text-white'
           variant='roundednavy'
         >
-          계획 {detailPageConfig.buttons[1]}
+          {isPlanPage ? '계획' : '기록'} {detailPageConfig.buttons[1]}
         </Button>
       </div>
       <MapSections />
+      <SlideImages />
       <DropdownFormSection planDetail={planDetail[0]} />
     </div>
   );

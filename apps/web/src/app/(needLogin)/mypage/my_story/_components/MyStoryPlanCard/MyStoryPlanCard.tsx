@@ -6,7 +6,7 @@ export const MyStoryPlanCard = ({
   planData,
   handleMoveToDetail,
 }: MyStoryPlanCardProps) => {
-  const { title, id, location, date, isRecord } = planData;
+  const { id, content, isRecord } = planData;
 
   return (
     <div
@@ -19,7 +19,7 @@ export const MyStoryPlanCard = ({
       } mt-7 w-[440px] cursor-pointer rounded-[30px] p-6`}
     >
       <div className='flex justify-between'>
-        <div className='text-[16px] font-semibold'>{title}</div>
+        <div className='text-[16px] font-semibold'>{content.title}</div>
         <Button
           className='text-primaryBlue-700 h-[22px] w-[55px] text-[11px]'
           variant='roundednavy'
@@ -30,8 +30,8 @@ export const MyStoryPlanCard = ({
       </div>
       <div className='border-primaryGray-300 my-2 w-full border-t-[1px]'></div>
       <div>
-        <div className=' text-[12px]'>{location}</div>
-        <div className=' text-[12px]'>{date}</div>
+        <div className=' text-[12px]'>{content.location}</div>
+        <div className=' text-[12px]'>{content.date}</div>
       </div>
       <div className='mt-5 flex items-center justify-center'>
         {isRecord ? (

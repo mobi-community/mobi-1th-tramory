@@ -4,13 +4,15 @@ import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
 
-import { DetailSectionProps } from '../../my_story/[postId]/DetailSection.types';
+import type { DetailSectionProps } from '../../my_story/[postId]/DetailSection.types';
 
 export const DetailCardSection = ({ planDetail }: DetailSectionProps) => {
+  const { content } = planDetail;
+
   const handleSubtitleDescription = (subtitle) => {
     // 여행지는 한국어로 된 여행지 data를 받아야할듯
-    if (subtitle === '여행지') return planDetail.location;
-    else if (subtitle === '날짜') return planDetail.date;
+    if (subtitle === '여행지') return content.location;
+    else if (subtitle === '날짜') return content.date;
     else return planDetail.id;
   };
   // 추후 실제 데이터로 변경 예정
