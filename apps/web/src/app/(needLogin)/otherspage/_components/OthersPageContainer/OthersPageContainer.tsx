@@ -22,7 +22,7 @@ const OthersPageContainer = ({}) => {
               />
             </div>
             <div className='flex'>
-              <div className='ml-[128px] mt-[170px] w-[300px]'>
+              <div className='ml-[128px] mt-[180px] w-[300px]'>
                 <div className='mt-1 text-[14px] font-semibold'>{nickName}</div>
                 <div className='text-[12px]'>{info}</div>
               </div>
