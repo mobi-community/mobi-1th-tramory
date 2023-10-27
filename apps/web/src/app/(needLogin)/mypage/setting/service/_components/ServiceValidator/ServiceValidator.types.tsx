@@ -2,14 +2,17 @@ import { Control } from 'react-hook-form';
 
 export type ServiceValidateType = {
   title?: string;
+  serviceType?: string;
   description?: string;
 };
 
 export interface ServiceValidateProps {
-  name: 'title' | 'description';
+  serviceOptions?: string[];
+  name: 'serviceType' | 'title' | 'description';
   control: Control<ServiceValidateType>;
-  type: string;
+  type?: string;
   placeholder?: string;
+  initialValue?: string;
   value?: string;
   style?: React.CSSProperties;
 }

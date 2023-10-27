@@ -4,12 +4,16 @@ import { Controller } from 'react-hook-form';
 import { Input } from 'ui';
 import { Textarea } from 'ui/components/ui-textarea';
 
+import { Select } from '@/components/Select/Select';
+
 import { ServiceValidateProps } from './ServiceValidator.types';
 
 export const ServiceValidator: FC<ServiceValidateProps> = ({
   name,
   control,
   type,
+  serviceOptions,
+  initialValue,
   placeholder,
   ...rest
 }) => {
@@ -32,6 +36,13 @@ export const ServiceValidator: FC<ServiceValidateProps> = ({
                 placeholder={placeholder}
                 {...rest}
               />
+            ) : name === 'serviceType' ? ( // name이 'serviceType'인 경우 Select 컴포넌트 렌더링
+              <Select
+                value={value}
+                onChange={onChange}
+                options={serviceOptions}
+                initialValue={initialValue}
+              />
             ) : (
               <Input
                 className='w-[600px]'
@@ -42,6 +53,7 @@ export const ServiceValidator: FC<ServiceValidateProps> = ({
                 {...rest}
               />
             )}
+
             <div>
               {error && (
                 <div className='mb-1 ml-3 mt-1 text-[11px] text-red-500'>

@@ -4,6 +4,8 @@ import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Input } from 'ui';
 
+import { serviceOption } from '@/constants/select_options.constants';
+
 import { SettingContainer } from '../_components';
 import { ServiceValidator } from './_components/ServiceValidator';
 import { ServiceValidateType } from './_components/ServiceValidator/ServiceValidator.types';
@@ -21,7 +23,6 @@ const SettingServicePage = () => {
   const onButtonClick = () => {
     fileInputRef.current.click();
   };
-
   const defaultStyle = {
     width: '700px',
     marginLeft: '0',
@@ -34,8 +35,11 @@ const SettingServicePage = () => {
    */
   const justifyBetween = 'flex justify-between';
 
-  const onSubmit = () => {
-    console.log('성공');
+  const onSubmit = (data: ServiceValidateType) => {
+    alert(
+      `문의 종류: ${data.serviceType}, 제목: ${data.title}, 내용: ${data.description}`
+    );
+    console.log(data.serviceType, data.title, data.description);
   };
 
   return (
@@ -53,7 +57,12 @@ const SettingServicePage = () => {
                     </span>
                   </p>
                   {/* select */}
-                  <div className='h-[36px] w-[700px] border'></div>
+                  <ServiceValidator
+                    serviceOptions={serviceOption}
+                    name={'serviceType'}
+                    control={control}
+                    initialValue='문의 종류를 선택해주세요'
+                  />
                 </div>
                 <div className={`mb-8 ${justifyBetween}`}>
                   <p className='font-medium'>
