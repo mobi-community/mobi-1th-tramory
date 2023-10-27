@@ -15,6 +15,7 @@ const OthersPage = () => {
   } else if (tabId == '2') {
     TabComponent = <OthersPageBadge />;
   } else {
+    /** 예슬님 visited 컴포넌트 오면 만들 예정 */
     TabComponent = <OthenrStoryList />;
   }
   return <>{TabComponent}</>;

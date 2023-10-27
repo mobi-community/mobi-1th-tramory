@@ -2,8 +2,8 @@
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 
-import { otherTabList } from '@/constants/otherspagetap.constants';
-import { otherStoryTabAtom } from '@/store/otherStoryTab.atom';
+import { otherTabList } from '@/constants';
+import { otherStoryTabAtom } from '@/store';
 
 const OtherStoryTab = () => {
   const [isTab, setIstTab] = useAtom(otherStoryTabAtom);
