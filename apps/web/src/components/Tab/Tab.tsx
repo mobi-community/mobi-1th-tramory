@@ -1,4 +1,12 @@
-export const Tab = ({ children, bgColor, zIndex }) => {
+import { TabProps } from './Tab.types';
+
+export const Tab = ({
+  children,
+  bgColor,
+  zIndex,
+  current,
+  handleClickTab,
+}: TabProps) => {
   const shadowStyle = {
     boxShadow:
       '0px -5px 10px -3px rgba(0, 0, 0, 0.1), 10px 0px 20px -3px rgba(0, 0, 0, 0.1)',
@@ -6,6 +14,9 @@ export const Tab = ({ children, bgColor, zIndex }) => {
 
   return (
     <div
+      onClick={() => {
+        handleClickTab(current);
+      }}
       className={`text-primaryGray-400 flex w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-tr-[10px] font-bold z-${zIndex}`}
     >
       <div
