@@ -16,16 +16,20 @@ export const ValidatorInput: FC<ValidatorInputProps> = ({
 }) => {
   return (
     <div className='flex items-start justify-start'>
-      <div className='mr-4 flex w-[70px] flex-col items-start justify-start'>
-        {label && (
-          <label className='text-primaryGray-400 text-[12px] font-semibold'>
-            {label}
-          </label>
-        )}
-        {subLabel && (
-          <label className='text-primaryGray-400 text-[10px]'>{subLabel}</label>
-        )}
-      </div>
+      {label || subLabel ? (
+        <div className='mr-4 flex w-[70px] flex-col items-start justify-start'>
+          {label && (
+            <label className='text-primaryGray-400 text-[12px] font-semibold'>
+              {label}
+            </label>
+          )}
+          {subLabel && (
+            <label className='text-primaryGray-400 text-[10px]'>
+              {subLabel}
+            </label>
+          )}
+        </div>
+      ) : null}
       <Controller
         name={name}
         control={control}

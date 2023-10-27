@@ -10,6 +10,13 @@ const buttonVariants = [
   'secondary',
   'ghost',
   'link',
+  'nonrounded',
+  'defaultnavy',
+  'roundednavy',
+  'deepnavy',
+  'lightblue',
+  'skyblue',
+  'coralpink',
 ] as const;
 
 export default function Page() {

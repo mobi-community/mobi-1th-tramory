@@ -2,11 +2,13 @@ import { Button } from 'ui';
 
 import type { PaginationProps } from './Pagination.types';
 
+// pagenation 색상 blue & gray로 나뉘게 추가
 export const Pagination = ({
   currentPage,
   setCurrentPage,
   itemsPerPage,
   testData,
+  bgColor,
 }: PaginationProps) => {
   const pageNumbers = [];
 
@@ -77,10 +79,14 @@ export const Pagination = ({
             key={pageNum}
             size='xsm'
             className={`${
-              isClickToPagination(pageNum)
-                ? 'bg-primaryGray-500 hover:bg-primaryGray-300 text-white '
-                : 'hover:bg-primaryGray-500 text-primaryGray-500 bg-white'
-            }  border-primaryGray-500  hover:bg-primaryGray-500 h-5 w-[30px] rounded-full text-[12px]`}
+              isClickToPagination(pageNum) && bgColor == 'gray'
+                ? 'bg-primaryGray-500 hover:bg-primaryGray-300  text-white '
+                : isClickToPagination(pageNum) && bgColor == 'blue'
+                ? 'bg-primaryBlue-500 hover:bg-primaryBlue-300 text-white '
+                : bgColor == 'blue'
+                ? 'hover:bg-primaryBlue-300 text-primaryGray-500 bg-white'
+                : 'hover:bg-primaryGray-500  text-primaryGray-500  bg-white'
+            }  border-primaryGray-500 h-5 w-[30px] rounded-full border text-[12px]`}
             variant='roundednavy'
             onClick={() => {
               handlePaginationClick(pageNum);

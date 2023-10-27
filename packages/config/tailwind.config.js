@@ -12,6 +12,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: `'Noto Sans KR', sans-serif`,
+      },
       colors: {
         ...colors,
         primaryGreen: '#166C63',
