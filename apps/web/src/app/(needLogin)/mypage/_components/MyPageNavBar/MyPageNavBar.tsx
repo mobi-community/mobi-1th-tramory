@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { mypageNavConfig } from '../../../../../constants';
+import { mypageNavConfig } from '@/constants';
 
 export const MyPageNavBar = () => {
   const [openMenu, setOpenMenu] = useState(null);

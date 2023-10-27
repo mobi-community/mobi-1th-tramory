@@ -8,33 +8,34 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { atom, useAtom } from 'jotai';
-import { atomFamily } from 'jotai/utils';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { HowToNotification } from '../HowToNotification';
+import { isIndividualToggleAtom } from '@/store';
 
-const isHowToAtom = atomFamily(() => atom(false));
+import { HowToNotification } from '../HowToNotification';
 
 export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
   const { title, description, info } = item;
-  const [isHowtoOpen, setIsHowToOpen] = useAtom(isHowToAtom(id));
+  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
+    isIndividualToggleAtom(id)
+  );
 
   const handleToggleHowTo = (event: React.MouseEvent) => {
     event.stopPropagation(); // 상위 요소 이벤트 버블링 막기
-    setIsHowToOpen((prev) => !prev);
+    setIsIndividualToggle((prev) => !prev);
   };
 
   // span 아이콘 클릭하지 않고 해당 div 영역 클릭할 경우 HowToNotification이 false 상태가되어 꺼짐
   const handleBackgroundClick = () => {
-    setIsHowToOpen(false);
+    setIsIndividualToggle(false);
   };
 
   return (
     <div className='mb-12 px-12' onClick={handleBackgroundClick}>
-      <div className='relative mb-8 flex items-center'>
+      <div className='relative my-8 flex items-center'>
         <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
           {title} (0/{description.length})
         </p>
@@ -45,7 +46,7 @@ export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
         >
           info
         </span>
-        {isHowtoOpen && <HowToNotification info={info} />}
+        {isIndividualToggle && <HowToNotification info={info} />}
       </div>
       <div className='bg-primaryGray-200 flex items-center rounded-[30px] px-8 py-16'>
         <Swiper

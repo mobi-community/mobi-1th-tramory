@@ -13,6 +13,6 @@ export const travelRecordOptionConfig = [
     label: '상세 기록하기',
     bgColor: 'bg-gray-200',
     fontColor: 'text-black',
-    redirectUrl: '/',
+    redirectUrl: '/travel/record',
   },
 ];

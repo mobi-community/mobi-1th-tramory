@@ -10,11 +10,18 @@ const buttonVariants = [
   'secondary',
   'ghost',
   'link',
+  'nonrounded',
+  'defaultnavy',
+  'roundednavy',
+  'deepnavy',
+  'lightblue',
+  'skyblue',
+  'coralpink',
 ] as const;
 
 export default function Page() {
   return (
-    <div className='mt-8 items-center space-y-4'>
+    <div className='relative mt-8 items-center space-y-4'>
       <div className='flex w-full justify-center text-3xl font-bold'>
         Welcome to Next 13
       </div>
