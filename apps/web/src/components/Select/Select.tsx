@@ -31,7 +31,7 @@ export const Select = ({
 
   const handleChangeValue = (value: string) => {
     setCurrentValue(value);
-    onChange(value); // 선택한 값으로 현재 값을 업데이트
+    if (onChange) onChange(value); // 선택한 값으로 현재 값을 업데이트
     setIsToggle(false);
   };
 
