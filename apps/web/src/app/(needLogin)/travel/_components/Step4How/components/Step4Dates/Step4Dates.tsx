@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
-import { selectedDateIdAtom } from '@/store/selectedDateIdAtom.atom';
-import { travelDateAtom } from '@/store/travelDate.atom';
+import { selectedDateIdAtom, travelDateAtom } from '@/store';
 
 const Step4Dates = ({ control, itemsPerPage, currentPage }) => {
   const [date, setDate] = useAtom(travelDateAtom);
