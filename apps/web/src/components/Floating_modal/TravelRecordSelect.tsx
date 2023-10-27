@@ -4,12 +4,10 @@ import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 
 import { travelRecordOptionConfig } from '../../constants';
-import { registerStateAtom } from '../../store/registerState.atom';
 import { openSimpleRecordModalAtom } from '../../store/simpleRecordModal.atom';
 
 const ViewTravelRecordType: React.FC<{}> = () => {
   const router = useRouter();
-  const setState = useSetAtom(registerStateAtom);
   const handleButtonClick = (url: string) => {
     router.push(url);
   };
@@ -44,7 +42,7 @@ const ViewTravelRecordType: React.FC<{}> = () => {
                   className='material-icons-outlined'
                   style={{ fontSize: '50px' }}
                   onClick={() => {
-                    setState('record');
+                    router.push('/travel/record?stepId=0');
                   }}
                 >
                   note_alt
