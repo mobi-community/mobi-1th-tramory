@@ -20,12 +20,6 @@ export const planDescription = [
         location: '1 Chome Dotonbori, Chuo Ward, Osaka, 542-0071 도쿄',
         description: '',
       },
-      {
-        day: 3,
-        country: '',
-        location: '',
-        description: '',
-      },
     ],
   },
   {

@@ -4,7 +4,7 @@ import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
 
-import { DetailSectionProps } from '../../my_story/plan/[planId]/DetailSection.types';
+import { DetailSectionProps } from '../../my_story/[postId]/DetailSection.types';
 
 export const DetailCardSection = ({ planDetail }: DetailSectionProps) => {
   const handleSubtitleDescription = (subtitle) => {

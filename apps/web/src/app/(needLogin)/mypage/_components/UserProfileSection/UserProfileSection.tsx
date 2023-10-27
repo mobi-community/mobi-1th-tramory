@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import fakeImage from '../../my_story/_mocks/fake-profile-image.png';
-import { DetailSectionProps } from '../../my_story/plan/[planId]/DetailSection.types';
+import { DetailSectionProps } from '../../my_story/[postId]/DetailSection.types';
 
 export const UserProfileSection = ({ planDetail }: DetailSectionProps) => {
   const { title, date } = planDetail;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
 import { Line } from '@/components';
@@ -11,12 +11,17 @@ import {
   DropdownFormSection,
   MapSections,
   UserProfileSection,
-} from '../../../_components';
-import { planDescription } from '../../_mocks';
+} from '../../_components';
+import { planDescription } from '../_mocks';
 
 const MyStoryPlanDetailPage = () => {
-  const { planId } = useParams();
-  const planDetail = planDescription.filter((detail) => detail.id === planId);
+  const { postId } = useParams();
+  const params = useSearchParams();
+  const page = params.get('page');
+
+  console.log(page);
+
+  const planDetail = planDescription.filter((detail) => detail.id === postId);
 
   return (
     <div className='ml-16 flex w-[60vw] flex-col items-center justify-center p-20'>

@@ -36,9 +36,9 @@ export const MyPageNavBar = () => {
       </div>
       <div className='border-primaryGray-300 border-t-[1px] opacity-60'></div>
       <div className='pl-12 pt-8'>
-        {mypageNavConfig.nav.map((nav) => (
+        {mypageNavConfig.nav.map((nav, index) => (
           <div
-            key={nav.title}
+            key={index}
             onClick={() => {
               handleMoveToPage(nav.href, nav.title);
             }}
@@ -62,8 +62,8 @@ export const MyPageNavBar = () => {
               )}
             </div>
             {openMenu === nav.title &&
-              nav.subNav?.map((sub) => (
-                <div className='ml-8 mt-4' key={sub.title}>
+              nav.subNav?.map((sub, index) => (
+                <div className='ml-8 mt-4' key={index}>
                   <div>{sub.title}</div>
                 </div>
               ))}

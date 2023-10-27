@@ -11,7 +11,7 @@ import { planDescription } from '../_mocks';
 const MyStoryPlanPage = () => {
   const router = useRouter();
   const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/plan/${id}`);
+    router.push(`/mypage/my_story/${id}?page=plan`);
   };
 
   return (
