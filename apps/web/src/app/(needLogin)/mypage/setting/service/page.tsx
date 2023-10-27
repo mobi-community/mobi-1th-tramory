@@ -135,7 +135,7 @@ const SettingServicePage = () => {
         <div className='px-12'>
           <div className='flex flex-col'>
             <p className='text-primaryBlue-700 mb-5 text-xl font-bold'>
-              문의하기
+              문의 내역
             </p>
             <div className='mb-4 ml-4 flex items-center'>
               <div className='bg-primaryGray-500 mr-2 h-1 w-1 rounded-full'></div>
@@ -144,7 +144,6 @@ const SettingServicePage = () => {
               </p>
             </div>
           </div>
-          {/* 컴포넌트 */}
           <UserInquiryHistory />
         </div>
       </SettingContainer>
