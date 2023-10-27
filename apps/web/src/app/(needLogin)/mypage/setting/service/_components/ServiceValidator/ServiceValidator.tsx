@@ -2,6 +2,7 @@
 import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 import { Input } from 'ui';
+import { Textarea } from 'ui/components/ui-textarea';
 
 import { ServiceValidateProps } from './ServiceValidator.types';
 
@@ -24,8 +25,8 @@ export const ServiceValidator: FC<ServiceValidateProps> = ({
         }) => (
           <div className='flex flex-col'>
             {name === 'description' ? (
-              <textarea
-                className='w-[600px]'
+              <Textarea
+                className='w-[700px]'
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
