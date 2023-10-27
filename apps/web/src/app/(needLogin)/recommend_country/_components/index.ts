@@ -1,2 +1,2 @@
 export * from './ContinentSlide/ContinentSlide';
-export * from './ReadMoreButton/ReadMoreButton';
+export * from './PageBox/PageBox';

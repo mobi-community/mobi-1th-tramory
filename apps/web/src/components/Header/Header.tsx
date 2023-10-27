@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import logo from '/public/assets/logo_black.svg';
@@ -11,8 +12,17 @@ import materialIcon from '@/utils/materialIcon';
 import { ModeSwitchButton, UserButton } from './_components';
 
 export const Header: React.FC = () => {
+  const pathName = usePathname();
+  const isRecommendPage = pathName.includes('recommend');
+
   return (
-    <div className='z-50 mx-20 mt-10 flex justify-between'>
+    <div
+      className={`z-50 mx-20 flex justify-between ${
+        isRecommendPage
+          ? 'fixed top-[0%] block h-[80px] w-[95%] items-center bg-white'
+          : 'mt-10'
+      }`}
+    >
       <Link href='./map'>
         <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
       </Link>

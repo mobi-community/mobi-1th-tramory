@@ -112,10 +112,13 @@ export type recomContinentType = {
 };
 
 export const recommendPageConfig = {
-  readmoreIcon: materialIcon({
-    iconName: 'keyboard_double_arrow_down',
-    size: 20,
-  }),
+  pageButtonIcon: (isReadMore: boolean) =>
+    materialIcon({
+      iconName: `keyboard_double_arrow_${isReadMore ? 'up' : 'down'}`,
+      size: 20,
+    }),
+  pageButtonText: (isReadMore: boolean) =>
+    isReadMore ? 'Top Scroll' : 'Read More',
   continentsArray: [
     { id: 0, continent: 'africa', countries: africa },
     { id: 1, continent: 'asia', countries: asia },
