@@ -47,7 +47,7 @@ const MyStoryPlanDetailPage = () => {
       </div>
       <MapSections />
       <SlideImages />
-      <DropdownFormSection planDetail={planDetail[0]} />
+      <DropdownFormSection />
     </div>
   );
 };
