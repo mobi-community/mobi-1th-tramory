@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
 import { Line } from '@/components';
@@ -17,8 +17,13 @@ import { planDescription } from '../_mocks';
 
 const MyStoryPlanDetailPage = () => {
   const { postId } = useParams();
+  const router = useRouter();
   const params = useSearchParams();
   const page = params.get('page');
+
+  const handleMoveToDetail = () => {
+    router.push(`/mypage/my_story/${postId}?page=record&isEdit=true`);
+  };
 
   const isPlanPage = page === 'plan';
 
@@ -48,6 +53,23 @@ const MyStoryPlanDetailPage = () => {
       <MapSections />
       <SlideImages />
       <DropdownFormSection />
+      <div className='mt-10 flex w-full items-center justify-center gap-6'>
+        <Button
+          size='xsm'
+          className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryBlue-200 hover:border-primaryBlue-200 hover:text-primaryGray-500  h-[40px] w-[145px] rounded-3xl border-opacity-40 font-bold '
+          variant='roundednavy'
+        >
+          목록보기
+        </Button>
+        <Button
+          onClick={handleMoveToDetail}
+          size='xsm'
+          className=' border-primaryGray-500 hover:bg-primaryBlue-200 hover:border-primaryBlue-200 hover:text-primaryGray-500 h-[40px] w-[145px] rounded-3xl border-opacity-40 font-bold text-white'
+          variant='defaultnavy'
+        >
+          수정하기
+        </Button>
+      </div>
     </div>
   );
 };

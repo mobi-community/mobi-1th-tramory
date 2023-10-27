@@ -2,11 +2,10 @@
 import { useState } from 'react';
 
 import { ContentInfo, DateHeader, PlaceInfo } from '@/components';
-import { getDatesBetween } from '@/utils';
-import { useParams } from 'next/navigation';
-import { planDescription } from '../../my_story/_mocks';
+import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
 
 export const DropdownFormSection = () => {
+  const [count] = useState(1);
   const [toggleListState, setToggleListState] = useState({});
   const handleToggleListState = (id) => {
     setToggleListState((prev) => ({
@@ -15,30 +14,21 @@ export const DropdownFormSection = () => {
     }));
   };
 
-  const { postId } = useParams();
-  const planDetail = planDescription.filter((detail) => detail.id === postId);
-
-  const [count, setCount] = useState(1);
-
-  //임시 데이터
-  const startDate = '2023-9-24';
-  const endDate = '2023-9-26';
-  const dates = getDatesBetween(startDate, endDate);
-
   return (
     <div className='w-full'>
-      {dates.map((date, index) => (
-        <div key={index} onClick={() => handleToggleListState(date)}>
+      {placeInfoStateData.map((dayData, index) => (
+        <div key={index}>
           <DateHeader
+            handleToggleListState={handleToggleListState}
             index={index}
-            date={date}
+            date={dayData.date}
             toggleListState={toggleListState}
           />
-          {toggleListState[date] && (
-            <>
-              <PlaceInfo count={count} />
-              <ContentInfo />
-            </>
+          {toggleListState[dayData.date] && (
+            <div className=' text-primaryBlue-700'>
+              <PlaceInfo count={count} dayData={dayData} />
+              <ContentInfo dayData={dayData} />
+            </div>
           )}
         </div>
       ))}
