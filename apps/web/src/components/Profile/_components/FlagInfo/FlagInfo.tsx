@@ -7,7 +7,7 @@ import materialIcon from '@/utils/materialIcon';
 
 import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
 
-const FlagInfo = ({ data, id }) => {
+export const FlagInfo = ({ data, id }) => {
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(
     isIndividualToggleAtom(id)
   );
@@ -49,5 +49,3 @@ const FlagInfo = ({ data, id }) => {
     </>
   );
 };
-
-export default FlagInfo;

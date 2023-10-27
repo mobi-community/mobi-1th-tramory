@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 
-import FlagInfo from '@/components/Profile/_components/FlagInfo/FlagInfo';
+import { FlagInfo } from '@/components';
 import { mypageNavConfig } from '@/constants';
 import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
 
