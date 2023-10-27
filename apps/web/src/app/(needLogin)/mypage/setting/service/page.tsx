@@ -7,7 +7,7 @@ import { Button, Input } from 'ui';
 import { serviceOption } from '@/constants/select_options.constants';
 
 import { SettingContainer } from '../_components';
-import { ServiceValidator } from './_components/ServiceValidator';
+import { ServiceValidator, UserInquiryHistory } from './_components';
 import { ServiceValidateType } from './_components/ServiceValidator/ServiceValidator.types';
 import { SERVICE_SCHEMA } from './_schema/service.schema';
 
@@ -131,6 +131,21 @@ const SettingServicePage = () => {
               </form>
             </h1>
           </div>
+        </div>
+        <div className='px-12'>
+          <div className='flex flex-col'>
+            <p className='text-primaryBlue-700 mb-5 text-xl font-bold'>
+              문의하기
+            </p>
+            <div className='mb-4 ml-4 flex items-center'>
+              <div className='bg-primaryGray-500 mr-2 h-1 w-1 rounded-full'></div>
+              <p className='text-primaryGray-500 font-medium'>
+                현재까지 등록한 문의내역과 답변을 확인할 수 있습니다.{' '}
+              </p>
+            </div>
+          </div>
+          {/* 컴포넌트 */}
+          <UserInquiryHistory />
         </div>
       </SettingContainer>
     </div>
