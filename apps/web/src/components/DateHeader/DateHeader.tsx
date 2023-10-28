@@ -13,7 +13,7 @@ export const DateHeader = ({
         Day{index + 1} ({date})
       </div>
       <span className='material-icons-outlined mr-2 cursor-pointer'>
-        {toggleListState[date] ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}
+        {toggleListState[date] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
       </span>
     </div>
   );

@@ -82,7 +82,7 @@ export const MyPageNavBar = () => {
               </div>
               {nav.subNav && (
                 <span className='material-icons-outlined mr-8'>
-                  {isOpenNav[nav.title] ? 'arrow_drop_down' : 'arrow_drop_up'}
+                  {isOpenNav[nav.title] ? 'arrow_drop_up' : 'arrow_drop_down'}
                 </span>
               )}
             </div>
