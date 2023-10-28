@@ -4,7 +4,7 @@
  * landingBgImage - 임시 이미지, 변경할 예정
  */
 export type LandingConfig = typeof landingConfig;
-import landingBgImage from '../app/landing/_mock/landing_bg.jpg';
+import landingBgImage from '/public/images/landing_bg.jpg';
 
 export const landingConfig = {
   landingBgImage,

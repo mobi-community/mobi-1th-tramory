@@ -2,9 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from 'ui';
 
+import logo from '/public/images/logo_white.svg';
 import { landingConfig } from '@/constants';
-
-import logo from './_mock/logo_white.svg';
 
 const Landing = () => {
   return (
