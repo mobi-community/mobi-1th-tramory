@@ -2,10 +2,8 @@
 
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
-
 import { Line } from '@/components';
 import { detailPageConfig } from '@/constants/detailPage.constans';
-
 import {
   DetailCardSection,
   DropdownFormSection,

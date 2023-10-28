@@ -1,8 +1,7 @@
 'use client';
 
+import { useImageSlider } from '@/hooks';
 import Image from 'next/image';
-
-import { useImageSlider } from '../../../../../hooks';
 import type { MypageCardSectionProps } from './MypageCardSection.types';
 
 export const MypageCardSection: React.FC<MypageCardSectionProps> = ({

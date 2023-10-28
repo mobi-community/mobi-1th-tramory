@@ -3,7 +3,7 @@ import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
 
-import type { DetailSectionProps } from '../../my_story/[postId]/DetailSection.types';
+import type { DetailSectionProps } from './DetailSection.types';
 
 export const DetailCardSection = ({ planDetail }: DetailSectionProps) => {
   const { content } = planDetail;

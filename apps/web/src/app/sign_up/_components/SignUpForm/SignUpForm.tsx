@@ -3,8 +3,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
-
-import { ValidatorInput } from '../../../../components';
+import { ValidatorInput } from '@/components';
 import { SIGNUP_SCHEMA } from '../../_schema';
 import type { SignUpFormType } from './SignUpForm.types';
 
