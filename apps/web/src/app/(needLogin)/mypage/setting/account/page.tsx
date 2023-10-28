@@ -18,9 +18,9 @@ const SettingAccountPage = () => {
       <SettingContainer title='계정 설정'>
         <div className='p-16'>
           {/* 개인정보 변경 폼 */}
-          <ModifyForm type='privacy' />
+          <ModifyForm modifyType='privacy' />
           {/* 비밀번호 변경 폼 */}
-          <ModifyForm type='password' />
+          <ModifyForm modifyType='password' />
           {/* 계정 공개 여부 컴포넌트 */}
           <div>
             <div className='text-primaryGray-500 px-7 font-medium'>

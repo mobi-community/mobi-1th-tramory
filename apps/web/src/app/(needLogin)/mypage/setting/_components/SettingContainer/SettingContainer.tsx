@@ -4,8 +4,6 @@ export const SettingContainer: React.FC<SettingContainerProps> = ({
   children,
   title,
 }) => {
-  const infoMessage = '문의내용은 영업일 기준 30일 내 답변해드립니다.';
-
   const isServicePage = title === '서비스 문의하기';
 
   return (
@@ -20,7 +18,7 @@ export const SettingContainer: React.FC<SettingContainerProps> = ({
               <div className='mb-4 ml-4 flex items-center'>
                 <div className='bg-primaryGray-500 mr-2 h-1 w-1 rounded-full'></div>
                 <p className='text-primaryGray-500 font-medium'>
-                  {infoMessage}
+                  문의내용은 영업일 기준 30일 내 답변해드립니다.
                 </p>
               </div>
             )}

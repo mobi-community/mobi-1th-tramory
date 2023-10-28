@@ -8,28 +8,20 @@ import { ValidatorInput } from '@/components';
 import materialIcon from '@/utils/materialIcon';
 
 import {
-  PRIVACY_MODIFY_SCHEMA,
-  PW_MODIFY_SCHEMA,
+  ACCOUT_SCHEMAS,
+  MODIFYFORM_DEFAULT_VALUES,
 } from '../../_schema/account.schema';
-import { ModifyType } from './ModifyForm.types';
+import type { ModifyType } from './ModifyForm.types';
 const isPWVisibleAtom = atom(false);
 
-const SCHEMAS = {
-  privacy: PRIVACY_MODIFY_SCHEMA,
-  password: PW_MODIFY_SCHEMA,
-};
-
-const DEFAULT_VALUES = {
-  privacy: { nickName: userInfo.nickName },
-  password: { password: userInfo.password, pwconfirm: '' },
-};
-
-export const ModifyForm = ({ type }) => {
+export const ModifyForm = ({ modifyType }) => {
   const { handleSubmit, control } = useForm<ModifyType>({
     mode: 'onChange',
-    resolver: yupResolver(SCHEMAS[type]),
-    defaultValues: DEFAULT_VALUES[type],
+    resolver: yupResolver(ACCOUT_SCHEMAS[modifyType]),
+    defaultValues: MODIFYFORM_DEFAULT_VALUES[modifyType],
   });
+
+  const isTypePrivacy = modifyType === 'privacy';
 
   const [isPWVisible, setIsPWVisible] = useAtom(isPWVisibleAtom);
 
@@ -62,10 +54,10 @@ export const ModifyForm = ({ type }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='px-7'>
         <h1 className='text-primaryGray-500 text-lg font-medium'>
-          {type === 'privacy' ? '개인정보 변경' : '비밀번호 변경'}
+          {isTypePrivacy ? '개인정보 변경' : '비밀번호 변경'}
         </h1>
         <div className='flex flex-col p-8'>
-          {type === 'privacy' ? (
+          {isTypePrivacy ? (
             <>
               <div className='flex justify-between'>
                 <p className='text-primaryGray-500 font-bold'>이메일</p>
@@ -136,7 +128,7 @@ export const ModifyForm = ({ type }) => {
             shape='full'
             className='m-auto my-5 w-[200px]'
           >
-            {type === 'privacy' ? '개인정보 수정하기' : '비밀번호 변경하기'}
+            {isTypePrivacy ? '개인정보 수정하기' : '비밀번호 변경하기'}
           </Button>
         </div>
       </div>

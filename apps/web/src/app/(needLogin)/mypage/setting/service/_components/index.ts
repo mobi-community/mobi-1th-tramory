@@ -1,3 +1,2 @@
-export * from './ServiceValidator/ServiceValidator';
-export * from './ServiceValidator/ServiceValidator.types';
+export * from './ServiceForm/ServiceForm';
 export * from './UserInquiryHistory/UserInquiryHistory';

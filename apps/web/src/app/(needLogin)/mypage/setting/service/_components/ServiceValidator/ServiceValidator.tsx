@@ -6,7 +6,7 @@ import { Textarea } from 'ui/components/ui-textarea';
 
 import { Select } from '@/components/Select/Select';
 
-import { ServiceValidateProps } from './ServiceValidator.types';
+import type { ServiceValidateProps } from './ServiceValidator.types';
 
 export const ServiceValidator: FC<ServiceValidateProps> = ({
   name,
@@ -17,6 +17,9 @@ export const ServiceValidator: FC<ServiceValidateProps> = ({
   placeholder,
   ...rest
 }) => {
+  const isDescription = name === 'description';
+  const isServiceType = name === 'serviceType';
+
   return (
     <div className='flex items-start justify-start'>
       <Controller
@@ -28,7 +31,7 @@ export const ServiceValidator: FC<ServiceValidateProps> = ({
           fieldState: { error },
         }) => (
           <div className='flex flex-col'>
-            {name === 'description' ? (
+            {isDescription ? (
               <Textarea
                 className='w-[700px]'
                 value={value}
@@ -36,7 +39,7 @@ export const ServiceValidator: FC<ServiceValidateProps> = ({
                 placeholder={placeholder}
                 {...rest}
               />
-            ) : name === 'serviceType' ? ( // name이 'serviceType'인 경우 Select 컴포넌트 렌더링
+            ) : isServiceType ? (
               <Select
                 value={value}
                 onChange={onChange}
