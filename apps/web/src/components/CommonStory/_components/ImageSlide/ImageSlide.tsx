@@ -15,7 +15,7 @@ export const ImageSlide: React.FC<{
   const mainImage = images[0];
 
   const [isImageModalOpen, setIsImageModalOpen] = useAtom(
-    storyModalAtom(postId)
+    storyModalAtom({ postId, isOpen: false })
   );
 
   return (
@@ -38,9 +38,9 @@ export const ImageSlide: React.FC<{
         <div
           className='bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] top-[140px] h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150'
           onClick={() =>
-            setIsImageModalOpen(({ postId, isOpen }) => ({
-              postId: postId,
-              isOpen: !isOpen,
+            setIsImageModalOpen(() => ({
+              ...isImageModalOpen,
+              isOpen: !isImageModalOpen.isOpen,
             }))
           }
         >
