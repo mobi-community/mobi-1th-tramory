@@ -5,13 +5,19 @@ import { isCountryInfoModalOpen } from '@/store';
 
 import ViewTravelRecordTypeModal from '../Floating_modal/TravelRecordSelectModal';
 
-export const CountryInfoModal: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isModalOpen, setIsModalOpen] = useAtom(isCountryInfoModalOpen);
+export const CountryInfoModal: React.FC<
+  PropsWithChildren<{ country: string }>
+> = ({ children, country }) => {
+  const [isCountryInfoOpen, setIsCountryInfoOpen] = useAtom(
+    isCountryInfoModalOpen({ country, isOpen: false })
+  );
 
   return (
     <ViewTravelRecordTypeModal
-      isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
+      isOpen={isCountryInfoOpen.isOpen}
+      onClose={() =>
+        setIsCountryInfoOpen({ ...isCountryInfoOpen, isOpen: false })
+      }
     >
       {children}
     </ViewTravelRecordTypeModal>

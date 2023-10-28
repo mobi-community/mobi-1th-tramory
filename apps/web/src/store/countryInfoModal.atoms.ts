@@ -1,3 +1,12 @@
 import { atom } from 'jotai';
+import { atomFamily } from 'jotai/utils';
 
-export const isCountryInfoModalOpen = atom(false);
+type countryInfoModalType = {
+  country?: string;
+  isOpen?: boolean;
+};
+
+export const isCountryInfoModalOpen = atomFamily(
+  ({ isOpen }: countryInfoModalType) => atom({ isOpen: isOpen }),
+  (a, b) => a.country === b.country
+);
