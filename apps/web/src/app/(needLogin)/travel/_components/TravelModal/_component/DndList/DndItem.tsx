@@ -1,9 +1,11 @@
+import { useState } from 'react';
+
 interface DraggableItemProps {
   dragProvided: any;
   item: { id: number; name: string; memos: string[] };
   index: number;
   onAddMemo: (id: number) => void;
-  onEditMemo: (id: number, memoIndex: number) => void;
+  onEditMemo: (id: number, memoIndex: number, updatedMemo: string) => void;
   onDeleteMemo: (id: number, memoIndex: number) => void;
 }
 
@@ -15,6 +17,9 @@ const DndItem: React.FC<DraggableItemProps> = ({
   onEditMemo,
   onDeleteMemo,
 }) => {
+  const [editingMemoIndex, setEditingMemoIndex] = useState<number | null>(null);
+  const [currentMemo, setCurrentMemo] = useState<string>('');
+
   return (
     <div
       className='min-h-[50px] p-4'
@@ -46,15 +51,43 @@ const DndItem: React.FC<DraggableItemProps> = ({
         </div>
       </div>
       {item.memos.map((memo, memoIndex) => (
-        <div className='mt-2 flex items-center justify-between rounded bg-gray-300 p-2'>
-          <span>{memo}</span>
-          <div className='space-x-2'>
-            <button onClick={() => onEditMemo(item.id, memoIndex)}>
-              <span className='material-icons-outlined h-5 w-5'>edit</span>
-            </button>
-            <button onClick={() => onDeleteMemo(item.id, memoIndex)}>
-              <span className='material-icons-outlined h-5 w-5'>delete</span>
-            </button>
+        <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
+          {editingMemoIndex === memoIndex ? (
+            <input
+              value={currentMemo}
+              onChange={(e) => setCurrentMemo(e.target.value)}
+            />
+          ) : (
+            <span>{memo}</span>
+          )}
+
+          <div className='space-x-3'>
+            {editingMemoIndex === memoIndex ? (
+              <button
+                onClick={() => {
+                  onEditMemo(item.id, memoIndex, currentMemo);
+                  setEditingMemoIndex(null);
+                }}
+              >
+                <span className='material-icons-outlined h-5 w-5'>check</span>
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    setEditingMemoIndex(memoIndex);
+                    setCurrentMemo(memo);
+                  }}
+                >
+                  <span className='material-icons-outlined h-5 w-5'>edit</span>
+                </button>
+                <button onClick={() => onDeleteMemo(item.id, memoIndex)}>
+                  <span className='material-icons-outlined h-5 w-5'>
+                    delete
+                  </span>
+                </button>
+              </>
+            )}
           </div>
         </div>
       ))}

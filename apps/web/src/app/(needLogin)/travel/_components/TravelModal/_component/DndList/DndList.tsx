@@ -14,7 +14,7 @@ const DndList: React.FC = () => {
   const [items, setItems] = useAtom(travelModalDndList);
 
   const handleAddMemo = (itemId: number) => {
-    const memo = prompt('Enter your memo:');
+    const memo = prompt('기록하기:');
     if (memo) {
       const updatedItems = items.map((item) =>
         item.id === itemId ? { ...item, memos: [...item.memos, memo] } : item
@@ -41,21 +41,22 @@ const DndList: React.FC = () => {
     ]);
   };
 
-  const handleEditMemo = (itemId: number, memoIndex: number) => {
-    const newMemo = prompt('메모를 입력하세요:');
-    if (newMemo !== null) {
-      const updatedItems = items.map((item) =>
-        item.id === itemId
-          ? {
-              ...item,
-              memos: item.memos.map((memo, index) =>
-                index === memoIndex ? newMemo : memo
-              ),
-            }
-          : item
-      );
-      setItems(updatedItems);
-    }
+  const handleEditMemo = (
+    itemId: number,
+    memoIndex: number,
+    updatedMemo: string
+  ) => {
+    const updatedItems = items.map((item) =>
+      item.id === itemId
+        ? {
+            ...item,
+            memos: item.memos.map((memo, index) =>
+              index === memoIndex ? updatedMemo : memo
+            ),
+          }
+        : item
+    );
+    setItems(updatedItems);
   };
 
   const handleDeleteMemo = (itemId: number, memoIndex: number) => {
