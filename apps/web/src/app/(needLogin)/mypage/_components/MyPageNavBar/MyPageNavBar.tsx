@@ -2,35 +2,54 @@
 
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 import { mypageNavConfig } from '@/constants';
+import { useAtom } from 'jotai';
+import { isOpenNavAtom } from '@/store';
 
 export const MyPageNavBar = () => {
-  const [openMenu, setOpenMenu] = useState({});
+  const [isOpenNav, setIsOpenNav] = useAtom(isOpenNavAtom);
 
   const router = useRouter();
   const pathName = usePathname();
 
   const handleMoveToPage = (href, title) => {
-    setOpenMenu((prev) => ({
-      ...prev,
-      [title]: !openMenu[title],
-    }));
+    setIsOpenNav((prev) => {
+      if (prev[title]) {
+        return {};
+      }
+      return {
+        [title]: true,
+      };
+    });
     router.push(href);
   };
 
-  // const handleMoveToPage = (href, title) => {
-  //   if (title === openMenu) {
-  //     setOpenMenu(null);
-  //   } else {
-  //     setOpenMenu(title);
-  //   }
-  //   router.push(href);
-  // };
+  const handleMoveToSubPage = (href, event) => {
+    event.stopPropagation();
+    router.push(href);
+  };
+
+  const isParentActive = (parentHref) => {
+    if (
+      parentHref === '/mypage/my_story/plan' &&
+      pathName.includes('/mypage/my_story')
+    ) {
+      return 'text-primaryBlue-700';
+    }
+
+    if (
+      parentHref === '/mypage/setting/account' &&
+      pathName.includes('/mypage/setting')
+    ) {
+      return 'text-primaryBlue-700';
+    }
+
+    return '';
+  };
 
   const handleIsActive = (href) => {
-    return pathName === href;
+    if (pathName === href) return 'text-primaryBlue-700';
   };
 
   return (
@@ -53,25 +72,25 @@ export const MyPageNavBar = () => {
             className=' mb-4 flex flex-col'
           >
             <div className='flex justify-between'>
-              <div
-                className={`${
-                  handleIsActive(nav.href)
-                    ? 'text-primaryBlue-700 flex'
-                    : 'flex'
-                }`}
-              >
+              <div className={`${isParentActive(nav.href)}  flex`}>
                 <span className='material-icons-outlined'>{nav.icon}</span>
                 <div className='ml-2'>{nav.title}</div>
               </div>
               {nav.subNav && (
                 <span className='material-icons-outlined mr-8'>
-                  {openMenu ? 'arrow_drop_down' : 'arrow_drop_up'}
+                  {isOpenNav[nav.title] ? 'arrow_drop_down' : 'arrow_drop_up'}
                 </span>
               )}
             </div>
-            {openMenu[nav.title] &&
+            {isOpenNav[nav.title] &&
               nav.subNav?.map((sub, index) => (
-                <div className='ml-8 mt-4' key={index}>
+                <div
+                  onClick={(event) => {
+                    handleMoveToSubPage(sub.href, event);
+                  }}
+                  className={`${handleIsActive(sub.href)} ml-8 mt-4`}
+                  key={index}
+                >
                   <div>{sub.title}</div>
                 </div>
               ))}
