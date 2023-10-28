@@ -3,26 +3,19 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { mypageNavConfig } from '@/constants';
-import { useAtom } from 'jotai';
-import { isOpenNavAtom } from '@/store';
+import { useAtom, useSetAtom } from 'jotai';
+import { mypage_nav_states_atom, selected_nav_atom } from '@/store';
 
 export const MyPageNavBar = () => {
-  const [isOpenNav, setIsOpenNav] = useAtom(isOpenNavAtom);
+  const [isOpenNav] = useAtom(mypage_nav_states_atom);
   const activeState = 'text-primaryBlue-700';
   const subActiveState = 'text-primaryBlue-700 bg-primaryBlue-200';
   const router = useRouter();
   const pathName = usePathname();
+  const setNavSelection = useSetAtom(selected_nav_atom);
 
   const handleMoveToPage = (href: string, title: string) => {
-    setIsOpenNav((prev) => {
-      if (prev[title]) {
-        return {};
-      }
-      return {
-        [title]: true,
-      };
-    });
-    router.push(href);
+    setNavSelection({ href, title, router });
   };
 
   const handleMoveToSubPage = (
@@ -52,7 +45,6 @@ export const MyPageNavBar = () => {
       return activeState;
     }
     if (pathName === parentHref) return activeState;
-
     return '';
   };
 
