@@ -1,6 +1,7 @@
 import { StaticImageData } from 'next/image';
 
-export interface countryInfoType {
+export interface CountryInfoType {
+  continent: string;
   countryEng: string;
   countryKor: string;
   flagImage: StaticImageData;
@@ -9,7 +10,7 @@ export interface countryInfoType {
   travelHistory: string[];
 }
 
-export interface cityInfoType {
+export interface CityInfoType {
   countryEng: string;
   cityEng: string;
   countryKor: string;

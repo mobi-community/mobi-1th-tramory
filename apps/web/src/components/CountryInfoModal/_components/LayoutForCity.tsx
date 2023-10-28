@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Button } from 'ui';
 
-import type { cityInfoType } from '../CountryInfoModal.types';
+import type { CityInfoType } from '../CountryInfoModal.types';
 
 /*
     @ Todo
@@ -9,7 +9,7 @@ import type { cityInfoType } from '../CountryInfoModal.types';
     레이아웃 적용 방법을 수정해보도록 하겠습니다.
 */
 
-export const LayoutForCity: React.FC<{ cityData: cityInfoType }> = ({
+export const LayoutForCity: React.FC<{ cityData: CityInfoType }> = ({
   cityData,
 }) => {
   const { countryEng, cityEng, countryKor, cityKor, flagImage } = cityData;
