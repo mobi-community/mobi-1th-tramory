@@ -9,7 +9,11 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 register();
 
+import { useSetAtom } from 'jotai';
+
+import { CountryInfoModal } from '@/components';
 import type { recomContinentType } from '@/constants';
+import { isCountryInfoModalOpen } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 export const ContinentSlide: React.FC<{
@@ -18,6 +22,8 @@ export const ContinentSlide: React.FC<{
   const formattedContinent = continent.continent.toUpperCase();
 
   const formatCountryName = (country: string) => country.toUpperCase();
+
+  const setIsModalOpen = useSetAtom(isCountryInfoModalOpen);
 
   return (
     <div className='mt-[20px]'>
@@ -34,7 +40,6 @@ export const ContinentSlide: React.FC<{
             prevEl: '.prev-button',
           }}
           style={{ paddingLeft: '80px' }}
-          loop={true}
         >
           {materialIcon({
             iconName: 'arrow_back_ios',
@@ -42,21 +47,30 @@ export const ContinentSlide: React.FC<{
             style:
               'prev-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute left-0 top-[60px] z-10',
           })}
-          {continent.countries.map(({ id, country, coverImage }) => (
-            <SwiperSlide key={id} className=''>
-              <div className={`relative h-[180px] w-[270px] bg-black`}>
-                <Image
-                  src={coverImage}
-                  alt={country}
-                  layout='fill'
-                  sizes='200'
-                  className='cursor-pointer opacity-70'
-                />
-                <div className='absolute right-2 top-[80%] text-2xl font-bold text-white'>
-                  {formatCountryName(country)}
+          {continent.countries.map(({ country, coverImage }, index) => (
+            <div
+              className='z-20'
+              key={`${country}-${index}`}
+              onClick={() => setIsModalOpen(true)}
+            >
+              <SwiperSlide>
+                <div className={`relative h-[180px] w-[270px] bg-black`}>
+                  <Image
+                    src={coverImage}
+                    alt={country}
+                    layout='fill'
+                    sizes='200'
+                    className='cursor-pointer opacity-70'
+                  />
+                  <div className='absolute right-2 top-[80%] text-2xl font-bold text-white'>
+                    {formatCountryName(country)}
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+              <CountryInfoModal>
+                <div>{country}</div>
+              </CountryInfoModal>
+            </div>
           ))}
           {materialIcon({
             iconName: 'arrow_forward_ios',

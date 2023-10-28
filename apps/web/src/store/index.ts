@@ -1,3 +1,4 @@
+export * from './countryInfoModal.atoms';
 export * from './floatingMenu.atoms';
 export * from './map.atoms';
 export * from './recommendCountry.atoms';
