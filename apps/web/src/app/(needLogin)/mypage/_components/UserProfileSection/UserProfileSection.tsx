@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import fakeImage from '../../my_story/_mocks/fake-profile-image.png';
-import { UserProfileSectionProps } from './UserProfileSection.types';
+import type { UserProfileSectionProps } from './UserProfileSection.types';
 
 export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   planDetail,
