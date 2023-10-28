@@ -1,24 +1,18 @@
-import { useSetAtom } from 'jotai';
 import Image, { StaticImageData } from 'next/image';
 
-import { isCountryInfoModalOpen } from '@/store';
+import { useCountryInfoModal } from '@/components';
 
 export const OneCountry: React.FC<{
   country: string;
   coverImage: StaticImageData;
 }> = ({ country, coverImage }) => {
-  const setIsCountryInfoOpen = useSetAtom(isCountryInfoModalOpen({ country }));
+  const { openCountryInfoModal } = useCountryInfoModal(country);
 
   return (
     <>
       <div
         className={`relative h-[180px] w-[270px] bg-black`}
-        onClick={() =>
-          setIsCountryInfoOpen(() => ({
-            country: country,
-            isOpen: true,
-          }))
-        }
+        onClick={openCountryInfoModal}
       >
         <Image
           src={coverImage}

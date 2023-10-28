@@ -8,17 +8,27 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 register();
 
-import { CountryInfoModal } from '@/components';
+import { useAtomValue } from 'jotai';
+
+import {
+  CountryInfoModal,
+  LayoutForCity,
+  // LayoutForCountry,
+} from '@/components';
 import type { recomContinentType } from '@/constants';
+import { targetLocationAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
+import { cityDataMock } from '../../_mocks';
 import { OneCountry } from '../OneCountry/OneCountry';
 
 export const ContinentSlide: React.FC<{
   continent: recomContinentType;
 }> = ({ continent }) => {
+  const targetLocation = useAtomValue(targetLocationAtom);
+
   return (
-    <div className='mt-[20px]'>
+    <div className='relative mt-[20px]'>
       <div className='mb-[10px] ml-[80px] flex items-center text-3xl font-bold'>
         # {continent.continent.toUpperCase()}
       </div>
@@ -42,7 +52,6 @@ export const ContinentSlide: React.FC<{
           {continent.countries.map(({ country, coverImage }) => (
             <SwiperSlide key={country}>
               <OneCountry country={country} coverImage={coverImage} />
-              <CountryInfoModal country={country}>{country}</CountryInfoModal>
             </SwiperSlide>
           ))}
           {materialIcon({
@@ -53,6 +62,9 @@ export const ContinentSlide: React.FC<{
           })}
         </Swiper>
       </div>
+      <CountryInfoModal country={targetLocation}>
+        <LayoutForCity cityData={cityDataMock} />
+      </CountryInfoModal>
     </div>
   );
 };
