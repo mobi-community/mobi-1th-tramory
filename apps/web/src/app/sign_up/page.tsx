@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Button } from 'ui';
-
 import { signupConstants } from '../../constants';
 import { SignUpForm } from './_components';
 import { AuthSloganSection } from '@/components';
+import googleImage from '../../../public/images/google-signup.png';
 
 const SignUpPage = () => {
   return (
@@ -42,7 +42,11 @@ const SignUpPage = () => {
           <div className='flex w-full justify-between'>
             <div>
               <Button className='h-[36px] w-[170px]' variant='nonrounded'>
-                Sign In with Google
+                <Image
+                  src={googleImage}
+                  alt='구글 가이드라인 버튼'
+                  width={120}
+                />
               </Button>
             </div>
             <div>
