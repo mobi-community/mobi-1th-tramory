@@ -1,12 +1,11 @@
 import Image from 'next/image';
 
 import { storyUserType } from '@/components';
+import { formattedDateFunc } from '@/utils/formattedDate';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;
-  const formattedDate = `${date?.getFullYear()}.${
-    date?.getMonth() + 1
-  }.${date?.getDate()}`;
+  const userFormattedDate = formattedDateFunc(date);
 
   return (
     <div>
@@ -23,7 +22,7 @@ export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
           <div>
             <div className='text-xs font-bold'>{userId}</div>
             <div className='text-primaryGray-300 text-[10px]'>
-              {formattedDate}
+              {userFormattedDate}
             </div>
           </div>
         </div>
