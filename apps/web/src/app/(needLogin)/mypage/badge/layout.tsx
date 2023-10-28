@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Tab } from '@/components/Tab';
 import { badgeConfig } from '@/constants';
+import { Tab } from '@/components';
 
 export default function BagdeLayout({
   children,

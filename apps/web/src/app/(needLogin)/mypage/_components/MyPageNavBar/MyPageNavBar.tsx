@@ -7,19 +7,27 @@ import { useState } from 'react';
 import { mypageNavConfig } from '@/constants';
 
 export const MyPageNavBar = () => {
-  const [openMenu, setOpenMenu] = useState(null);
+  const [openMenu, setOpenMenu] = useState({});
 
   const router = useRouter();
   const pathName = usePathname();
 
   const handleMoveToPage = (href, title) => {
-    if (title === openMenu) {
-      setOpenMenu(null);
-    } else {
-      setOpenMenu(title);
-    }
+    setOpenMenu((prev) => ({
+      ...prev,
+      [title]: !openMenu[title],
+    }));
     router.push(href);
   };
+
+  // const handleMoveToPage = (href, title) => {
+  //   if (title === openMenu) {
+  //     setOpenMenu(null);
+  //   } else {
+  //     setOpenMenu(title);
+  //   }
+  //   router.push(href);
+  // };
 
   const handleIsActive = (href) => {
     return pathName === href;
@@ -61,7 +69,7 @@ export const MyPageNavBar = () => {
                 </span>
               )}
             </div>
-            {openMenu === nav.title &&
+            {openMenu[nav.title] &&
               nav.subNav?.map((sub, index) => (
                 <div className='ml-8 mt-4' key={index}>
                   <div>{sub.title}</div>

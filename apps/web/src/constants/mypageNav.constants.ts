@@ -27,7 +27,7 @@ export const mypageNavConfig = {
     {
       icon: 'collections_bookmark',
       title: '관심 스토리',
-      href: '/mypage/like_story',
+      href: '/',
     },
     {
       icon: 'military_tech',

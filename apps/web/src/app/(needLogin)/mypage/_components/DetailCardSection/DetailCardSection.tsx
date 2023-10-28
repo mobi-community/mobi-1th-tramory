@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
@@ -24,7 +23,6 @@ export const DetailCardSection = ({ planDetail }: DetailSectionProps) => {
         <Image src={flagImage} alt='national_flag' width={210} />
         <div className='mt-3 flex w-full items-center justify-center gap-2'>
           {country.map((_, index) => (
-            //  key 유니크한 값으로 변경 예정
             <div key={index}>
               <div className=' bg-primaryGray-300 hover:bg-primaryGray-400 h-[9px] w-[9px] cursor-pointer rounded-full' />
             </div>

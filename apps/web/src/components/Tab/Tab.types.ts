@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 export interface TabProps {
-  children: string;
+  children: ReactNode;
   // eslint-disable-next-line no-unused-vars
   handleClickTab?: (page: string) => void;
   current?: string;
