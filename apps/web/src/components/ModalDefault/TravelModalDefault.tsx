@@ -1,14 +1,15 @@
+import { PropsWithChildren } from 'react';
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
 }
 
-const TravelModalDefault: React.FC<ModalProps> = ({
+const TravelModalDefault = ({
   isOpen,
   onClose,
   children,
-}) => {
+}: PropsWithChildren<ModalProps>) => {
   if (!isOpen) return null;
 
   return (
