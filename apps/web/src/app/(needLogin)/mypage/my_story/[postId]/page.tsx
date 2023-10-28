@@ -18,9 +18,14 @@ const MyStoryPlanDetailPage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const page = params.get('page');
+  const isEdit = params.get('isEdit');
 
   const handleMoveToDetail = () => {
-    router.push(`/mypage/my_story/${postId}?page=record&isEdit=true`);
+    if (isEdit === 'true') {
+      router.push(`/mypage/my_story/${postId}?page=record`);
+    } else {
+      router.push(`/mypage/my_story/${postId}?page=record&isEdit=true`);
+    }
   };
 
   const isPlanPage = page === 'plan';
@@ -65,7 +70,7 @@ const MyStoryPlanDetailPage = () => {
           className=' border-primaryGray-500 hover:bg-primaryBlue-200 hover:border-primaryBlue-200 hover:text-primaryGray-500 h-[40px] w-[145px] rounded-3xl border-opacity-40 font-bold text-white'
           variant='defaultnavy'
         >
-          수정하기
+          {isEdit ? '저장하기' : '수정하기'}
         </Button>
       </div>
     </div>

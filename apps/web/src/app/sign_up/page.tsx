@@ -3,7 +3,7 @@ import { Button } from 'ui';
 import { signupConstants } from '../../constants';
 import { SignUpForm } from './_components';
 import { AuthSloganSection } from '@/components';
-import googleImage from '../../../public/images/google-signup.png';
+import googleImage from '/public/images/google-signup.png';
 
 const SignUpPage = () => {
   return (

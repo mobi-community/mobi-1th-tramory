@@ -6,7 +6,7 @@ import { Button } from 'ui';
 import { ValidatorInput } from '@/components';
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
 import type { LoginFormType } from './LoginForm.type';
-import googleImage from '../../../../../public/images/google-signin.png';
+import googleImage from '/public/images/google-signin.png';
 import Image from 'next/image';
 
 export const LoginForm = () => {

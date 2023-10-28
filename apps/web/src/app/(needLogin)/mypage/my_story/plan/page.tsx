@@ -11,7 +11,7 @@ import { planDescription } from '../_mocks';
 const MyStoryPlanPage = () => {
   const router = useRouter();
   const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/${id}?page=plan`);
+    router.push(`/mypage/my_story/${id}?page=plan&isEdit=true`);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
