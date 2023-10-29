@@ -1,5 +1,6 @@
 import badgeDefaultImage from '/public/images/badge-default.png';
 import badgeDefaultImage2 from '/public/images/badge-default2.png';
+
 import { MyPageContainer, MyPageProfile } from './_components';
 import { MypageCardSection } from './_components/MypageCardSection/MypageCardSection';
 import { badgeImages, badgeImages2 } from './_mocks';

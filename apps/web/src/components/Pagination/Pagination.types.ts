@@ -6,5 +6,5 @@ export interface PaginationProps {
   itemsPerPage: number;
   //testdata는 실제 데이터 타입으로 변경예정
   testData: number;
-  bgColor: string;
+  bgColor?: string;
 }

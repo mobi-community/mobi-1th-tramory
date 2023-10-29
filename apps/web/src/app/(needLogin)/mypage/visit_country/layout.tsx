@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
 import { Tab } from '@/components';
+import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
 
 export default function VistedContriesLayout({
   children,

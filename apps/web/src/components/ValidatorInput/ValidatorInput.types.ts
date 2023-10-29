@@ -1,6 +1,7 @@
-import { SignUpFormType } from '@/app/sign_up/_components/SignUpForm/SignUpForm.types';
 import { InputHTMLAttributes } from 'react';
 import { Control } from 'react-hook-form';
+
+import { SignUpFormType } from '@/app/sign_up/_components/SignUpForm/SignUpForm.types';
 
 export interface ValidatorInputProps
   extends InputHTMLAttributes<HTMLInputElement> {
