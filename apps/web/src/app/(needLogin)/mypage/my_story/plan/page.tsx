@@ -3,7 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Checkbox } from 'ui';
+
 import { Pagination } from '@/components';
+
 import { MyPageContainer } from '../../_components';
 import { MyStoryPlanCard, Tabs } from '../_components';
 import { planDescription } from '../_mocks';
@@ -42,6 +44,7 @@ const MyStoryPlanPage = () => {
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
             testData={testData}
+            bgColor='gray'
           />
         </div>
       </MyPageContainer>

@@ -1,9 +1,10 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+
 import { mypageNavConfig } from '@/constants';
-import { useAtom } from 'jotai';
 import { isOpenNavAtom } from '@/store';
 
 export const MyPageNavBar = () => {

@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+
 import { ContentInfo, DateHeader, PlaceInfo } from '@/components';
 import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
 

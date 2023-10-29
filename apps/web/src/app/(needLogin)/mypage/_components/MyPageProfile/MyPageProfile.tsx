@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Button } from 'ui';
+
 import profileImage from '/public/images/profile-image.svg';
 import materialIcon from '@/utils/materialIcon';
 

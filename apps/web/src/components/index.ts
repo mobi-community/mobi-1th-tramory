@@ -1,4 +1,3 @@
-
 export * from './AuthSloganSection/AuthSloganSection';
 export * from './CommonStory/CommonStory';
 export * from './ContentInfo/ContentInfo';
@@ -7,6 +6,6 @@ export * from './Header/Header';
 export * from './Line/Line';
 export * from './Pagination/Pagination';
 export * from './PlaceInfo/PlaceInfo';
+export * from './Profile';
 export * from './Tab/Tab';
 export * from './ValidatorInput/ValidatorInput';
-
