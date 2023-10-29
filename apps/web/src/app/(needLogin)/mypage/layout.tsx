@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+
 import { MyPageHeader, MyPageNavBar } from './_components';
 
 export default function MyPageLayout({

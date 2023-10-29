@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import { Button } from 'ui';
+
+import googleImage from '/public/images/google-signup.png';
+import { AuthSloganSection } from '@/components';
+
 import { signupConstants } from '../../constants';
 import { SignUpForm } from './_components';
-import { AuthSloganSection } from '@/components';
-import googleImage from '/public/images/google-signup.png';
 
 const SignUpPage = () => {
   return (

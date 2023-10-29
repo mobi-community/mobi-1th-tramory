@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import { Button } from 'ui';
+
 import profileImage from '/public/images/profile-image.svg';
 import materialIcon from '@/utils/materialIcon';
 
 export const MyPageProfile = () => {
   return (
     <>
-      <div className=' bg-primaryGray-200 relative h-[180px] w-full rounded-tl-[80px] pl-12 pr-4 pt-4 '>
+      <div className=' bg-primaryGray-200 relative h-[180px] w-full rounded-tl-[80px] pl-12 pr-4 pt-4'>
         <div className='flex items-end justify-end'>
           <Button
             className='h-[25px] w-[70px] text-[10px]'

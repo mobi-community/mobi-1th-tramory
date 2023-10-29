@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+
 import { mypageNavConfig } from '@/constants';
 import { useAtom, useSetAtom } from 'jotai';
 import { mypage_nav_states_atom, selectedNavAtom } from '@/store';

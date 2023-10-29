@@ -1,6 +1,7 @@
-import { useParams, useSearchParams } from 'next/navigation';
-import { planDescription } from '../../my_story/_mocks';
 import Image from 'next/image';
+import { useParams, useSearchParams } from 'next/navigation';
+
+import { planDescription } from '../../my_story/_mocks';
 
 export const SlideImages = () => {
   const { postId } = useParams();
@@ -11,6 +12,7 @@ export const SlideImages = () => {
 
   const planDetail = planDescription.filter((detail) => detail.id === postId);
   const images = planDetail[0].content.images;
+
   if (isRecordPage)
     return (
       <div className='bg-primaryGray-200 mb-4 mt-5 flex w-full justify-between'>

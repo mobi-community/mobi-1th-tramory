@@ -5,5 +5,5 @@ export * from './MyPageContainer/MyPageContainer';
 export * from './MyPageHeader/MyPageHeader';
 export * from './MyPageNavBar/MyPageNavBar';
 export * from './MyPageProfile/MyPageProfile';
-export * from './UserProfileSection/UserProfileSection';
 export * from './SlideImages/SlideImages';
+export * from './UserProfileSection/UserProfileSection';

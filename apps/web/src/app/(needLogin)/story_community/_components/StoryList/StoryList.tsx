@@ -25,6 +25,7 @@ export const StoryList: React.FC = () => {
           setCurrentPage={setCurrentPage}
           itemsPerPage={10}
           testData={100}
+          bgColor='gray'
         />
       </div>
     </>

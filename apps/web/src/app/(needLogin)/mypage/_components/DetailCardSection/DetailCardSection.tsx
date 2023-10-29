@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import materialIcon from '@/utils/materialIcon';
