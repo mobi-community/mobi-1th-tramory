@@ -1,4 +1,4 @@
-import DndList from './_component/DndList/DndList';
+import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
 
 const TravelModal: React.FC = () => {
