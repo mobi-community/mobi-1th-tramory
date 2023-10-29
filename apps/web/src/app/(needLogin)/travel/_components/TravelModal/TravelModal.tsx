@@ -1,5 +1,6 @@
 import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
+import { Button } from 'ui';
 
 const TravelModal: React.FC = () => {
   return (
@@ -11,10 +12,22 @@ const TravelModal: React.FC = () => {
             <div className='h-[350px] w-[650px] bg-gray-200'>지도</div>
             <UploadImgFiles />
             <DndList />
-            <div>
-              위치 바뀌는 영역
-              <div>컴포넌트 map 돌리기</div>
-            </div>
+          </div>
+          <div className=' flex gap-3 pt-6'>
+            <Button
+              variant='roundednavy'
+              size='lg'
+              className='min-w-[200px] rounded-3xl font-bold'
+            >
+              초기화
+            </Button>
+            <Button
+              variant='defaultnavy'
+              size='lg'
+              className='min-w-[200px] rounded-3xl font-bold'
+            >
+              저장
+            </Button>
           </div>
         </div>
       </div>
