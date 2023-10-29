@@ -1,6 +1,7 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useDndList } from './useDndList';
 import DndItem from '../DndItem';
+import { Button } from 'ui';
 
 const DndList: React.FC = () => {
   const {
@@ -16,20 +17,13 @@ const DndList: React.FC = () => {
 
   return (
     <div>
-      {/*경로추가하기 버튼 누르면 지도 팝업 떠야함 해당로직 나중에추가 */}
-      <button
-        className='mb-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
-        onClick={handleAddNewItem}
-      >
-        경로추가하기
-      </button>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId='items'>
           {(dropProvided) => (
             <ul
               {...dropProvided.droppableProps}
               ref={dropProvided.innerRef}
-              className='relative min-h-[400px]'
+              className='relative'
             >
               {items.map((item, index) => (
                 <Draggable
@@ -56,6 +50,14 @@ const DndList: React.FC = () => {
           )}
         </Droppable>
       </DragDropContext>
+      {/*경로추가하기 버튼 누르면 지도 팝업 떠야함 해당로직 나중에추가 */}
+      <Button
+        variant='roundednavy'
+        className='my-5 mr-5'
+        onClick={handleAddNewItem}
+      >
+        장소 추가
+      </Button>
     </div>
   );
 };

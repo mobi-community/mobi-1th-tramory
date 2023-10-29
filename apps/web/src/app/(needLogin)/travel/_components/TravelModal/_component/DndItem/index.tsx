@@ -56,6 +56,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               <span className='material-icons-outlined leading-5'>menu</span>
             </div>
           </div>
+
           {props.item.memos.length === 0 && (
             <button
               onClick={() => props.onAddMemo(props.item.id)}

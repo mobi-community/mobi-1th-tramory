@@ -15,6 +15,8 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
   onNext,
   onPrev,
 }) => {
+  const SLIDER_INCREMENT = 4;
+
   return (
     <div className='relative flex bg-gray-100'>
       <Button
@@ -33,26 +35,28 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
           chevron_left
         </span>
       </Button>
-      {images.slice(sliderIndex, sliderIndex + 4).map((image, idx) => (
-        <div className='relative mr-2' key={idx}>
-          <img
-            src={URL.createObjectURL(image)}
-            alt={`Uploaded ${idx}`}
-            className='mr-2 h-[100px] w-[150px] rounded object-cover'
-          />
-          <Button
-            className='absolute right-[10px] top-0 h-[20px] w-[20px] rounded bg-black'
-            onClick={() => onDelete(sliderIndex + idx)}
-          >
-            <span
-              className='material-icons-outlined text-white'
-              style={{ fontSize: '14px' }}
+      {images
+        .slice(sliderIndex, sliderIndex + SLIDER_INCREMENT)
+        .map((image, idx) => (
+          <div className='relative mr-2' key={idx}>
+            <img
+              src={URL.createObjectURL(image)}
+              alt={`Uploaded ${idx}`}
+              className='mr-2 h-[100px] w-[150px] rounded object-cover'
+            />
+            <Button
+              className='absolute right-[10px] top-0 h-[20px] w-[20px] rounded bg-black'
+              onClick={() => onDelete(sliderIndex + idx)}
             >
-              close
-            </span>
-          </Button>
-        </div>
-      ))}
+              <span
+                className='material-icons-outlined text-white'
+                style={{ fontSize: '14px' }}
+              >
+                close
+              </span>
+            </Button>
+          </div>
+        ))}
     </div>
   );
 };

@@ -6,21 +6,23 @@ import ImageSlider from './ImageSlider';
 const UploadImgFiles: React.FC = () => {
   const [uploadedImages, setUploadedImages] = useAtom(uploadedImagesAtom);
   const [sliderIndex, setSliderIndex] = useAtom(sliderIndexAtom);
-
   const inputFileRef = useRef<HTMLInputElement>(null);
+
+  const SLIDER_INCREMENT = 4;
+  const MAX_IMAGES = 10;
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newImages = Array.from(e.target.files).slice(
         0,
-        10 - uploadedImages.length
+        MAX_IMAGES - uploadedImages.length
       );
       setUploadedImages((prev) => [...prev, ...newImages]);
     }
   };
 
   const nextSlide = () => {
-    if (sliderIndex < uploadedImages.length - 4) {
+    if (sliderIndex < uploadedImages.length - SLIDER_INCREMENT) {
       setSliderIndex((prev) => prev + 1);
     }
   };
@@ -58,12 +60,7 @@ const UploadImgFiles: React.FC = () => {
       </div>
 
       {uploadedImages.length === 0 ? (
-        <div
-          className='flex h-[100px] w-[150px] cursor-pointer items-center justify-center rounded border-2 border-dashed'
-          onClick={() => inputFileRef.current?.click()}
-        >
-          <span className='material-icons-outlined'>add_box</span>
-        </div>
+        <div></div>
       ) : (
         <ImageSlider
           images={uploadedImages}

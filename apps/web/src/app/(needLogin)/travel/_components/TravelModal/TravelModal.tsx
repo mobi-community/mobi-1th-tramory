@@ -1,3 +1,5 @@
+import { Wrapper } from '@googlemaps/react-wrapper';
+
 import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
 import { Button } from 'ui';

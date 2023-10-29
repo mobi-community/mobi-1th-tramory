@@ -1,6 +1,7 @@
 import { atom } from 'jotai';
 
 export interface Item {
+  editingMemoIndex: number;
   id: number;
   name: string;
   memos: string[];
