@@ -40,6 +40,7 @@ const MyStoryRecordPage = () => {
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
             testData={testData}
+            bgColor='gray'
           />
         </div>
       </MyPageContainer>

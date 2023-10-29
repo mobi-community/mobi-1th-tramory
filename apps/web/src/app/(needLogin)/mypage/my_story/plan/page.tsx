@@ -44,6 +44,7 @@ const MyStoryPlanPage = () => {
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
             testData={testData}
+            bgColor='gray'
           />
         </div>
       </MyPageContainer>
