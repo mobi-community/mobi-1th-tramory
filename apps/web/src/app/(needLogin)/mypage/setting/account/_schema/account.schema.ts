@@ -2,6 +2,8 @@ import * as yup from 'yup';
 
 import { signupConstants } from '@/constants';
 
+import { userInfo } from '../../../_mocks';
+
 export const PRIVACY_MODIFY_SCHEMA = yup.object({
   nickName: yup
     .string()
@@ -33,3 +35,13 @@ export const PW_MODIFY_SCHEMA = yup.object({
     })
     .required('비밀번호를 다시 입력해주세요'),
 });
+
+export const ACCOUT_SCHEMAS = {
+  privacy: PRIVACY_MODIFY_SCHEMA,
+  password: PW_MODIFY_SCHEMA,
+};
+
+export const MODIFYFORM_DEFAULT_VALUES = {
+  privacy: { nickName: userInfo.nickName },
+  password: { password: userInfo.password, pwconfirm: '' },
+};

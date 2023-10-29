@@ -2,7 +2,8 @@
 
 import { useAtom } from 'jotai';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { Input } from 'ui';
 
 import { TravelPlanStep1config } from '../../../../../constants';
@@ -14,6 +15,8 @@ interface Step1TitleProps {
 
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [inputValue, setInputValue] = useAtom(inputAtom);
+  const pathname = usePathname();
+
   const router = useRouter();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +25,22 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
 
   const headerHeight = 90;
 
+  // pathname에 /travel/plan을 포함할 경우 'plan'으로 로컬스토리지에 저장
+  // 아닐경우 'record'로 저장
+  useEffect(() => {
+    pathname.includes('/travel/plan')
+      ? localStorage.setItem('registerState', 'plan')
+      : localStorage.setItem('registerState', 'record');
+  });
+
   const handleSubmit = () => {
     if (inputValue.trim() === '') {
       return;
     } else {
       console.log('클릭함');
-      // 데이터 임시저장 코드 + 고유 id 값을 부여하는 작업 예정
-      router.push('/');
+      const registerState = localStorage.getItem('registerState');
+
+      router.push(`/travel/${registerState}?stepId=1`);
     }
   };
 
