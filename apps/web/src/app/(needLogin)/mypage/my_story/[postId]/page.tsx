@@ -13,6 +13,8 @@ import {
 } from '../../_components';
 import { planDescription } from '../_mocks';
 import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
+import { useSetAtom } from 'jotai';
+import { toggleAllDropdownsAtom } from '@/store/dropdownFormSection.atoms';
 
 const MyStoryPlanDetailPage = () => {
   const { postId } = useParams();
@@ -20,6 +22,7 @@ const MyStoryPlanDetailPage = () => {
   const params = useSearchParams();
   const page = params.get('page');
   const isEdit = params.get('isEdit');
+  const allToggleAction = useSetAtom(toggleAllDropdownsAtom);
 
   const handleMoveToDetail = () => {
     if (isEdit === 'true') {
@@ -43,7 +46,7 @@ const MyStoryPlanDetailPage = () => {
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-300 hover:border-primaryGray-300 h-[35px] w-[115px] rounded-2xl border-opacity-40 hover:text-white'
           variant='roundednavy'
           onClick={() => {
-            // allToggleAction({ state: 'allOpen' });
+            allToggleAction('open');
           }}
         >
           {isPlanPage ? '계획' : '기록'} {detailPageConfig.buttons[0]}
@@ -53,7 +56,7 @@ const MyStoryPlanDetailPage = () => {
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-300 hover:border-primaryGray-300 h-[35px] w-[115px] rounded-2xl border-opacity-40 hover:text-white'
           variant='roundednavy'
           onClick={() => {
-            // allToggleAction({ state: 'allClose' });
+            allToggleAction('close');
           }}
         >
           {isPlanPage ? '계획' : '기록'} {detailPageConfig.buttons[1]}
