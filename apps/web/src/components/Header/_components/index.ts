@@ -1,2 +1,2 @@
-export * from './ModeSwitchButton';
-export * from './UserButton';
+export * from './ModeSwitchButton/ModeSwitchButton';
+export * from './UserButton/UserButton';

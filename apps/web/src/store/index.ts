@@ -7,4 +7,5 @@ export * from './stepSumup.atoms';
 export * from './story.atoms';
 export * from './storyCommunity.atoms';
 export * from './toggle.atoms';
+export * from './myPageNav.atoms';
 export * from './travelDate.atom';

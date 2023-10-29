@@ -4,7 +4,7 @@ export const Tab = ({
   children,
   bgColor,
   zIndex,
-  page,
+  current,
   handleClickTab,
 }: TabProps) => {
   const shadowStyle = {
@@ -15,7 +15,7 @@ export const Tab = ({
   return (
     <div
       onClick={() => {
-        handleClickTab?.(page);
+        handleClickTab(current);
       }}
       className={`text-primaryGray-400 flex w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-tr-[10px] font-bold z-${zIndex}`}
     >
