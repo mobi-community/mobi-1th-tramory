@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { mypageNavConfig } from '@/constants';
 import { useAtom, useSetAtom } from 'jotai';
-import { mypage_nav_states_atom, selected_nav_atom } from '@/store';
+import { mypage_nav_states_atom, selectedNavAtom } from '@/store';
 
 export const MyPageNavBar = () => {
   const [isOpenNav] = useAtom(mypage_nav_states_atom);
@@ -12,7 +12,7 @@ export const MyPageNavBar = () => {
   const subActiveState = 'text-primaryBlue-700 bg-primaryBlue-200';
   const router = useRouter();
   const pathName = usePathname();
-  const setNavSelection = useSetAtom(selected_nav_atom);
+  const setNavSelection = useSetAtom(selectedNavAtom);
 
   const handleMoveToPage = (href: string, title: string) => {
     setNavSelection({ href, title, router });

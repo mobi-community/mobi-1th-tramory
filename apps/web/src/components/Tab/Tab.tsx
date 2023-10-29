@@ -1,6 +1,6 @@
 import { useSetAtom } from 'jotai';
 import { TabProps } from './Tab.types';
-import { tab_selected_atom } from '@/store/tab.atoms';
+import { tabSelectedAtom } from '@/store/tab.atoms';
 
 export const Tab = ({ children, bgColor, zIndex }: TabProps) => {
   const shadowStyle = {
@@ -8,7 +8,7 @@ export const Tab = ({ children, bgColor, zIndex }: TabProps) => {
       '0px -5px 10px -3px rgba(0, 0, 0, 0.1), 10px 0px 20px -3px rgba(0, 0, 0, 0.1)',
   };
 
-  const handleTabSelect = useSetAtom(tab_selected_atom);
+  const handleTabSelect = useSetAtom(tabSelectedAtom);
 
   return (
     <div

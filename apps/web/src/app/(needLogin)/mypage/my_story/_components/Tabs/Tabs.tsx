@@ -2,11 +2,11 @@
 
 import { Tab } from '@/components';
 import { useAtom } from 'jotai';
-import { current_tab_atom, draft_tab_atom } from '@/store/tab.atoms';
+import { currentTabAtom, draftTabAtom } from '@/store/tab.atoms';
 
 export const Tabs = () => {
-  const [currentTab] = useAtom(current_tab_atom);
-  const [draftTab] = useAtom(draft_tab_atom);
+  const [currentTab] = useAtom(currentTabAtom);
+  const [draftTab] = useAtom(draftTabAtom);
 
   return (
     <div className='mr-10 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
