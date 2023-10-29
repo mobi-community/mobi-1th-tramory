@@ -12,6 +12,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: `'Noto Sans KR', sans-serif`,
+      },
       colors: {
         ...colors,
         primaryGreen: '#166C63',
@@ -34,7 +37,11 @@ module.exports = {
           700: '#021666',
         },
         skyblue: '#B3CDD6',
-        coralpink: '#F6B9B9',
+        coralpink: {
+          100: '#FFB0B0',
+          200: '#F6B9B9',
+          300: '#FF8989',
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

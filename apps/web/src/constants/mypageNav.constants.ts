@@ -19,15 +19,16 @@ export const mypageNavConfig = {
           href: '/mypage/my_story/plan',
         },
         {
-          title: '나의 여행 계획',
+          title: '나의 여행 기록',
           href: '/mypage/my_story/record',
         },
       ],
     },
+    // 관심 스토리 페이지 작업하실때 주소 등록해주세요
     {
       icon: 'collections_bookmark',
       title: '관심 스토리',
-      href: '/mypage/like_story',
+      href: '/',
     },
     {
       icon: 'military_tech',
