@@ -43,22 +43,22 @@ export default function Page() {
           ))}
         </ul>
         <FloatingMenu />
-        {/* 임시!  */}
-        <div>
-          <button
-            className='rounded bg-gray-200'
-            onClick={() => setIsModalOpen(true)}
-          >
-            모달 상세기록 열기
-          </button>
+      </div>
+      {/* 임시!  */}
+      <div>
+        <button
+          className='rounded bg-gray-200'
+          onClick={() => setIsModalOpen(true)}
+        >
+          모달 상세기록 열기
+        </button>
 
-          <TravelModalDefault
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          >
-            <TravelModal />
-          </TravelModalDefault>
-        </div>
+        <TravelModalDefault
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        >
+          <TravelModal />
+        </TravelModalDefault>
       </div>
       <SimpleRecordModal />
     </div>
