@@ -19,6 +19,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '도쿄',
       title: 'kei의 일본 식도락 여행기 ✨',
       text: '안녕하세요! 일본을 누비며 맛있는 여행을 즐겨보았어요. 오사카의 타코야끼, 도쿄의 초밥, 교토의 유자라멘과 함께한 식도락 여행은 정말 특별했습니다. 현지 음식과 문화의 매력을 느끼며 여행의 색다른 맛을 만끽할 수 있었어요. 다음 일본 여행 때는 또 어떤 맛을 찾아볼지 기대되네요! 최대 4줄로 글자수 조정... 안녕하세요! 일본을 누비며 맛있는 여행을 즐겨보았어요. 오사카의 타코야끼, 도쿄의 초밥, 교토의 유자라멘과 함께한 식도락 여행은 정말 특별했습니다. 현지 음식과 문화의 매력을 느끼며 여행의 색다른 맛을 만끽할 수 있었어요. 다음 일본 여행 때는 또 어떤 맛을 찾아볼지 기대되네요!',
       images: [fakeImage1, fakeImage2, fakeImage3],
@@ -35,6 +37,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '유럽',
       title: 'kei의 유럽 여행기 ✨',
       text: '안녕하세요! 유럽을 누비며 여행을 즐겨보았어요.',
       images: [fakeImage4, fakeImage5],
@@ -51,6 +55,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '도쿄',
       title: 'kei의 디즈니랜드 방문기 ✨',
       text: '안녕하세요! 디즈니랜드에 드디어 방문해보았습니다.',
       images: [fakeImage6],
@@ -67,6 +73,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '미국',
       title: 'Merry Christmas 🎅',
       text: "It's Christmas Eve. It's the one night of the year when we all act a little nicer, we smile a little easier, we cheer a little more. For a couple of hours out of the whole year, we are the people that we always hoped we would be.",
       images: [fakeImage7, fakeImage8, fakeImage9],
@@ -83,6 +91,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '도쿄',
       title: 'kei의 일본 식도락 여행기 ✨',
       text: '안녕하세요! 일본을 누비며 맛있는 여행을 즐겨보았어요. 오사카의 타코야끼, 도쿄의 초밥, 교토의 유자라멘과 함께한 식도락 여행은 정말 특별했습니다. 현지 음식과 문화의 매력을 느끼며 여행의 색다른 맛을 만끽할 수 있었어요. 다음 일본 여행 때는 또 어떤 맛을 찾아볼지 기대되네요! 최대 4줄로 글자수 조정... 안녕하세요! 일본을 누비며 맛있는 여행을 즐겨보았어요. 오사카의 타코야끼, 도쿄의 초밥, 교토의 유자라멘과 함께한 식도락 여행은 정말 특별했습니다. 현지 음식과 문화의 매력을 느끼며 여행의 색다른 맛을 만끽할 수 있었어요. 다음 일본 여행 때는 또 어떤 맛을 찾아볼지 기대되네요!',
       images: [fakeImage1, fakeImage2, fakeImage3],
@@ -99,6 +109,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '유럽',
       title: 'kei의 유럽 여행기 ✨',
       text: '안녕하세요! 유럽을 누비며 여행을 즐겨보았어요.',
       images: [fakeImage4, fakeImage5],
@@ -115,6 +127,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '도쿄',
       title: 'kei의 디즈니랜드 방문기 ✨',
       text: '안녕하세요! 디즈니랜드에 드디어 방문해보았습니다.',
       images: [fakeImage6],
@@ -131,6 +145,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '미국',
       title: 'Merry Christmas 🎅',
       text: "It's Christmas Eve. It's the one night of the year when we all act a little nicer, we smile a little easier, we cheer a little more. For a couple of hours out of the whole year, we are the people that we always hoped we would be.",
       images: [fakeImage7, fakeImage8, fakeImage9],
@@ -147,6 +163,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '도쿄',
       title: 'kei의 디즈니랜드 방문기 ✨',
       text: '안녕하세요! 디즈니랜드에 드디어 방문해보았습니다.',
       images: [fakeImage6],
@@ -163,6 +181,8 @@ export const storyMock = [
       date: new Date(),
     },
     content: {
+      date: '2023 9. 24 - 10. 4',
+      location: '미국',
       title: 'Merry Christmas 🎅',
       text: "It's Christmas Eve. It's the one night of the year when we all act a little nicer, we smile a little easier, we cheer a little more. For a couple of hours out of the whole year, we are the people that we always hoped we would be.",
       images: [fakeImage7, fakeImage8, fakeImage9],

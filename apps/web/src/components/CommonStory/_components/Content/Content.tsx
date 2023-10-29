@@ -4,7 +4,7 @@ import { ReactionBox } from '../ReactionBox';
 
 export const Content: React.FC<{
   content: storyContentType;
-  postId: number;
+  postId: number | string;
 }> = ({ content, postId }) => {
   const { title, text, images, liked, viewed, tags } = content;
 

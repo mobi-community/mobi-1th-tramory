@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import { MyPageHeader, MyPageNavBar } from './_components';
 
 export default function MyPageLayout({
@@ -6,6 +9,11 @@ export default function MyPageLayout({
   children: React.ReactNode;
   asideContent: React.ReactNode;
 }) {
+  const pathName = usePathname();
+  const isDetailPage =
+    pathName.startsWith('/mypage/my_story/plan/') ||
+    pathName.startsWith('/mypage/my_story/record/');
+
   return (
     <>
       <div>
@@ -14,7 +22,7 @@ export default function MyPageLayout({
             <MyPageNavBar />
           </div>
           <div>
-            <MyPageHeader />
+            {!isDetailPage && <MyPageHeader />}
             {children}
           </div>
         </div>

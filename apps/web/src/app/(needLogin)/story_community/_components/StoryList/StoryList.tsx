@@ -2,8 +2,7 @@
 
 import { useAtom } from 'jotai';
 
-import { CommonStory } from '@/components';
-import { Pagination } from '@/components/Pagination';
+import { CommonStory, Pagination } from '@/components';
 import { storyCommunityAtoms } from '@/store';
 
 import { storyMock } from '../../_mocks';
@@ -26,6 +25,7 @@ export const StoryList: React.FC = () => {
           setCurrentPage={setCurrentPage}
           itemsPerPage={10}
           testData={100}
+          bgColor='gray'
         />
       </div>
     </>

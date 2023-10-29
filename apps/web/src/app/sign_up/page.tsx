@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { Button } from 'ui';
-
 import { signupConstants } from '../../constants';
 import { SignUpForm } from './_components';
+import { AuthSloganSection } from '@/components';
+import googleImage from '/public/images/google-signup.png';
 
 const SignUpPage = () => {
   return (
@@ -24,33 +25,28 @@ const SignUpPage = () => {
             alt='signup_main_image'
             priority
           />
-          {/* 예슬님 공용 컴포넌트로 변경예정 */}
-          <Image
-            className='mt-6'
-            src={signupConstants.image.subImage}
-            width={280}
-            alt='signup_sub_image'
-            priority
-          />
+          <AuthSloganSection />
         </div>
         <div className='bg-primaryBeige flex flex-col items-center justify-center rounded-bl-[28px] rounded-tl-[28px] pb-[30px] pl-[40px] pr-[40px] pt-[50px]'>
           <div>
             <SignUpForm />
           </div>
-          <div className='mt-4'>
+          <div className='mt-4 w-full'>
             <Button className='mb-4 h-[35px] w-full font-bold'>회원가입</Button>
-            <Image
-              className='mb-4'
-              src={signupConstants.image.subImage2}
-              width={380}
-              alt='signup_sub_image2'
-              priority
-            />
+          </div>
+          <div className='text-primaryGreen my-3 flex w-full items-center justify-between'>
+            <div className='bg-primaryGreen h-px w-[160px]'></div>
+            <p className='font-bold'>or</p>
+            <div className='bg-primaryGreen h-px w-[160px]'></div>
           </div>
           <div className='flex w-full justify-between'>
             <div>
               <Button className='h-[36px] w-[170px]' variant='nonrounded'>
-                Sign In with Google
+                <Image
+                  src={googleImage}
+                  alt='구글 가이드라인 버튼'
+                  width={120}
+                />
               </Button>
             </div>
             <div>

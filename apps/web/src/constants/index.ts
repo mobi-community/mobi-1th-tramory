@@ -5,6 +5,7 @@ export * from './landing.constants';
 export * from './like_story.constants';
 export * from './mapPage.constants';
 export * from './mypageNav.constants';
+export * from './otherspagetap.constants';
 export type * from './recommendByCountryPage.constants';
 export * from './recommendByCountryPage.constants';
 export * from './sign_up.constants';
