@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
-import { CommonStory } from '@/components';
-import { Pagination } from '@/components/Pagination';
+import { CommonStory, Pagination } from '@/components';
 
 export const ViewStory = () => {
   const [currentPage, setCurrentPage] = useState(0);

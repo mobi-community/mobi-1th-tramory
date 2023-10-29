@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
-import { Tab } from '@/components/Tab';
+import { Tab } from '@/components';
 import { likeStoryConfig } from '@/constants';
 import materialIcon from '@/utils/materialIcon';
 
@@ -36,13 +36,13 @@ const LikeStoryPage = () => {
                     : `/mypage/like_story?filter=${path.query}`
                 }
               >
-                <div className='flex items-center'>
-                  {materialIcon({
-                    iconName: isLikes ? 'favorite' : 'visibility',
-                    size: 16,
-                  })}
-                  <span className='ml-1'>{path.tabName}</span>
-                </div>
+                {/* <div className='flex items-center'> */}
+                {materialIcon({
+                  iconName: isLikes ? 'favorite' : 'visibility',
+                  size: 16,
+                })}
+                {path.tabName}
+                {/* </div> */}
               </Link>
             </Tab>
           );
