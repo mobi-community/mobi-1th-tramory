@@ -1,7 +1,6 @@
 export * from './countryInfoModal.atoms';
 export * from './floatingMenu.atoms';
 export * from './map.atoms';
-export * from './recommendCountry.atoms';
 export * from './selectedDateIdAtom.atom';
 export * from './step1Title.atoms';
 export * from './stepSumup.atoms';
