@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import Link from 'next/link';
 
 import { otherTabList } from '@/constants';
-import { otherStoryTabAtom } from '@/store';
+import { otherStoryTabAtom } from '@/store/otherStoryTab.atom';
 
 const OtherStoryTab = () => {
   const [isTab, setIstTab] = useAtom(otherStoryTabAtom);

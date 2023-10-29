@@ -11,8 +11,7 @@
     "src/app/(needLogin)/travel/_components/Step1Title",
     "../../packages/ui/components/label.tsx",
     "../../packages/ui/components/radio-group.tsx",
-    "../../packages/ui/components/checkbox.tsx",
-    "src/app/(needLogin)/story_community/_components/StoryList/_components/CommonStory/CommonStory"
+    "../../packages/ui/components/checkbox.tsx"
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {

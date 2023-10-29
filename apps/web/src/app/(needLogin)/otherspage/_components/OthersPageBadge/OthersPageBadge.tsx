@@ -11,7 +11,6 @@ const OthersPageBadge = () => {
   return (
     <>
       <div className='m-auto mt-[-147px] h-[800px] w-[1024px] border  shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
-        {/* <div className='m-auto mt-[150px] grid w-[950px] grid-cols-2  '> */}
         <div className='bg-primaryGray-200 m-auto mx-12 mb-12 mt-[180px] grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
