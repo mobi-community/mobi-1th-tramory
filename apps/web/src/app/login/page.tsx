@@ -1,7 +1,11 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
+import { Button } from 'ui';
 
 import LogoImage from '/public/assets/logo_black.svg';
+import googleImage from '/public/images/google-signin.png';
 import { AuthSloganSection } from '@/components';
 import { loginContants } from '@/constants/login.constants';
 
@@ -36,6 +40,26 @@ const LoginPage = () => {
         <div className='h-px w-[378px] bg-[#D3CEBE]' />
         <div className='bg-primaryBeige w-full rounded-t-[40px] px-[30px] py-[35px]'>
           <LoginForm />
+          <Button
+            variant='nonrounded'
+            onClick={() => signIn('google')}
+            className='w-full'
+          >
+            <Image src={googleImage} alt='구글 가이드라인 이미지' width={130} />
+          </Button>
+          <div className='mt-6 flex w-full items-center justify-between'>
+            <p className='text-primaryGray-400 text-sm font-bold'>
+              회원이 아니신가요?
+            </p>
+            <Link href='/sign_up'>
+              <Button
+                variant='outline'
+                className='text-primaryGreen border-primaryGreen hover:bg-primaryGreen rounded-none bg-transparent px-24 text-xs font-bold hover:text-white'
+              >
+                회원가입
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

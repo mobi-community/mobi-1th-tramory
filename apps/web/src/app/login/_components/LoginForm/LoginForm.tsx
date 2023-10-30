@@ -1,11 +1,8 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
-import googleImage from '/public/images/google-signin.png';
 import { ValidatorInput } from '@/components';
 
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
@@ -17,11 +14,6 @@ export const LoginForm = () => {
     resolver: yupResolver(LOGIN_SCHEMA),
     defaultValues: { email: '', password: '' },
   });
-
-  /**
-   * email: 'test123@gmail.com',
-    password: 'qwer1234!@',
-   */
 
   const onSubmit = async (data: LoginFormType) => {
     try {
@@ -75,24 +67,6 @@ export const LoginForm = () => {
         <div className='bg-primaryGreen h-px w-[160px]'></div>
         <p className='font-bold'>or</p>
         <div className='bg-primaryGreen h-px w-[160px]'></div>
-      </div>
-      <div>
-        <Button variant='nonrounded' className='w-full'>
-          <Image src={googleImage} alt='구글 가이드라인 이미지' width={130} />
-        </Button>
-      </div>
-      <div className='mt-6 flex w-full items-center justify-between'>
-        <p className='text-primaryGray-400 text-sm font-bold'>
-          회원이 아니신가요?
-        </p>
-        <Link href='/sign_up'>
-          <Button
-            variant='outline'
-            className='text-primaryGreen border-primaryGreen hover:bg-primaryGreen rounded-none bg-transparent px-24 text-xs font-bold hover:text-white'
-          >
-            회원가입
-          </Button>
-        </Link>
       </div>
     </form>
   );
