@@ -9,17 +9,44 @@ import googleImage from '/public/images/google-signin.png';
 import { ValidatorInput } from '@/components';
 
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
-import type { LoginFormType } from './LoginForm.type';
+import type { LoginFormType } from './LoginForm.types';
 
 export const LoginForm = () => {
-  const { control } = useForm<LoginFormType>({
+  const { handleSubmit, control } = useForm<LoginFormType>({
     mode: 'onChange',
     resolver: yupResolver(LOGIN_SCHEMA),
     defaultValues: { email: '', password: '' },
   });
 
+  /**
+   * email: 'test123@gmail.com',
+    password: 'qwer1234!@',
+   */
+
+  const onSubmit = async (data: LoginFormType) => {
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('로그인 실패');
+      }
+
+      const responseData = await response.json();
+
+      console.log('response', responseData);
+    } catch (error) {
+      console.error('로그인 에러:', error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <ValidatorInput
         label={'Email'}
         subLabel={'이메일'}

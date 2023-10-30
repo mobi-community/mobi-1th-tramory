@@ -33,9 +33,9 @@ const SignUpPage = () => {
           <div>
             <SignUpForm />
           </div>
-          <div className='mt-4 w-full'>
+          {/* <div className='mt-4 w-full'>
             <Button className='mb-4 h-[35px] w-full font-bold'>회원가입</Button>
-          </div>
+          </div> */}
           <div className='text-primaryGreen my-3 flex w-full items-center justify-between'>
             <div className='bg-primaryGreen h-px w-[160px]'></div>
             <p className='font-bold'>or</p>
