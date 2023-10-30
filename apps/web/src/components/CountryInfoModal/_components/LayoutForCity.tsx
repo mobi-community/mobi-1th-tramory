@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from 'ui';
 
 import { CountryInfoConfig } from '@/constants';
@@ -38,10 +39,14 @@ export const LayoutForCity: React.FC<{ cityData: CityInfoType }> = ({
       <div className='bg-primaryGray-200 my-[40px] h-[233px] w-[546px]'>
         지도
       </div>
-      <Button className='font-bold'>
-        <span className='text-primaryYellow mr-[5px]'>{countryKor}</span>{' '}
-        {text.community}
-      </Button>
+      <Link
+        href={{ pathname: '/story_community', query: { keyword: countryKor } }}
+      >
+        <Button className='font-bold'>
+          <span className='text-primaryYellow mr-[5px]'>{countryKor}</span>{' '}
+          {text.community}
+        </Button>
+      </Link>
     </div>
   );
 };
