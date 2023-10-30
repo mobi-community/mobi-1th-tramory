@@ -1,6 +1,9 @@
+'use client';
 import { useSetAtom } from 'jotai';
-import { TabProps } from './Tab.types';
+
 import { tabSelectedAtom } from '@/store/tab.atoms';
+
+import { TabProps } from './Tab.types';
 
 export const Tab = ({ children, bgColor, zIndex }: TabProps) => {
   const shadowStyle = {

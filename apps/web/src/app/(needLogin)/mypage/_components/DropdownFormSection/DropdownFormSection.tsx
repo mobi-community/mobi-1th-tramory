@@ -1,11 +1,12 @@
 'use client';
+import { useAtom, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
+
 import { ContentInfo, DateHeader, PlaceInfo } from '@/components';
 import {
   dropdownIdsAtom,
   dropdownToggleFamily,
 } from '@/store/dropdownFormSection.atoms';
-import { useAtom, useSetAtom } from 'jotai';
-import { useEffect } from 'react';
 
 export const DropdownFormSection = ({ dayData, index }) => {
   const [toggleState] = useAtom(dropdownToggleFamily(dayData.id));

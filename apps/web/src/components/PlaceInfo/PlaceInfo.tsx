@@ -1,11 +1,12 @@
 'use client';
-import { dropdown_count_atom } from '@/store/dropdownFormSection.atoms';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
+import { dropdownCountAtom } from '@/store/dropdownFormSection.atoms';
+
 export const PlaceInfo = ({ dayData }) => {
-  const [dayCount] = useAtom(dropdown_count_atom);
+  const [dayCount] = useAtom(dropdownCountAtom);
   const params = useSearchParams();
   const isEdit = params.get('isEdit');
   const isEditPage = isEdit === 'true';

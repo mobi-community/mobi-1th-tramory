@@ -1,8 +1,10 @@
+'use client';
+import { useAtom, useSetAtom } from 'jotai';
+
 import {
   dropdownToggleFamily,
   initializeDropdownTogglesAtom,
 } from '@/store/dropdownFormSection.atoms';
-import { useAtom, useSetAtom } from 'jotai';
 
 export const DateHeader = ({ index, date, id }) => {
   const dropdownInitializers = useSetAtom(initializeDropdownTogglesAtom);
@@ -10,6 +12,7 @@ export const DateHeader = ({ index, date, id }) => {
 
   const handleInitialDropdownStates = ({ id }) => {
     const initialDropdownStates = {};
+
     initialDropdownStates[id] = true; // 초기상태를 모두 열려있는 상태로 하기위해서!
     dropdownInitializers(initialDropdownStates);
   };

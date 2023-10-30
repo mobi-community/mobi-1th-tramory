@@ -2,7 +2,7 @@ export * from './AuthSloganSection/AuthSloganSection';
 export * from './CommonMap';
 export * from './CommonStory/CommonStory';
 export * from './ContentInfo/ContentInfo';
-export * from './CountryInfoModal';
+// export * from './CountryInfoModal';
 export * from './DateHeader/DateHeader';
 export * from './Header/Header';
 export * from './Line/Line';
