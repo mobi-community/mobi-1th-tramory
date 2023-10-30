@@ -6,37 +6,62 @@ import { useRef } from 'react';
 import { Button } from 'ui';
 
 import profileImage from '/public/images/profile-image.svg';
-import { mypageProfileBgImageAtom } from '@/store/mypageProfile.atoms';
+import {
+  mypageProfileBgImageAtom,
+  mypageProfileImageAtom,
+} from '@/store/mypageProfile.atoms';
 import materialIcon from '@/utils/materialIcon';
 
 export const MyPageProfile = () => {
   const [profilebg, setProfilebg] = useAtom(mypageProfileBgImageAtom);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [profileImg, setProfileImg] = useAtom(mypageProfileImageAtom);
+  const bgInputRef = useRef<HTMLInputElement>(null);
+  const profileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUploadImage = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: 'bg' | 'profile'
+  ) => {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
     const file = e.target.files[0];
 
-    setProfilebg(file);
+    if (type === 'bg') {
+      setProfilebg(file);
+    } else {
+      setProfileImg(file);
+    }
   };
 
-  const handleDeleteImage = () => {
-    if (profilebg) {
+  const handleDeleteImage = (type: 'bg' | 'profile') => {
+    if (type === 'bg' && profilebg) {
       URL.revokeObjectURL(bgImageUrl);
+      setProfilebg(null);
+      if (bgInputRef.current) {
+        bgInputRef.current.value = ''; // 파일 입력의 값을 리셋합니다.
+      }
+    } else if (type === 'profile' && profileImg) {
+      URL.revokeObjectURL(profileImgUrl);
+      setProfileImg(null);
+      if (profileInputRef.current) {
+        profileInputRef.current.value = ''; // 파일 입력의 값을 리셋합니다.
+      }
     }
-    setProfilebg(null);
   };
 
-  const handleuploadImagebutton = () => {
-    if (!inputRef.current) {
-      return;
+  const handleuploadImagebutton = (type: 'bg' | 'profile') => {
+    if (type === 'bg' && bgInputRef.current) {
+      bgInputRef.current.click();
+    } else if (type === 'profile' && profileInputRef.current) {
+      profileInputRef.current.click();
     }
-    inputRef.current.click();
   };
 
   const bgImageUrl = profilebg ? URL.createObjectURL(profilebg) : null;
+  const profileImgUrl = profileImg
+    ? URL.createObjectURL(profileImg)
+    : profileImage;
 
   return (
     <>
@@ -48,12 +73,16 @@ export const MyPageProfile = () => {
           <input
             type='file'
             accept='image/*'
-            ref={inputRef}
+            ref={bgInputRef}
             className=' hidden'
-            onChange={handleUploadImage}
+            onChange={(e) => {
+              handleUploadImage(e, 'bg');
+            }}
           />
           <Button
-            onClick={handleuploadImagebutton}
+            onClick={() => {
+              handleuploadImagebutton('bg');
+            }}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -61,7 +90,9 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
-            onClick={handleDeleteImage}
+            onClick={() => {
+              handleDeleteImage('bg');
+            }}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -70,11 +101,13 @@ export const MyPageProfile = () => {
           </Button>
         </div>
         <div className='absolute left-[456px] top-[120px] '>
+          {/* 비율 수정하기 */}
           <Image
             className='rounded-full'
-            src={profileImage}
+            src={profileImgUrl ? profileImgUrl : profileImage}
             alt='default_profile_image'
             width={110}
+            height={110}
           />
         </div>
       </div>
@@ -102,7 +135,19 @@ export const MyPageProfile = () => {
           </div>
         </div>
         <div className='mt-2'>
+          <input
+            type='file'
+            accept='image/*'
+            ref={profileInputRef}
+            className=' hidden'
+            onChange={(e) => {
+              handleUploadImage(e, 'profile');
+            }}
+          />
           <Button
+            onClick={() => {
+              handleuploadImagebutton('profile');
+            }}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -110,6 +155,9 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
+            onClick={() => {
+              handleDeleteImage('profile');
+            }}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
