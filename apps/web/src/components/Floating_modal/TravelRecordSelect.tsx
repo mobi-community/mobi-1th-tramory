@@ -6,7 +6,17 @@ import { useRouter } from 'next/navigation';
 import { travelRecordOptionConfig } from '../../constants';
 import { openSimpleRecordModalAtom } from '../../store/simpleRecordModal.atom';
 
-const ViewTravelRecordType: React.FC<{}> = () => {
+type ViewTravelRecordTypeProps = {
+  children: React.ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const ViewTravelRecordType: React.FC<ViewTravelRecordTypeProps> = ({
+  children,
+  isOpen,
+  onClose,
+}) => {
   const router = useRouter();
   const handleButtonClick = (url: string) => {
     router.push(url);
