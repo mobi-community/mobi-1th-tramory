@@ -6,21 +6,8 @@ import { useRouter } from 'next/navigation';
 import { travelRecordOptionConfig } from '../../constants';
 import { openSimpleRecordModalAtom } from '../../store/simpleRecordModal.atom';
 
-type ViewTravelRecordTypeProps = {
-  children: React.ReactNode;
-  isOpen: boolean;
-  onClose: () => void;
-};
-
-const ViewTravelRecordType: React.FC<ViewTravelRecordTypeProps> = ({
-  children,
-  isOpen,
-  onClose,
-}) => {
+const ViewTravelRecordType: React.FC = ({}) => {
   const router = useRouter();
-  const handleButtonClick = (url: string) => {
-    router.push(url);
-  };
   const setOpenSimpleRecordModal = useSetAtom(openSimpleRecordModalAtom);
 
   return (
@@ -35,7 +22,6 @@ const ViewTravelRecordType: React.FC<ViewTravelRecordTypeProps> = ({
               name='option1'
               className={`flex h-[120px] w-[150px] flex-col items-center justify-center gap-2 ${item.bgColor} rounded-lg p-4 ${item.fontColor} text-sm font-bold hover:bg-opacity-70 focus:outline-none`}
               style={{ minWidth: '120px' }}
-              onClick={() => handleButtonClick(item.redirectUrl)}
             >
               {item.id === 'SIMPLE_RECORD' ? (
                 <span

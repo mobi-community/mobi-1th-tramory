@@ -33,4 +33,4 @@ export const travelModalDndList = atom<Item[]>([
     name: 'Lego shop',
     memos: [],
   },
-]);
+] as Item[]);

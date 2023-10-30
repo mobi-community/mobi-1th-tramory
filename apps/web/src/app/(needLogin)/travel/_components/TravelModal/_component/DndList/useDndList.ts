@@ -44,7 +44,7 @@ export const useDndList = () => {
     const newItemName = `${items.length + 1}`;
     setItems((prevItems) => [
       ...prevItems,
-      { id: Date.now(), name: newItemName, memos: [] },
+      { id: Date.now(), name: newItemName, memos: [], editingMemoIndex: -1 },
     ]);
   };
 
