@@ -1,9 +1,6 @@
-import {
-  ModeSwitchButton,
-  UserButton,
-} from '../../../../../components/Header/_components';
-import { headerConfig } from '../../../../../constants';
-import materialIcon from '../../../../../utils/materialIcon';
+import { ModeSwitchButton, UserButton } from '@/components/Header/_components';
+import { headerConfig } from '@/constants';
+import materialIcon from '@/utils/materialIcon';
 
 export const MyPageHeader = () => {
   return (

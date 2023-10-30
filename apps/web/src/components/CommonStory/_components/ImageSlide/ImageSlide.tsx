@@ -10,7 +10,7 @@ import { ImageModal } from './ImageModal';
 
 export const ImageSlide: React.FC<{
   images: StaticImageData[];
-  postId: number;
+  postId: number | string;
 }> = ({ images, postId }) => {
   const mainImage = images[0];
 
@@ -37,12 +37,13 @@ export const ImageSlide: React.FC<{
       {images.length > 1 && (
         <div
           className='bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] top-[140px] h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150'
-          onClick={() =>
-            setIsImageModalOpen(() => ({
-              ...isImageModalOpen,
-              isOpen: !isImageModalOpen.isOpen,
-            }))
-          }
+          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            e.stopPropagation();
+            setIsImageModalOpen(({ postId, isOpen }) => ({
+              postId: postId,
+              isOpen: !isOpen,
+            }));
+          }}
         >
           {materialIcon({
             iconName: 'add',

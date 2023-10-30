@@ -1,28 +1,60 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 import { mypageNavConfig } from '@/constants';
+import { isOpenNavAtom } from '@/store';
 
 export const MyPageNavBar = () => {
-  const [openMenu, setOpenMenu] = useState(null);
-
+  const [isOpenNav, setIsOpenNav] = useAtom(isOpenNavAtom);
+  const activeState = 'text-primaryBlue-700';
+  const subActiveState = 'text-primaryBlue-700 bg-primaryBlue-200';
   const router = useRouter();
   const pathName = usePathname();
 
-  const handleMoveToPage = (href, title) => {
-    if (title === openMenu) {
-      setOpenMenu(null);
-    } else {
-      setOpenMenu(title);
-    }
+  const handleMoveToPage = (href: string, title: string) => {
+    setIsOpenNav((prev) => {
+      if (prev[title]) {
+        return {};
+      }
+      return {
+        [title]: true,
+      };
+    });
     router.push(href);
   };
 
-  const handleIsActive = (href) => {
-    return pathName === href;
+  const handleMoveToSubPage = (
+    href: string,
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
+    event.stopPropagation();
+    router.push(href);
+  };
+
+  const handleIsActive = (href: string) => {
+    if (pathName === href) return subActiveState;
+  };
+
+  const isParentActive = (parentHref: string) => {
+    if (
+      parentHref === '/mypage/my_story/plan' &&
+      pathName.includes('/mypage/my_story')
+    ) {
+      return activeState;
+    }
+
+    if (
+      parentHref === '/mypage/setting/account' &&
+      pathName.includes('/mypage/setting')
+    ) {
+      return activeState;
+    }
+    if (pathName === parentHref) return activeState;
+
+    return '';
   };
 
   return (
@@ -36,34 +68,36 @@ export const MyPageNavBar = () => {
       </div>
       <div className='border-primaryGray-300 border-t-[1px] opacity-60'></div>
       <div className='pl-12 pt-8'>
-        {mypageNavConfig.nav.map((nav) => (
+        {mypageNavConfig.nav.map((nav, index) => (
           <div
-            key={nav.title}
+            key={index}
             onClick={() => {
               handleMoveToPage(nav.href, nav.title);
             }}
-            className=' mb-4 flex flex-col'
+            className=' mb-4 flex cursor-pointer flex-col'
           >
             <div className='flex justify-between'>
-              <div
-                className={`${
-                  handleIsActive(nav.href)
-                    ? 'text-primaryBlue-700 flex'
-                    : 'flex'
-                }`}
-              >
+              <div className={`${isParentActive(nav.href)} flex`}>
                 <span className='material-icons-outlined'>{nav.icon}</span>
                 <div className='ml-2'>{nav.title}</div>
               </div>
               {nav.subNav && (
                 <span className='material-icons-outlined mr-8'>
-                  {openMenu ? 'arrow_drop_down' : 'arrow_drop_up'}
+                  {isOpenNav[nav.title] ? 'arrow_drop_up' : 'arrow_drop_down'}
                 </span>
               )}
             </div>
-            {openMenu === nav.title &&
-              nav.subNav?.map((sub) => (
-                <div className='ml-8 mt-4' key={sub.title}>
+            {isOpenNav[nav.title] &&
+              nav.subNav?.map((sub, index) => (
+                <div
+                  onClick={(event) => {
+                    handleMoveToSubPage(sub.href, event);
+                  }}
+                  className={`${handleIsActive(
+                    sub.href
+                  )} hover:bg-primaryBlue-100 mt-2 flex w-[190px] items-center rounded-3xl py-2 pl-9`}
+                  key={index}
+                >
                   <div>{sub.title}</div>
                 </div>
               ))}

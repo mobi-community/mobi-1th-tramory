@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/components';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step4Dates from './components/Step4Dates/Step4Dates';
