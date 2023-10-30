@@ -1,6 +1,8 @@
 import { Controller } from 'react-hook-form';
 
-const Step3Tag = ({ control, id }) => {
+import { IRegisterProps } from '@/types/registerStep.types';
+
+const Step3Tag: React.FC<IRegisterProps> = ({ control, id }) => {
   return (
     <>
       <div>
