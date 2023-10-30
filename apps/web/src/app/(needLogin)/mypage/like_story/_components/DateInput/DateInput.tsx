@@ -10,6 +10,7 @@ export const DateInput = forwardRef(
       <div className='relative cursor-pointer' onClick={onClick} ref={ref}>
         <Input
           value={value}
+          readOnly
           className='placeholder:text-primaryGray-400 ml-[33px] h-[46px] w-[300px] rounded border border-[#e5e7eb] text-sm focus-visible:border-[#6EA5FF] focus-visible:ring-[0]'
           placeholder='날짜를 지정해주세요'
         />

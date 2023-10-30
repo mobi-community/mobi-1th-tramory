@@ -23,9 +23,10 @@ export const DateRangeRadioGroup = ({
   return (
     <RadioGroup className='mt-3 flex justify-center'>
       <div className='flex items-center space-x-2'>
-        {dateRangeArray.map((value: string) => (
-          <>
+        {dateRangeArray.map((value: string, index: number) => (
+          <div className='flex' key={index}>
             <RadioGroupItem
+              className='mr-2'
               value={value}
               id={value}
               checked={selectedRadio === value}
@@ -35,7 +36,7 @@ export const DateRangeRadioGroup = ({
               }}
             />
             <Label htmlFor={value}>{getLabelValue(value)}</Label>
-          </>
+          </div>
         ))}
       </div>
     </RadioGroup>
