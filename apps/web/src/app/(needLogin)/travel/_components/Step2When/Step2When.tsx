@@ -1,8 +1,8 @@
 'use client';
 import { useForm } from 'react-hook-form';
 
-import { TravelPlanStep2Config } from '@/constants/travelStep2.constants';
-import { IregisterFormvalue } from '@/types/registerStep.types';
+import type { TravelPlanStep2Config } from '@/constants/travelStep2.constants';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';

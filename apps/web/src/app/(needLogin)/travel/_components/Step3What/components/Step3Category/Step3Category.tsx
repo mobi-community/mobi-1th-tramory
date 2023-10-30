@@ -1,12 +1,15 @@
 import { useAtom } from 'jotai';
-// import { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
 import { travelCategory } from '@/constants/travelStep3Category.constants';
 import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
-import { IRegisterProps } from '@/types/registerStep.types';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
-const Step3Category: React.FC<IRegisterProps> = ({ control }) => {
+interface IStep3CategoryProps {
+  control: Control<IregisterFormvalue>;
+}
+
+const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useAtom(
     selectedCategoryIdAtom
   );

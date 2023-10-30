@@ -4,13 +4,17 @@ import './style.css';
 
 import { useAtom } from 'jotai';
 import DatePicker from 'react-datepicker';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
-import { IRegisterProps } from '@/types/registerStep.types';
+import { dateRangeAtom } from '@/store';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
-import { dateRangeAtom } from '../../../../../../../store/simpleRecordModal.atom';
+interface IStep2CalendarProps {
+  control: Control<IregisterFormvalue>;
+  name: string;
+}
 
-const Step2Calendar: React.FC<IRegisterProps> = ({ control, name }) => {
+const Step2Calendar: React.FC<IStep2CalendarProps> = ({ control, name }) => {
   const [dateRange, setDateRange] = useAtom(dateRangeAtom);
   const [startDate, endDate] = dateRange;
 

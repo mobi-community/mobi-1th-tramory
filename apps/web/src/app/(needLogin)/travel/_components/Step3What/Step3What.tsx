@@ -1,8 +1,8 @@
 'use client';
 import { useForm } from 'react-hook-form';
 
-import { TravelPlanStep3Config } from '@/constants/travelStep3.constants';
-import { IregisterFormvalue } from '@/types/registerStep.types';
+import type { TravelPlanStep3Config } from '@/constants/travelStep3.constants';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
 import NavigateButton from '../NavigateButton/NavigateButton';

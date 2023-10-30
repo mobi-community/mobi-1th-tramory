@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Pagination } from '@/components';
-import { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
-import { IregisterFormvalue } from '@/types/registerStep.types';
+import type { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step4Dates from './components/Step4Dates/Step4Dates';

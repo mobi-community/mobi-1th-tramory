@@ -5,7 +5,7 @@ import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
 import { selectedDateIdAtom, travelDateAtom } from '@/store';
-import { IregisterFormvalue } from '@/types/registerStep.types';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 interface IStep4DatesProps {
   control: Control<IregisterFormvalue>;
