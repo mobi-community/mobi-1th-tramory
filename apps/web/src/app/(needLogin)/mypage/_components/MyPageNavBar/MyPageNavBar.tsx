@@ -1,14 +1,14 @@
 'use client';
 
+import { useAtom, useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
-import { useAtom, useSetAtom } from 'jotai';
-import { mypage_nav_states_atom, selectedNavAtom } from '@/store';
+import { mypageNavStatesAtom, selectedNavAtom } from '@/store';
 
 export const MyPageNavBar = () => {
-  const [isOpenNav] = useAtom(mypage_nav_states_atom);
+  const [isOpenNav] = useAtom(mypageNavStatesAtom);
   const activeState = 'text-primaryBlue-700';
   const subActiveState = 'text-primaryBlue-700 bg-primaryBlue-200';
   const router = useRouter();

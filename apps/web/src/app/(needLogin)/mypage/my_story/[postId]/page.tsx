@@ -1,10 +1,13 @@
 'use client';
 
+import { useSetAtom } from 'jotai';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
 import { Line } from '@/components';
+import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
 import { detailPageConfig } from '@/constants/detailPage.constans';
+import { toggleAllDropdownsAtom } from '@/store/dropdownFormSection.atoms';
 
 import {
   DetailCardSection,
@@ -14,9 +17,6 @@ import {
   UserProfileSection,
 } from '../../_components';
 import { planDescription } from '../_mocks';
-import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
-import { useSetAtom } from 'jotai';
-import { toggleAllDropdownsAtom } from '@/store/dropdownFormSection.atoms';
 
 const MyStoryPlanDetailPage = () => {
   const { postId } = useParams();

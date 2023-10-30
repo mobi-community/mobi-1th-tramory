@@ -1,16 +1,16 @@
 import { atom } from 'jotai';
 
-export const mypage_nav_states_atom = atom({});
+export const mypageNavStatesAtom = atom({});
 
 export const selectedNavAtom = atom(
   null,
   (get, set, { href, title, router }) => {
-    const currentStates = get(mypage_nav_states_atom);
+    const currentStates = get(mypageNavStatesAtom);
 
     if (currentStates[title]) {
-      set(mypage_nav_states_atom, {});
+      set(mypageNavStatesAtom, {});
     } else {
-      set(mypage_nav_states_atom, {
+      set(mypageNavStatesAtom, {
         [title]: true,
       });
       router.push(href);
