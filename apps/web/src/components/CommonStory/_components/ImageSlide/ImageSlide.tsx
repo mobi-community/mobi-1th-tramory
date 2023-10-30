@@ -29,7 +29,7 @@ export const ImageSlide: React.FC<{
             src={mainImage}
             alt='대표 여행 사진'
             key={Math.random() * 1000}
-            layout='fill'
+            fill
             className='rounded-[8px]'
           />
         </div>
@@ -39,8 +39,7 @@ export const ImageSlide: React.FC<{
           className='bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] top-[140px] h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150'
           onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.stopPropagation();
-            setIsImageModalOpen(({ postId, isOpen }) => ({
-              postId: postId,
+            setIsImageModalOpen(({ isOpen }) => ({
               isOpen: !isOpen,
             }));
           }}

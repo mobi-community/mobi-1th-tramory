@@ -25,11 +25,11 @@ export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
   );
 
   const haveHistory = (
-    <div className='text-l grid grid-cols-3 gap-5 font-bold'>
+    <div className='text-l grid grid-cols-3 gap-7 font-bold'>
       {travelHistory.map((history) => (
         <div key={Math.random() * 10000} className='relative w-[80px]'>
           {stampImage(true)}
-          <div className='absolute top-5'>{history}</div>
+          <div className='absolute top-5 text-[14px]'>{history}</div>
         </div>
       ))}
     </div>

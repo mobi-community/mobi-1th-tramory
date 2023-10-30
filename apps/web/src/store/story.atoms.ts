@@ -2,7 +2,7 @@ import { atom } from 'jotai';
 import { atomFamily } from 'jotai/utils';
 
 type storyType = {
-  postId: number;
+  postId: number | string;
   isOpen: boolean;
 };
 

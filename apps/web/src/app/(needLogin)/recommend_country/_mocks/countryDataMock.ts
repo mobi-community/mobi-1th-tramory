@@ -7,5 +7,10 @@ export const countryDataMock = {
   flagImage: fakeFlagImage,
   lat: 41.9027835,
   lan: 12.4963655,
-  travelHistory: [],
+  travelHistory: [
+    '2020.01.02-2020.01.02',
+    '2020.01.02-2020.01.02',
+    '2020.01.02-2020.01.02',
+    '2020.01.02-2020.01.02',
+  ],
 };

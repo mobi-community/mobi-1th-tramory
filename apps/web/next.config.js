@@ -1,1 +1,3 @@
-module.exports = require('config/next.config');
+const nextConfig = require('config/next.config');
+
+module.exports = { ...nextConfig, reactStrictMode: false };
