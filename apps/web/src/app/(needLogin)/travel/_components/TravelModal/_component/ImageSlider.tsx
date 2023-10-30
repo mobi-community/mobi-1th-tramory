@@ -20,7 +20,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
   return (
     <div className='relative flex bg-gray-100'>
       <Button
-        className='absolute left-0 top-1/2 z-20 h-[30px] w-[30px] -translate-y-1/2 transform rounded-full border bg-white pt-[7px]'
+        variant='outline'
+        size='smIcon'
+        className='absolute left-0 top-1/2 z-20 -translate-y-1/2 transform rounded-full'
         onClick={onPrev}
       >
         <span className='material-icons-outlined  text-black'>
@@ -28,7 +30,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
         </span>
       </Button>
       <Button
-        className='absolute right-0 top-1/2 z-20 h-[30px] w-[30px] -translate-y-1/2 transform rounded-full border bg-white pt-[5px]'
+        variant='outline'
+        size='smIcon'
+        className='absolute right-0 top-1/2 z-20 -translate-y-1/2 transform rounded-full'
         onClick={onNext}
       >
         <span className='material-icons-outlined rotate-180 text-black'>
@@ -38,19 +42,22 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
       {images
         .slice(sliderIndex, sliderIndex + SLIDER_INCREMENT)
         .map((image, idx) => (
-          <div className='relative mr-2' key={idx}>
+          <div
+            className={`relative ${idx < SLIDER_INCREMENT - 1 && 'mr-4'}`}
+            key={idx}
+          >
             <img
               src={URL.createObjectURL(image)}
               alt={`Uploaded ${idx}`}
-              className='mr-2 h-[100px] w-[150px] rounded object-cover'
+              className='h-[100px] w-[150px] rounded object-cover'
             />
             <Button
-              className='absolute right-[10px] top-0 h-[20px] w-[20px] rounded bg-black'
+              className='bg-gray-75/100 absolute right-2 top-2 h-2 w-2 rounded-full border p-2'
               onClick={() => onDelete(sliderIndex + idx)}
             >
               <span
-                className='material-icons-outlined text-white'
-                style={{ fontSize: '14px' }}
+                className='material-icons-outlined text-gray'
+                style={{ fontSize: '14px', fontWeight: 'bold' }}
               >
                 close
               </span>

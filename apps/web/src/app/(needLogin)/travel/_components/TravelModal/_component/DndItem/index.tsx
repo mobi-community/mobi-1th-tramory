@@ -1,15 +1,5 @@
+import { DraggableItemProps } from './useDndItems.type';
 import { useDndItem } from './useDnditem';
-
-interface DraggableItemProps {
-  dragProvided: any;
-  item: { id: number; name: string; memos: string[] };
-  index: number;
-  onAddMemo: (id: number) => void;
-  onEditMemo: (id: number, memoIndex: number, updatedMemo: string) => void;
-  onDeleteMemo: (id: number, memoIndex: number) => void;
-  onDeleteItem: (id: number) => void;
-  onEditItemName: (id: number) => void;
-}
 
 const DndItem: React.FC<DraggableItemProps> = (props) => {
   const {
@@ -81,9 +71,10 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
                   currentMemo: e.target.value,
                 }));
               }}
+              className='w-full border bg-gray-100'
             />
           ) : (
-            <span>{memo}</span>
+            <span className='max-w-[450px]'>{memo}</span>
           )}
 
           <div className='space-x-3'>
