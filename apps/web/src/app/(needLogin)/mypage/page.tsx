@@ -1,27 +1,11 @@
-'use client';
-
-import { useEffect } from 'react';
-
 import badgeDefaultImage from '/public/images/badge-default.png';
 import badgeDefaultImage2 from '/public/images/badge-default2.png';
 
-import {
-  MypageCardSection,
-  MyPageContainer,
-  MyPageProfile,
-} from './_components';
+import { MyPageContainer, MyPageProfile } from './_components';
+import { MypageCardSection } from './_components/MypageCardSection/MypageCardSection';
 import { badgeImages, badgeImages2 } from './_mocks';
 
 const MyPage = () => {
-  const getRandom = async () => {
-    const res = await fetch('/random').then((res) => res.json());
-
-    console.log(res.data);
-  };
-
-  useEffect(() => {
-    getRandom();
-  }, []);
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer>

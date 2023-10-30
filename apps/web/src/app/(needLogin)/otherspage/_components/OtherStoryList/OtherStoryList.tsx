@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/components';
 
 import { CommonStory } from './components/CommonStory/CommonStory';
 

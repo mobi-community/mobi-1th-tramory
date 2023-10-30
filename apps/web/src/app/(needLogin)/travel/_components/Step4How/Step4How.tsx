@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Pagination } from '@/components/Pagination';
+import { Pagination } from '@/components';
 import { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
 import { IregisterFormvalue } from '@/types/registerStep.types';
 

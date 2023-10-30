@@ -1,9 +1,11 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
+import googleImage from '/public/images/google-signin.png';
 import { ValidatorInput } from '@/components';
 
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
@@ -49,7 +51,7 @@ export const LoginForm = () => {
       </div>
       <div>
         <Button variant='nonrounded' className='w-full'>
-          <span>구글 로고</span>Sign in with Google
+          <Image src={googleImage} alt='구글 가이드라인 이미지' width={130} />
         </Button>
       </div>
       <div className='mt-6 flex w-full items-center justify-between'>

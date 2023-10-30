@@ -2,9 +2,7 @@ import Image from 'next/image';
 import { Button } from 'ui';
 
 import profileImage from '/public/images/profile-image.svg';
-
-// import { headerConfig } from '../../../../../constants';
-import materialIcon from '../../../../../utils/materialIcon';
+import materialIcon from '@/utils/materialIcon';
 
 export const MyPageProfile = () => {
   return (

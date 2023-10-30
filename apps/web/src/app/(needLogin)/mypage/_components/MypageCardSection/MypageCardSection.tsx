@@ -2,20 +2,23 @@
 
 import Image from 'next/image';
 
-import { useImageSlider } from '../../../../../hooks';
+import { useImageSlider } from '@/hooks';
+
 import type { MypageCardSectionProps } from './MypageCardSection.types';
 
-export const MypageCardSection = ({
+export const MypageCardSection: React.FC<MypageCardSectionProps> = ({
   title,
   image = [],
   defaultImage,
-}: MypageCardSectionProps) => {
+}) => {
   const additionalImages =
     3 - image.length > 0 ? new Array(3 - image.length).fill(defaultImage) : [];
   const allBadges = [...image, ...additionalImages];
 
   const { visibleImages, goToPreviousSlide, goToNextSlide } =
     useImageSlider(allBadges);
+
+  const isVisitedCountries = title === '방문국가';
 
   return (
     <div className='flex w-[380px] flex-col items-start justify-center'>
@@ -26,7 +29,7 @@ export const MypageCardSection = ({
       <div className='border-primaryGray-300 mb-6 w-full border-t-[1px]'></div>
       <div
         className={`bg-primaryGray-200 flex w-full items-center justify-between rounded-[30px] px-4 ${
-          title === '방문 국가' ? 'py-10' : 'py-6'
+          isVisitedCountries ? 'py-10' : 'py-6'
         }`}
       >
         <span

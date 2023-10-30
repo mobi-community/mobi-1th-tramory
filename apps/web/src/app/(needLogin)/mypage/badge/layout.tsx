@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Tab } from '@/components/Tab';
+import { Tab } from '@/components';
 import { badgeConfig } from '@/constants';
 
 export default function BagdeLayout({
