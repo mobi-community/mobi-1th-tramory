@@ -2,6 +2,7 @@ import { atom } from 'jotai';
 import { atomFamily } from 'jotai/utils';
 
 export const dropdownCountAtom = atom(1);
+// eslint-disable-next-line no-unused-vars
 export const dropdownToggleFamily = atomFamily((id: string) => atom(true));
 export const dropdownIdsAtom = atom<string[]>([]);
 

@@ -15,10 +15,11 @@ export const Tab = ({ children, bgColor, zIndex }: TabProps) => {
 
   return (
     <div
+      style={{ zIndex }}
       onClick={() => {
         handleTabSelect();
       }}
-      className={`text-primaryGray-400 flex w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-tr-[10px] font-bold z-${zIndex}`}
+      className='text-primaryGray-400 flex w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-tr-[10px] font-bold '
     >
       <div
         style={shadowStyle}

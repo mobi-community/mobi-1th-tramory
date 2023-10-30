@@ -1,7 +1,8 @@
 'use client';
 
-import { Tab } from '@/components';
 import { useAtom } from 'jotai';
+
+import { Tab } from '@/components';
 import { currentTabAtom, draftTabAtom } from '@/store/tab.atoms';
 
 export const Tabs = () => {
