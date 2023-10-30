@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { Button } from 'ui';
 
+import { CountryInfoConfig } from '@/constants';
+
 import type { CityInfoType } from '../CountryInfoModal.types';
 
 /*
@@ -13,6 +15,7 @@ export const LayoutForCity: React.FC<{ cityData: CityInfoType }> = ({
   cityData,
 }) => {
   const { countryEng, cityEng, countryKor, cityKor, flagImage } = cityData;
+  const { text } = CountryInfoConfig;
 
   return (
     <div className='m-auto w-[560px] items-center text-center'>
@@ -36,8 +39,8 @@ export const LayoutForCity: React.FC<{ cityData: CityInfoType }> = ({
         지도
       </div>
       <Button className='font-bold'>
-        <span className='text-primaryYellow mr-[5px]'>{countryKor}</span> 스토리
-        보러가기
+        <span className='text-primaryYellow mr-[5px]'>{countryKor}</span>{' '}
+        {text.community}
       </Button>
     </div>
   );

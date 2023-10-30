@@ -22,11 +22,12 @@ export const ContinentSlide: React.FC<{
   continent: recomContinentType;
 }> = ({ continent }) => {
   const targetLocation = useAtomValue(targetLocationAtom);
+  const { continent: continentName, countries } = continent;
 
   return (
     <div className='relative mt-[20px]'>
       <div className='mb-[10px] ml-[80px] flex items-center text-3xl font-bold'>
-        # {continent.continent.toUpperCase()}
+        # {continentName.toUpperCase()}
       </div>
       <div>
         <Swiper
@@ -45,7 +46,7 @@ export const ContinentSlide: React.FC<{
             style:
               'prev-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute left-0 top-[60px] z-10',
           })}
-          {continent.countries.map(({ country, coverImage }) => (
+          {countries.map(({ country, coverImage }) => (
             <SwiperSlide key={country}>
               <OneCountry country={country} coverImage={coverImage} />
             </SwiperSlide>

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { Button } from 'ui';
 
+import { CountryInfoConfig } from '@/constants/countryInfo.constants';
+
 import { CountryInfoType } from '../CountryInfoModal.types';
 import { getContinentStamp } from '../utils/getContinentStamp';
 
@@ -10,11 +12,13 @@ export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
   const { continent, countryEng, countryKor, flagImage, travelHistory } =
     countryData;
 
+  const { text } = CountryInfoConfig;
+
   const stampImage = (isVisited: boolean) => (
     <Image
       src={getContinentStamp(continent, isVisited)}
       alt={continent + 'stamp'}
-      width={75}
+      width={isVisited ? 75 : 70}
       height={90}
     />
   );
@@ -31,10 +35,10 @@ export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
   );
 
   const notHaveHistory = (
-    <div className='relative m-auto text-center'>
-      {stampImage(false)}
-      <div className='absolute top-5'>이곳을 여행하신 적이 있나요?</div>
-      <Button className='my-[10px] font-bold'>스토리 기록하기</Button>
+    <div className='relative m-auto w-[300px] text-center'>
+      <div className='absolute left-3 top-[-10px] z-0'>{stampImage(false)}</div>
+      <div className='z-100 relative pt-3'>{text.notHaveRecord}</div>
+      <Button className='my-[10px] mt-4 font-bold'>{text.record}</Button>
     </div>
   );
 
@@ -48,8 +52,12 @@ export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
         <div className='mt-[13px]'>
           <Image src={flagImage} width={188} alt='국기 이미지' />
         </div>
-        <div className='green-scroll h-[150px] w-[324px] overflow-y-scroll bg-white p-3'>
-          <div className='mb-[10px] text-xl font-bold'>Passport</div>
+        <div
+          className={`green-scroll h-[150px] w-[324px] overflow-x-hidden overflow-y-${
+            travelHistory.length ? 'scroll' : 'hidden'
+          } bg-white p-3 py-1`}
+        >
+          <div className='mb-[10px] text-[18px] font-bold'>{text.passport}</div>
           {travelHistory.length ? haveHistory : notHaveHistory}
         </div>
       </div>
@@ -59,7 +67,7 @@ export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
       <div className='mb-[10px] text-center'>
         <Button className='font-bold'>
           <span className='text-primaryYellow mr-[5px]'>{countryKor}</span>
-          스토리 보러가기
+          {text.community}
         </Button>
       </div>
     </div>

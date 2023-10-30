@@ -13,17 +13,25 @@ import G_southAmericaStamp from '/public/assets/passport_stamp/gray_scale/n_pass
 import G_oceaniaStamp from '/public/assets/passport_stamp/gray_scale/n_passport_stamp06.png';
 
 // @ TODO: DB에 저장된 대륙명의 형태로 수정 예정
-export const CountryInfoModalConfig = {
-  africaStamp,
-  asiaStamp,
-  europeStamp,
-  northAmericaStamp,
-  southAmericaStamp,
-  oceaniaStamp,
-  G_africaStamp,
-  G_asiaStamp,
-  G_europeStamp,
-  G_northAmericaStamp,
-  G_southAmericaStamp,
-  G_oceaniaStamp,
+export const CountryInfoConfig = {
+  stamp: {
+    africaStamp,
+    asiaStamp,
+    europeStamp,
+    northAmericaStamp,
+    southAmericaStamp,
+    oceaniaStamp,
+    G_africaStamp,
+    G_asiaStamp,
+    G_europeStamp,
+    G_northAmericaStamp,
+    G_southAmericaStamp,
+    G_oceaniaStamp,
+  },
+  text: {
+    community: '스토리 보러가기',
+    record: '스토리 기록하기',
+    passport: 'passport',
+    notHaveRecord: '이곳을 여행하신 적이 있나요?',
+  },
 };
