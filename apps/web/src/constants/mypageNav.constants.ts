@@ -24,11 +24,10 @@ export const mypageNavConfig = {
         },
       ],
     },
-    // 관심 스토리 페이지 작업하실때 주소 등록해주세요
     {
       icon: 'collections_bookmark',
       title: '관심 스토리',
-      href: '/',
+      href: '/mypage/like_story',
     },
     {
       icon: 'military_tech',
