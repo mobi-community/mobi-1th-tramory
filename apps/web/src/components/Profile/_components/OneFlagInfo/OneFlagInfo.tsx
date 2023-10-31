@@ -1,6 +1,19 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
-const OneFlagInfo = ({ item }) => {
+/**
+ * @Todo 목데이터 타입이라 해당 파일에 임시로 작성했습니다.
+ * 추후 실제 데이터 타입으로 수정 예정
+ */
+type OneFlagInfoType = {
+  img: StaticImageData;
+  name: string;
+};
+
+type OneFlagInfoProps = {
+  item: OneFlagInfoType;
+};
+
+const OneFlagInfo = ({ item }: OneFlagInfoProps) => {
   return (
     <div className='flex flex-col items-center'>
       <div className='flex h-[93px] items-center'>

@@ -3,7 +3,16 @@ import { Button } from 'ui';
 
 import { isIndividualToggleAtom } from '@/store';
 
-export const OneInquiryHistory = ({ data }) => {
+import { InquiryMockData } from '../../_mock/InquiryMocks';
+
+// 목데이터이므로 임시 type 설정 -> 추후 실제 데이터 타입으로 변경
+type InquiryData = (typeof InquiryMockData)[0];
+
+type InquiryDataProps = {
+  data: InquiryData;
+};
+
+export const OneInquiryHistory = ({ data }: InquiryDataProps) => {
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(
     isIndividualToggleAtom(data.id)
   );
