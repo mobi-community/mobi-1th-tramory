@@ -1,6 +1,8 @@
 import { useAtom } from 'jotai';
 import { useRef } from 'react';
-import { uploadedImagesAtom, sliderIndexAtom } from '@/store/uploadImage.atoms';
+
+import { sliderIndexAtom, uploadedImagesAtom } from '@/store/uploadImage.atoms';
+
 import ImageSlider from './ImageSlider';
 
 const UploadImgFiles: React.FC = () => {
@@ -17,6 +19,7 @@ const UploadImgFiles: React.FC = () => {
         0,
         MAX_IMAGES - uploadedImages.length
       );
+
       setUploadedImages((prev) => [...prev, ...newImages]);
     }
   };
@@ -35,6 +38,7 @@ const UploadImgFiles: React.FC = () => {
 
   const deleteImage = (index: number) => {
     const newImages = [...uploadedImages];
+
     newImages.splice(index, 1);
     setUploadedImages(newImages);
   };

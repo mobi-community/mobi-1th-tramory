@@ -21,7 +21,7 @@ const Step4Dates = ({ control, itemsPerPage, currentPage }) => {
 
   useEffect(() => {
     getDates();
-  }, []);
+  });
 
   return (
     <>
