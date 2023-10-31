@@ -2,12 +2,13 @@
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
-import { Button } from 'ui';
+import { useRef, useState } from 'react';
+import { Button, Input } from 'ui';
 
 import profileImage from '/public/images/profile-image.svg';
 import {
   mypageProfileBgImageAtom,
+  mypageProfileContent,
   mypageProfileImageAtom,
 } from '@/store/mypageProfile.atoms';
 import materialIcon from '@/utils/materialIcon';
@@ -15,6 +16,8 @@ import materialIcon from '@/utils/materialIcon';
 export const MyPageProfile = () => {
   const [profilebg, setProfilebg] = useAtom(mypageProfileBgImageAtom);
   const [profileImg, setProfileImg] = useAtom(mypageProfileImageAtom);
+  const [profileContent, setProfileContent] = useAtom(mypageProfileContent);
+  const [tempContent, setTempContent] = useState(profileContent.content);
   const bgInputRef = useRef<HTMLInputElement>(null);
   const profileInputRef = useRef<HTMLInputElement>(null);
 
@@ -39,13 +42,13 @@ export const MyPageProfile = () => {
       URL.revokeObjectURL(bgImageUrl);
       setProfilebg(null);
       if (bgInputRef.current) {
-        bgInputRef.current.value = ''; // 파일 입력의 값을 리셋합니다.
+        bgInputRef.current.value = '';
       }
     } else if (type === 'profile' && profileImg) {
       URL.revokeObjectURL(profileImgUrl);
       setProfileImg(null);
       if (profileInputRef.current) {
-        profileInputRef.current.value = ''; // 파일 입력의 값을 리셋합니다.
+        profileInputRef.current.value = '';
       }
     }
   };
@@ -124,14 +127,64 @@ export const MyPageProfile = () => {
       <div className=' text-primaryBlue-700 flex flex-col items-center justify-center'>
         <div className='mt-1 text-[14px] font-semibold'>User1</div>
         <div className='flex items-center justify-center'>
-          <div className='ml-4 text-[12px]'>소개문구를 작성해주세요.</div>
           <div>
-            <div className='border-primaryBlue-700 hover:bg-primaryBlue-700 ml-2 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border p-1 hover:text-white hover:opacity-80'>
-              {materialIcon({
-                iconName: 'edit',
-                size: 14,
-              })}
-            </div>
+            {profileContent.isEdit ? (
+              <div className='flex items-center gap-2'>
+                <Input
+                  className=' border-primaryGray-300 h-[20px] w-[200px] border'
+                  onChange={(e) => {
+                    setTempContent(e.target.value);
+                  }}
+                  value={tempContent}
+                />
+                <Button
+                  className='h-[20px] w-[35px] text-[10px]'
+                  variant='roundednavy'
+                  size='xsm'
+                  // onchange로 변경된 값으로 저장하고 isEdit을 false로 바꿈
+                  onClick={() => {
+                    setProfileContent({
+                      content: tempContent,
+                      isEdit: false,
+                    });
+                  }}
+                >
+                  저장
+                </Button>
+                <Button
+                  className='h-[20px] w-[35px] text-[10px]'
+                  variant='roundednavy'
+                  size='xsm'
+                  onClick={() => {
+                    setTempContent(profileContent.content);
+                    setProfileContent((prev) => ({
+                      ...prev,
+                      isEdit: false,
+                    }));
+                  }}
+                >
+                  취소
+                </Button>
+              </div>
+            ) : (
+              <div className='flex'>
+                <div className='ml-4 text-[12px]'>{profileContent.content}</div>
+                <div
+                  onClick={() => {
+                    setProfileContent((prev) => ({
+                      ...prev,
+                      isEdit: true,
+                    }));
+                  }}
+                  className='border-primaryBlue-700 hover:bg-primaryBlue-700 ml-2 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border p-1 hover:text-white hover:opacity-80'
+                >
+                  {materialIcon({
+                    iconName: 'edit',
+                    size: 14,
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className='mt-2'>
