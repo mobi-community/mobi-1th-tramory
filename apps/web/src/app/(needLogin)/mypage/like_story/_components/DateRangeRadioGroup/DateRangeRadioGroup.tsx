@@ -1,6 +1,7 @@
 import { Label, RadioGroup, RadioGroupItem } from 'ui';
 
 import { LABELS, PERIODS } from '@/constants';
+import { getPastDateRange } from '@/utils/getPastDateRange';
 
 export const DateRangeRadioGroup = ({
   setDateRange,
@@ -9,13 +10,9 @@ export const DateRangeRadioGroup = ({
 }) => {
   const handlePeriodChange = (value: string) => {
     const period = PERIODS[value];
+    const dateRange = getPastDateRange(period);
 
-    const endDate = new Date();
-    const startDate = new Date();
-
-    startDate.setMonth(startDate.getMonth() - period);
-
-    setDateRange([startDate, endDate]);
+    setDateRange(dateRange);
   };
 
   const dateRangeArray = ['month', 'sixMonth', 'year'];
