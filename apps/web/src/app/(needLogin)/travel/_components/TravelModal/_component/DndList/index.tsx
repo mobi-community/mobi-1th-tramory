@@ -1,7 +1,8 @@
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { useDndList } from './useDndList';
-import DndItem from '../DndItem';
 import { Button } from 'ui';
+
+import DndItem from '../DndItem';
+import { useDndList } from './useDndList';
 
 const DndList: React.FC = () => {
   const {

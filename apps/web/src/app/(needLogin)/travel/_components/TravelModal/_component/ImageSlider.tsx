@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { Button } from 'ui';
 
 type ImageSliderProps = {
   images: File[];
   sliderIndex: number;
+  // eslint-disable-next-line no-unused-vars
   onDelete: (index: number) => void;
   onNext: () => void;
   onPrev: () => void;

@@ -5,7 +5,7 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:prettier/recommended',
     'plugin:storybook/recommended',
-    '@commitlint/config-conventional',
+    // '@commitlint/config-conventional',
   ],
   plugins: ['simple-import-sort', 'prettier'],
   settings: {
