@@ -1,20 +1,21 @@
 'use client';
-import { useAtom } from 'jotai';
+// import { useAtom } from 'jotai';
 import { PropsWithChildren } from 'react';
 
-import { isCountryInfoModalOpen } from '@/store';
+// import { isCountryInfoModalOpen } from '@/store';
 
-import ViewTravelRecordTypeModal from '../Floating_modal/TravelRecordSelectModal';
+// import ViewTravelRecordType from '../Floating_modal/TravelRecordSelect';
 
-export const CountryInfoModal: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isModalOpen, setIsModalOpen] = useAtom(isCountryInfoModalOpen);
+export const CountryInfoModal: React.FC<PropsWithChildren> = () => {
+  // const [isModalOpen, setIsModalOpen] = useAtom(isCountryInfoModalOpen);
 
   return (
-    <ViewTravelRecordTypeModal
-      isOpen={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
-    >
-      {children}
-    </ViewTravelRecordTypeModal>
+    // <ViewTravelRecordType
+    //   isOpen={isModalOpen}
+    //   onClose={() => setIsModalOpen(false)}
+    // >
+    //   {children}
+    // </ViewTravelRecordType>
+    <div></div>
   );
 };

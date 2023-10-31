@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 
 import { hoveredAtom, isModalOpenAtom, isMountedAtom } from '../../store';
 import ViewTravelRecordType from '../Floating_modal/TravelRecordSelect';
-import ViewTravelRecordTypeModal from '../Floating_modal/TravelRecordSelectModal';
+import TravelModal from '../ModalDefault/TravelModalDefault';
 import type { FloatingMenuProps } from './FloatingMenuProps.types';
 
 const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
@@ -69,9 +69,9 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
           )}
         </div>
       </div>
-      <ViewTravelRecordTypeModal isOpen={isModalOpen} onClose={closeModal}>
+      <TravelModal isOpen={isModalOpen} onClose={closeModal}>
         <ViewTravelRecordType />
-      </ViewTravelRecordTypeModal>
+      </TravelModal>
     </div>
   );
 };
