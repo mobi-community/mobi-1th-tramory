@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
+import { useAddLocationModal } from '@/components/AddLocationModal';
+import { AddLocationModal } from '@/components/AddLocationModal/AddLocationModal';
 import { recommendPageConfig } from '@/constants';
 
 import { PageBox } from './_components';
@@ -43,21 +45,29 @@ const RecommendCountryPage: React.FC = () => {
     };
   }, []);
 
+  const { handleOpenModal } = useAddLocationModal();
+
   return (
-    <div
-      className='max-h-[calc(100vh-20px)] overflow-x-hidden'
-      ref={wrapperRef}
-    >
-      <PageBox
-        continentArray={recommendPageConfig.continentsArray.slice(0, 3)}
-        isTop={true}
-        handleScroll={scrollToBottom}
-      />
-      <PageBox
-        continentArray={recommendPageConfig.continentsArray.slice(3)}
-        isTop={false}
-        handleScroll={scrollToTop}
-      />
+    <div>
+      <div>
+        <button onClick={handleOpenModal}>장소 추가 모달 열기</button>
+      </div>
+      <div
+        className='max-h-[calc(100vh-20px)] overflow-x-hidden'
+        ref={wrapperRef}
+      >
+        <PageBox
+          continentArray={recommendPageConfig.continentsArray.slice(0, 3)}
+          isTop={true}
+          handleScroll={scrollToBottom}
+        />
+        <PageBox
+          continentArray={recommendPageConfig.continentsArray.slice(3)}
+          isTop={false}
+          handleScroll={scrollToTop}
+        />
+      </div>
+      <AddLocationModal />
     </div>
   );
 };

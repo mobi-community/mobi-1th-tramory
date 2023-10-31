@@ -1,3 +1,5 @@
+'use client';
+
 import { useAtom } from 'jotai';
 
 import { isAddLocationOpen, isLocationSearchModalOpen } from '@/store';

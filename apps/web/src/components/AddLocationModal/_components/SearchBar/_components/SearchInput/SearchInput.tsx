@@ -15,7 +15,7 @@ export const SearchInput: React.FC = () => {
   console.log('click', isSearchModalOpen);
 
   return (
-    <>
+    <div>
       <form
         onSubmit={handleSubmit((data: string) => console.log('data', data))}
       >
@@ -32,18 +32,18 @@ export const SearchInput: React.FC = () => {
                 placeholder={MapPageConfig.searchBarText}
                 autoComplete='off'
               />
-              <div className='cursor-pointer pr-[20px] pt-2'>
+              <button className='cursor-pointer pr-[20px] pt-2'>
                 {materialIcon({
                   iconName: 'search',
                   size: 30,
                   style: 'text-primaryGray-400 ',
                 })}
-              </div>
+              </button>
               <KeywordModal field={field} />
             </div>
           )}
         />
       </form>
-    </>
+    </div>
   );
 };

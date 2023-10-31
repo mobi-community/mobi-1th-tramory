@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { Button } from 'ui';
 
-import { AddLocationModal } from '@/components/AddLocationModal/AddLocationModal';
-import { useAddLocationModal } from '@/components/AddLocationModal/hooks/useAddLocationModal';
 import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
 
 import FloatingMenu from '../components/Floating_menu/FloatingMenu';
@@ -29,7 +27,6 @@ const buttonVariants = [
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { handleOpenModal } = useAddLocationModal();
 
   return (
     <div className='relative mt-8 items-center space-y-4'>
@@ -56,8 +53,6 @@ export default function Page() {
         >
           모달 상세기록 열기
         </button>
-        <Button onClick={handleOpenModal}>장소 추가 모달 열기</Button>
-        <AddLocationModal />
         <TravelModalDefault
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
