@@ -1,3 +1,4 @@
+export * from './addLocationModal.atoms';
 export * from './countryInfoModal.atoms';
 export * from './floatingMenu.atoms';
 export * from './map.atoms';

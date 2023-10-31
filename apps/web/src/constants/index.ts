@@ -1,3 +1,4 @@
+export * from './addLocationModal.constants';
 export * from './badge.constants';
 export * from './cancel_membership.constants';
 export * from './countryInfo.constants';
