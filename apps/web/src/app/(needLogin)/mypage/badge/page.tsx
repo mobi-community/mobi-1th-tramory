@@ -1,8 +1,3 @@
-/**
- * @todo
- * <MyPageContainer title='나의 배지'>
- * title props부분 추후 navbar title config값으로 대체 예정
- */
 'use client';
 import { usePathname } from 'next/navigation';
 
@@ -11,7 +6,7 @@ import { mypageNavConfig } from '@/constants';
 import { MyPageContainer } from '../_components';
 import { BadgeSlide } from './_components';
 
-const MyBadge = () => {
+const MyBadgePage = () => {
   const pathname = usePathname();
   const navTitle = mypageNavConfig.nav.find(
     (nav) => nav.href === pathname
@@ -26,4 +21,4 @@ const MyBadge = () => {
   );
 };
 
-export default MyBadge;
+export default MyBadgePage;
