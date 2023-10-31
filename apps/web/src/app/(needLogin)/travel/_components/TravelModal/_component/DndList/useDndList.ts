@@ -1,31 +1,37 @@
 import { useAtom } from 'jotai';
-import { travelModalDndList } from '@/store/travelModalDnd.atoms';
 import { DropResult } from 'react-beautiful-dnd';
+
+import { travelModalDndList } from '@/store/travelModalDnd.atoms';
 
 export const useDndList = () => {
   const [items, setItems] = useAtom(travelModalDndList);
 
   const handleDeleteItem = (itemId: number) => {
     const updatedItems = items.filter((item) => item.id !== itemId);
+
     setItems(updatedItems);
   };
 
   const handleEditItemName = (itemId: number) => {
     const newName = prompt('경로수정(나중에 구글맵으로연결필요):');
+
     if (newName) {
       const updatedItems = items.map((item) =>
         item.id === itemId ? { ...item, name: newName } : item
       );
+
       setItems(updatedItems);
     }
   };
 
   const handleAddMemo = (itemId: number) => {
     const memo = prompt('기록하기:');
+
     if (memo) {
       const updatedItems = items.map((item) =>
         item.id === itemId ? { ...item, memos: [...item.memos, memo] } : item
       );
+
       setItems(updatedItems);
     }
   };
@@ -35,6 +41,7 @@ export const useDndList = () => {
 
     const reorderedItems = Array.from(items);
     const [reorderedItem] = reorderedItems.splice(result.source.index, 1);
+
     reorderedItems.splice(result.destination.index, 0, reorderedItem);
 
     setItems(reorderedItems);
@@ -42,6 +49,7 @@ export const useDndList = () => {
 
   const handleAddNewItem = () => {
     const newItemName = `${items.length + 1}`;
+
     setItems((prevItems) => [
       ...prevItems,
       { id: Date.now(), name: newItemName, memos: [], editingMemoIndex: -1 },
@@ -63,6 +71,7 @@ export const useDndList = () => {
           }
         : item
     );
+
     setItems(updatedItems);
   };
 
@@ -75,6 +84,7 @@ export const useDndList = () => {
           }
         : item
     );
+
     setItems(updatedItems);
   };
 

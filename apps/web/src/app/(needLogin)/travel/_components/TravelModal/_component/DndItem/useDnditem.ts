@@ -14,6 +14,7 @@ const memoStateAtom = atom<MemoState>(defaultState);
 
 interface UseDndItemProps {
   item: { id: number; name: string; memos: string[] };
+  // eslint-disable-next-line no-unused-vars
   onEditMemo: (id: number, memoIndex: number, updatedMemo: string) => void;
 }
 

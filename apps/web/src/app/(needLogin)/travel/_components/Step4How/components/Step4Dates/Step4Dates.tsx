@@ -1,12 +1,23 @@
 'use client';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
 import { selectedDateIdAtom, travelDateAtom } from '@/store';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
-const Step4Dates = ({ control, itemsPerPage, currentPage }) => {
+interface IStep4DatesProps {
+  control: Control<IregisterFormvalue>;
+  itemsPerPage: number;
+  currentPage: number;
+}
+
+const Step4Dates: React.FC<IStep4DatesProps> = ({
+  control,
+  itemsPerPage,
+  currentPage,
+}) => {
   const [date, setDate] = useAtom(travelDateAtom);
   const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
   const startIdx = currentPage * itemsPerPage;
@@ -21,7 +32,7 @@ const Step4Dates = ({ control, itemsPerPage, currentPage }) => {
 
   useEffect(() => {
     getDates();
-  }, []);
+  });
 
   return (
     <>

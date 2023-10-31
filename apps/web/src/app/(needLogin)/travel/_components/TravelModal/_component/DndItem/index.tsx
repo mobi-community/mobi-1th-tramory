@@ -1,5 +1,5 @@
-import { DraggableItemProps } from './useDndItems.type';
 import { useDndItem } from './useDnditem';
+import { DraggableItemProps } from './useDndItems.type';
 
 const DndItem: React.FC<DraggableItemProps> = (props) => {
   const {
@@ -61,6 +61,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
         </div>
       </div>
       {props.item.memos.map((memo, memoIndex) => (
+        // eslint-disable-next-line react/jsx-key
         <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
           {editingMemoIndex === memoIndex ? (
             <input
