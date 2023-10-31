@@ -16,14 +16,14 @@ export const AddLocationModal: React.FC = () => {
         <div className='flex w-[900px] flex-col border border-gray-300 bg-white shadow-md'>
           <div className='mb-1 flex justify-end p-5'>
             <button
-              className='text-primaryGray-300 cursor-pointer p-[5px]'
+              className='text-primaryGray-300 relative z-10 cursor-pointer p-[5px]'
               onClick={handleCloseModal}
             >
               {materialIcon({ iconName: 'close', size: 40 })}
             </button>
           </div>
           <div className='flex-1 text-2xl'>
-            <div className='mb-[20px] mt-[-75px] border-b-[1px] pb-[30px] text-center text-4xl font-bold'>
+            <div className='relative z-0 mb-[20px] mt-[-75px] border-b-[1px] pb-[30px] text-center text-4xl font-bold'>
               {AddLocationConfig.titleText}
             </div>
             <SearchBar />

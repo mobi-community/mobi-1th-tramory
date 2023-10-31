@@ -2,7 +2,14 @@
 
 import { useAtom } from 'jotai';
 
-import { isAddLocationOpen, isLocationSearchModalOpen } from '@/store';
+import {
+  addressValueAtom,
+  isAddLocationOpen,
+  isEditAddressAtom,
+  isEditLocationAtom,
+  isLocationSearchModalOpen,
+  locationValueAtom,
+} from '@/store';
 
 export const useAddLocationModal = () => {
   const [isAddLocationModalOpen, setIsAddLocationModalOpen] =
@@ -12,11 +19,24 @@ export const useAddLocationModal = () => {
     isLocationSearchModalOpen
   );
 
+  const [isEditLocation, setIsEditLocation] = useAtom(isEditLocationAtom);
+  const [isEditAddress, setIsEditAddress] = useAtom(isEditAddressAtom);
+  const [locationVal, setLocationVal] = useAtom(locationValueAtom);
+  const [addressVal, setAddressVal] = useAtom(addressValueAtom);
+
   return {
     isAddLocationModalOpen,
     handleOpenModal: () => setIsAddLocationModalOpen(true),
     handleCloseModal: () => setIsAddLocationModalOpen(false),
     isSearchModalOpen,
     setIsSearchModalOpen,
+    isEditLocation,
+    isEditAddress,
+    handleEditLocation: (isEditMode: boolean) => setIsEditLocation(isEditMode),
+    handleEditAddress: (isEditMode: boolean) => setIsEditAddress(isEditMode),
+    locationVal,
+    addressVal,
+    setLocationVal,
+    setAddressVal,
   };
 };
