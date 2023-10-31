@@ -11,6 +11,7 @@ register();
 import { useAtomValue } from 'jotai';
 
 import { CountryInfoModal, LayoutForCountry } from '@/components';
+import SimpleRecordModal from '@/components/SimpleRecordModal/SimpleRecordModal';
 import type { recomContinentType } from '@/constants';
 import { targetLocationAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
@@ -29,7 +30,7 @@ export const ContinentSlide: React.FC<{
       <div className='mb-[10px] ml-[80px] flex items-center text-3xl font-bold'>
         # {continentName.toUpperCase()}
       </div>
-      <div>
+      <div className='relatvie z-0'>
         <Swiper
           modules={[Navigation]}
           slidesPerView={4}
@@ -63,6 +64,7 @@ export const ContinentSlide: React.FC<{
         {/* <LayoutForCity cityData={cityDataMock} /> */}
         <LayoutForCountry countryData={countryDataMock} />
       </CountryInfoModal>
+      <SimpleRecordModal />
     </div>
   );
 };

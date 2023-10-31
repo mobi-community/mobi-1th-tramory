@@ -4,7 +4,7 @@ import { Button } from 'ui';
 
 import { CountryInfoConfig } from '@/constants';
 
-import type { CityInfoType } from '../CountryInfoModal.types';
+import type { CityInfoType } from '../../CountryInfoModal.types';
 
 /*
     @ Todo
@@ -36,7 +36,7 @@ export const LayoutForCity: React.FC<{ cityData: CityInfoType }> = ({
           />
         </div>
       </div>
-      <div className='bg-primaryGray-200 my-[40px] h-[233px] w-[546px]'>
+      <div className='bg-primaryGray-200 m-auto my-[40px] h-[233px] w-[546px]'>
         지도
       </div>
       <Link

@@ -3,7 +3,9 @@ import { Button } from 'ui';
 
 import { isIndividualToggleAtom } from '@/store';
 
-export const OneInquiryHistory = ({ data }) => {
+import type { InquiryDataProps } from './OneInquiryHistory.types';
+
+export const OneInquiryHistory = ({ data }: InquiryDataProps) => {
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(
     isIndividualToggleAtom(data.id)
   );

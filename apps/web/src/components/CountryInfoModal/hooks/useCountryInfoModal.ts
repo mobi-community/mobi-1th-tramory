@@ -1,12 +1,18 @@
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 
-import { isCountryInfoModalOpen, targetLocationAtom } from '@/store';
+import {
+  isCountryInfoModalOpen,
+  openSimpleRecordModalAtom,
+  targetLocationAtom,
+} from '@/store';
 
-export const useCountryInfoModal = (country: string) => {
+export const useCountryInfoModal = (country?: string) => {
   const [isCountryInfoOpen, setIsCountryInfoOpen] = useAtom(
     isCountryInfoModalOpen({ country })
   );
   const [targetLocation, setTargetLocation] = useAtom(targetLocationAtom);
+
+  const setIsSimpleRecordModalOpen = useSetAtom(openSimpleRecordModalAtom);
 
   return {
     isCountryInfoOpen,
@@ -18,6 +24,9 @@ export const useCountryInfoModal = (country: string) => {
     closeCountryInfoModal: () => {
       setIsCountryInfoOpen({ isOpen: false });
       setTargetLocation('');
+    },
+    openSimpleRecordModal: () => {
+      setIsSimpleRecordModalOpen(true);
     },
   };
 };

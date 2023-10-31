@@ -2,14 +2,15 @@
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 
-import { isIndividualToggleAtom } from '@/store';
+import { isIndividualFlagToggleAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
+import type { FlagInfoDataProps } from './FlagInfo.types';
 
-export const FlagInfo = ({ data, id }) => {
+export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(
-    isIndividualToggleAtom(id)
+    isIndividualFlagToggleAtom(id)
   );
 
   const handleToggleFlags = () => {

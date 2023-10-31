@@ -4,6 +4,7 @@ import { Wrapper } from '@googlemaps/react-wrapper';
 import { useAtom, useAtomValue } from 'jotai';
 import React from 'react';
 
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { MapPageConfig } from '@/constants';
 import { MapAtom } from '@/store';
 
@@ -43,6 +44,7 @@ const MapPage: React.FC = () => {
           </Map>
         </Wrapper>
         <AnimatedArrow />
+        <FloatingMenu />
       </div>
     );
   return null;

@@ -4,7 +4,7 @@ export const getSelectClasses = (variant: string, isToggle: boolean) =>
       'w-[700px] flex justify-between border py-2 px-3 rounded text-sm leading-6 cursor-pointer',
     mypageCategory:
       'w-[160px] pl-4 pr-2 py-1 flex justify-end border border-primaryBlue-700 text-sm leading-6 cursor-pointer',
-    modalCategory: `w-[400px] flex justify-between border py-[10px] px-4 rounded text-sm leading-6 cursor-pointer ${
+    modalCategory: `w-[300px] flex justify-between border py-[10px] px-4 rounded text-sm leading-6 cursor-pointer ${
       isToggle ? 'border-[#6EA5FF]' : ''
     }`,
   }[variant]);
@@ -16,7 +16,7 @@ export const getOptionClasses = (variant: string) =>
     mypageCategory:
       'w-[160px] pb-2 px-3 flex flex-col items-center border border-primaryBlue-700 text-sm leading-6 cursor-pointer top-10',
     modalCategory:
-      'w-[400px] flex flex-col border pb-2 px-3 rounded text-sm leading-6 cursor-pointer bg-[#EEF5FF]/90 top-11 border-[#6EA5FF] top-[52px]',
+      'w-[300px] flex flex-col border pb-2 px-3 rounded text-sm leading-6 cursor-pointer bg-[#EEF5FF]/90 top-11 border-[#6EA5FF] top-[52px]',
   }[variant]);
 
 export const getMypageCategoryClasses = (variant: string) =>

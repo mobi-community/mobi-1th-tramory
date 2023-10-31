@@ -30,7 +30,7 @@ export const CountryInfoConfig = {
   },
   text: {
     community: '스토리 보러가기',
-    record: '스토리 기록하기',
+    record: '기록 남기기',
     passport: 'passport',
     notHaveRecord: '이곳을 여행하신 적이 있나요?',
   },

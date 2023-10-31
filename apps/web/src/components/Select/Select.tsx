@@ -1,4 +1,5 @@
 import { atom, useAtom } from 'jotai';
+import { useEffect } from 'react';
 
 import {
   getMypageCategoryClasses,
@@ -16,6 +17,7 @@ export const Select = ({
   onChange,
   initialValue,
   variant = 'service',
+  value,
 }: SelectType) => {
   const [currentValue, setCurrentValue] = useAtom(valueAtom);
   const [isToggle, setIsToggle] = useAtom(isToggleAtom);
@@ -23,6 +25,10 @@ export const Select = ({
   const optionClasses = getOptionClasses(variant);
   const onlyMypageCategory = getMypageCategoryClasses(variant);
   const oneOptionClasses = getOneOptionClasses(variant);
+
+  useEffect(() => {
+    setCurrentValue(value);
+  }, [setCurrentValue, value]);
 
   const handleOpenOptions = () => {
     setIsToggle((prev) => !prev);
@@ -44,7 +50,7 @@ export const Select = ({
         </span>
       </div>
       {isToggle && (
-        <div className={`absolute ${optionClasses}`}>
+        <div className={`absolute z-[110] ${optionClasses}`}>
           {options.map((option, idx) => (
             <div
               className={oneOptionClasses}
