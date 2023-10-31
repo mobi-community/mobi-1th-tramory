@@ -1,11 +1,15 @@
 import { useAtom } from 'jotai';
-// import { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
 import { travelCategory } from '@/constants/travelStep3Category.constants';
 import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
 
-const Step3Category = ({ label, control }) => {
+interface IStep3CategoryProps {
+  control: Control<IregisterFormvalue>;
+}
+
+const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useAtom(
     selectedCategoryIdAtom
   );
@@ -18,9 +22,6 @@ const Step3Category = ({ label, control }) => {
         defaultValue={''}
         render={({ field }) => (
           <div>
-            <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[60px] text-[30px] font-semibold'>
-              어떤 여행을 {label}?
-            </div>
             <div className='mt-[20px] flex w-[600px] flex-wrap justify-center '>
               {travelCategory.map((category) => (
                 <div

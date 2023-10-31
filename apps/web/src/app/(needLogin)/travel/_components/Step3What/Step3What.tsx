@@ -1,13 +1,20 @@
 'use client';
 import { useForm } from 'react-hook-form';
 
+import type { TravelPlanStep3Config } from '@/constants/travelStep3.constants';
+import type { IregisterFormvalue } from '@/types/registerStep.types';
+
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step3Category from './components/Step3Category/Step3Category';
 import Step3Tag from './components/Step3Tag/Step3Tag';
 
-const Step3What = ({ label }) => {
-  const { handleSubmit, control } = useForm();
+interface IStep3Props {
+  config: TravelPlanStep3Config;
+}
+
+const Step3What: React.FC<IStep3Props> = ({ config }) => {
+  const { handleSubmit, control } = useForm<IregisterFormvalue>();
   const onSubmit = (data) => console.log(data);
 
   return (
@@ -17,9 +24,12 @@ const Step3What = ({ label }) => {
           <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
             <div>
               <div className='mt-[14px]'>
-                <Step3Category label={label} control={control} />
-                <div className='text-primaryGray-500  mb-[10px] ml-[70px] mt-[60px] text-[30px] font-semibold'>
-                  여행과 관련된 태그를 남겨주세요!
+                <div className='text-primaryGray-500  mb-[10px] ml-[150px] mt-[60px] text-[30px] font-semibold'>
+                  {config.label}
+                </div>
+                <Step3Category control={control} />
+                <div className='text-primaryGray-500  mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
+                  {config.subLabel}
                 </div>
                 <div className='mt-[30px] flex justify-center '>
                   {travelTag.map((tag) => (
