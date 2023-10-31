@@ -42,7 +42,9 @@ const LoginPage = () => {
           <LoginForm />
           <Button
             variant='nonrounded'
-            onClick={() => signIn('google')}
+            onClick={() => {
+              signIn('google');
+            }}
             className='w-full'
           >
             <Image src={googleImage} alt='구글 가이드라인 이미지' width={130} />
