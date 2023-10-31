@@ -10,12 +10,12 @@ register();
 
 import { useAtomValue } from 'jotai';
 
-import { CountryInfoModal, LayoutForCountry } from '@/components';
+import { CountryInfoModal, LayoutForCity } from '@/components';
 import type { recomContinentType } from '@/constants';
 import { targetLocationAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
-import { countryDataMock } from '../../_mocks';
+import { cityDataMock } from '../../_mocks';
 import { OneCountry } from '../OneCountry/OneCountry';
 
 export const ContinentSlide: React.FC<{
@@ -60,8 +60,8 @@ export const ContinentSlide: React.FC<{
         </Swiper>
       </div>
       <CountryInfoModal country={targetLocation}>
-        {/* <LayoutForCity cityData={cityDataMock} /> */}
-        <LayoutForCountry countryData={countryDataMock} />
+        <LayoutForCity cityData={cityDataMock} />
+        {/* <LayoutForCountry countryData={countryDataMock} /> */}
       </CountryInfoModal>
     </div>
   );

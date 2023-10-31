@@ -4,8 +4,8 @@ import { Button } from 'ui';
 
 import { CountryInfoConfig } from '@/constants/countryInfo.constants';
 
-import { CountryInfoType } from '../CountryInfoModal.types';
-import { getContinentStamp } from '../utils/getContinentStamp';
+import { CountryInfoType } from '../../CountryInfoModal.types';
+import { getContinentStamp } from '../../utils/getContinentStamp';
 
 export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
   countryData,
