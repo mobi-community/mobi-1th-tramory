@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { recommendPageConfig } from '@/constants';
 
 import { PageBox } from './_components';
@@ -58,6 +59,7 @@ const RecommendCountryPage: React.FC = () => {
         isTop={false}
         handleScroll={scrollToTop}
       />
+      <FloatingMenu />
     </div>
   );
 };

@@ -39,9 +39,18 @@ export const LayoutForCountry: React.FC<{ countryData: CountryInfoType }> = ({
     <div className='relative m-auto w-[300px] text-center'>
       <div className='absolute left-3 top-[-10px] z-0'>{stampImage(false)}</div>
       <div className='z-100 relative pt-3'>{text.notHaveRecord}</div>
-      <Link href={'/travel/plan?stepId=0'}>
-        <Button className='my-[10px] mt-4 font-bold'>{text.record}</Button>
-      </Link>
+      <div className='flex justify-around'>
+        <Button className='z-100 relative my-[10px] mt-4 font-bold'>
+          <span className='text-primaryYellow mr-[3px]'>간편</span>{' '}
+          {text.record}
+        </Button>
+        <Link href={'/travel/plan?stepId=0'}>
+          <Button className='z-100 relative my-[10px] mt-4 font-bold'>
+            <span className='text-primaryYellow mr-[3px]'>상세</span>{' '}
+            {text.record}
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 
