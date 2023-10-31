@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
     <div
       className={`z-50 mx-20 flex justify-between ${
         isRecommendPage
-          ? 'fixed top-[0%] block h-[80px] w-[95%] items-center bg-white'
+          ? 'z-100 fixed top-[0%] block h-[80px] w-[95%] items-center bg-white'
           : 'mt-10'
       }`}
     >
