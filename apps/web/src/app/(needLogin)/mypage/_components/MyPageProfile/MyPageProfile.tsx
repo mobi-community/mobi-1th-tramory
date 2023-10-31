@@ -2,7 +2,7 @@
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Button, Input } from 'ui';
 
 import profileImage from '/public/images/profile-image.svg';
@@ -13,58 +13,27 @@ import {
 } from '@/store/mypageProfile.atoms';
 import materialIcon from '@/utils/materialIcon';
 
+import { useImageUpload } from '../../_hooks/useImageUpload';
+
 export const MyPageProfile = () => {
-  const [profilebg, setProfilebg] = useAtom(mypageProfileBgImageAtom);
-  const [profileImg, setProfileImg] = useAtom(mypageProfileImageAtom);
   const [profileContent, setProfileContent] = useAtom(mypageProfileContent);
   const [tempContent, setTempContent] = useState(profileContent.content);
-  const bgInputRef = useRef<HTMLInputElement>(null);
-  const profileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleUploadImage = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    type: 'bg' | 'profile'
-  ) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      return;
-    }
-    const file = e.target.files[0];
+  const {
+    inputRef: bgInputRef,
+    handleUploadImage: handleUploadBgImage,
+    handleDeleteImage: handleDeleteBgImage,
+    handleUploadButtonClick: handleUploadBgButtonClick,
+    imageUrl: bgImageUrl,
+  } = useImageUpload(mypageProfileBgImageAtom);
 
-    if (type === 'bg') {
-      setProfilebg(file);
-    } else {
-      setProfileImg(file);
-    }
-  };
-
-  const handleDeleteImage = (type: 'bg' | 'profile') => {
-    if (type === 'bg' && profilebg) {
-      URL.revokeObjectURL(bgImageUrl);
-      setProfilebg(null);
-      if (bgInputRef.current) {
-        bgInputRef.current.value = '';
-      }
-    } else if (type === 'profile' && profileImg) {
-      URL.revokeObjectURL(profileImgUrl);
-      setProfileImg(null);
-      if (profileInputRef.current) {
-        profileInputRef.current.value = '';
-      }
-    }
-  };
-
-  const handleuploadImagebutton = (type: 'bg' | 'profile') => {
-    if (type === 'bg' && bgInputRef.current) {
-      bgInputRef.current.click();
-    } else if (type === 'profile' && profileInputRef.current) {
-      profileInputRef.current.click();
-    }
-  };
-
-  const bgImageUrl = profilebg ? URL.createObjectURL(profilebg) : null;
-  const profileImgUrl = profileImg
-    ? URL.createObjectURL(profileImg)
-    : profileImage;
+  const {
+    inputRef: profileInputRef,
+    handleUploadImage: handleUploadProfileImage,
+    handleDeleteImage: handleDeleteProfileImage,
+    handleUploadButtonClick: handleUploadProfileButtonClick,
+    imageUrl: profileImgUrl,
+  } = useImageUpload(mypageProfileImageAtom);
 
   return (
     <>
@@ -78,14 +47,10 @@ export const MyPageProfile = () => {
             accept='image/*'
             ref={bgInputRef}
             className=' hidden'
-            onChange={(e) => {
-              handleUploadImage(e, 'bg');
-            }}
+            onChange={handleUploadBgImage}
           />
           <Button
-            onClick={() => {
-              handleuploadImagebutton('bg');
-            }}
+            onClick={handleUploadBgButtonClick}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -93,9 +58,7 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
-            onClick={() => {
-              handleDeleteImage('bg');
-            }}
+            onClick={handleDeleteBgImage}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -141,7 +104,6 @@ export const MyPageProfile = () => {
                   className='h-[20px] w-[35px] text-[10px]'
                   variant='roundednavy'
                   size='xsm'
-                  // onchange로 변경된 값으로 저장하고 isEdit을 false로 바꿈
                   onClick={() => {
                     setProfileContent({
                       content: tempContent,
@@ -193,14 +155,10 @@ export const MyPageProfile = () => {
             accept='image/*'
             ref={profileInputRef}
             className=' hidden'
-            onChange={(e) => {
-              handleUploadImage(e, 'profile');
-            }}
+            onChange={handleUploadProfileImage}
           />
           <Button
-            onClick={() => {
-              handleuploadImagebutton('profile');
-            }}
+            onClick={handleUploadProfileButtonClick}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -208,9 +166,7 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
-            onClick={() => {
-              handleDeleteImage('profile');
-            }}
+            onClick={handleDeleteProfileImage}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
