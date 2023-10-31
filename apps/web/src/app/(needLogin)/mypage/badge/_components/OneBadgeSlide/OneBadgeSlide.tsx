@@ -9,36 +9,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import { useAtom } from 'jotai';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { isIndividualOneBadgeToggleAtom } from '@/store';
 
 import { HowToNotification } from '../HowToNotification';
-
-/**
- * @Todo 목데이터 타입이라 해당 파일에 임시로 작성했습니다.
- * 추후 실제 데이터 타입으로 수정 예정
- */
-type ItemType = {
-  title: string;
-  slug: string;
-  description: {
-    title: string;
-    subtitle?: string;
-  }[];
-  info: {
-    title: string;
-    description: string;
-  };
-};
-
-type OneBadgeSlideProps = {
-  item: ItemType;
-  badgeDefault: StaticImageData;
-  id: number;
-};
+import type { OneBadgeSlideProps } from './OneBadgeSlide.types';
 
 export const OneBadgeSlide = ({
   item,

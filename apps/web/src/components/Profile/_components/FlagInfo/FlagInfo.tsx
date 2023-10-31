@@ -1,30 +1,12 @@
 'use client';
 import { useAtom } from 'jotai';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 import { isIndividualFlagToggleAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
-
-/**
- * @Todo 목데이터 타입이라 해당 파일에 임시로 작성했습니다.
- * 추후 실제 데이터 타입으로 수정 예정
- */
-type DataType = {
-  ko: string;
-  en: string;
-  bannerImg: StaticImageData;
-  continentData: {
-    img: StaticImageData;
-    name: string;
-  }[];
-};
-
-type FlagInfoDataProps = {
-  data: DataType;
-  id: number;
-};
+import type { FlagInfoDataProps } from './FlagInfo.types';
 
 export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(

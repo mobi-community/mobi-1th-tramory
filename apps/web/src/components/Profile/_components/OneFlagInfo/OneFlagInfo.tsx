@@ -1,17 +1,6 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
-/**
- * @Todo 목데이터 타입이라 해당 파일에 임시로 작성했습니다.
- * 추후 실제 데이터 타입으로 수정 예정
- */
-type OneFlagInfoType = {
-  img: StaticImageData;
-  name: string;
-};
-
-type OneFlagInfoProps = {
-  item: OneFlagInfoType;
-};
+import type { OneFlagInfoProps } from './OneFlagInfo.types';
 
 const OneFlagInfo = ({ item }: OneFlagInfoProps) => {
   return (
