@@ -42,5 +42,9 @@ export const useAddLocationModal = () => {
       console.log('location', locationVal);
       console.log('address', addressVal);
     },
+    clearValue: () => {
+      setAddressVal('');
+      setLocationVal('');
+    },
   };
 };

@@ -18,6 +18,7 @@ export const AddedLocation: React.FC = () => {
     addressVal,
     trackData,
     handleCloseModal,
+    clearValue,
   } = useAddLocationModal();
 
   return (
@@ -80,8 +81,9 @@ export const AddedLocation: React.FC = () => {
             variant='lightblue'
             className='h-[50px] w-[190px] text-base font-bold'
             onClick={() => {
-              handleCloseModal();
               trackData();
+              handleCloseModal();
+              clearValue();
             }}
           >
             {AddLocationConfig.buttonText}
