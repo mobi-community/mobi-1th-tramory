@@ -17,6 +17,7 @@ export const EditBox: React.FC<{
   } = useAddLocationModal();
 
   const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value) return null;
     if (isLocation) {
       setLocationVal(e.target.value);
     } else {
@@ -40,7 +41,9 @@ export const EditBox: React.FC<{
     >
       <Input
         className={`w-[450px] bg-transparent text-center placeholder:text-center focus-visible:outline-none focus-visible:ring-0 ${
-          isLocation ? 'placeholder:text-xl' : 'placeholder:text-base'
+          isLocation
+            ? 'text-xl placeholder:text-xl'
+            : 'text-base placeholder:text-base'
         }`}
         placeholder={placeholder}
         onChange={(e) => handleInputValue(e)}
