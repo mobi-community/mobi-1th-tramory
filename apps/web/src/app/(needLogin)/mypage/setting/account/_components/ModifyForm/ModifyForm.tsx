@@ -20,6 +20,7 @@ export const ModifyForm = ({ modifyType }) => {
     resolver: yupResolver(ACCOUT_SCHEMAS[modifyType]),
     defaultValues: MODIFYFORM_DEFAULT_VALUES[modifyType],
   });
+  // const setUserInfoState = useSetAtom(userProfileInfoAtom);
 
   const isTypePrivacy = modifyType === 'privacy';
 

@@ -43,5 +43,5 @@ export const ACCOUT_SCHEMAS = {
 
 export const MODIFYFORM_DEFAULT_VALUES = {
   privacy: { nickName: userInfo.nickName },
-  password: { password: userInfo.password, pwconfirm: '' },
+  password: { password: '', pwconfirm: '' },
 };

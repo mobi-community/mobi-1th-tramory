@@ -5,48 +5,45 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button, Input } from 'ui';
 
-import profileImage from '/public/images/profile-image.svg';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
 import { profileStateAtom } from '@/store/mypageProfile.atoms';
 import materialIcon from '@/utils/materialIcon';
 
 import { useImageUpload } from '../../_hooks/useImageUpload';
 
 export const MyPageProfile = () => {
-  const [profileState, setProfileState] = useAtom(profileStateAtom);
+  const [profileState, setProfileState] = useAtom(userProfileInfoAtom);
   const [tempContent, setTempContent] = useState(profileState.content);
 
-  const {
-    inputRef: bgInputRef,
-    handleUploadImage: handleUploadBgImage,
-    handleDeleteImage: handleDeleteBgImage,
-    handleUploadButtonClick: handleUploadBgButtonClick,
-    imageUrl: bgImageUrl,
-  } = useImageUpload(profileState.backgroundImage);
-
-  const {
-    inputRef: profileInputRef,
-    handleUploadImage: handleUploadProfileImage,
-    handleDeleteImage: handleDeleteProfileImage,
-    handleUploadButtonClick: handleUploadProfileButtonClick,
-    imageUrl: profileImgUrl,
-  } = useImageUpload(profileState.profileImage);
+  const bgImageUploadProps = useImageUpload(
+    profileStateAtom,
+    'backgroundImage'
+  );
+  const profileImageUploadProps = useImageUpload(
+    profileStateAtom,
+    'profileImage'
+  );
 
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${bgImageUrl})` }}
+        style={{
+          backgroundImage: `url(${
+            bgImageUploadProps.imageUrl || profileState.backgroundImage
+          })`,
+        }}
         className='bg-primaryGray-200 relative h-[180px] w-full rounded-tl-[80px] bg-center pl-12 pr-4 pt-4'
       >
         <div className='flex items-end justify-end'>
           <input
             type='file'
             accept='image/*'
-            ref={bgInputRef}
+            ref={bgImageUploadProps.inputRef}
             className=' hidden'
-            onChange={handleUploadBgImage}
+            onChange={bgImageUploadProps.handleUploadImage}
           />
           <Button
-            onClick={handleUploadBgButtonClick}
+            onClick={bgImageUploadProps.handleUploadButtonClick}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavyWhite'
             weight='bold'
@@ -55,7 +52,7 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
-            onClick={handleDeleteBgImage}
+            onClick={bgImageUploadProps.handleDeleteImage}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavyWhite'
             weight='bold'
@@ -69,13 +66,16 @@ export const MyPageProfile = () => {
             <Image
               style={{ objectFit: 'cover' }}
               className='rounded-full'
-              src={profileImgUrl ? profileImgUrl : profileImage}
+              src={
+                profileImageUploadProps.imageUrl || profileState.profileImage
+              }
               alt='default_profile_image'
               fill
             />
           </div>
         </div>
       </div>
+
       <div className='flex items-end justify-end px-5 pt-5'>
         <Link href={'/map'}>
           <Button
@@ -91,7 +91,6 @@ export const MyPageProfile = () => {
           {profileState.nickName}
         </div>
         <div className='flex items-center justify-center'>
-          <div className='ml-4 text-[12px]'>{profileState.content}</div>
           <div>
             {profileState.isProfileContentEdit ? (
               <div className='flex items-center gap-2'>
@@ -109,7 +108,7 @@ export const MyPageProfile = () => {
                   onClick={() => {
                     setProfileState((prev) => ({
                       ...prev,
-                      profileContent: tempContent,
+                      content: tempContent,
                       isProfileContentEdit: false,
                     }));
                   }}
@@ -156,12 +155,12 @@ export const MyPageProfile = () => {
           <input
             type='file'
             accept='image/*'
-            ref={profileInputRef}
+            ref={profileImageUploadProps.inputRef}
             className=' hidden'
-            onChange={handleUploadProfileImage}
+            onChange={profileImageUploadProps.handleUploadImage}
           />
           <Button
-            onClick={handleUploadProfileButtonClick}
+            onClick={profileImageUploadProps.handleUploadButtonClick}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -169,7 +168,7 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
-            onClick={handleDeleteProfileImage}
+            onClick={profileImageUploadProps.handleDeleteImage}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
