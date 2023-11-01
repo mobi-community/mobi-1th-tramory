@@ -1,22 +1,18 @@
 'use client';
 
-import { useAtom, useAtomValue } from 'jotai';
-
-import { MapPageAtom } from '@/store';
+import { useMapSearchBar } from '@/app/(needLogin)/map/hooks/useMapSearchBar';
 import materialIcon from '@/utils/materialIcon';
 
 import { SelectRangeModal } from './SelectRangeModal';
 
 export const SelectRange: React.FC = () => {
-  const searchRange = useAtomValue(MapPageAtom.range);
-  const [isSelectModalOpen, setIsSelectModalOpen] = useAtom(
-    MapPageAtom.isSelectModalOpen
-  );
+  const { searchRange, isSelectModalOpen, handleSelectModal } =
+    useMapSearchBar();
 
   return (
     <>
       <div
-        onClick={() => setIsSelectModalOpen((prev: boolean) => !prev)}
+        onClick={handleSelectModal}
         className='relative z-50 flex h-[50px] w-[158px] cursor-pointer items-center justify-between bg-transparent px-3 pl-5 text-center'
       >
         <div className='w-[50px]'>{searchRange}</div>
