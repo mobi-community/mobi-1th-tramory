@@ -16,7 +16,7 @@ export const SearchInput: React.FC = () => {
   const router = useRouter();
 
   return (
-    <>
+    <div>
       <form
         className='flex flex-col justify-center'
         onSubmit={handleSubmit((data: { searchKeyword: string }) => {
@@ -54,6 +54,6 @@ export const SearchInput: React.FC = () => {
           )}
         />
       </form>
-    </>
+    </div>
   );
 };
