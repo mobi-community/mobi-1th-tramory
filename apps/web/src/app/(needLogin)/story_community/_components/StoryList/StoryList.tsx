@@ -1,9 +1,9 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { CommonStory, Pagination } from '@/components';
-import { storyCommunityAtoms } from '@/store';
+import { selectedCategoryAtom, storyCommunityAtoms } from '@/store';
 
 import { storyMock } from '../../_mocks';
 
@@ -12,11 +12,18 @@ export const StoryList: React.FC = () => {
     storyCommunityAtoms.storyPageAtom
   );
 
+  const selectedCategory = useAtomValue(selectedCategoryAtom);
+
+  const storyArray =
+    selectedCategory && selectedCategory !== '전체'
+      ? storyMock.filter((story) => story.content.category === selectedCategory)
+      : storyMock;
+
   return (
     <div className='relatve'>
       <div className='flex justify-center'>
-        <div className='m-auto grid grid-cols-2 gap-8 gap-x-10'>
-          {storyMock.map((story) => (
+        <div className='m-auto grid grid-cols-2 gap-8 gap-x-[5%]'>
+          {storyArray.map((story) => (
             <CommonStory story={story} key={Math.random() * 1000} />
           ))}
         </div>
