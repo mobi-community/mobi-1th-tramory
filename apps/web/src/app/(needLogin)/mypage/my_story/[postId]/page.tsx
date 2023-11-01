@@ -6,7 +6,10 @@ import { Button } from 'ui';
 
 import { Line } from '@/components';
 import { detailPageConfig } from '@/constants/detailPage.constans';
-import { userProfileInfoAtom } from '@/store/mypage.atoms';
+import {
+  userPlanStoriesAtom,
+  userRecordStoriesAtom,
+} from '@/store/mypage.atoms';
 
 import {
   DetailCardSection,
@@ -22,7 +25,9 @@ const MyStoryPlanDetailPage = () => {
   const params = useSearchParams();
   const page = params.get('page');
   const isEdit = params.get('isEdit');
-  const { bestRecordStories } = useAtomValue(userProfileInfoAtom);
+
+  const planStories = useAtomValue(userPlanStoriesAtom);
+  const recordStories = useAtomValue(userRecordStoriesAtom);
 
   const handleMoveToDetail = () => {
     if (isEdit === 'true') {
@@ -34,7 +39,9 @@ const MyStoryPlanDetailPage = () => {
 
   const isPlanPage = page === 'plan';
 
-  const planDetail = bestRecordStories.filter((detail) => detail.id === postId);
+  const planDetail = isPlanPage
+    ? planStories.filter((detail) => detail.id === postId)
+    : recordStories.filter((detail) => detail.id === postId);
 
   return (
     <div className='ml-16 flex w-[60vw] flex-col items-center justify-center p-20'>

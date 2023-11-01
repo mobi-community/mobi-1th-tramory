@@ -1,17 +1,17 @@
 'use client';
 
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Pagination } from '@/components';
-import { userProfileInfoAtom } from '@/store/mypage.atoms';
+import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
 import { MypageCommonStory, MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
-  const { recordStories } = useAtomValue(userProfileInfoAtom);
+  const [recordStories, setRecordStories] = useAtom(userRecordStoriesAtom);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
   const dataLength = recordStories.length;
@@ -21,6 +21,26 @@ const MyStoryRecordPage = () => {
   const handleMoveToDetail = (id) => {
     router.push(`/mypage/my_story/${id}?page=record`);
   };
+
+  useEffect(() => {
+    const fetchUserRecordStories = async () => {
+      try {
+        const response = await fetch('/user/my_story/record');
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setRecordStories(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserRecordStories();
+  }, []);
 
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>

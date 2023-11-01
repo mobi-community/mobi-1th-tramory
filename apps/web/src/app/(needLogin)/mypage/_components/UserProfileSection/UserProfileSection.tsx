@@ -7,6 +7,7 @@ import type { UserProfileSectionProps } from './UserProfileSection.types';
 export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   planDetail,
 }) => {
+  console.log('planDetail', planDetail);
   const { user, content } = planDetail;
 
   return (

@@ -1,4 +1,6 @@
+'use client';
 import { useAtomValue } from 'jotai';
+import { useRouter } from 'next/navigation';
 
 import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
@@ -6,6 +8,13 @@ import { MypageCommonStory } from '../MypageCommonStory/MypageCommonStory';
 
 export const BestTravelStories = () => {
   const { bestRecordStories } = useAtomValue(userProfileInfoAtom);
+  const router = useRouter();
+
+  console.log(bestRecordStories);
+
+  const handleMoveToDetail = (id) => {
+    router.push(`/mypage/my_story/${id}?page=record`);
+  };
 
   return (
     <div className='mb-10 mt-10 flex w-full flex-col items-start justify-center'>
@@ -14,7 +23,11 @@ export const BestTravelStories = () => {
       <div className='flex flex-wrap gap-10'>
         {bestRecordStories ? (
           bestRecordStories.map((bestRecord) => (
-            <MypageCommonStory key={bestRecord.id} story={bestRecord} />
+            <MypageCommonStory
+              key={bestRecord.id}
+              handleMoveToDetail={handleMoveToDetail}
+              story={bestRecord}
+            />
           ))
         ) : (
           <div className='mb-[70px] mt-10 flex w-full items-center justify-center font-bold'>

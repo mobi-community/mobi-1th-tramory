@@ -1,6 +1,6 @@
 export const recordStoriesMock = [
   {
-    id: 'A12B34CD',
+    id: 123009998777,
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',
@@ -35,7 +35,7 @@ export const recordStoriesMock = [
     ],
   },
   {
-    id: 'E56F78GH',
+    id: 9886652,
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',

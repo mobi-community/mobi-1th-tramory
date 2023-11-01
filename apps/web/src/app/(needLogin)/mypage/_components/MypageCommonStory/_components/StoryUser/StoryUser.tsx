@@ -3,7 +3,12 @@ import Image from 'next/image';
 import { storyUserType } from '@/components/CommonStory';
 import { StoryButtons } from '@/components/CommonStory/_components/StoryButtons';
 
-export const StoryUser: React.FC<{ user: storyUserType }> = ({ user }) => {
+interface StoryUserProps {
+  user: storyUserType;
+  postId: string | number;
+}
+
+export const StoryUser: React.FC<StoryUserProps> = ({ user, postId }) => {
   const { profileImage, userId, date } = user;
   const formattedDate =
     date instanceof Date
@@ -27,7 +32,7 @@ export const StoryUser: React.FC<{ user: storyUserType }> = ({ user }) => {
             <div className='text-primaryGray-300 text-xs'>{formattedDate}</div>
           </div>
         </div>
-        <StoryButtons />
+        <StoryButtons postId={postId} />
       </div>
       <div></div>
     </div>

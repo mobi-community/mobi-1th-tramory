@@ -1,26 +1,44 @@
 'use client';
-
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Checkbox } from 'ui';
 
 import { Pagination } from '@/components';
-import { userProfileInfoAtom } from '@/store/mypage.atoms';
+import { userPlanStoriesAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
 import { MyStoryPlanCard, Tabs } from '../_components';
 
 const MyStoryPlanPage = () => {
-  const { planStories } = useAtomValue(userProfileInfoAtom);
   const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
+  const [planStories, setPlanStories] = useAtom(userPlanStoriesAtom);
+
+  useEffect(() => {
+    const fetchUserPlanStories = async () => {
+      try {
+        const response = await fetch('/user/my_story/plan');
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setPlanStories(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserPlanStories();
+  }, []);
+
   const handleMoveToDetail = (id) => {
     router.push(`/mypage/my_story/${id}?page=plan&isEdit=true`);
   };
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
-
   const dataLength = planStories.length;
 
   return (
