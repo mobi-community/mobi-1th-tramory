@@ -38,5 +38,9 @@ export const useAddLocationModal = () => {
     addressVal,
     setLocationVal,
     setAddressVal,
+    trackData: () => {
+      console.log('location', locationVal);
+      console.log('address', addressVal);
+    },
   };
 };

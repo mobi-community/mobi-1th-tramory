@@ -10,9 +10,7 @@ import { KeywordModal } from '../KeywordModal/KeywordModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const { isSearchModalOpen, setIsSearchModalOpen } = useAddLocationModal();
-
-  console.log('click', isSearchModalOpen);
+  const { setIsSearchModalOpen } = useAddLocationModal();
 
   return (
     <div>
@@ -28,7 +26,7 @@ export const SearchInput: React.FC = () => {
               <input
                 {...field}
                 onClick={() => setIsSearchModalOpen((prev: boolean) => !prev)}
-                className='w-[530px] bg-transparent text-center text-xl placeholder:text-center  focus:outline-none'
+                className='w-[530px] bg-transparent text-center text-lg placeholder:text-center focus:outline-none'
                 placeholder={MapPageConfig.searchBarText}
                 autoComplete='off'
               />

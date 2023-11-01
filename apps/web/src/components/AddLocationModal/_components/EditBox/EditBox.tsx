@@ -1,9 +1,5 @@
-import {
-  // Controller,
-  ControllerRenderProps,
-  FieldValues,
-  // useForm,
-} from 'react-hook-form';
+import { ChangeEvent } from 'react';
+import { Input } from 'ui';
 
 import materialIcon from '@/utils/materialIcon';
 
@@ -12,30 +8,50 @@ import { useAddLocationModal } from '../../hooks/useAddLocationModal';
 export const EditBox: React.FC<{
   isLocation: boolean;
   placeholder: string;
-  field: ControllerRenderProps<FieldValues, 'addedLocation'>;
-}> = ({ isLocation, placeholder, field }) => {
-  // const { handleSubmit, control } = useForm();
-
+}> = ({ isLocation, placeholder }) => {
   const {
-    // handleEditLocation,
-    // handleEditAddress,
-    // setLocationVal,
-    // setAddressVal,
+    handleEditLocation,
+    handleEditAddress,
+    setLocationVal,
+    setAddressVal,
+    locationVal,
   } = useAddLocationModal();
+
+  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    if (isLocation) {
+      setLocationVal(e.target.value);
+      console.log('loca', locationVal);
+    } else {
+      setAddressVal(e.target.value);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (isLocation) {
+      handleEditLocation(false);
+    } else {
+      handleEditAddress(false);
+    }
+  };
 
   return (
     <div
       className={`relative ${
-        isLocation ? '' : 'mb-[20px]'
-      } flex w-[500px] justify-between text-xl`}
+        isLocation ? 'text-xl' : 'mb-[20px] text-base'
+      } flex w-[500px] justify-between`}
     >
-      <input
+      {/* <input
         {...field}
-        className='w-[450px] bg-transparent text-center text-xl placeholder:text-center focus:outline-none'
+        className='w-[450px] bg-transparent text-center placeholder:text-center focus:outline-none'
         placeholder={placeholder}
         autoComplete='off'
+      /> */}
+      <Input
+        className='w-[450px] bg-transparent text-center placeholder:text-center focus:outline-none'
+        placeholder={placeholder}
+        onChange={(e) => handleInputValue(e)}
       />
-      <button className='cursor-pointer'>
+      <button className='cursor-pointer' onClick={() => handleSubmit()}>
         {materialIcon({
           iconName: 'check',
           size: 30,
@@ -43,25 +59,5 @@ export const EditBox: React.FC<{
         })}
       </button>
     </div>
-    // <form
-    //   onSubmit={handleSubmit((data: string) => {
-    //     if (isLocation) {
-    //       setLocationVal(data);
-    //       handleEditLocation(false);
-    //     } else {
-    //       setAddressVal(data);
-    //       handleEditAddress(false);
-    //     }
-    //   })}
-    // >
-    //   {/* <Controller
-    //     name={isLocation ? 'location' : 'address'}
-    //     control={control}
-    //     defaultValue=''
-    //     render={({ field }) => ( */}
-
-    //   {/* )} */}
-    //   {/* /> */}
-    // {/* </form> */}
   );
 };
