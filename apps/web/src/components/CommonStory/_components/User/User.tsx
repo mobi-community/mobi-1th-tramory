@@ -18,7 +18,7 @@ export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
             <Image
               src={profileImage}
               alt='사용자 프로필 이미지'
-              layout='fill'
+              fill
               className='rounded-[50%]'
             />
           </div>

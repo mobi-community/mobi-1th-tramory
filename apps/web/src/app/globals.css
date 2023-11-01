@@ -76,6 +76,25 @@
     -ms-overflow-style: none; /* IE and 엣지 */
     scrollbar-width: none; /* 파이어폭스 */
   }
+
+  .green-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 125px;
+  }
+
+  .green-scroll::-webkit-scrollbar-thumb {
+    background: #95b9b5;
+    transition: all;
+    transition-duration: 300ms;
+  }
+
+  .green-scroll::-webkit-scrollbar-thumb:hover {
+    background: #166c63;
+  }
+
+  .green-scroll::-webkit-scrollbar-track {
+    background: #e7e7e7;
+  }
 }
 
 @layer base {

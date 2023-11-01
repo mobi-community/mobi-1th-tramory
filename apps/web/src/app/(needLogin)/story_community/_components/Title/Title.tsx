@@ -1,11 +1,22 @@
 'use client';
 
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { storyCommunityAtoms } from '@/store';
 
 export const Title: React.FC = () => {
-  const searchKeyword = useAtomValue(storyCommunityAtoms.searchKeywordAtom);
+  const searchParams = useSearchParams();
+
+  const searchedCountry = searchParams.get('keyword');
+  const [searchKeyword, setSearchKeyword] = useAtom(
+    storyCommunityAtoms.searchKeywordAtom
+  );
+
+  useEffect(() => {
+    setSearchKeyword(searchedCountry);
+  }, [searchedCountry, setSearchKeyword]);
 
   return (
     <div className='relative'>

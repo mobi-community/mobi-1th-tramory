@@ -2,13 +2,18 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { recommendPageConfig } from '@/constants';
 
 import { PageBox } from './_components';
 
 const RecommendCountryPage: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>();
-  const pageHeight = window.innerHeight + 20;
+  const pageHeightRef = useRef<number>();
+
+  useEffect(() => {
+    pageHeightRef.current = window?.innerHeight + 20;
+  }, []);
 
   // 스크롤을 위로 올려주는 함수
   const scrollToTop = useCallback(() => {
@@ -21,10 +26,10 @@ const RecommendCountryPage: React.FC = () => {
   // 스크롤을 맨 아래로 내려주는 함수
   const scrollToBottom = useCallback(() => {
     wrapperRef.current?.scrollTo({
-      top: pageHeight,
+      top: pageHeightRef.current,
       behavior: 'smooth',
     });
-  }, [wrapperRef, pageHeight]);
+  }, [wrapperRef, pageHeightRef]);
 
   // 기존 scroll 이벤트를 막아주는 함수
   useEffect(() => {
@@ -54,6 +59,7 @@ const RecommendCountryPage: React.FC = () => {
         isTop={false}
         handleScroll={scrollToTop}
       />
+      <FloatingMenu />
     </div>
   );
 };
