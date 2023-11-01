@@ -1,11 +1,41 @@
+'use client';
+
+import { useSetAtom } from 'jotai';
+import { useEffect } from 'react';
+
 import badgeDefaultImage from '/public/images/badge-default.png';
 import badgeDefaultImage2 from '/public/images/badge-default2.png';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer, MyPageProfile } from './_components';
 import { MypageCardSection } from './_components/MypageCardSection/MypageCardSection';
 import { badgeImages, badgeImages2 } from './_mocks';
 
 const MyPage = () => {
+  const setUserInfoState = useSetAtom(userProfileInfoAtom);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('/user/info');
+        const data = await response.json();
+
+        if (response.ok) {
+          setUserInfoState(data.data);
+        } else {
+          console.error(
+            '서버로부터 정보를 가져오는 데 실패했습니다:',
+            data.message
+          );
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer>
