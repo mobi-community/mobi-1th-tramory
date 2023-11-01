@@ -30,7 +30,7 @@ export const SearchInput: React.FC = () => {
                 placeholder={MapPageConfig.searchBarText}
                 autoComplete='off'
               />
-              <button className='cursor-pointer pr-[20px] pt-2'>
+              <button className='cursor-pointer pt-2'>
                 {materialIcon({
                   iconName: 'search',
                   size: 30,
