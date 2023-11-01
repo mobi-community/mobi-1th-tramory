@@ -38,7 +38,7 @@ const RecommendCountryPage: React.FC = () => {
       e.preventDefault();
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    // window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleWheel);

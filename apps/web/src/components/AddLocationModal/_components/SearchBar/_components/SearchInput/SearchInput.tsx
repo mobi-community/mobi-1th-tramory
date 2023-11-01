@@ -24,11 +24,11 @@ export const SearchInput: React.FC = () => {
           control={control}
           defaultValue=''
           render={({ field }) => (
-            <div className='relative mt-1 flex w-[750px] justify-between'>
+            <div className='relative mt-1 flex w-[530px] justify-between'>
               <input
                 {...field}
                 onClick={() => setIsSearchModalOpen((prev: boolean) => !prev)}
-                className='w-[720px] bg-transparent text-center text-xl placeholder:text-center  focus:outline-none'
+                className='w-[530px] bg-transparent text-center text-xl placeholder:text-center  focus:outline-none'
                 placeholder={MapPageConfig.searchBarText}
                 autoComplete='off'
               />

@@ -16,7 +16,7 @@ export const KeywordModal: React.FC<modalProps> = ({ field }) => {
     i !== arr.length - 1 ? 'border-b-[1px] border-b-primaryGray-300/[80%]' : '';
 
   const hasResult = (
-    <ul className='no-scroll bg-primaryBlue-100 absolute left-0 top-10 z-20 mt-5 max-h-[262px] w-[750px] overflow-y-scroll rounded-[20px] p-10 pt-[20px] text-lg'>
+    <ul className='no-scroll bg-primaryBlue-100 absolute left-0 top-10 z-20 mt-5 max-h-[262px] w-[550px] overflow-y-scroll rounded-[20px] p-10 pt-[20px] text-lg'>
       {keywordMock.map((keyword, i, arr) => (
         <li
           key={Math.random() * 1000}
