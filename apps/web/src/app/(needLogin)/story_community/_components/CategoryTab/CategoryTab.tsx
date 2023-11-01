@@ -17,7 +17,7 @@ export const CategoryTab: React.FC = () => {
     i !== arr.length - 1 ? 'border-primaryGray-300  border-r-[0.5px]' : '';
 
   return (
-    <div className='my-[40px] ml-[170px] flex'>
+    <div className='my-[40px] flex justify-center'>
       {storyCommunityPageConfig.category.map((category, i, arr) => (
         <div
           onClick={() => setSelectedCagetory(category)}

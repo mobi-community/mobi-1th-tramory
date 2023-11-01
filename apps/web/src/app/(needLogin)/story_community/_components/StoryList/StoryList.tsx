@@ -13,13 +13,15 @@ export const StoryList: React.FC = () => {
   );
 
   return (
-    <>
-      <div className='m-auto grid w-[80%] grid-cols-2 gap-8'>
-        {storyMock.map((story) => (
-          <CommonStory story={story} key={Math.random() * 1000} />
-        ))}
+    <div className='relatve'>
+      <div className='flex justify-center'>
+        <div className='m-auto grid grid-cols-2 gap-8 gap-x-10'>
+          {storyMock.map((story) => (
+            <CommonStory story={story} key={Math.random() * 1000} />
+          ))}
+        </div>
       </div>
-      <div className='ml-[700px] mt-[80px] h-[100px] w-full'>
+      <div className='mt-[80px] flex h-[100px] justify-center'>
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
@@ -28,6 +30,6 @@ export const StoryList: React.FC = () => {
           bgColor='gray'
         />
       </div>
-    </>
+    </div>
   );
 };
