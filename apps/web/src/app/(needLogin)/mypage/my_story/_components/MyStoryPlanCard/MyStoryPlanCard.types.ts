@@ -1,14 +1,5 @@
 import { StaticImageData } from 'next/image';
 
-export interface PlanDataType {
-  id: string;
-  user: UserDataType;
-  content: ContentDataType;
-  detailDescription: DetailDescriptionType[];
-  isRecord?: boolean;
-  isDraft?: boolean;
-}
-
 export interface MyStoryPlanCardProps {
   planData: PlanDataType;
   // eslint-disable-next-line no-unused-vars

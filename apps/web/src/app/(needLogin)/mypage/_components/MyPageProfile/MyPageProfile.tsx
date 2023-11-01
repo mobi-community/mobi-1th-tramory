@@ -9,6 +9,8 @@ import materialIcon from '@/utils/materialIcon';
 export const MyPageProfile = () => {
   const userInfo = useAtomValue(userProfileInfoAtom);
 
+  console.log(userInfo);
+
   return (
     <>
       <div

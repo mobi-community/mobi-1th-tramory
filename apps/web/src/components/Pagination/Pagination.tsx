@@ -7,12 +7,12 @@ export const Pagination = ({
   currentPage,
   setCurrentPage,
   itemsPerPage,
-  testData,
+  dataLength,
   bgColor,
 }: PaginationProps) => {
   const pageNumbers = [];
 
-  for (let i = 0; i < Math.ceil(testData / itemsPerPage); i++) {
+  for (let i = 0; i < Math.ceil(dataLength / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 

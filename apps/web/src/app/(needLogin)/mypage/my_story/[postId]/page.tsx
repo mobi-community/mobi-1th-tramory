@@ -1,10 +1,12 @@
 'use client';
 
+import { useAtomValue } from 'jotai';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
 import { Line } from '@/components';
 import { detailPageConfig } from '@/constants/detailPage.constans';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
 import {
   DetailCardSection,
@@ -13,7 +15,6 @@ import {
   SlideImages,
   UserProfileSection,
 } from '../../_components';
-import { planDescription } from '../_mocks';
 
 const MyStoryPlanDetailPage = () => {
   const { postId } = useParams();
@@ -21,6 +22,7 @@ const MyStoryPlanDetailPage = () => {
   const params = useSearchParams();
   const page = params.get('page');
   const isEdit = params.get('isEdit');
+  const { bestRecordStories } = useAtomValue(userProfileInfoAtom);
 
   const handleMoveToDetail = () => {
     if (isEdit === 'true') {
@@ -32,7 +34,7 @@ const MyStoryPlanDetailPage = () => {
 
   const isPlanPage = page === 'plan';
 
-  const planDetail = planDescription.filter((detail) => detail.id === postId);
+  const planDetail = bestRecordStories.filter((detail) => detail.id === postId);
 
   return (
     <div className='ml-16 flex w-[60vw] flex-col items-center justify-center p-20'>

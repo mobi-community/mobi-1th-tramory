@@ -1,19 +1,20 @@
 'use client';
 
+import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { CommonStory, Pagination } from '@/components';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
-import { planDescription } from '../_mocks';
 
 const MyStoryRecordPage = () => {
+  const { recordStories } = useAtomValue(userProfileInfoAtom);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
-  //추후 실제 데이터로 변경 예정
-  const testData = 80;
+  const dataLength = recordStories.length;
 
   const router = useRouter();
 
@@ -26,11 +27,11 @@ const MyStoryRecordPage = () => {
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {planDescription.map((planData) => (
+          {recordStories.map((stories) => (
             <CommonStory
               handleMoveToDetail={handleMoveToDetail}
-              story={planData}
-              key={Math.random() * 1000}
+              story={stories}
+              key={stories.id}
             />
           ))}
         </div>
@@ -39,7 +40,7 @@ const MyStoryRecordPage = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
-            testData={testData}
+            dataLength={dataLength}
             bgColor='gray'
           />
         </div>
