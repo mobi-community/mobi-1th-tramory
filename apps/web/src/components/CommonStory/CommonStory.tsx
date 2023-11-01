@@ -1,5 +1,4 @@
-import { User } from './_components';
-import { Content } from './_components/Content';
+import { Content, User } from './_components';
 import type { CommonStoryProps } from './CommonStory.types';
 
 export const CommonStory: React.FC<CommonStoryProps> = ({

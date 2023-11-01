@@ -1,6 +1,6 @@
 import type { storyContentType } from '../../CommonStory.types';
-import { ImageSlide } from '../ImageSlide';
-import { ReactionBox } from '../ReactionBox';
+import { ImageSlide } from '../ImageSlide/ImageSlide';
+import { ReactionBox } from '../ReactionBox/ReactionBox';
 
 export const Content: React.FC<{
   content: storyContentType;
