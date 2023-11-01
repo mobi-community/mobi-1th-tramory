@@ -14,6 +14,7 @@ import { ModeSwitchButton, UserButton } from './_components';
 export const Header: React.FC = () => {
   const pathName = usePathname();
   const isRecommendPage = pathName.includes('recommend');
+  const isMapPage = pathName.includes('map');
 
   return (
     <div
@@ -27,7 +28,7 @@ export const Header: React.FC = () => {
         <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
       </Link>
       <div className='flex'>
-        <ModeSwitchButton />
+        {isMapPage && <ModeSwitchButton />}
         <div className='flex pt-2'>
           <Link href='./story_community'>
             {materialIcon({

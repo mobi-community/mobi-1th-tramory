@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 
-import { MapAtom } from '@/store';
+import { MapPageAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import { suggestedKeyword } from '../../../../_mocks';
@@ -8,7 +8,7 @@ import type { modalProps } from './SuggestionModal.types';
 
 export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useAtom(
-    MapAtom.isSearchModalOpen
+    MapPageAtom.isSearchModalOpen
   );
 
   if (isSearchModalOpen)

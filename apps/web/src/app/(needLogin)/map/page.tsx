@@ -6,7 +6,7 @@ import React from 'react';
 
 import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
+import { MapAtom, MapPageAtom } from '@/store';
 
 import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
 
@@ -15,7 +15,7 @@ const MapPage: React.FC = () => {
   const [clicks, setClicks] = useAtom(MapAtom.click);
   const zoom = useAtomValue(MapAtom.zoom);
   const center = useAtomValue(MapAtom.center);
-  const isDarkMode = useAtomValue(MapAtom.isDarkMode);
+  const isDarkMode = useAtomValue(MapPageAtom.isDarkMode);
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     setClicks([...clicks, e.latLng!]);

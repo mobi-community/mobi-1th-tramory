@@ -2,15 +2,15 @@
 
 import { useAtom, useAtomValue } from 'jotai';
 
-import { MapAtom } from '@/store';
+import { MapPageAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
 import { SelectRangeModal } from './SelectRangeModal';
 
 export const SelectRange: React.FC = () => {
-  const searchRange = useAtomValue(MapAtom.range);
+  const searchRange = useAtomValue(MapPageAtom.range);
   const [isSelectModalOpen, setIsSelectModalOpen] = useAtom(
-    MapAtom.isSelectModalOpen
+    MapPageAtom.isSelectModalOpen
   );
 
   return (
