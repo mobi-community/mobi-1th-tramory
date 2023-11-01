@@ -30,6 +30,16 @@ export const SearchInput: React.FC = () => {
                 placeholder={MapPageConfig.searchBarText}
                 autoComplete='off'
               />
+              <div
+                className='cursor-pointer pr-3 pt-[5px]'
+                onClick={() => field.onChange('')}
+              >
+                {materialIcon({
+                  iconName: 'close',
+                  size: 20,
+                  style: 'text-primaryGray-300 ',
+                })}
+              </div>
               <button className='cursor-pointer pt-2'>
                 {materialIcon({
                   iconName: 'search',
