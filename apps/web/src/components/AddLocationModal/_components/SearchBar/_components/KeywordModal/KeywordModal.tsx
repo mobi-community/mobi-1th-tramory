@@ -48,11 +48,11 @@ export const KeywordModal: React.FC<modalProps> = ({ field }) => {
   );
 
   const notHasResult = (
-    <div className='no-scroll bg-primaryBlue-100 absolute left-0 top-10 z-20 mt-5 max-h-[262px] w-[750px] overflow-y-scroll rounded-[20px] p-10 text-lg'>
-      <div className='text-xl font-bold'>
+    <div className='no-scroll bg-primaryBlue-100 absolute left-0 top-10 z-20 mt-5 max-h-[262px] w-[550px] overflow-y-scroll rounded-[20px] p-10'>
+      <div className='text-base font-bold'>
         {AddLocationConfig.noResultText[0]}
       </div>
-      <div className='text-primaryGray-300 text-base'>
+      <div className='text-primaryGray-300 text-xs'>
         {AddLocationConfig.noResultText[1]}
       </div>
     </div>

@@ -8,7 +8,8 @@ import { AddedLocation } from './_components/AddedLocation/AddedLocation';
 import { useAddLocationModal } from './hooks/useAddLocationModal';
 
 export const AddLocationModal: React.FC = () => {
-  const { isAddLocationModalOpen, handleCloseModal } = useAddLocationModal();
+  const { isAddLocationModalOpen, handleCloseModal, clearValue } =
+    useAddLocationModal();
 
   if (isAddLocationModalOpen)
     return (
@@ -17,7 +18,10 @@ export const AddLocationModal: React.FC = () => {
           <div className='mb-1 flex justify-end p-5'>
             <button
               className='text-primaryGray-300 relative z-10 cursor-pointer p-[5px]'
-              onClick={handleCloseModal}
+              onClick={() => {
+                handleCloseModal();
+                clearValue();
+              }}
             >
               {materialIcon({ iconName: 'close', size: 40 })}
             </button>
