@@ -1,10 +1,13 @@
 'use client';
 
+import { useSetAtom } from 'jotai';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
 import { Line } from '@/components';
+import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
 import { detailPageConfig } from '@/constants/detailPage.constans';
+import { toggleAllDropdownsAtom } from '@/store/dropdownFormSection.atoms';
 
 import {
   DetailCardSection,
@@ -21,6 +24,7 @@ const MyStoryPlanDetailPage = () => {
   const params = useSearchParams();
   const page = params.get('page');
   const isEdit = params.get('isEdit');
+  const allToggleAction = useSetAtom(toggleAllDropdownsAtom);
 
   const handleMoveToDetail = () => {
     if (isEdit === 'true') {
@@ -31,7 +35,6 @@ const MyStoryPlanDetailPage = () => {
   };
 
   const isPlanPage = page === 'plan';
-
   const planDetail = planDescription.filter((detail) => detail.id === postId);
 
   return (
@@ -44,6 +47,9 @@ const MyStoryPlanDetailPage = () => {
           size='xsm'
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-300 hover:border-primaryGray-300 h-[35px] w-[115px] rounded-2xl border-opacity-40 hover:text-white'
           variant='roundednavy'
+          onClick={() => {
+            allToggleAction('open');
+          }}
         >
           {isPlanPage ? '계획' : '기록'} {detailPageConfig.buttons[0]}
         </Button>
@@ -51,13 +57,18 @@ const MyStoryPlanDetailPage = () => {
           size='xsm'
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryGray-300 hover:border-primaryGray-300 h-[35px] w-[115px] rounded-2xl border-opacity-40 hover:text-white'
           variant='roundednavy'
+          onClick={() => {
+            allToggleAction('close');
+          }}
         >
           {isPlanPage ? '계획' : '기록'} {detailPageConfig.buttons[1]}
         </Button>
       </div>
       <MapSections />
       <SlideImages />
-      <DropdownFormSection />
+      {placeInfoStateData.map((dayData, index) => (
+        <DropdownFormSection key={index} dayData={dayData} index={index} />
+      ))}
       <div className='mt-10 flex w-full items-center justify-center gap-6'>
         <Button
           size='xsm'

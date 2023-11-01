@@ -1,23 +1,25 @@
+'use client';
+import { useSetAtom } from 'jotai';
+
+import { tabSelectedAtom } from '@/store/tab.atoms';
+
 import { TabProps } from './Tab.types';
 
-export const Tab = ({
-  children,
-  bgColor,
-  zIndex,
-  current,
-  handleClickTab,
-}: TabProps) => {
+export const Tab = ({ children, bgColor, zIndex }: TabProps) => {
   const shadowStyle = {
     boxShadow:
       '0px -5px 10px -3px rgba(0, 0, 0, 0.1), 10px 0px 20px -3px rgba(0, 0, 0, 0.1)',
   };
 
+  const handleTabSelect = useSetAtom(tabSelectedAtom);
+
   return (
     <div
+      style={{ zIndex }}
       onClick={() => {
-        handleClickTab(current);
+        handleTabSelect();
       }}
-      className={`text-primaryGray-400 flex w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-tr-[10px] font-bold z-${zIndex}`}
+      className='text-primaryGray-400 flex w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-tr-[10px] font-bold '
     >
       <div
         style={shadowStyle}

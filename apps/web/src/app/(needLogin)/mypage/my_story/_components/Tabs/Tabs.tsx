@@ -1,38 +1,20 @@
 'use client';
-import { useState } from 'react';
+
+import { useAtom } from 'jotai';
 
 import { Tab } from '@/components';
+import { currentTabAtom, draftTabAtom } from '@/store/tab.atoms';
 
 export const Tabs = () => {
-  const [TabColor, setTabColor] = useState('white');
-  const [draftTabColor, setDraftTabColor] = useState('primaryGray-200');
-
-  const handleClickTab = (page: string) => {
-    if (page === 'current') {
-      setTabColor('white');
-      setDraftTabColor('primaryGray-200');
-    } else {
-      setTabColor('primaryGray-200');
-      setDraftTabColor('white');
-    }
-  };
+  const [currentTab] = useAtom(currentTabAtom);
+  const [draftTab] = useAtom(draftTabAtom);
 
   return (
     <div className='mr-10 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
-      <Tab
-        handleClickTab={handleClickTab}
-        current={'current'}
-        bgColor={TabColor}
-        zIndex={'1'}
-      >
+      <Tab bgColor={currentTab.color} zIndex={currentTab.zIndex}>
         여행 기록
       </Tab>
-      <Tab
-        handleClickTab={handleClickTab}
-        current={'draft'}
-        bgColor={draftTabColor}
-        zIndex={'0'}
-      >
+      <Tab bgColor={draftTab.color} zIndex={draftTab.zIndex}>
         임시 저장 기록
       </Tab>
     </div>
