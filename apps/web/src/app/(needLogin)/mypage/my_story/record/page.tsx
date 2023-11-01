@@ -4,10 +4,10 @@ import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { CommonStory, Pagination } from '@/components';
+import { Pagination } from '@/components';
 import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
-import { MyPageContainer } from '../../_components';
+import { MypageCommonStory, MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
@@ -28,7 +28,7 @@ const MyStoryRecordPage = () => {
       <MyPageContainer title='나의 스토리 - 여행 기록'>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
           {recordStories.map((stories) => (
-            <CommonStory
+            <MypageCommonStory
               handleMoveToDetail={handleMoveToDetail}
               story={stories}
               key={stories.id}

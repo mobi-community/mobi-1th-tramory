@@ -2,6 +2,7 @@
 
 import { useAtom } from 'jotai';
 import Image, { StaticImageData } from 'next/image';
+import { usePathname } from 'next/navigation';
 
 import { storyModalAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
@@ -13,16 +14,20 @@ export const ImageSlide: React.FC<{
   postId: number | string;
 }> = ({ images, postId }) => {
   const mainImage = images[0];
+  const pathName = usePathname();
+  const isMyStory = pathName.includes('mypage');
 
   const [isImageModalOpen, setIsImageModalOpen] = useAtom(
     storyModalAtom(postId)
   );
 
   return (
-    <div className='relative'>
+    <div className='relative mr-8'>
       <div className='flex flex-row-reverse'>
         <div
-          className='relative h-[170px] w-[170px]'
+          className={`relative ${
+            isMyStory ? 'h-[150px] w-[150px]' : 'h-[170px] w-[170px]'
+          }`}
           key={Math.random() * 10000}
         >
           <Image
