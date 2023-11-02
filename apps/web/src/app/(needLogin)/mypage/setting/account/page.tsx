@@ -1,16 +1,17 @@
 'use client';
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { Button } from 'ui';
+
+import { isAccountPrivacyAtom } from '@/store/mypage.atoms';
 
 import { SettingContainer } from '../_components';
 import { ModifyForm } from './_components/ModifyForm/ModifyForm';
 
-const isAccountPrivacyAtom = atom(false);
 const SettingAccountPage = () => {
   const [isAccountPrivacy, setIsAccountPrivacy] = useAtom(isAccountPrivacyAtom);
 
   const handleChangeAccountPrivacy = () => {
-    setIsAccountPrivacy((prev) => !prev);
+    setIsAccountPrivacy((prev: boolean) => !prev);
   };
 
   return (
@@ -22,7 +23,7 @@ const SettingAccountPage = () => {
           {/* 비밀번호 변경 폼 */}
           <ModifyForm modifyType='password' />
           {/* 계정 공개 여부 컴포넌트 */}
-          <div>
+          <form>
             <div className='text-primaryGray-500 px-7 font-medium'>
               <h1 className='text-lg'>계정공개 여부</h1>
               <div className='bg-primaryGray-300 my-5 h-px w-full'></div>
@@ -71,7 +72,7 @@ const SettingAccountPage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </SettingContainer>
     </div>

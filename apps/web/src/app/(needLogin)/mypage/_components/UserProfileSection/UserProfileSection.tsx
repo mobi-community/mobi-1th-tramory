@@ -18,13 +18,14 @@ export const UserProfileSection = ({ storyDetail }) => {
           style={{ boxShadow: '0 0 3px rgba(0, 0, 0, 0.15)' }}
           className='w-[35px] rounded-full '
         >
-          <Image
-            className='rounded-full'
-            src={profileImage}
-            alt='profileImage'
-            width={35}
-            height={35}
-          />
+          <div className='relative h-[40px] w-[40px]'>
+            <Image
+              className='rounded-full'
+              src={profileImage}
+              alt='profileImage'
+              fill
+            />
+          </div>
         </div>
         <div className=' font-semibold'>{userId}</div>
       </div>

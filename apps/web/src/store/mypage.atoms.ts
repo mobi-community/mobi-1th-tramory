@@ -1,11 +1,14 @@
 import { atom } from 'jotai';
 
-import { RecordStoriesMock } from '@/app/(needLogin)/mypage/my_story/record/_mocks/recordStoriesMock';
 import { storyType } from '@/components/CommonStory';
 
 interface IuserProfileInfoAtom {
   nickName: string;
   content: string;
+  email?: string;
+  password?: string;
+  pwconfirm?: string;
+  isPrivacy?: boolean;
   profileImage: string;
   backgroundImage: string;
   bestRecordStories: storyType[];
@@ -17,6 +20,10 @@ interface IuserProfileInfoAtom {
 export const userProfileInfoAtom = atom<IuserProfileInfoAtom>({
   nickName: '',
   content: '소개문구를 작성해주세요.',
+  email: '',
+  password: '',
+  pwconfirm: '',
+  isPrivacy: false,
   profileImage: '',
   backgroundImage: '',
   bestRecordStories: [],
@@ -48,3 +55,13 @@ export const visitedContinentAtom = atom([]);
 
 // 방문 국가 - 방문국가별
 export const visitedMyVisitedAtom = atom([]);
+
+// 설정 - account
+export const userInfoModifyAtom = atom<IuserProfileInfoAtom | {}>({});
+
+export const isAccountPrivacyAtom = atom(false);
+
+export const userInfoIsPrivacyAtom = atom<IuserProfileInfoAtom | {}>({});
+
+// 설정 - 서비스 문의하기 내역
+export const inquiryHistoryAtom = atom([]);

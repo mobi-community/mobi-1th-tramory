@@ -31,11 +31,11 @@ const MyStoryPlanDetailPage = () => {
   useEffect(() => {
     const fetchUserPlanStoryDetails = async () => {
       try {
-        const reponse = await fetch(`/user/my_story/${page}/${postId}`);
+        const response = await fetch(`/user/my_story/${page}/${postId}`);
 
-        const data = await reponse.json();
+        const data = await response.json();
 
-        if (reponse.ok) {
+        if (response.ok) {
           setStoryDetail(data.data);
         }
       } catch (error) {
