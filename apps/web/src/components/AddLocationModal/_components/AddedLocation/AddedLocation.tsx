@@ -58,12 +58,10 @@ export const AddedLocation: React.FC = () => {
                     : AddLocationConfig.suggestAddAddress}
                 </div>
               )}
-              <div className='flex flex-col items-end'>
-                <div className='bg-primaryGray-300 h-[200px] w-[450px]'>
-                  지도
-                </div>
-              </div>
             </div>
+          </div>
+          <div className='flex flex-col items-end'>
+            <div className='bg-primaryGray-300 mb-7 h-[250px] w-full'>지도</div>
           </div>
           <div className='flex w-[570px] pl-1 text-sm'>
             <div>
