@@ -1,8 +1,10 @@
 'use client';
+import { useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import type { TravelPlanStep2Config } from '@/constants/travelStep2.constants';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
+import { formModeAtom } from '@/store';
+import { TravelPlanType } from '@/types/travelPlan.types';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
@@ -12,8 +14,17 @@ interface IStep2Props {
 }
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
-  const { handleSubmit, control } = useForm<IregisterFormvalue>();
-  const onSubmit = (data) => console.log(data);
+  const [formAtom, setFormAtom] = useAtom(formModeAtom);
+  const { handleSubmit, control } = useForm<TravelPlanType>({
+    defaultValues: formAtom,
+  });
+  const onSubmit = (data) => {
+    setFormAtom((prev) => ({
+      ...prev,
+      startDate: data.postDate[0],
+      endDate: data.postDate[1],
+    }));
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -24,7 +35,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
               {config.label}
             </div>
             <div className='mt-[14px]'>
-              <Step2Calendar control={control} name='planDate' />
+              <Step2Calendar control={control} name='postDate' />
             </div>
           </div>
         </div>

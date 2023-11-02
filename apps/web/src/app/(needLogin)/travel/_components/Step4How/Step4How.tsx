@@ -1,10 +1,11 @@
 'use client';
+import { useAtom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Pagination } from '@/components';
 import type { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step4Dates from './components/Step4Dates/Step4Dates';
@@ -14,12 +15,18 @@ interface IStep4Props {
   config: TravelPlanStep4Config;
 }
 
+const formModeAtom = atomWithStorage('formAtom', []);
+
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
-  const { handleSubmit, control } = useForm<IregisterFormvalue>();
-  const onSubmit = (data) => console.log(data);
+  const [formAtom] = useAtom(formModeAtom);
+  const { handleSubmit, control } = useForm();
+  const onSubmit = (data) => console.log(data.title);
+
+  console.log(formAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
 
+  console.log('how', formAtom);
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>

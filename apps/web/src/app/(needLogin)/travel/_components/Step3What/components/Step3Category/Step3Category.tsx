@@ -3,10 +3,9 @@ import { Control, Controller } from 'react-hook-form';
 
 import { travelCategory } from '@/constants/travelStep3Category.constants';
 import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 interface IStep3CategoryProps {
-  control: Control<IregisterFormvalue>;
+  control: Control;
 }
 
 const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {

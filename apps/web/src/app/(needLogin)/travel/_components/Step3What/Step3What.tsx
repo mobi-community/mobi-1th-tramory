@@ -1,8 +1,10 @@
 'use client';
+import { useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import type { TravelPlanStep3Config } from '@/constants/travelStep3.constants';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
+import { formModeAtom } from '@/store';
+import { TravelPlanType } from '@/types/travelPlan.types';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
 import NavigateButton from '../NavigateButton/NavigateButton';
@@ -14,8 +16,47 @@ interface IStep3Props {
 }
 
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
-  const { handleSubmit, control } = useForm<IregisterFormvalue>();
-  const onSubmit = (data) => console.log(data);
+  const [formAtom, setFormAtom] = useAtom(formModeAtom);
+  const { handleSubmit, control } = useForm<TravelPlanType>({
+    defaultValues: formAtom,
+  });
+
+  // formModeAtom에 타입이 있어야함
+  const postForm = async () => {
+    await fetch('/api/plans', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(formAtom),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          alert('post 요청 성공');
+        } else if (res.status === 403) {
+          return res.json();
+        }
+      })
+      .catch((error) => {
+        console.log('네트워크 에러', error);
+      });
+  };
+
+  const onSubmit = async (data) => {
+    setFormAtom((prev) => ({
+      ...prev,
+      category: data.category,
+      tag1: data.tag0,
+      tag2: data.tag1,
+      tag3: data.tag2,
+      tag4: data.tag3,
+    }));
+    try {
+      await postForm();
+    } catch (error) {
+      console.log('요청 처리 중 에러 발생:', error);
+    }
+  };
 
   return (
     <>
