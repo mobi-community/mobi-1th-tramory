@@ -19,16 +19,11 @@ const VisitedContriesPage = () => {
   const bannerData = visitedContinent?.map((tabs) => tabs)[0]?.continents;
 
   useEffect(() => {
-    console.log('bannerData', bannerData);
-  }, []);
-
-  useEffect(() => {
     const fetchUserVisited = async () => {
       try {
         const response = await fetch('/user/visited');
         const data = await response.json();
 
-        console.log('data', data);
         if (response.ok) {
           setVisitedContinent(data.data);
         } else {
