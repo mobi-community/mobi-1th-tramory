@@ -13,34 +13,30 @@ import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { isIndividualToggleAtom } from '@/store';
+import { isIndividualOneBadgeToggleAtom } from '@/store';
 
 import { HowToNotification } from '../HowToNotification';
+import type { OneBadgeSlideProps } from './OneBadgeSlide.types';
 
-export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
+export const OneBadgeSlide = ({
+  item,
+  badgeDefault,
+  id,
+}: OneBadgeSlideProps) => {
   const { title, description, info } = item;
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(
-    isIndividualToggleAtom(id)
+    isIndividualOneBadgeToggleAtom(id)
   );
 
-  const handleToggleHowTo = (event: React.MouseEvent) => {
-    event.stopPropagation(); // 상위 요소 이벤트 버블링 막기
-    setIsIndividualToggle((prev) => !prev);
-  };
-
-  // span 아이콘 클릭하지 않고 해당 div 영역 클릭할 경우 HowToNotification이 false 상태가되어 꺼짐
-  const handleBackgroundClick = () => {
-    setIsIndividualToggle(false);
-  };
-
   return (
-    <div className='mb-12 px-12' onClick={handleBackgroundClick}>
+    <div className='mb-12 pr-12'>
       <div className='relative my-8 flex items-center'>
-        <p className='text-primaryBlue-700/80 mr-2 text-xl font-bold'>
+        <p className='text-primaryBlue-700/80 ml-12 mr-2 text-xl font-bold'>
           {title} (0/{description.length})
         </p>
         <span
-          onClick={handleToggleHowTo}
+          onMouseOver={() => setIsIndividualToggle(true)}
+          onMouseOut={() => setIsIndividualToggle(false)}
           className='material-icons-outlined'
           style={{ color: '#70D1E6', cursor: 'pointer', fontSize: '18px' }}
         >
@@ -48,7 +44,7 @@ export const OneBadgeSlide = ({ item, badgeDefault, id }) => {
         </span>
         {isIndividualToggle && <HowToNotification info={info} />}
       </div>
-      <div className='bg-primaryGray-200 flex items-center rounded-[30px] px-8 py-16'>
+      <div className='bg-primaryGray-200 ml-12 flex items-center rounded-[30px] px-8 py-16'>
         <Swiper
           modules={[Navigation]}
           navigation={{

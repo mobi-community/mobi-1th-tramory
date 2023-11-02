@@ -24,27 +24,16 @@ const MyPageTabs = () => {
 
   const [isOneHowTo, setIsOneHowTo] = useAtom(isOneHowToAtom);
 
-  const handleToggleHowTo = (event: React.MouseEvent) => {
-    event.stopPropagation(); // 상위 요소 이벤트 버블링 막기
-    setIsOneHowTo((prev) => !prev);
-  };
-
-  const handleBackgroundClick = () => {
-    setIsOneHowTo(false);
-  };
-
   return (
-    <div
-      className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'
-      onClick={handleBackgroundClick}
-    >
+    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer title={navTitle}>
         <div className='relative my-8 flex items-center'>
           <p className='text-primaryBlue-700/80 mx-12 mr-2 text-xl font-bold'>
             {currentBadge.title} (0/{currentBadge.description.length})
           </p>
           <span
-            onClick={handleToggleHowTo}
+            onMouseOver={() => setIsOneHowTo(true)}
+            onMouseOut={() => setIsOneHowTo(false)}
             className='material-icons-outlined'
             style={{ color: '#70D1E6', cursor: 'pointer', fontSize: '18px' }}
           >

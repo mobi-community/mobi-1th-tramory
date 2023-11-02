@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
-const OneFlagInfo = ({ item }) => {
+import type { OneFlagInfoProps } from './OneFlagInfo.types';
+
+const OneFlagInfo = ({ item }: OneFlagInfoProps) => {
   return (
     <div className='flex flex-col items-center'>
       <div className='flex h-[93px] items-center'>

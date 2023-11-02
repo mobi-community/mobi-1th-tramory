@@ -1,4 +1,6 @@
-export const HowToNotification = ({ info }) => {
+import type { infoProps } from './HowToNotification.types';
+
+export const HowToNotification = ({ info }: infoProps) => {
   const { title, description } = info;
 
   return (
