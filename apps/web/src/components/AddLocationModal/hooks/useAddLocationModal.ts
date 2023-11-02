@@ -5,7 +5,6 @@ import { useAtom } from 'jotai';
 import {
   addressValueAtom,
   isAddLocationOpen,
-  isEditAddressAtom,
   isEditLocationAtom,
   isLocationSearchModalOpen,
   locationValueAtom,
@@ -20,7 +19,6 @@ export const useAddLocationModal = () => {
   );
 
   const [isEditLocation, setIsEditLocation] = useAtom(isEditLocationAtom);
-  const [isEditAddress, setIsEditAddress] = useAtom(isEditAddressAtom);
   const [locationVal, setLocationVal] = useAtom(locationValueAtom);
   const [addressVal, setAddressVal] = useAtom(addressValueAtom);
 
@@ -31,9 +29,7 @@ export const useAddLocationModal = () => {
     isSearchModalOpen,
     setIsSearchModalOpen,
     isEditLocation,
-    isEditAddress,
     handleEditLocation: (isEditMode: boolean) => setIsEditLocation(isEditMode),
-    handleEditAddress: (isEditMode: boolean) => setIsEditAddress(isEditMode),
     locationVal,
     addressVal,
     setLocationVal,

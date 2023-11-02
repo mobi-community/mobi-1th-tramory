@@ -6,8 +6,6 @@ export const isAddLocationOpen = atom(false);
 export const isLocationSearchModalOpen = atom(false);
 // 장소명 수정 인풋창 노출 여부
 export const isEditLocationAtom = atom(false);
-// 상세 주소 수정 인풋창 노출 여부
-export const isEditAddressAtom = atom(false);
 // 장소명 값
 export const locationValueAtom = atom<string>('');
 // 상세 주소 값

@@ -6,45 +6,24 @@ import materialIcon from '@/utils/materialIcon';
 import { useAddLocationModal } from '../../hooks/useAddLocationModal';
 
 export const EditBox: React.FC<{
-  isLocation: boolean;
   placeholder: string;
-}> = ({ isLocation, placeholder }) => {
-  const {
-    handleEditLocation,
-    handleEditAddress,
-    setLocationVal,
-    setAddressVal,
-  } = useAddLocationModal();
+}> = ({ placeholder }) => {
+  const { handleEditLocation, setLocationVal } = useAddLocationModal();
 
   const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.value) return null;
-    if (isLocation) {
-      setLocationVal(e.target.value);
-    } else {
-      setAddressVal(e.target.value);
-    }
+
+    setLocationVal(e.target.value);
   };
 
   const handleSubmit = () => {
-    if (isLocation) {
-      handleEditLocation(false);
-    } else {
-      handleEditAddress(false);
-    }
+    handleEditLocation(false);
   };
 
   return (
-    <div
-      className={`relative ${
-        isLocation ? 'text-xl' : 'mb-[20px] text-base'
-      } flex w-[500px] justify-between`}
-    >
+    <div className={`relative flex w-[500px] justify-between text-xl`}>
       <Input
-        className={`w-[450px] bg-transparent text-center placeholder:text-center focus-visible:outline-none focus-visible:ring-0 ${
-          isLocation
-            ? 'text-xl placeholder:text-xl'
-            : 'text-base placeholder:text-base'
-        }`}
+        className={`w-[450px] bg-transparent text-center text-xl placeholder:text-center placeholder:text-xl focus-visible:outline-none focus-visible:ring-0`}
         placeholder={placeholder}
         onChange={(e) => handleInputValue(e)}
       />
