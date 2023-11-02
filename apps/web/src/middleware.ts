@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 
 import { PROTECTED_URL, PROTECTED_URL_LOGIN } from './constants/protected_URL';
-// import { getToken } from 'next-auth/jwt';
 
-export async function middleware(req) {
-  // const session = await getToken({ req, secret: process.env.JWT_SECRET });
+export function middleware(req) {
   const session = req.cookies.get('next-auth.session-token');
   const url = req.nextUrl.clone();
   const { pathname } = req.nextUrl;
