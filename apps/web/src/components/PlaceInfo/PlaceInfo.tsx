@@ -1,8 +1,12 @@
 'use client';
+import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
 import { Button } from 'ui';
 
-export const PlaceInfo = ({ dayData, count }) => {
+import { dropdownCountAtom } from '@/store/dropdownFormSection.atoms';
+
+export const PlaceInfo = ({ dayData }) => {
+  const [dayCount] = useAtom(dropdownCountAtom);
   const params = useSearchParams();
   const isEdit = params.get('isEdit');
   const isEditPage = isEdit === 'true';
@@ -31,7 +35,7 @@ export const PlaceInfo = ({ dayData, count }) => {
       {(onlyLocationData || allData) && (
         <div className='mt-2 flex gap-3 px-3 py-3 '>
           <div className='bg-primaryBlue-700 mt-1 flex h-[28px] w-[32px] items-center justify-center rounded-full text-[15px] font-semibold text-white'>
-            <p>{count}</p>
+            <p>{dayCount}</p>
           </div>
 
           <div className='flex w-full flex-col'>

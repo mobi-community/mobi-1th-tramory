@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useImageSlider } from '@/hooks';
 
@@ -18,13 +19,21 @@ export const MypageCardSection: React.FC<MypageCardSectionProps> = ({
   const { visibleImages, goToPreviousSlide, goToNextSlide } =
     useImageSlider(allBadges);
 
-  const isVisitedCountries = title === '방문국가';
+  const isVisitedCountries = title === '방문 국가';
 
   return (
     <div className='flex w-[380px] flex-col items-start justify-center'>
       <div className='flex w-full justify-between'>
         <div className='text-[15px] font-bold'>{title}</div>
-        <div className='cursor-pointer text-[12px]'>전체보기</div>
+        <Link
+          href={`${
+            isVisitedCountries
+              ? '/mypage/visit_country/continent'
+              : '/mypage/badge'
+          }`}
+        >
+          <div className='cursor-pointer text-[12px]'>전체보기</div>
+        </Link>
       </div>
       <div className='border-primaryGray-300 mb-6 w-full border-t-[1px]'></div>
       <div
