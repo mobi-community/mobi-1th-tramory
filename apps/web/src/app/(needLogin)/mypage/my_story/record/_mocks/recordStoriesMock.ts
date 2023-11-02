@@ -1,6 +1,8 @@
+export type RecordStoriesMock = typeof recordStoriesMock;
+
 export const recordStoriesMock = [
   {
-    id: 123009998777,
+    id: 9886652,
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',
@@ -35,7 +37,7 @@ export const recordStoriesMock = [
     ],
   },
   {
-    id: 9886652,
+    id: 9886653,
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',

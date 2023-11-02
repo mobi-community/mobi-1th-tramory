@@ -1,17 +1,15 @@
 'use client';
 
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { Button } from 'ui';
 
 import { Line } from '@/components';
 import { placeInfoStateData } from '@/components/PlaceInfo/_mock/placeInfoMock';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import { toggleAllDropdownsAtom } from '@/store/dropdownFormSection.atoms';
-import {
-  userPlanStoriesAtom,
-  userRecordStoriesAtom,
-} from '@/store/mypage.atoms';
+import { userStoryDetailsAtom } from '@/store/mypage.atoms';
 
 import {
   DetailCardSection,
@@ -28,9 +26,25 @@ const MyStoryPlanDetailPage = () => {
   const page = params.get('page');
   const isEdit = params.get('isEdit');
   const allToggleAction = useSetAtom(toggleAllDropdownsAtom);
+  const [storyDetail, setStoryDetail] = useAtom(userStoryDetailsAtom);
 
-  const planStories = useAtomValue(userPlanStoriesAtom);
-  const recordStories = useAtomValue(userRecordStoriesAtom);
+  useEffect(() => {
+    const fetchUserPlanStoryDetails = async () => {
+      try {
+        const reponse = await fetch(`/user/my_story/${page}/${postId}`);
+
+        const data = await reponse.json();
+
+        if (reponse.ok) {
+          setStoryDetail(data.data);
+        }
+      } catch (error) {
+        console.error('데이터를 가져오는 중 에러가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserPlanStoryDetails();
+  }, []);
 
   const handleMoveToDetail = () => {
     if (isEdit === 'true') {
@@ -42,15 +56,11 @@ const MyStoryPlanDetailPage = () => {
 
   const isPlanPage = page === 'plan';
 
-  const planDetail = isPlanPage
-    ? planStories.filter((detail) => detail.id === postId)
-    : recordStories.filter((detail) => detail.id === postId);
-
   return (
     <div className='ml-16 flex w-[60vw] flex-col items-center justify-center p-20'>
-      <UserProfileSection planDetail={planDetail[0]} />
+      <UserProfileSection storyDetail={storyDetail} />
       <Line />
-      <DetailCardSection planDetail={planDetail[0]} />
+      <DetailCardSection storyDetail={storyDetail} />
       <div className='mt-4 flex w-full justify-start gap-4'>
         <Button
           size='xsm'

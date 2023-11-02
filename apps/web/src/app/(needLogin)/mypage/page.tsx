@@ -44,7 +44,7 @@ const MyPage = () => {
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer>
         <MyPageProfile />
-        <div className='px-20 pt-8 '>
+        <div className='px-12 pt-8 '>
           <div className='flex items-center justify-between'>
             <MypageCardSection
               title='획득한 배지'

@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 
+import { RecordStoriesMock } from '@/app/(needLogin)/mypage/my_story/record/_mocks/recordStoriesMock';
 import { storyType } from '@/components/CommonStory';
 
 interface IuserProfileInfoAtom {
@@ -29,6 +30,9 @@ export const userRecordStoriesAtom = atom([]);
 
 // 내 스토리 - 나의 여행 계획
 export const userPlanStoriesAtom = atom([]);
+
+// 내 스토리 디테일 페이지
+export const userStoryDetailsAtom = atom({});
 
 // 관심 스토리 - LikeStory
 export const likeStoriesAtom = atom([]);

@@ -10,11 +10,11 @@ export const ImageModal: React.FC<{ images: StaticImageData[] }> = ({
   const isMyStory = pathName.includes('mypage');
 
   return (
-    <div className='absolute right-[155px] top-0 flex flex-row-reverse'>
+    <div className='absolute right-[165px] top-0 flex flex-row-reverse'>
       {images.map((image) => (
         <div
           className={`z-100 relative ml-[5px] ${
-            isMyStory ? 'h-[150px] w-[150px]' : 'h-[170px] w-[170px]'
+            isMyStory ? 'h-[160px] w-[160px]' : 'h-[170px] w-[170px]'
           }`}
           key={Math.random() * 10000}
         >

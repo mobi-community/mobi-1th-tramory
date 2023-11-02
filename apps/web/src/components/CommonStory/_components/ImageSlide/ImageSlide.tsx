@@ -26,7 +26,7 @@ export const ImageSlide: React.FC<{
       <div className='flex flex-row-reverse'>
         <div
           className={`relative ${
-            isMyStory ? 'h-[150px] w-[150px]' : 'h-[170px] w-[170px]'
+            isMyStory ? 'h-[160px] w-[160px]' : 'h-[170px] w-[170px]'
           }`}
           key={Math.random() * 10000}
         >

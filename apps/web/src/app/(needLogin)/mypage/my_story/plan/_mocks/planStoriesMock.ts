@@ -1,6 +1,6 @@
 export const planStoriesMock = [
   {
-    id: 1233222,
+    id: 123,
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',
@@ -35,7 +35,7 @@ export const planStoriesMock = [
     ],
   },
   {
-    id: 123124322,
+    id: 456,
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',
