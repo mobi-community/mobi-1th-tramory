@@ -1,7 +1,10 @@
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 import { Button } from 'ui';
 
-import googleImage from '/public/images/google-signup.png';
+import googleImage from '/public/images/google-signin.png';
 import { AuthSloganSection } from '@/components';
 
 import { signupConstants } from '../../constants';
@@ -33,9 +36,6 @@ const SignUpPage = () => {
           <div>
             <SignUpForm />
           </div>
-          <div className='mt-4 w-full'>
-            <Button className='mb-4 h-[35px] w-full font-bold'>회원가입</Button>
-          </div>
           <div className='text-primaryGreen my-3 flex w-full items-center justify-between'>
             <div className='bg-primaryGreen h-px w-[160px]'></div>
             <p className='font-bold'>or</p>
@@ -43,7 +43,11 @@ const SignUpPage = () => {
           </div>
           <div className='flex w-full justify-between'>
             <div>
-              <Button className='h-[36px] w-[170px]' variant='nonrounded'>
+              <Button
+                onClick={() => signIn('google')}
+                className='h-[36px] w-[170px]'
+                variant='nonrounded'
+              >
                 <Image
                   src={googleImage}
                   alt='구글 가이드라인 버튼'
@@ -52,12 +56,14 @@ const SignUpPage = () => {
               </Button>
             </div>
             <div>
-              <Button
-                className='h-[36px] w-[170px] font-semibold'
-                variant='nonrounded'
-              >
-                로그인 하러 가기
-              </Button>
+              <Link href='/login'>
+                <Button
+                  className='h-[36px] w-[170px] font-semibold'
+                  variant='nonrounded'
+                >
+                  로그인 하러 가기
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
