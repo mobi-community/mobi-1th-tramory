@@ -10,14 +10,36 @@ import { SIGNUP_SCHEMA } from '../../_schema';
 import type { SignUpFormType } from './SignUpForm.types';
 
 export const SignUpForm = () => {
-  const { control } = useForm<SignUpFormType>({
+  const { handleSubmit, control } = useForm<SignUpFormType>({
     mode: 'onChange',
     resolver: yupResolver(SIGNUP_SCHEMA),
     defaultValues: { email: '', password: '', pwconfirm: '', nickName: '' },
   });
 
+  const onSubmit = async (data: SignUpFormType) => {
+    try {
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('회원가입 실패');
+      }
+
+      const responseData = await response.json();
+
+      console.log('response', responseData);
+    } catch (error) {
+      console.error('회원가입 에러:', error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className='flex'>
         <div className='flex'>
           <ValidatorInput
@@ -70,6 +92,9 @@ export const SignUpForm = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='mt-4 w-full'>
+        <Button className='mb-4 h-[35px] w-full font-bold'>회원가입</Button>
       </div>
     </form>
   );

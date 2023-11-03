@@ -28,6 +28,7 @@
     "encoding": "^0.1.13",
     "framer-motion": "^10.16.4",
     "jotai": "^2.4.3",
+    "next-auth": "^4.24.4",
     "react": "^18.2.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
