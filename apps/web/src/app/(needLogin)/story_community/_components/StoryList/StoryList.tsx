@@ -22,12 +22,7 @@ export const StoryList: React.FC = () => {
 
   useEffect(() => {
     try {
-      fetch(`/story/story_list`, {
-        headers: {
-          Accept: 'application/json',
-        },
-        method: 'GET',
-      })
+      fetch(`/story/story_list/${storyPage + ''}`)
         .then((res) => {
           console.log(res);
           return res.json();
@@ -39,14 +34,16 @@ export const StoryList: React.FC = () => {
     } catch (error) {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [setStoryData]);
+  }, [setStoryData, storyPage]);
 
   const searchedArray = searchKeyword
     ? storyData.filter(
         (story) =>
           story.content.title.includes(searchKeyword) ||
           story.content.text.includes(searchKeyword) ||
-          story.content.tags.some((tag) => tag.includes(searchKeyword)) ||
+          story.content.tags.some((tag: string) =>
+            tag.includes(searchKeyword)
+          ) ||
           story.user.userId.includes(searchKeyword)
       )
     : storyData;
