@@ -1,18 +1,15 @@
 'use client';
 
-import { useSetAtom } from 'jotai';
 import { Controller, useForm } from 'react-hook-form';
 
-import { storyCommunityAtoms } from '@/store';
+import { useStoryCommunity } from '@/app/(needLogin)/story_community/_hooks/useStoryCommunity';
 import materialIcon from '@/utils/materialIcon';
 
 import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const setIsSearchModalOpen = useSetAtom(
-    storyCommunityAtoms.isSearchModalOpenAtom
-  );
+  const { handleSearchModal } = useStoryCommunity();
 
   return (
     <>
@@ -28,7 +25,7 @@ export const SearchInput: React.FC = () => {
               <div className='flex'>
                 <input
                   {...field}
-                  onClick={() => setIsSearchModalOpen((prev: boolean) => !prev)}
+                  onClick={handleSearchModal}
                   className='outline-none'
                   placeholder='스토리 검색'
                   autoComplete='off'

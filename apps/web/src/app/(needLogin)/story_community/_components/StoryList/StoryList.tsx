@@ -1,21 +1,24 @@
 'use client';
 
-import { useAtom, useAtomValue } from 'jotai';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { Button } from 'ui';
 
 import { CommonStory, Pagination } from '@/components';
 import { storyCommunityPageConfig } from '@/constants';
-import {
-  searchKeywordAtom,
-  selectedCategoryAtom,
-  storyCommunityAtoms,
-  storyDataAtom,
-} from '@/store';
+
+import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
 
 export const StoryList: React.FC = () => {
-  const [storyData, setStoryData] = useAtom(storyDataAtom);
+  const {
+    storyData,
+    setStoryData,
+    selectedCategory,
+    setSelectedCategory,
+    storyPage,
+    setStoryPage,
+    searchKeyword,
+  } = useStoryCommunity();
 
   useEffect(() => {
     try {
@@ -37,14 +40,6 @@ export const StoryList: React.FC = () => {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
   }, [setStoryData]);
-
-  const [currentPage, setCurrentPage] = useAtom(
-    storyCommunityAtoms.storyPageAtom
-  );
-
-  const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
-
-  const searchKeyword = useAtomValue(searchKeywordAtom);
 
   const searchedArray = searchKeyword
     ? storyData.filter(
@@ -72,8 +67,8 @@ export const StoryList: React.FC = () => {
       </div>
       <div className='mt-[80px] flex h-[100px] justify-center'>
         <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          currentPage={storyPage}
+          setCurrentPage={setStoryPage}
           itemsPerPage={10}
           testData={100}
           bgColor='gray'

@@ -1,18 +1,15 @@
 'use client';
 
-import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { storyCommunityAtoms } from '@/store';
+import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
 
 export const Title: React.FC = () => {
   const searchParams = useSearchParams();
 
   const searchedCountry = searchParams.get('keyword');
-  const [searchKeyword, setSearchKeyword] = useAtom(
-    storyCommunityAtoms.searchKeywordAtom
-  );
+  const { searchKeyword, setSearchKeyword } = useStoryCommunity();
 
   useEffect(() => {
     setSearchKeyword(searchedCountry);
