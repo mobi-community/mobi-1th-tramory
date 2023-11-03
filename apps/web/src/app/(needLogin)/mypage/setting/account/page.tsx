@@ -10,8 +10,34 @@ import { ModifyForm } from './_components/ModifyForm/ModifyForm';
 const SettingAccountPage = () => {
   const [isAccountPrivacy, setIsAccountPrivacy] = useAtom(isAccountPrivacyAtom);
 
-  const handleChangeAccountPrivacy = () => {
-    setIsAccountPrivacy((prev: boolean) => !prev);
+  const handleChangeAccountPrivacy = (value: boolean) => {
+    setIsAccountPrivacy(value);
+  };
+
+  const patchAccountPrivacy = async () => {
+    try {
+      const response = await fetch('user/info/isPrivacy', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isPrivacy: isAccountPrivacy }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsAccountPrivacy(data.isPrivacy);
+      } else {
+        console.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSubmit = () => {
+    patchAccountPrivacy();
   };
 
   return (
@@ -23,7 +49,7 @@ const SettingAccountPage = () => {
           {/* 비밀번호 변경 폼 */}
           <ModifyForm modifyType='password' />
           {/* 계정 공개 여부 컴포넌트 */}
-          <form>
+          <div>
             <div className='text-primaryGray-500 px-7 font-medium'>
               <h1 className='text-lg'>계정공개 여부</h1>
               <div className='bg-primaryGray-300 my-5 h-px w-full'></div>
@@ -45,7 +71,7 @@ const SettingAccountPage = () => {
                         type='radio'
                         className='accent-primaryBlue-default mr-2'
                         checked={isAccountPrivacy}
-                        onChange={handleChangeAccountPrivacy}
+                        onChange={() => handleChangeAccountPrivacy(true)}
                       />
                       <label htmlFor='accountPublic'>예</label>
                     </div>
@@ -56,7 +82,7 @@ const SettingAccountPage = () => {
                         type='radio'
                         className='accent-primaryBlue-default mr-2'
                         checked={!isAccountPrivacy}
-                        onChange={handleChangeAccountPrivacy}
+                        onChange={() => handleChangeAccountPrivacy(false)}
                       />
                       <label htmlFor='accountPrivate'>아니오</label>
                     </div>
@@ -66,13 +92,14 @@ const SettingAccountPage = () => {
                     weight='bold'
                     shape='full'
                     className='w-[200px]'
+                    onClick={handleSubmit}
                   >
                     계정공개 여부 변경하기
                   </Button>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </SettingContainer>
     </div>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { storyUserType } from '@/components/CommonStory';
-import { StoryButtons } from '@/components/CommonStory/_components/StoryButtons';
+import { StoryButtons } from '@/components/CommonStory/_components/StoryButtons/StoryButtons';
 
 interface StoryUserProps {
   user: storyUserType;
