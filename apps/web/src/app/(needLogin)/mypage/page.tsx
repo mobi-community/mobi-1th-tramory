@@ -24,6 +24,9 @@ const MyPage = () => {
         const response = await fetch('/user/info');
         const data = await response.json();
 
+        // headers : {
+        //  Authorization : localStorage.getItem("access_token")
+        // }
         if (response.ok) {
           setUserInfoState(data.data);
         } else {
