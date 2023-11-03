@@ -13,6 +13,18 @@ export default function NeedLoginLayout({
 }) {
   const pathName = usePathname();
   const isMyPage = pathName.includes('mypage');
+  // const { data: session } = useSession();
+  // const router = useRouter();
+
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push('/login');
+  //   }
+  // }, [session, router]);
+
+  // if (!session) {
+  //   return null;
+  // }
 
   return (
     <>

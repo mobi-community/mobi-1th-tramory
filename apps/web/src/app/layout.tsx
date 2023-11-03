@@ -2,9 +2,7 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
-import { ThemeProvider } from 'ui';
 
-import UseQueryProviders from '../store/queryClient';
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -22,11 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className='font-display'>
-        <UseQueryProviders>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-            <Providers>{children}</Providers>
-          </ThemeProvider>
-        </UseQueryProviders>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

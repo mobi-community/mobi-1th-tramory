@@ -53,7 +53,6 @@ export default function Page() {
         >
           모달 상세기록 열기
         </button>
-
         <TravelModalDefault
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
