@@ -6,6 +6,7 @@ import {
   selectedCategoryAtom,
   storyDataAtom,
   storyPageAtom,
+  totalAtom,
 } from '@/store';
 
 export const useStoryCommunity = () => {
@@ -16,6 +17,7 @@ export const useStoryCommunity = () => {
     isSearchModalOpenAtom
   );
   const [storyPage, setStoryPage] = useAtom(storyPageAtom);
+  const [total, setTotal] = useAtom(totalAtom);
 
   return {
     storyData,
@@ -23,11 +25,13 @@ export const useStoryCommunity = () => {
     selectedCategory,
     isSearchModalOpen,
     storyPage,
+    total,
     setStoryData,
     setSearchKeyword,
     setSelectedCategory,
     clearCategory: () => setSelectedCategory('전체'),
     handleSearchModal: () => setIsSearchModalOpen((prev: boolean) => !prev),
     setStoryPage,
+    setTotal,
   };
 };

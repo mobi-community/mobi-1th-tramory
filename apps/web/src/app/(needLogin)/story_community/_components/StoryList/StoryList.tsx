@@ -18,6 +18,8 @@ export const StoryList: React.FC = () => {
     storyPage,
     setStoryPage,
     searchKeyword,
+    total,
+    setTotal,
   } = useStoryCommunity();
 
   useEffect(() => {
@@ -28,13 +30,14 @@ export const StoryList: React.FC = () => {
           return res.json();
         })
         .then((data) => {
-          console.log('데이터 연결 완료');
+          console.log('데이터 연결 완료', data);
           setStoryData(data.data);
+          setTotal(data.data.total);
         });
     } catch (error) {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [setStoryData, storyPage]);
+  }, [setStoryData, setTotal, storyPage]);
 
   const searchedArray = searchKeyword
     ? storyData.filter(
@@ -67,7 +70,7 @@ export const StoryList: React.FC = () => {
           currentPage={storyPage}
           setCurrentPage={setStoryPage}
           itemsPerPage={10}
-          testData={100}
+          testData={total}
           bgColor='gray'
         />
       </div>

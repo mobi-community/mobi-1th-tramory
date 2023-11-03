@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useStoryCommunity } from '@/app/(needLogin)/story_community/_hooks/useStoryCommunity';
@@ -10,11 +11,15 @@ import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
   const { handleSearchModal } = useStoryCommunity();
+  const router = useRouter();
 
   return (
     <>
       <form
-        onSubmit={handleSubmit((data: string) => console.log('data', data))}
+        onSubmit={handleSubmit((data: { searchKeyword: string }) => {
+          if (data.searchKeyword)
+            router.push(`/story_community?keyword=${data.searchKeyword}`);
+        })}
       >
         <Controller
           name='searchKeyword'
