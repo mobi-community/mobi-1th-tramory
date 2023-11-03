@@ -2,6 +2,7 @@ export * from './addLocationModal.atoms';
 export * from './countryInfoModal.atoms';
 export * from './floatingMenu.atoms';
 export * from './map.atoms';
+export * from './mapPage.atoms';
 export * from './myPageNav.atoms';
 export * from './selectedDateIdAtom.atom';
 export * from './simpleRecordModal.atom';

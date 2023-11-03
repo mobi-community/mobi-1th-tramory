@@ -1,11 +1,8 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-
+import { useMapSearchBar } from '@/app/(needLogin)/map/hooks/useMapSearchBar';
 import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
 
 export const SelectRangeModal: React.FC = () => {
-  const setSearchRange = useSetAtom(MapAtom.range);
-  const isSelectModalOpen = useAtomValue(MapAtom.isSelectModalOpen);
+  const { setSearchRange, isSelectModalOpen } = useMapSearchBar();
 
   return (
     <>
