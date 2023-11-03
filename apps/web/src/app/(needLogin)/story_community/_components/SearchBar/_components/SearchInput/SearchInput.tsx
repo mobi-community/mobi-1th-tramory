@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { storyCommunityAtoms } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
-import { SuggestionModal } from '../SuggestionModal';
+import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();

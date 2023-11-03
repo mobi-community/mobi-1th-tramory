@@ -1,3 +1,4 @@
+export * from './AddLocationModal/AddLocationModal';
 export * from './AuthSloganSection/AuthSloganSection';
 export * from './CommonMap';
 export * from './CommonStory/CommonStory';

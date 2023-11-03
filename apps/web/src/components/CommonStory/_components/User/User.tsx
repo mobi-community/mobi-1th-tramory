@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import type { storyUserType } from '../../CommonStory.types';
-import { StoryButtons } from '../StoryButtons';
+import { StoryButtons } from '../StoryButtons/StoryButtons';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;

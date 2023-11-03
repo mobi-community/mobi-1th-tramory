@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 
 import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
+import { MapAtom, MapPageAtom } from '@/store';
 import { userInfoAtom } from '@/store/userInfo.atoms';
 
 import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
@@ -17,7 +17,7 @@ const MapPage: React.FC = () => {
   const [clicks, setClicks] = useAtom(MapAtom.click);
   const zoom = useAtomValue(MapAtom.zoom);
   const center = useAtomValue(MapAtom.center);
-  const isDarkMode = useAtomValue(MapAtom.isDarkMode);
+  const isDarkMode = useAtomValue(MapPageAtom.isDarkMode);
   const setUserInfo = useSetAtom(userInfoAtom);
   const { data: session } = useSession();
 

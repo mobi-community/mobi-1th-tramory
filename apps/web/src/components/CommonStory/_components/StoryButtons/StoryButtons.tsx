@@ -29,6 +29,7 @@ export const StoryButtons: React.FC<StoryButtonsProps> = ({ postId }) => {
         <Button
           variant='skyblue'
           className='flex h-[24px] w-[40px] items-center p-0 text-[12px]'
+          // className='h-[30px] min-w-[50%] max-w-[53px] md:text-xs'
         >
           수정
         </Button>
