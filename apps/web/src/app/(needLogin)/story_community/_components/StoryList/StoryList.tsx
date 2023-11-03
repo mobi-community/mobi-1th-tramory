@@ -2,6 +2,7 @@
 
 import { useAtom, useAtomValue } from 'jotai';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { Button } from 'ui';
 
 import { CommonStory, Pagination } from '@/components';
@@ -10,11 +11,33 @@ import {
   searchKeywordAtom,
   selectedCategoryAtom,
   storyCommunityAtoms,
+  storyDataAtom,
 } from '@/store';
 
-import { storyMock } from '../../_mocks';
-
 export const StoryList: React.FC = () => {
+  const [storyData, setStoryData] = useAtom(storyDataAtom);
+
+  useEffect(() => {
+    try {
+      fetch(`/story/story_list`, {
+        headers: {
+          Accept: 'application/json',
+        },
+        method: 'GET',
+      })
+        .then((res) => {
+          console.log(res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log('데이터 연결 완료');
+          setStoryData(data.data);
+        });
+    } catch (error) {
+      console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
+    }
+  }, [setStoryData]);
+
   const [currentPage, setCurrentPage] = useAtom(
     storyCommunityAtoms.storyPageAtom
   );
@@ -24,14 +47,14 @@ export const StoryList: React.FC = () => {
   const searchKeyword = useAtomValue(searchKeywordAtom);
 
   const searchedArray = searchKeyword
-    ? storyMock.filter(
+    ? storyData.filter(
         (story) =>
           story.content.title.includes(searchKeyword) ||
           story.content.text.includes(searchKeyword) ||
           story.content.tags.some((tag) => tag.includes(searchKeyword)) ||
           story.user.userId.includes(searchKeyword)
       )
-    : storyMock;
+    : storyData;
 
   const filteredStoryArray =
     selectedCategory && selectedCategory !== '전체'
