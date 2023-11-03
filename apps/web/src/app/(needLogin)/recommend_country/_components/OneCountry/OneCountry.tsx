@@ -17,7 +17,7 @@ export const OneCountry: React.FC<{
         <Image
           src={coverImage}
           alt={country}
-          layout='fill'
+          fill
           sizes='200'
           className='cursor-pointer opacity-70'
           priority={true}
