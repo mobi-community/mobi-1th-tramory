@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import type { storyUserType } from '../../CommonStory.types';
-import { StoryButtons } from '../StoryButtons';
+import { StoryButtons } from '../StoryButtons/StoryButtons';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;
@@ -17,7 +17,7 @@ export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
             <Image
               src={profileImage}
               alt='사용자 프로필 이미지'
-              layout='fill'
+              fill
               className='rounded-[50%]'
             />
           </div>

@@ -1,11 +1,14 @@
 'use client';
 
 import { Wrapper } from '@googlemaps/react-wrapper';
-import { useAtom, useAtomValue } from 'jotai';
-import React from 'react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useSession } from 'next-auth/react';
+import React, { useEffect } from 'react';
 
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
+import { MapAtom, MapPageAtom } from '@/store';
+import { userInfoAtom } from '@/store/userInfo.atoms';
 
 import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
 
@@ -14,7 +17,18 @@ const MapPage: React.FC = () => {
   const [clicks, setClicks] = useAtom(MapAtom.click);
   const zoom = useAtomValue(MapAtom.zoom);
   const center = useAtomValue(MapAtom.center);
-  const isDarkMode = useAtomValue(MapAtom.isDarkMode);
+  const isDarkMode = useAtomValue(MapPageAtom.isDarkMode);
+  const setUserInfo = useSetAtom(userInfoAtom);
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      setUserInfo({
+        nickName: session.user.name,
+        email: session.user.email,
+      });
+    }
+  }, [session]);
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     setClicks([...clicks, e.latLng!]);
@@ -43,6 +57,7 @@ const MapPage: React.FC = () => {
           </Map>
         </Wrapper>
         <AnimatedArrow />
+        <FloatingMenu />
       </div>
     );
   return null;

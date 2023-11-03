@@ -1,3 +1,3 @@
-export * from './SearchInput';
-export * from './SelectRange';
-export * from './SuggestionModal';
+export * from './SearchInput/SearchInput';
+export * from './SelectRange/SelectRange';
+export * from './SuggestionModal/SuggestionModal';

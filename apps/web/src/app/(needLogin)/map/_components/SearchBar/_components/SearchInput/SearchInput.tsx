@@ -1,20 +1,31 @@
-import { useSetAtom } from 'jotai';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
+import { useMapSearchBar } from '@/app/(needLogin)/map/hooks/useMapSearchBar';
 import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
-import { SuggestionModal } from '../SuggestionModal';
+import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const setIsSearchModalOpen = useSetAtom(MapAtom.isSearchModalOpen);
+  const { handleSearchModal, isRangeCountry } = useMapSearchBar();
+
+  const router = useRouter();
 
   return (
-    <>
+    <div>
       <form
-        onSubmit={handleSubmit((data: string) => console.log('data', data))}
+        className='flex flex-col justify-center'
+        onSubmit={handleSubmit((data: { searchKeyword: string }) => {
+          if (isRangeCountry) {
+            console.log('data', data);
+          } else {
+            router.push(`/story_community?keyword=${data.searchKeyword}`);
+          }
+        })}
       >
         <Controller
           name='searchKeyword'
@@ -22,15 +33,15 @@ export const SearchInput: React.FC = () => {
           defaultValue=''
           render={({ field }) => (
             <div className='relative mt-1'>
-              <div className='flex w-[450px]'>
+              <div className='relative flex w-[400px]'>
                 <input
                   {...field}
-                  onClick={() => setIsSearchModalOpen((prev: boolean) => !prev)}
-                  className='text-align-center text-s ml-12 w-[430px] focus:outline-none'
+                  onClick={handleSearchModal}
+                  className='text-align-center text-s ml-12 w-[380px] focus:outline-none'
                   placeholder={MapPageConfig.searchBarText}
                   autoComplete='off'
                 />
-                <div className='absolute ml-[380px] cursor-pointer pt-2'>
+                <div className='mt-1 cursor-pointer'>
                   {materialIcon({
                     iconName: 'search',
                     size: 30,
@@ -43,6 +54,6 @@ export const SearchInput: React.FC = () => {
           )}
         />
       </form>
-    </>
+    </div>
   );
 };

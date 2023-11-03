@@ -2,13 +2,19 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
+import { useAddLocationModal } from '@/components/AddLocationModal';
+import { AddLocationModal } from '@/components/AddLocationModal/AddLocationModal';
 import { recommendPageConfig } from '@/constants';
 
 import { PageBox } from './_components';
 
 const RecommendCountryPage: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>();
-  const pageHeight = window.innerHeight + 20;
+  const pageHeightRef = useRef<number>();
+
+  useEffect(() => {
+    pageHeightRef.current = window?.innerHeight + 20;
+  }, []);
 
   // 스크롤을 위로 올려주는 함수
   const scrollToTop = useCallback(() => {
@@ -21,10 +27,10 @@ const RecommendCountryPage: React.FC = () => {
   // 스크롤을 맨 아래로 내려주는 함수
   const scrollToBottom = useCallback(() => {
     wrapperRef.current?.scrollTo({
-      top: pageHeight,
+      top: pageHeightRef.current,
       behavior: 'smooth',
     });
-  }, [wrapperRef, pageHeight]);
+  }, [wrapperRef, pageHeightRef]);
 
   // 기존 scroll 이벤트를 막아주는 함수
   useEffect(() => {
@@ -32,28 +38,36 @@ const RecommendCountryPage: React.FC = () => {
       e.preventDefault();
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    // window.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
     };
   }, []);
 
+  const { handleOpenModal } = useAddLocationModal();
+
   return (
-    <div
-      className='max-h-[calc(100vh-20px)] overflow-x-hidden'
-      ref={wrapperRef}
-    >
-      <PageBox
-        continentArray={recommendPageConfig.continentsArray.slice(0, 3)}
-        isTop={true}
-        handleScroll={scrollToBottom}
-      />
-      <PageBox
-        continentArray={recommendPageConfig.continentsArray.slice(3)}
-        isTop={false}
-        handleScroll={scrollToTop}
-      />
+    <div>
+      <div>
+        <button onClick={handleOpenModal}>장소 추가 모달 열기</button>
+      </div>
+      <div
+        className='max-h-[calc(100vh-20px)] overflow-x-hidden'
+        ref={wrapperRef}
+      >
+        <PageBox
+          continentArray={recommendPageConfig.continentsArray.slice(0, 3)}
+          isTop={true}
+          handleScroll={scrollToBottom}
+        />
+        <PageBox
+          continentArray={recommendPageConfig.continentsArray.slice(3)}
+          isTop={false}
+          handleScroll={scrollToTop}
+        />
+      </div>
+      <AddLocationModal />
     </div>
   );
 };
