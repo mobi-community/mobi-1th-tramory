@@ -5,7 +5,7 @@ import materialIcon from '@/utils/materialIcon';
 
 import { SearchBar } from './_components';
 import { AddedLocation } from './_components/AddedLocation/AddedLocation';
-import { useAddLocationModal } from './hooks/useAddLocationModal';
+import { useAddLocationModal } from './_hooks/useAddLocationModal';
 
 export const AddLocationModal: React.FC = () => {
   const { isAddLocationModalOpen, handleCloseModal, clearValue } =

@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import materialIcon from '@/utils/materialIcon';
 
-import { useCountryInfoModal } from './hooks/useCountryInfoModal';
+import { useCountryInfoModal } from './_hooks/useCountryInfoModal';
 
 export const CountryInfoModal: React.FC<
   PropsWithChildren<{ country: string }>

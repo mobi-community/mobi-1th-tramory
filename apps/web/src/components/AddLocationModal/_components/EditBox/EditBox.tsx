@@ -3,7 +3,7 @@ import { Input } from 'ui';
 
 import materialIcon from '@/utils/materialIcon';
 
-import { useAddLocationModal } from '../../hooks/useAddLocationModal';
+import { useAddLocationModal } from '../../_hooks/useAddLocationModal';
 
 export const EditBox: React.FC<{
   placeholder: string;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useAddLocationModal } from '@/components/AddLocationModal/hooks/useAddLocationModal';
+import { useAddLocationModal } from '@/components/AddLocationModal/_hooks/useAddLocationModal';
 import {
   keywordMock,
   keywordType,

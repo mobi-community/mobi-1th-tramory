@@ -5,7 +5,7 @@ import { Button } from 'ui';
 import { AddLocationConfig } from '@/constants';
 import materialIcon from '@/utils/materialIcon';
 
-import { useAddLocationModal } from '../../hooks/useAddLocationModal';
+import { useAddLocationModal } from '../../_hooks/useAddLocationModal';
 import { EditBox } from '../EditBox/EditBox';
 
 export const AddedLocation: React.FC = () => {
