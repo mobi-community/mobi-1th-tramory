@@ -27,6 +27,7 @@ export interface ContentDataType {
   images?: string[];
   liked?: number;
   viewed?: number;
+  category: string;
   tags?: string[];
 }
 

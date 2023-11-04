@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import fakeImage from '../../_mocks/fake-profile-image.png';
@@ -9,13 +12,18 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
 }) => {
   const { user, content } = targetStory;
 
+  const router = useRouter();
+
   return (
     <div className='flex w-full flex-col justify-between'>
       <div className='flex w-full items-center justify-between'>
         <div className='text-[24px] font-bold'>{content.title}</div>
         <div className=' text-primaryGray-400 text-[14px]'>{content.date}</div>
       </div>
-      <div className='mt-3 flex w-full items-center justify-start gap-3'>
+      <div
+        className='mt-3 flex w-full cursor-pointer items-center justify-start gap-3'
+        onClick={() => router.push('/otherspage?tab=1')}
+      >
         <div
           style={{ boxShadow: '0 0 3px rgba(0, 0, 0, 0.15)' }}
           className='w-[35px] rounded-full '

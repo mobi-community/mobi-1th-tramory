@@ -1,6 +1,7 @@
 'use client';
 
 import { useSetAtom } from 'jotai';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Button } from 'ui';
 
@@ -27,7 +28,7 @@ const StoryDetail = () => {
   console.log(targetStory);
 
   return (
-    <div className='ml-16 flex w-[60vw] flex-col items-center justify-center p-20'>
+    <div className='relative m-auto flex w-[60vw] flex-col items-center justify-center p-20'>
       <UserProfileSection targetStory={targetStory} />
       <Line />
       <DetailCardSection targetStory={targetStory} />
@@ -58,7 +59,10 @@ const StoryDetail = () => {
       {placeInfoStateData.map((dayData, index) => (
         <DropdownFormSection key={index} dayData={dayData} index={index} />
       ))}
-      <div className='mt-10 flex w-full items-center justify-center gap-6'>
+      <Link
+        className='mt-10 flex w-full items-center justify-center gap-6'
+        href={'/story_community'}
+      >
         <Button
           size='xsm'
           className=' border-primaryGray-500 text-primaryGray-500 hover:bg-primaryBlue-200 hover:border-primaryBlue-200 hover:text-primaryGray-500  h-[40px] w-[145px] rounded-3xl border-opacity-40 font-bold '
@@ -66,7 +70,7 @@ const StoryDetail = () => {
         >
           목록보기
         </Button>
-      </div>
+      </Link>
     </div>
   );
 };
