@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 
-import { travelDailyPlansDetailsAtom } from '@/store/travelDetailModal.atoms';
+import { travelDetailModal } from '@/store/travelDetailModal.atoms';
 
 import { DraggableItemProps } from './useDndItems.type';
 
@@ -18,13 +18,16 @@ const memoStateAtom = atom<MemoState>(defaultState);
 
 export const useDndItem = (props: DraggableItemProps) => {
   const [memoState, setMemoState] = useAtom(memoStateAtom);
-  const [, setTravelDailyPlansDetails] = useAtom(travelDailyPlansDetailsAtom);
+  const [travelDailyPlansDetails, setTravelDailyPlansDetails] =
+    useAtom(travelDetailModal);
+
+  console.log('travelDailyPlansDetails', travelDailyPlansDetails);
 
   // 메모 수정 버튼
   const handleEditButtonClick = (memoIndex: number) => {
     setMemoState({
       editingMemoIndex: memoIndex,
-      currentMemo: props.item.memos[memoIndex],
+      currentMemo: props.item.id[memoIndex],
     });
   };
 
@@ -33,17 +36,19 @@ export const useDndItem = (props: DraggableItemProps) => {
     if (memoState.currentMemo) {
       props.onEditMemo(props.item.id, memoIndex, memoState.currentMemo);
       // 전역 travelDailyPlansDetails 상태 업데이트
-      setTravelDailyPlansDetails((oldDetails) =>
-        oldDetails.map((detail) =>
+      setTravelDailyPlansDetails((oldDetails) => {
+        console.log('olddetail', oldDetails);
+
+        return oldDetails.map((detail) =>
           detail.id === props.item.id
             ? {
                 ...detail,
-                placeName: props.item.name, // 아이템 이름으로 placeName 업데이트
-                description: props.item.memos.join(', '), // 모든 메모를 description으로 합쳐서 업데이트
+                placeName: props.item.placeName,
+                description: props.item.description,
               }
             : detail
-        )
-      );
+        );
+      });
       // 메모 초기화
       setMemoState(defaultState);
     }

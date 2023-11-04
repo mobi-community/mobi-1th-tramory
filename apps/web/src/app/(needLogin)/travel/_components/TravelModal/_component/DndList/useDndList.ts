@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
 import { DropResult } from 'react-beautiful-dnd';
 
-import { travelModalDndList } from '@/store/travelModalDnd.atoms';
+import { Item, travelDetailModal } from '@/store/travelDetailModal.atoms';
 
 export const useDndList = () => {
-  const [items, setItems] = useAtom(travelModalDndList);
+  const [items, setItems] = useAtom(travelDetailModal);
 
   const handleDeleteItem = (itemId: number) => {
     const updatedItems = items.filter((item) => item.id !== itemId);
@@ -17,7 +17,7 @@ export const useDndList = () => {
 
     if (newName) {
       const updatedItems = items.map((item) =>
-        item.id === itemId ? { ...item, name: newName } : item
+        item.id === itemId ? { ...item, placeName: newName } : item
       );
 
       setItems(updatedItems);
@@ -29,7 +29,7 @@ export const useDndList = () => {
 
     if (memo) {
       const updatedItems = items.map((item) =>
-        item.id === itemId ? { ...item, memos: [...item.memos, memo] } : item
+        item.id === itemId ? { ...item, description: item.description } : item
       );
 
       setItems(updatedItems);
@@ -48,42 +48,40 @@ export const useDndList = () => {
   };
 
   const handleAddNewItem = () => {
-    const newItemName = `${items.length + 1}`;
+    const newItemSequence = items.length + 1;
+    const newItem: Item = {
+      id: Date.now(),
+      sequence: newItemSequence,
+      placeName: `New Place ${newItemSequence}`,
+      addressName: '',
+      latitude: '',
+      longitude: '',
+      description: '',
+      country: { countryName: '' },
+      city: { cityName: '' },
+    };
 
-    setItems((prevItems) => [
-      ...prevItems,
-      { id: Date.now(), name: newItemName, memos: [], editingMemoIndex: -1 },
-    ]);
+    setItems([...items, newItem]);
   };
 
-  const handleEditMemo = (
-    itemId: number,
-    memoIndex: number,
-    updatedMemo: string
-  ) => {
+  const handleEditMemo = (itemId: number, updatedMemo: string) => {
     const updatedItems = items.map((item) =>
-      item.id === itemId
-        ? {
-            ...item,
-            memos: item.memos.map((memo, index) =>
-              index === memoIndex ? updatedMemo : memo
-            ),
-          }
-        : item
+      item.id === itemId ? { ...item, description: updatedMemo } : item
     );
 
     setItems(updatedItems);
   };
 
   const handleDeleteMemo = (itemId: number, memoIndex: number) => {
-    const updatedItems = items.map((item) =>
-      item.id === itemId
-        ? {
-            ...item,
-            memos: item.memos.filter((_, index) => index !== memoIndex),
-          }
-        : item
-    );
+    const updatedItems = items.map((item) => {
+      if (item.id === itemId) {
+        const memos = item.description.split(', ');
+
+        memos.splice(memoIndex, 1);
+        return { ...item, description: memos.join(', ') };
+      }
+      return item;
+    });
 
     setItems(updatedItems);
   };

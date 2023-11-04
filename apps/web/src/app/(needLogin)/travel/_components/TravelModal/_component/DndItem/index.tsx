@@ -10,6 +10,10 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
     handleCheckButtonClick,
   } = useDndItem(props);
 
+  // const [isAddMemo, setIsAddMemo] = useState(false);
+
+  const isEditingDescription = editingMemoIndex === 0;
+
   return (
     <div
       className=' min-h-[60px] border-b px-4 py-6'
@@ -28,7 +32,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
         <div className='text-primaryBlue-default flex w-full flex-col '>
           <div className='flex items-center justify-between text-center'>
             <span className='text-lg font-bold leading-normal'>
-              {props.item.name}
+              {props.item.placeName}
             </span>
             <div className='space-x-3 text-xs'>
               <button
@@ -46,8 +50,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               <span className='material-icons-outlined leading-5'>menu</span>
             </div>
           </div>
-
-          {props.item.memos.length === 0 && (
+          {props.item.description.length === 0 && (
             <button
               onClick={() => props.onAddMemo(props.item.id)}
               className='mt-2 flex items-center text-sm '
@@ -58,48 +61,54 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               기록하기
             </button>
           )}
+
+          {/* {props.item.memos.length === 0 && !isAddMemo && (
+            <button
+              onClick={() => setIsAddMemo(true)}
+              className='mt-2 flex items-center text-sm '
+            >
+              <span className='material-icons-outlined mr-2 h-5 w-5'>
+                add_circle
+              </span>
+              기록하기
+            </button>
+          )}
+          {isAddMemo && <input className='w-full border bg-gray-100'></input>} */}
         </div>
       </div>
-      {props.item.memos.map((memo, memoIndex) => (
-        // eslint-disable-next-line react/jsx-key
-        <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
-          {editingMemoIndex === memoIndex ? (
-            <input
-              value={currentMemo}
-              onChange={(e) => {
-                setMemoState((prev) => ({
-                  ...prev,
-                  currentMemo: e.target.value,
-                }));
-              }}
-              className='w-full border bg-gray-100'
-            />
-          ) : (
-            <span className='max-w-[450px]'>{memo}</span>
-          )}
+      <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
+        {isEditingDescription ? (
+          <input
+            value={currentMemo}
+            onChange={(e) => {
+              setMemoState((prev) => ({
+                ...prev,
+                currentMemo: e.target.value,
+              }));
+            }}
+            className='w-full border bg-gray-100'
+          />
+        ) : (
+          <span className='max-w-[450px]'>{props.item.description}</span>
+        )}
 
-          <div className='space-x-3'>
-            {editingMemoIndex === memoIndex ? (
-              <button onClick={() => handleCheckButtonClick(memoIndex)}>
-                <span className='material-icons-outlined h-5 w-5'>check</span>
+        <div className='space-x-3'>
+          {isEditingDescription ? (
+            <button onClick={() => handleCheckButtonClick(0)}>
+              <span className='material-icons-outlined h-5 w-5'>check</span>
+            </button>
+          ) : (
+            <>
+              <button onClick={() => handleEditButtonClick(0)}>
+                <span className='material-icons-outlined h-5 w-5'>edit</span>
               </button>
-            ) : (
-              <>
-                <button onClick={() => handleEditButtonClick(memoIndex)}>
-                  <span className='material-icons-outlined h-5 w-5'>edit</span>
-                </button>
-                <button
-                  onClick={() => props.onDeleteMemo(props.item.id, memoIndex)}
-                >
-                  <span className='material-icons-outlined h-5 w-5'>
-                    delete
-                  </span>
-                </button>
-              </>
-            )}
-          </div>
+              <button onClick={() => props.onDeleteMemo(props.item.id, 0)}>
+                <span className='material-icons-outlined h-5 w-5'>delete</span>
+              </button>
+            </>
+          )}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

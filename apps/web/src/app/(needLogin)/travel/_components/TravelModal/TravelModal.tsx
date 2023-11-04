@@ -1,22 +1,24 @@
 import { useAtom } from 'jotai';
 import { Button } from 'ui';
 
-import { travelDailyPlansDetailsAtom } from '@/store/travelDetailModal.atoms';
+import { travelDetailModal } from '@/store/travelDetailModal.atoms';
 
 import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
 
 const TravelModal: React.FC = () => {
-  const [travelDailyPlansDetails] = useAtom(travelDailyPlansDetailsAtom);
+  const [detailModalState] = useAtom(travelDetailModal);
 
   const handleSave = async () => {
     try {
+      console.log('data?', detailModalState);
+
       const response = await fetch('/updateDetailModal', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ travelDailyPlansDetails }),
+        body: JSON.stringify({ travelDailyPlansState: detailModalState }),
       });
 
       if (response.ok) {

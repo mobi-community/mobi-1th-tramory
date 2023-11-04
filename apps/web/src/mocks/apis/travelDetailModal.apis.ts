@@ -1,13 +1,13 @@
 import { rest } from 'msw';
 
-import { TravelDailyPlansState } from '@/store/travelDetailModal.atoms';
+import { Item } from '@/store/travelDetailModal.atoms';
 
-export const travelDetailModal = rest.post<TravelDailyPlansState>(
+export const travelDetailModal = rest.post<Item[]>(
   '/updateDetailModal',
   (req, res, ctx) => {
-    const { travelDailyPlansDetails } = req.body;
+    const travelDailyPlansState = req.body;
 
-    console.log(travelDailyPlansDetails);
+    console.log(travelDailyPlansState);
 
     return res(
       ctx.json({
