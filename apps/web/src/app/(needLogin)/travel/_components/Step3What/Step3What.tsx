@@ -15,47 +15,45 @@ interface IStep3Props {
   config: TravelPlanStep3Config;
 }
 
+// formModeAtom에 타입이 있어야함
+export const postForm = async (formdata) => {
+  await fetch('/api/plans', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(formdata),
+  })
+    .then((res) => {
+      if (res.status === 200) {
+        alert('post 요청 성공');
+        localStorage.removeItem('formAtom'); // formAtom 데이터 삭제할 때 사용
+      } else if (res.status === 403) {
+        return res.json();
+      }
+    })
+    .catch((error) => {
+      console.log('네트워크 에러', error);
+    });
+};
+
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [formAtom, setFormAtom] = useAtom(formModeAtom);
   const { handleSubmit, control } = useForm<TravelPlanType>({
     defaultValues: formAtom,
   });
 
-  // formModeAtom에 타입이 있어야함
-  const postForm = async () => {
-    await fetch('/api/plans', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(formAtom),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          alert('post 요청 성공');
-        } else if (res.status === 403) {
-          return res.json();
-        }
-      })
-      .catch((error) => {
-        console.log('네트워크 에러', error);
-      });
-  };
-
   const onSubmit = async (data) => {
     setFormAtom((prev) => ({
       ...prev,
-      category: data.category,
-      tag1: data.tag0,
-      tag2: data.tag1,
-      tag3: data.tag2,
-      tag4: data.tag3,
+      theme: data.theme,
+      travelHashTags: Array(4)
+        .fill(null)
+        .map((_, index) => ({
+          id: Math.floor(Math.random() * 100000),
+          hashTag: { name: data[`tag${index}`] },
+        })),
     }));
-    try {
-      await postForm();
-    } catch (error) {
-      console.log('요청 처리 중 에러 발생:', error);
-    }
   };
 
   return (

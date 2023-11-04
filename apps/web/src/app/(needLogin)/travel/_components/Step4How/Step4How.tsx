@@ -1,13 +1,14 @@
 'use client';
 import { useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Pagination } from '@/components';
 import type { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
+import { formModeAtom } from '@/store';
 
 import NavigateButton from '../NavigateButton/NavigateButton';
+import { postForm } from '../Step3What/Step3What';
 import Step4Dates from './components/Step4Dates/Step4Dates';
 import { dates } from './mocks';
 
@@ -15,21 +16,25 @@ interface IStep4Props {
   config: TravelPlanStep4Config;
 }
 
-const formModeAtom = atomWithStorage('formAtom', []);
-
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
   const [formAtom] = useAtom(formModeAtom);
   const { handleSubmit, control } = useForm();
-  const onSubmit = (data) => console.log(data.title);
+  const onSubmit = (data) => console.log(data);
 
   console.log(formAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
 
-  console.log('how', formAtom);
+  console.log('post data', formAtom);
+  useEffect(() => {
+    postForm(formAtom);
+  }, []);
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+      // onSubmit={handleSubmit(onSubmit)}
+      >
         <div>
           <div className='mt-[57px] flex h-[600px] items-center justify-center '>
             <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center border'>

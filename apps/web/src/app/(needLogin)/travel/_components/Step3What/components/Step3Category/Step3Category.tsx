@@ -16,7 +16,7 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
   return (
     <>
       <Controller
-        name='category'
+        name='theme'
         control={control}
         defaultValue={''}
         render={({ field }) => (
@@ -32,7 +32,7 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                   }`}
                   onClick={() => {
                     setSelectedCategoryId(category.id);
-                    field.onChange(category.label);
+                    field.onChange(category.id);
                   }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>
