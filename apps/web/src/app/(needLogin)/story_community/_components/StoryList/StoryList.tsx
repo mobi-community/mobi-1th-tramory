@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from 'ui';
 
@@ -58,11 +59,19 @@ export const StoryList: React.FC = () => {
         )
       : searchedArray;
 
+  const router = useRouter();
+
   const HaveData = (
     <div>
       <div className='m-auto grid grid-cols-2 gap-8 gap-x-[5%]'>
         {filteredStoryArray.map((story) => (
-          <CommonStory story={story} key={Math.random() * 1000} />
+          <CommonStory
+            story={story}
+            key={Math.random() * 1000}
+            handleMoveToDetail={() =>
+              router.push(`/story_community/${story.id}`)
+            }
+          />
         ))}
       </div>
       <div className='mt-[80px] flex h-[100px] justify-center'>
