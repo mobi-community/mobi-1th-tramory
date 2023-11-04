@@ -1,25 +1,44 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
-import googleImage from '/public/images/google-signin.png';
 import { ValidatorInput } from '@/components';
 
 import { LOGIN_SCHEMA } from '../../_schema/login.schema';
-import type { LoginFormType } from './LoginForm.type';
+import type { LoginFormType } from './LoginForm.types';
 
 export const LoginForm = () => {
-  const { control } = useForm<LoginFormType>({
+  const { handleSubmit, control } = useForm<LoginFormType>({
     mode: 'onChange',
     resolver: yupResolver(LOGIN_SCHEMA),
     defaultValues: { email: '', password: '' },
   });
 
+  const onSubmit = async (data: LoginFormType) => {
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('로그인 실패');
+      }
+
+      const responseData = await response.json();
+
+      console.log('response', responseData);
+    } catch (error) {
+      console.error('로그인 에러:', error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <ValidatorInput
         label={'Email'}
         subLabel={'이메일'}
@@ -48,24 +67,6 @@ export const LoginForm = () => {
         <div className='bg-primaryGreen h-px w-[160px]'></div>
         <p className='font-bold'>or</p>
         <div className='bg-primaryGreen h-px w-[160px]'></div>
-      </div>
-      <div>
-        <Button variant='nonrounded' className='w-full'>
-          <Image src={googleImage} alt='구글 가이드라인 이미지' width={130} />
-        </Button>
-      </div>
-      <div className='mt-6 flex w-full items-center justify-between'>
-        <p className='text-primaryGray-400 text-sm font-bold'>
-          회원이 아니신가요?
-        </p>
-        <Link href='/sign_up'>
-          <Button
-            variant='outline'
-            className='text-primaryGreen border-primaryGreen hover:bg-primaryGreen rounded-none bg-transparent px-24 text-xs font-bold hover:text-white'
-          >
-            회원가입
-          </Button>
-        </Link>
       </div>
     </form>
   );

@@ -1,5 +1,4 @@
-import { User } from './_components';
-import { Content } from './_components/Content';
+import { Content, User } from './_components';
 import type { CommonStoryProps } from './CommonStory.types';
 
 export const CommonStory: React.FC<CommonStoryProps> = ({
@@ -17,7 +16,7 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
         <User user={story.user} />
         <Content content={story.content} postId={story.id} />
       </div>
-      <div className='bg-primaryYellow absolute left-[700px] top-5 z-0 h-[20px] w-[60px]'></div>
+      <div className='bg-primaryYellow absolute left-[95%] top-5 z-0 h-[20px] w-[60px]'></div>
     </div>
   );
 };
