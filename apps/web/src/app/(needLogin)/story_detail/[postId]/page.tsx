@@ -31,14 +31,11 @@ const StoryDetail = () => {
         })
         .then((data) => {
           setTargetStory(data.data);
-          console.log('데이터 연결 완료', data);
-          console.log('데이터 연결 완료', data.data);
-        })
-        .then(() => console.log('tar', targetStory));
+        });
     } catch (error) {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [postId, targetStory]);
+  }, []);
 
   if (!targetStory.content)
     return (
