@@ -1,10 +1,8 @@
-import { StaticImageData } from 'next/image';
-
 export interface CountryInfoType {
   continent: string;
   countryEng: string;
   countryKor: string;
-  flagImage: StaticImageData;
+  flagImage: string;
   lat: number;
   lan: number;
   travelHistory: string[];
@@ -15,7 +13,7 @@ export interface CityInfoType {
   cityEng: string;
   countryKor: string;
   cityKor: string;
-  flagImage: StaticImageData;
+  flagImage: string;
   lat: number;
   lan: number;
 }

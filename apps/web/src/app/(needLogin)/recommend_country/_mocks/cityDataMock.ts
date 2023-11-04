@@ -1,4 +1,4 @@
-import fakeFlagImage from './이탈리아.gif';
+import fakeFlagImage from '/public/images/이탈리아.gif';
 
 export const cityDataMock = {
   countryEng: 'ITALY',

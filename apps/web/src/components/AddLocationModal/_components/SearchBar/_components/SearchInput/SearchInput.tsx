@@ -2,7 +2,7 @@
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { useAddLocationModal } from '@/components/AddLocationModal';
+import { useAddLocationModal } from '@/components/AddLocationModal/_hooks/useAddLocationModal';
 import { MapPageConfig } from '@/constants';
 import materialIcon from '@/utils/materialIcon';
 
