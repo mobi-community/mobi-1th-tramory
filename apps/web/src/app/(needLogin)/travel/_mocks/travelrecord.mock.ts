@@ -31,62 +31,62 @@ export const mockData = {
         },
       },
     ],
-    travelDailyPlans: [
+    travelDailyRecords: [
       {
         id: 2,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 3,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 4,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 5,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 6,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 7,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 8,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 9,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 10,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 11,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 12,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 13,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 14,
-        travelDailyPlansDetails: [],
+        travelDailyRecordsDetails: [],
       },
       {
         id: 1,
-        travelDailyPlansDetails: [
+        travelDailyRecordsDetails: [
           {
             id: 1,
             sequence: 1,
@@ -95,6 +95,16 @@ export const mockData = {
             latitude: 'tdsdasdsd',
             longitude: 'asdasdsad',
             description: 'dsdsadads',
+            imageGroup: [
+              {
+                id: 1,
+                imageurl: '',
+              },
+              {
+                id: 2,
+                imageurl: '',
+              },
+            ],
             country: {
               countryName: 'Afghanistan',
             },
