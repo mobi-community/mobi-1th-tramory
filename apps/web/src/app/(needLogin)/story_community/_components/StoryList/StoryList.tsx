@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Button } from 'ui';
 
 import { CommonStory, Pagination } from '@/components';
+import type { storyType } from '@/components/CommonStory';
 import { storyCommunityPageConfig } from '@/constants';
 
 import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
@@ -40,8 +41,8 @@ export const StoryList: React.FC = () => {
     }
   }, [setStoryData, setTotal, storyPage]);
 
-  const searchedArray = searchKeyword
-    ? storyData.filter(
+  const searchedArray: storyType[] = searchKeyword
+    ? storyData?.filter(
         (story) =>
           story.content.title.includes(searchKeyword) ||
           story.content.text.includes(searchKeyword) ||
@@ -52,9 +53,9 @@ export const StoryList: React.FC = () => {
       )
     : storyData;
 
-  const filteredStoryArray =
+  const filteredStoryArray: storyType[] =
     selectedCategory && selectedCategory !== '전체'
-      ? searchedArray.filter(
+      ? searchedArray?.filter(
           (story) => story.content.category === selectedCategory
         )
       : searchedArray;
@@ -64,13 +65,11 @@ export const StoryList: React.FC = () => {
   const HaveData = (
     <div>
       <div className='m-auto grid grid-cols-2 gap-8 gap-x-[5%]'>
-        {filteredStoryArray.map((story) => (
+        {filteredStoryArray?.map((story) => (
           <CommonStory
             story={story}
             key={Math.random() * 1000}
-            handleMoveToDetail={() =>
-              router.push(`/story_community/${story.id}`)
-            }
+            handleMoveToDetail={() => router.push(`/story_detail/${story.id}`)}
           />
         ))}
       </div>

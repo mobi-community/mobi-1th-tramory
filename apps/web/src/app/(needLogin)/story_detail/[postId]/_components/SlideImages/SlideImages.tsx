@@ -30,7 +30,7 @@ export const SlideImages: React.FC<SlideImagesProps> = ({ targetStory }) => {
             'prev-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute left-0 top-[100px] z-10',
         })}
         {images.map((image, i) => (
-          <SwiperSlide key={targetStory.id}>
+          <SwiperSlide key={Math.random() * 1000}>
             <div className={`relative h-[240px] w-[240px]`}>
               <Image
                 src={image}

@@ -1,7 +1,9 @@
 import { rest } from 'msw';
 
 import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
+import type { storyType } from '@/components/CommonStory';
 
+// 스토리 목록
 export const getStoryList = rest.get(
   '/story/story_list/:page',
   (req, res, ctx) => {
@@ -19,6 +21,27 @@ export const getStoryList = rest.get(
           (Number(page) + 1) * 10
         ),
         total: mockStoryList.length,
+      })
+    );
+  }
+);
+
+// 스토리 상세
+export const getStoryDetail = rest.get(
+  '/story/detail/:postId',
+  (req, res, ctx) => {
+    const postId = req.params.postId;
+
+    const targetStory: storyType = storyMock.find(
+      (detail) => detail.id + '' === postId
+    );
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        message: 'success',
+        data: targetStory,
       })
     );
   }

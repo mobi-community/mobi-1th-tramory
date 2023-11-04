@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
       <div className='flex'>
         {isMapPage && <ModeSwitchButton />}
         <div className='flex pt-2'>
-          <Link href='./story_community'>
+          <Link href='/story_community'>
             {materialIcon({
               iconName: 'auto_stories',
               ...headerConfig.iconStyle,

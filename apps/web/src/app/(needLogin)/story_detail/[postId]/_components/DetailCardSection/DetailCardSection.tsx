@@ -8,6 +8,27 @@ import type { DetailSectionProps } from './DetailSection.types';
 export const DetailCardSection = ({ targetStory }: DetailSectionProps) => {
   const { content } = targetStory;
 
+  if (!targetStory.content.location) {
+    return (
+      <div className='relative m-auto flex w-[60vw] flex-col items-center justify-center p-20'>
+        위치 정보가 없습니다.
+      </div>
+    );
+  }
+  if (!targetStory.content.date) {
+    return (
+      <div className='relative m-auto flex w-[60vw] flex-col items-center justify-center p-20'>
+        날짜 정보가 없습니다.
+      </div>
+    );
+  }
+  if (!targetStory.content.category) {
+    return (
+      <div className='relative m-auto flex w-[60vw] flex-col items-center justify-center p-20'>
+        카테고리 정보가 없습니다.
+      </div>
+    );
+  }
   const handleSubtitleDescription = (subtitle: string) => {
     if (subtitle === '여행지') return content.location;
     else if (subtitle === '날짜') return content.date;
