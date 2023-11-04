@@ -1,2 +1,2 @@
-export * from './SearchInput';
-export * from './SuggestionModal';
+export * from './SearchInput/SearchInput';
+export * from './SuggestionModal/SuggestionModal';
