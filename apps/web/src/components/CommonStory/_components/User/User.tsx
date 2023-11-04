@@ -1,14 +1,11 @@
 import Image from 'next/image';
 
-import { formattedDateFunc } from '@/utils/formattedDate';
-
 import type { storyUserType } from '../../CommonStory.types';
 import { StoryButtons } from '../StoryButtons/StoryButtons';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;
-  const formattedDate =
-    date instanceof Date ? formattedDateFunc(date) : '날짜 정보 없음';
+  const formattedDate = date ? date.split('T')[0] : '날짜 정보 없음';
 
   return (
     <div>

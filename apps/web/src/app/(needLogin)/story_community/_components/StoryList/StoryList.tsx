@@ -33,13 +33,13 @@ export const StoryList: React.FC = () => {
         })
         .then((data) => {
           console.log('데이터 연결 완료', data);
+          setTotal(data.total);
           setStoryData(data.data);
-          setTotal(data.data.total);
         });
     } catch (error) {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [setStoryData, setTotal, storyPage]);
+  }, [setStoryData, setTotal, storyPage, total]);
 
   const searchedArray: storyType[] = searchKeyword
     ? storyData?.filter(
