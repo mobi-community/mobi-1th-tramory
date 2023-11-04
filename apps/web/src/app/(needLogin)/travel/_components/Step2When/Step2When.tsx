@@ -21,8 +21,8 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const onSubmit = (data) => {
     setFormAtom((prev) => ({
       ...prev,
-      startDate: data.postDate[0],
-      endDate: data.postDate[1],
+      startDate: data.postDate[0].toISOString().split('T')[0],
+      endDate: data.postDate[1].toISOString().split('T')[0],
     }));
   };
 

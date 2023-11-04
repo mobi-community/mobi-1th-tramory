@@ -10,6 +10,11 @@ export const addPlan = rest.post<TravelPlanType>(
     let startDate;
     let title;
     let travelHashTags;
+    let isPublic;
+    let isComplete;
+    let isRecord;
+    let user;
+    let travelDailyPlansDetails;
 
     await req.json().then((data) => {
       endDate = data.endDate;
@@ -22,6 +27,11 @@ export const addPlan = rest.post<TravelPlanType>(
           id: Math.floor(Math.random() * 100000),
           hashTag: { name: data[`tag${index}`] },
         }));
+      isPublic = data.isPublic;
+      isComplete = data.isComplete;
+      isRecord = data.isRecord;
+      user = data.user;
+      travelDailyPlansDetails = data.travelDailyPlansDetails;
     });
 
     return res(
@@ -33,6 +43,11 @@ export const addPlan = rest.post<TravelPlanType>(
         theme,
         title,
         travelHashTags,
+        isPublic,
+        isComplete,
+        isRecord,
+        user,
+        travelDailyPlansDetails,
       })
     );
   }

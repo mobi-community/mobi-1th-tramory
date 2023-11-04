@@ -31,11 +31,8 @@ const Step2Calendar: React.FC<IStep2CalendarProps> = ({ control, name }) => {
               startDate={startDate} // 시작 날짜
               endDate={endDate}
               onChange={(update) => {
-                const newStartDate = update[0].toISOString().split('T')[0]; // 'YYYY-MM-DD' 형식의 시작 날짜
-                const newEndDate = update[1].toISOString().split('T')[0]; // 'YYYY-MM-DD' 형식의 끝 날짜
-
                 setDateRange(update);
-                field.onChange([newStartDate, newEndDate]);
+                field.onChange(update);
               }}
               inline
             />
