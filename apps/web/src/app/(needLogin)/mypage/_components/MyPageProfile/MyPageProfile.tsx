@@ -5,78 +5,77 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button, Input } from 'ui';
 
-import profileImage from '/public/images/profile-image.svg';
-import {
-  mypageProfileBgImageAtom,
-  mypageProfileContent,
-  mypageProfileImageAtom,
-} from '@/store/mypageProfile.atoms';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
+import { profileStateAtom } from '@/store/mypageProfile.atoms';
 import materialIcon from '@/utils/materialIcon';
 
 import { useImageUpload } from '../../_hooks/useImageUpload';
 
 export const MyPageProfile = () => {
-  const [profileContent, setProfileContent] = useAtom(mypageProfileContent);
-  const [tempContent, setTempContent] = useState(profileContent.content);
+  const [profileState, setProfileState] = useAtom(userProfileInfoAtom);
+  const [tempContent, setTempContent] = useState(profileState.content);
 
-  const {
-    inputRef: bgInputRef,
-    handleUploadImage: handleUploadBgImage,
-    handleDeleteImage: handleDeleteBgImage,
-    handleUploadButtonClick: handleUploadBgButtonClick,
-    imageUrl: bgImageUrl,
-  } = useImageUpload(mypageProfileBgImageAtom);
-
-  const {
-    inputRef: profileInputRef,
-    handleUploadImage: handleUploadProfileImage,
-    handleDeleteImage: handleDeleteProfileImage,
-    handleUploadButtonClick: handleUploadProfileButtonClick,
-    imageUrl: profileImgUrl,
-  } = useImageUpload(mypageProfileImageAtom);
+  const bgImageUploadProps = useImageUpload(
+    profileStateAtom,
+    'backgroundImage'
+  );
+  const profileImageUploadProps = useImageUpload(
+    profileStateAtom,
+    'profileImage'
+  );
 
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${bgImageUrl})` }}
-        className=' bg-primaryGray-200 relative h-[180px] w-full rounded-tl-[80px] pl-12 pr-4 pt-4'
+        style={{
+          backgroundImage: `url(${
+            bgImageUploadProps.imageUrl || profileState.backgroundImage
+          })`,
+        }}
+        className='bg-primaryGray-200 relative h-[180px] w-full rounded-tl-[80px] bg-center pl-12 pr-4 pt-4'
       >
         <div className='flex items-end justify-end'>
           <input
             type='file'
             accept='image/*'
-            ref={bgInputRef}
+            ref={bgImageUploadProps.inputRef}
             className=' hidden'
-            onChange={handleUploadBgImage}
+            onChange={bgImageUploadProps.handleUploadImage}
           />
           <Button
-            onClick={handleUploadBgButtonClick}
+            onClick={bgImageUploadProps.handleUploadButtonClick}
             className='h-[25px] w-[70px] text-[10px]'
-            variant='roundednavy'
+            variant='roundednavyWhite'
+            weight='bold'
             size='xsm'
           >
             이미지 수정
           </Button>
           <Button
-            onClick={handleDeleteBgImage}
+            onClick={bgImageUploadProps.handleDeleteImage}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
-            variant='roundednavy'
+            variant='roundednavyWhite'
+            weight='bold'
             size='xsm'
           >
             이미지 삭제
           </Button>
         </div>
         <div className='absolute left-[456px] top-[120px] '>
-          {/* 비율 수정하기 */}
-          <Image
-            className='rounded-full'
-            src={profileImgUrl ? profileImgUrl : profileImage}
-            alt='default_profile_image'
-            width={110}
-            height={110}
-          />
+          <div className='relative h-[110px] w-[110px]'>
+            <Image
+              style={{ objectFit: 'cover' }}
+              className='rounded-full'
+              src={
+                profileImageUploadProps.imageUrl || profileState.profileImage
+              }
+              alt='default_profile_image'
+              fill
+            />
+          </div>
         </div>
       </div>
+
       <div className='flex items-end justify-end px-5 pt-5'>
         <Link href={'/map'}>
           <Button
@@ -88,10 +87,12 @@ export const MyPageProfile = () => {
         </Link>
       </div>
       <div className=' text-primaryBlue-700 flex flex-col items-center justify-center'>
-        <div className='mt-1 text-[14px] font-semibold'>User1</div>
+        <div className='mt-1 text-[14px] font-semibold'>
+          {profileState.nickName}
+        </div>
         <div className='flex items-center justify-center'>
           <div>
-            {profileContent.isEdit ? (
+            {profileState.isProfileContentEdit ? (
               <div className='flex items-center gap-2'>
                 <Input
                   className=' border-primaryGray-300 h-[20px] w-[200px] border'
@@ -105,10 +106,11 @@ export const MyPageProfile = () => {
                   variant='roundednavy'
                   size='xsm'
                   onClick={() => {
-                    setProfileContent({
+                    setProfileState((prev) => ({
+                      ...prev,
                       content: tempContent,
-                      isEdit: false,
-                    });
+                      isProfileContentEdit: false,
+                    }));
                   }}
                 >
                   저장
@@ -118,10 +120,10 @@ export const MyPageProfile = () => {
                   variant='roundednavy'
                   size='xsm'
                   onClick={() => {
-                    setTempContent(profileContent.content);
-                    setProfileContent((prev) => ({
+                    setTempContent(profileState.content);
+                    setProfileState((prev) => ({
                       ...prev,
-                      isEdit: false,
+                      isProfileContentEdit: false,
                     }));
                   }}
                 >
@@ -130,12 +132,12 @@ export const MyPageProfile = () => {
               </div>
             ) : (
               <div className='flex'>
-                <div className='ml-4 text-[12px]'>{profileContent.content}</div>
+                <div className='ml-4 text-[12px]'>{profileState.content}</div>
                 <div
                   onClick={() => {
-                    setProfileContent((prev) => ({
+                    setProfileState((prev) => ({
                       ...prev,
-                      isEdit: true,
+                      isProfileContentEdit: true,
                     }));
                   }}
                   className='border-primaryBlue-700 hover:bg-primaryBlue-700 ml-2 flex h-[18px] w-[18px] cursor-pointer items-center justify-center rounded-full border p-1 hover:text-white hover:opacity-80'
@@ -153,12 +155,12 @@ export const MyPageProfile = () => {
           <input
             type='file'
             accept='image/*'
-            ref={profileInputRef}
+            ref={profileImageUploadProps.inputRef}
             className=' hidden'
-            onChange={handleUploadProfileImage}
+            onChange={profileImageUploadProps.handleUploadImage}
           />
           <Button
-            onClick={handleUploadProfileButtonClick}
+            onClick={profileImageUploadProps.handleUploadButtonClick}
             className='h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'
@@ -166,7 +168,7 @@ export const MyPageProfile = () => {
             이미지 수정
           </Button>
           <Button
-            onClick={handleDeleteProfileImage}
+            onClick={profileImageUploadProps.handleDeleteImage}
             className='ml-2 h-[25px] w-[70px] text-[10px]'
             variant='roundednavy'
             size='xsm'

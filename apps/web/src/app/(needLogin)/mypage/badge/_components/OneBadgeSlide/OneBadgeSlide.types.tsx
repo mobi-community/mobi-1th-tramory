@@ -6,6 +6,7 @@ type ItemType = {
   description: {
     title: string;
     subtitle?: string;
+    badgeImage?: StaticImageData;
   }[];
   info: {
     title: string;
@@ -15,6 +16,5 @@ type ItemType = {
 
 export type OneBadgeSlideProps = {
   item: ItemType;
-  badgeDefault: StaticImageData;
   id: number;
 };

@@ -22,7 +22,6 @@ export const LayoutForCountry: React.FC<{ country: string }> = ({
       fetch(`/api/country_info/${country}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log('데이터 연결 완료', data);
           setCountryData(data.data);
         });
     } catch (error) {
