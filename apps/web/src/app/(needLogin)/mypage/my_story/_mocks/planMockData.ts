@@ -13,7 +13,7 @@ export const planDescription = [
       date: new Date(),
     },
     content: {
-      date: '2023 9. 24 - 10. 4',
+      date: new Date(),
       location: 'United States, Los Angeles, CA',
       title: '미국 LA 여행 계획',
       text: '안녕하세요! 일본을 누비며 맛있는 여행을 즐겨보았어요. 오사카의 타코야끼, 도쿄의 초밥, 교토의 유자라멘과 함께한 식도락 여행은 정말 특별했습니다...',
@@ -27,7 +27,7 @@ export const planDescription = [
     detailDescription: [
       {
         day: 1,
-        date: '2023 9. 24 - 10. 4',
+        date: new Date(),
         country: '일본',
         location: '1 Chome Dotonbori, Chuo Ward, Osaka, 542-0071 도쿄',
         description: '오사카에서의 첫 번째 날입니다.',
@@ -42,7 +42,7 @@ export const planDescription = [
       date: new Date(),
     },
     content: {
-      date: '2023 10. 5 - 10. 10',
+      date: new Date(),
       location: 'France, Paris',
       title: '프랑스 파리 여행 계획',
       text: '에펠탑과 몽마르트 언덕을 찾아서...',
@@ -70,7 +70,7 @@ export const planDescription = [
       date: new Date(),
     },
     content: {
-      date: '2023 11. 11 - 11. 20',
+      date: new Date(),
       location: 'South Korea, Seoul',
       title: '한국 서울 여행 계획',
       text: '명동과 남산, 그리고 한강에서의 즐거운 시간들...',

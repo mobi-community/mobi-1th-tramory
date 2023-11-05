@@ -1,9 +1,10 @@
 'use client';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import { badgeConfig, mypageNavConfig } from '@/constants';
+import { mypageNavConfig } from '@/constants';
+import { badgeAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
 import { HowToNotification } from '../_components';
@@ -18,9 +19,8 @@ const MyPageTabs = () => {
     (nav) => nav.href === basePath
   ).title;
 
-  const currentBadge = badgeConfig.badges.find((badge) => badge.slug === slug);
-
-  const badgeImgInfo = badgeConfig;
+  const badges = useAtomValue(badgeAtom);
+  const currentBadge = badges.find((badge) => badge.slug === slug);
 
   const [isOneHowTo, setIsOneHowTo] = useAtom(isOneHowToAtom);
 
@@ -45,7 +45,7 @@ const MyPageTabs = () => {
           {currentBadge.description.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
               <Image
-                src={badgeImgInfo.badgeDefault}
+                src={item.badgeImage}
                 width={126}
                 height={152}
                 alt='배지 디폴트 이미지'

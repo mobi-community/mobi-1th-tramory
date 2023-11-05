@@ -1,28 +1,33 @@
 import Image from 'next/image';
 import React from 'react';
 
-import fakeImage from '../../my_story/_mocks/fake-profile-image.png';
-import type { UserProfileSectionProps } from './UserProfileSection.types';
-
-export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
-  planDetail,
-}) => {
-  const { user, content } = planDetail;
+export const UserProfileSection = ({ storyDetail }) => {
+  const { title = 'Default Title', date = 'Default Date' } =
+    storyDetail?.content || {};
+  const { userId = 'Default User ID', profileImage = '/default-image.jpg' } =
+    storyDetail?.user || {};
 
   return (
     <div className='flex w-full flex-col justify-between'>
       <div className='flex w-full items-center justify-between'>
-        <div className='text-[24px] font-bold'>{content.title}</div>
-        <div className=' text-primaryGray-400 text-[14px]'>{content.date}</div>
+        <div className='text-[24px] font-bold'>{title}</div>
+        <div className=' text-primaryGray-400 text-[14px]'>{date}</div>
       </div>
       <div className='mt-3 flex w-full items-center justify-start gap-3'>
         <div
           style={{ boxShadow: '0 0 3px rgba(0, 0, 0, 0.15)' }}
           className='w-[35px] rounded-full '
         >
-          <Image src={fakeImage} alt='fakeProfile' width={35} height={35} />
+          <div className='relative h-[40px] w-[40px]'>
+            <Image
+              className='rounded-full'
+              src={profileImage}
+              alt='profileImage'
+              fill
+            />
+          </div>
         </div>
-        <div className=' font-semibold'>{user.userId}</div>
+        <div className=' font-semibold'>{userId}</div>
       </div>
     </div>
   );
