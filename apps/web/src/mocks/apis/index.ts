@@ -1,6 +1,7 @@
 export * from './auth.apis';
 export * from './badge.apis';
 export * from './country.apis';
+export * from './travelplan.apis';
 export * from './likestory.apis';
 export * from './mystory.apis';
 export * from './setting.apis';

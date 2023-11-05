@@ -16,7 +16,6 @@ interface Step1TitleProps {
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [inputValue, setInputValue] = useAtom(inputAtom);
   const pathname = usePathname();
-
   const router = useRouter();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,14 +32,32 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       : localStorage.setItem('registerState', 'record');
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (inputValue.trim() === '') {
       return;
     } else {
       console.log('클릭함');
-      const registerState = localStorage.getItem('registerState');
 
-      router.push(`/travel/${registerState}?stepId=1`);
+      const formData = new FormData();
+
+      formData.append('title', inputValue);
+
+      try {
+        const response = await fetch('/updateTitle', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        console.log('data', data);
+
+        const registerState = localStorage.getItem('registerState');
+
+        router.push(`/travel/${registerState}?stepId=1`);
+      } catch (error) {
+        console.error('Failed to submit title', error);
+      }
     }
   };
 
