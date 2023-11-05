@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
+import type { storyMockType } from '@/app/(needLogin)/story_community/_mocks';
 import { CommonStory, Pagination } from '@/components';
 
 const OthenrStoryList: React.FC = () => {
-  const [storyList, setStoryList] = useState([]);
+  const [storyList, setStoryList] = useState<storyMockType>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
   const startIdx = currentPage * itemsPerPage;
@@ -46,7 +46,7 @@ const OthenrStoryList: React.FC = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
-            testData={storyMock.length}
+            testData={storyList.length}
             bgColor='gray'
           />
         </div>

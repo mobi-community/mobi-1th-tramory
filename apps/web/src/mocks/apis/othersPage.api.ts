@@ -2,13 +2,7 @@ import { rest } from 'msw';
 
 import { UserInfo } from '@/app/(needLogin)/otherspage/_mocks';
 import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
-import { badgeConfig } from '@/constants';
-import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
-const currentBadge = badgeConfig.badges.find(
-  (badge) => badge.slug == 'plan'
-).description;
-const currentBanner = visitedContriesConfig.tabs.map((tabs) => tabs)[0]
-  .continents;
+import { currentBadge, currentBanner } from '@/utils/otherPageMockFunc';
 
 export const getOtherStories = rest.get(
   '/api/othersStories',

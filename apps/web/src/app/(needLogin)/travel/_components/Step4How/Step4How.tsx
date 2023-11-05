@@ -4,17 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Pagination } from '@/components';
-import type { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
 import { formModeAtom } from '@/store';
 
+import { IStep4Props } from '../../Travel.typs';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import { postForm } from '../Step3What/Step3What';
 import Step4Dates from './components/Step4Dates/Step4Dates';
 import { dates } from './mocks';
-
-interface IStep4Props {
-  config: TravelPlanStep4Config;
-}
 
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
   const [formAtom] = useAtom(formModeAtom);

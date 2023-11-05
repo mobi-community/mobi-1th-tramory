@@ -10,11 +10,7 @@ import { Input } from 'ui';
 import { formModeAtom } from '@/store';
 import { TravelPlanType } from '@/types/travelPlan.types';
 
-import { TravelPlanStep1config } from '../../../../../constants';
-
-interface Step1TitleProps {
-  config: TravelPlanStep1config;
-}
+import { Step1TitleProps } from '../../Travel.typs';
 
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [formAtom, setFormAtom] = useAtom(formModeAtom);

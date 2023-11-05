@@ -1,2 +1,2 @@
 export * from './keywordMock';
-export * from './storyMock';
+export * from './storyMockBadge';

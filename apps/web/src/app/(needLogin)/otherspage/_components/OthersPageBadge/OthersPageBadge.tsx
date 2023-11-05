@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 
 import { badgeConfig } from '@/constants';
 
+import { badgeMockType } from './OthersPageBadgeMock.type';
 const OthersPageBadge = () => {
-  const [othersBadge, setOthersBadge] = useState([]);
+  const [othersBadge, setOthersBadge] = useState<badgeMockType[]>([]);
   const badgeImgInfo = badgeConfig;
 
   const getOtherBadges = async () => {

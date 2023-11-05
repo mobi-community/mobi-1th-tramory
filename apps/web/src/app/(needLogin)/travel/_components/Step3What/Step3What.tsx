@@ -2,18 +2,14 @@
 import { useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import type { TravelPlanStep3Config } from '@/constants/travelStep3.constants';
 import { formModeAtom } from '@/store';
 import { TravelPlanType } from '@/types/travelPlan.types';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
+import { IStep3Props } from '../../Travel.typs';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step3Category from './components/Step3Category/Step3Category';
 import Step3Tag from './components/Step3Tag/Step3Tag';
-
-interface IStep3Props {
-  config: TravelPlanStep3Config;
-}
 
 // formModeAtom에 타입이 있어야함
 export const postForm = async (formdata) => {

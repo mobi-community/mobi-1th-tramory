@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { FlagInfo } from '@/components';
+import type { FlagMockType } from '@/components/Profile/_components/FlagInfo/FlagInfo.types';
 
 const OthersPageVisitCountry = () => {
-  const [othersBanner, setOthersBanner] = useState([]);
+  const [othersBanner, setOthersBanner] = useState<FlagMockType[]>([]);
   const getOthersBanner = async () => {
     const res = await fetch('/api/othersBanner');
     const data = await res.json();

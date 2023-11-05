@@ -10,6 +10,7 @@ import fakeImage7 from './images/fake_7.jpg';
 import fakeImage8 from './images/fake_8.jpg';
 import fakeImage9 from './images/fake_9.jpg';
 
+export type storyMockType = typeof storyMock;
 export const storyMock = [
   {
     id: 0,
