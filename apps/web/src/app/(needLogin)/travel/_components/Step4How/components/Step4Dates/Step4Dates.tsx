@@ -38,7 +38,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
 
   useEffect(() => {
     getDates();
-  }, [getDates]);
+  }, []);
 
   return (
     <>
