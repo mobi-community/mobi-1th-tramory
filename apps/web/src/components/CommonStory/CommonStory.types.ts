@@ -5,7 +5,7 @@ import { DetailDescriptionType } from '@/app/(needLogin)/mypage/my_story/_compon
 export type storyUserType = {
   profileImage: string;
   userId: string;
-  date: Date;
+  date: string;
 };
 
 export type storyContentType = {
@@ -20,7 +20,7 @@ export type storyContentType = {
 };
 
 export type storyType = {
-  id: number | string;
+  id: number;
   user: storyUserType;
   content: storyContentType;
   detailDescription?: DetailDescriptionType[];

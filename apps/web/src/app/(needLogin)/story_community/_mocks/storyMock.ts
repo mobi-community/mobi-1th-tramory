@@ -16,7 +16,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -35,7 +35,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -54,7 +54,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -73,7 +73,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -92,7 +92,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -111,7 +111,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -130,7 +130,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -149,7 +149,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -168,7 +168,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',
@@ -187,7 +187,7 @@ export const storyMock = [
     user: {
       profileImage: fakeProfile,
       userId: 'Summer123',
-      date: new Date(),
+      date: '2023.11.04',
     },
     content: {
       date: '2023 9. 24 - 10. 4',

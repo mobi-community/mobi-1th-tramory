@@ -5,9 +5,6 @@ import { StoryButtons } from '../StoryButtons/StoryButtons';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;
-  const formattedDate = `${date?.getFullYear()}.${
-    date?.getMonth() + 1
-  }.${date?.getDate()}`;
 
   return (
     <div>
@@ -23,7 +20,7 @@ export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
           </div>
           <div className='mt-[3px]'>
             <div className='text-sm'>{userId}</div>
-            <div className='text-primaryGray-300 text-xs'>{formattedDate}</div>
+            <div className='text-primaryGray-300 text-xs'>{date}</div>
           </div>
         </div>
         <StoryButtons />

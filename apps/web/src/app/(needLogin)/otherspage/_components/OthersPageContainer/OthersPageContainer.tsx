@@ -1,12 +1,31 @@
+'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'ui';
 
-import profileImage from '/public/images/profile-image.svg';
-
-import { UserInfo } from '../../_mocks';
 const OthersPageContainer = ({}) => {
-  const { nickName, info } = UserInfo;
+  // 빈 객체를 초기로 할당할 수 없음
+  const [userInfo, setUserInfo] = useState({
+    nickName: '',
+    info: '',
+    profileImage: '',
+  });
+
+  const getOthersUserInfo = async () => {
+    try {
+      const res = await fetch('/api/othersUserInfo');
+      const data = await res.json();
+
+      setUserInfo(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getOthersUserInfo();
+  }, []);
 
   return (
     <>
@@ -16,15 +35,17 @@ const OthersPageContainer = ({}) => {
             <div className='absolute left-[50px] top-[140px] '>
               <Image
                 className='rounded-full'
-                src={profileImage}
+                src={userInfo.profileImage}
                 alt='default_profile_image'
                 width={110}
               />
             </div>
             <div className='flex'>
               <div className='ml-[128px] mt-[180px] w-[300px]'>
-                <div className='mt-1 text-[14px] font-semibold'>{nickName}</div>
-                <div className='text-[12px]'>{info}</div>
+                <div className='mt-1 text-[14px] font-semibold'>
+                  {userInfo.nickName}
+                </div>
+                <div className='text-[12px]'>{userInfo.info}</div>
               </div>
               <div className='ml-[500px] flex items-end'>
                 <Button

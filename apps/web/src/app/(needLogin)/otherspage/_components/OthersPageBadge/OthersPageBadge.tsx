@@ -1,18 +1,29 @@
 'use client';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import { badgeConfig } from '@/constants';
 
 const OthersPageBadge = () => {
-  const currentBadge = badgeConfig.badges.find((badge) => badge.slug == 'plan');
-
+  const [othersBadge, setOthersBadge] = useState([]);
   const badgeImgInfo = badgeConfig;
+
+  const getOtherBadges = async () => {
+    const res = await fetch('/api/othersBadges');
+    const data = await res.json();
+
+    setOthersBadge(data);
+  };
+
+  useEffect(() => {
+    getOtherBadges();
+  }, []);
 
   return (
     <>
       <div className='m-auto mt-[-147px] h-[800px] w-[1024px] border  shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
         <div className='bg-primaryGray-200 m-auto mx-12 mb-12 mt-[180px] grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
-          {currentBadge.description.map((item, index: number) => (
+          {othersBadge.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
               <Image
                 src={badgeImgInfo.badgeDefault}
