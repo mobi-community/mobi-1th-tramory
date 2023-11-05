@@ -5,10 +5,9 @@ import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
 import { selectedDateIdAtom, travelDateAtom } from '@/store';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 interface IStep4DatesProps {
-  control: Control<IregisterFormvalue>;
+  control: Control;
   itemsPerPage: number;
   currentPage: number;
 }
@@ -20,19 +19,26 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
 }) => {
   const [date, setDate] = useAtom(travelDateAtom);
   const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
+
   const startIdx = currentPage * itemsPerPage;
-
   const endIdx = (currentPage + 1) * itemsPerPage;
-  const getDates = async () => {
-    const res = await fetch('/dates').then((res) => res.json());
 
-    console.log(res);
-    setDate(res);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getDates = async () => {
+    try {
+      const res = await fetch('/dates');
+      const data = await res.json();
+
+      // console.log('성공', data);
+      setDate(data);
+    } catch (error) {
+      console.error('에러', error);
+    }
   };
 
   useEffect(() => {
     getDates();
-  });
+  }, [getDates]);
 
   return (
     <>

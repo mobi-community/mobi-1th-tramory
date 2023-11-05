@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { useAddLocationModal } from '@/components/AddLocationModal/_hooks/useAddLocationModal';
 import { AddLocationModal } from '@/components/AddLocationModal/AddLocationModal';
-
 import { recommendPageConfig } from '@/constants';
 
 import { PageBox } from './_components';

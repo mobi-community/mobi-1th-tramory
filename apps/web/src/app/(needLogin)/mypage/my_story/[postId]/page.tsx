@@ -44,7 +44,8 @@ const MyStoryPlanDetailPage = () => {
     };
 
     fetchUserPlanStoryDetails();
-  }, []);
+    // eslint fix
+  }, [page, postId, setStoryDetail]);
 
   const handleMoveToDetail = () => {
     if (isEdit === 'true') {

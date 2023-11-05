@@ -1,19 +1,33 @@
 'use client';
+import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import type { TravelPlanStep2Config } from '@/constants/travelStep2.constants';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 
+import type { IStep2Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
-interface IStep2Props {
-  config: TravelPlanStep2Config;
-}
-
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
-  const { handleSubmit, control } = useForm<IregisterFormvalue>();
-  const onSubmit = (data) => console.log(data);
+  const [registerState] = useAtom(registerStateAtom);
+  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const { handleSubmit, control } = useForm();
+
+  const onSubmit = (data) => {
+    registerState == 'plan'
+      ? setPlanAtom((prev) => ({
+          ...prev,
+          startDate: data.postDate[0].toISOString().split('T')[0],
+          endDate: data.postDate[1].toISOString().split('T')[0],
+        }))
+      : setRecordAtom((prev) => ({
+          ...prev,
+          startDate: data.postDate[0].toISOString().split('T')[0],
+          endDate: data.postDate[1].toISOString().split('T')[0],
+        }));
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -24,7 +38,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
               {config.label}
             </div>
             <div className='mt-[14px]'>
-              <Step2Calendar control={control} name='planDate' />
+              <Step2Calendar control={control} name='postDate' />
             </div>
           </div>
         </div>
