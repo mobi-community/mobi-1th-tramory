@@ -2,16 +2,12 @@
 import { useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import type { TravelPlanStep2Config } from '@/constants/travelStep2.constants';
 import { formModeAtom } from '@/store';
-import { TravelPlanType } from '@/types/travelPlan.types';
+import type { TravelPlanType } from '@/types/travelPlan.types';
 
+import type { IStep2Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
-
-interface IStep2Props {
-  config: TravelPlanStep2Config;
-}
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const [formAtom, setFormAtom] = useAtom(formModeAtom);
