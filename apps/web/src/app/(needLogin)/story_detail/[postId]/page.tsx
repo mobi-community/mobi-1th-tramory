@@ -35,9 +35,9 @@ const StoryDetail = () => {
     } catch (error) {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, []);
+  }, [postId, setTargetStory]);
 
-  if (!targetStory.content)
+  if (!targetStory)
     return (
       <div className='relative m-auto flex w-[60vw] flex-col items-center justify-center p-20'>
         데이터를 로딩 중입니다...

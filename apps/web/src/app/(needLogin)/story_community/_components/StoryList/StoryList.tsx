@@ -28,11 +28,9 @@ export const StoryList: React.FC = () => {
     try {
       fetch(`/story/story_list/${storyPage + ''}`)
         .then((res) => {
-          console.log(res);
           return res.json();
         })
         .then((data) => {
-          console.log('데이터 연결 완료', data);
           setTotal(data.total);
           setStoryData(data.data);
         });
@@ -69,10 +67,7 @@ export const StoryList: React.FC = () => {
           <CommonStory
             story={story}
             key={Math.random() * 1000}
-            handleMoveToDetail={() => {
-              console.log('story clicked');
-              router.push(`/story_detail/${story.id}`);
-            }}
+            handleMoveToDetail={() => router.push(`/story_detail/${story.id}`)}
           />
         ))}
       </div>

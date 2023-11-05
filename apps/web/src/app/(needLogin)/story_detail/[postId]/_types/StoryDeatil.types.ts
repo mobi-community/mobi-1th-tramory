@@ -9,8 +9,7 @@ export interface StoryDetailType {
 
 export interface MyStoryPlanCardProps {
   storyDetail: StoryDetailType;
-  // eslint-disable-next-line no-unused-vars
-  handleMoveToDetail: (id: string) => void;
+  handleMoveToDetail: () => void;
 }
 
 export interface UserDataType {
