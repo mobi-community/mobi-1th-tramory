@@ -25,7 +25,7 @@ export const LayoutForCountry: React.FC<{ country: string }> = ({
           setCountryData(data.total);
         });
     } catch (error) {
-      console.error(error, '도시 정보 데이터를 불러오는 데 실패하였습니다.🥲');
+      console.error(error, '국가 정보 데이터를 불러오는 데 실패하였습니다.🥲');
     }
   }, [country, setCountryData]);
 

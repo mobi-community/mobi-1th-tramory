@@ -1,12 +1,14 @@
+import { PropsWithChildren } from 'react';
+
 import materialIcon from '@/utils/materialIcon';
 
-import { LayoutForCity, LayoutForCountry } from './_components';
 import { useCountryInfoModal } from './_hooks/useCountryInfoModal';
 
-export const CountryInfoModal: React.FC<{
-  isCountry: boolean;
-  target: string;
-}> = ({ target, isCountry }) => {
+export const CountryInfoModal: React.FC<
+  PropsWithChildren<{
+    target: string;
+  }>
+> = ({ children, target }) => {
   const { isCountryInfoOpen, closeCountryInfoModal } =
     useCountryInfoModal(target);
 
@@ -28,13 +30,7 @@ export const CountryInfoModal: React.FC<{
             {materialIcon({ iconName: 'close', size: 20 })}
           </button>
         </div>
-        <div className='flex-1'>
-          {isCountry ? (
-            <LayoutForCountry country={target} />
-          ) : (
-            <LayoutForCity city={target} />
-          )}
-        </div>
+        <div className='flex-1'>{children}</div>
       </div>
     </div>
   );

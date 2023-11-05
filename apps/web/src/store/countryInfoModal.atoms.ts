@@ -17,8 +17,5 @@ export const isCountryInfoModalOpen = atomFamily(
 // atomWithStorage(key, value) -> 가져다 쓸 때는 일반 atom과 동일하게 사용할 수 있습니다.
 export const targetLocationAtom = atomWithStorage('targetLocation', '');
 
-export const targetCountryAtom = atom('');
-export const targetCityAtom = atom('');
-
 export const countryDataAtom = atom<CountryInfoType>({} as CountryInfoType);
 export const cityDataAtom = atom<CityInfoType>({} as CityInfoType);

@@ -5,6 +5,7 @@ import {
   countryDataAtom,
   isCountryInfoModalOpen,
   openSimpleRecordModalAtom,
+  targetLocationAtom,
 } from '@/store';
 
 export const useCountryInfoModal = (target?: string) => {
@@ -14,12 +15,17 @@ export const useCountryInfoModal = (target?: string) => {
 
   const setIsSimpleRecordModalOpen = useSetAtom(openSimpleRecordModalAtom);
 
+  const [targetLocation, setTargetLocation] = useAtom(targetLocationAtom);
+
   const [countryData, setCountryData] = useAtom(countryDataAtom);
   const [cityData, setCityData] = useAtom(cityDataAtom);
 
   return {
     isCountryInfoOpen,
+    targetLocation,
+    setTargetLocation,
     openCountryInfoModal: () => {
+      setTargetLocation(target);
       setIsCountryInfoOpen({ isOpen: true });
     },
     closeCountryInfoModal: () => {
