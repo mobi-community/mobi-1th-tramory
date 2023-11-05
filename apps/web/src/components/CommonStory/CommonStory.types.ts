@@ -19,7 +19,7 @@ export type storyContentType = {
 };
 
 export type storyType = {
-  id: number | string;
+  id: number;
   user: storyUserType;
   content: storyContentType;
   detailDescription?: DetailDescriptionType[];
@@ -30,7 +30,7 @@ export type storyType = {
 export type CommonStoryProps = {
   story?: storyType;
   // eslint-disable-next-line no-unused-vars
-  handleMoveToDetail?: (id: number | string) => void;
+  handleMoveToDetail?: (id: number) => void;
   width?: number;
   height?: number;
 };

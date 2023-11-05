@@ -1,6 +1,6 @@
 import { Button } from 'ui';
 
-import type { MyStoryPlanCardProps } from './MyStoryPlanCard.types';
+import { MyStoryPlanCardProps } from './MyStoryPlanCard.types';
 
 export const MyStoryPlanCard = ({
   planData,

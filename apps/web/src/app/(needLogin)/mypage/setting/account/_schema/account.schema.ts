@@ -2,8 +2,6 @@ import * as yup from 'yup';
 
 import { signupConstants } from '@/constants';
 
-import { userInfo } from '../../../_mocks';
-
 export const PRIVACY_MODIFY_SCHEMA = yup.object({
   nickName: yup
     .string()
@@ -42,6 +40,6 @@ export const ACCOUT_SCHEMAS = {
 };
 
 export const MODIFYFORM_DEFAULT_VALUES = {
-  privacy: { nickName: userInfo.nickName },
-  password: { password: userInfo.password, pwconfirm: '' },
+  privacy: { nickName: '' },
+  password: { password: '', pwconfirm: '' },
 };

@@ -1,28 +1,42 @@
 'use client';
-import React, { useState } from 'react';
+import { useAtom } from 'jotai';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Pagination } from '@/components';
-import type { TravelPlanStep4Config } from '@/constants/travelStep4.constants';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 
+import { postPlan, postRecord } from '../../apis/planPostApi';
+import type { IStep4Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step4Dates from './components/Step4Dates/Step4Dates';
 import { dates } from './mocks';
 
-interface IStep4Props {
-  config: TravelPlanStep4Config;
-}
-
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
-  const { handleSubmit, control } = useForm<IregisterFormvalue>();
+  const [registerState] = useAtom(registerStateAtom);
+  const [planAtom] = useAtom(formModePlanAtom);
+  const [recordAtom] = useAtom(formModeRecordAtom);
+  const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
+
+  console.log(planAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
 
+  registerState == 'plan'
+    ? console.log('plan data', planAtom)
+    : console.log('record data', recordAtom);
+
+  useEffect(() => {
+    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
+  }, [planAtom, recordAtom, registerState]);
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+      // onSubmit={handleSubmit(onSubmit)}
+      >
         <div>
           <div className='mt-[57px] flex h-[600px] items-center justify-center '>
             <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center border'>
@@ -40,7 +54,7 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     itemsPerPage={itemsPerPage}
-                    testData={dates.length}
+                    dataLength={dates.length}
                     bgColor='blue'
                   />
                 </div>

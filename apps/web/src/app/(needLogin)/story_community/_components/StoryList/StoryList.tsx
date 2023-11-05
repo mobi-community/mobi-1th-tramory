@@ -69,7 +69,10 @@ export const StoryList: React.FC = () => {
           <CommonStory
             story={story}
             key={Math.random() * 1000}
-            handleMoveToDetail={() => router.push(`/story_detail/${story.id}`)}
+            handleMoveToDetail={() => {
+              console.log('story clicked');
+              router.push(`/story_detail/${story.id}`);
+            }}
           />
         ))}
       </div>
@@ -78,7 +81,7 @@ export const StoryList: React.FC = () => {
           currentPage={storyPage}
           setCurrentPage={setStoryPage}
           itemsPerPage={10}
-          testData={total}
+          dataLength={100}
           bgColor='gray'
         />
       </div>

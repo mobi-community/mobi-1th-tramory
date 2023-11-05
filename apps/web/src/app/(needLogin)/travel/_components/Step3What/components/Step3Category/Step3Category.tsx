@@ -3,10 +3,9 @@ import { Control, Controller } from 'react-hook-form';
 
 import { travelCategory } from '@/constants/travelStep3Category.constants';
 import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 interface IStep3CategoryProps {
-  control: Control<IregisterFormvalue>;
+  control: Control;
 }
 
 const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
@@ -17,7 +16,7 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
   return (
     <>
       <Controller
-        name='category'
+        name='theme'
         control={control}
         defaultValue={''}
         render={({ field }) => (
@@ -33,7 +32,7 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                   }`}
                   onClick={() => {
                     setSelectedCategoryId(category.id);
-                    field.onChange(category.label);
+                    field.onChange(category.id);
                   }}
                 >
                   <div className='ml-[12px] flex items-center justify-center'>

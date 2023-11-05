@@ -1,9 +1,7 @@
 import { Control, Controller } from 'react-hook-form';
 
-import type { IregisterFormvalue } from '@/types/registerStep.types';
-
 interface IStep3TagProps {
-  control: Control<IregisterFormvalue>;
+  control: Control;
   id: number;
 }
 

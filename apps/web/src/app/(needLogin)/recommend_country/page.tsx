@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
-import { AddLocationModal } from '@/components';
-import { useAddLocationModal } from '@/components/AddLocationModal/_hooks/useAddLocationModal';
 import { recommendPageConfig } from '@/constants';
 
 import { PageBox } from './_components';
@@ -45,13 +43,8 @@ const RecommendCountryPage: React.FC = () => {
     };
   }, []);
 
-  const { handleOpenModal } = useAddLocationModal();
-
   return (
     <div>
-      <div>
-        <button onClick={handleOpenModal}>장소 추가 모달 열기</button>
-      </div>
       <div
         className='max-h-[calc(100vh-20px)] overflow-x-hidden'
         ref={wrapperRef}
@@ -67,7 +60,6 @@ const RecommendCountryPage: React.FC = () => {
           handleScroll={scrollToTop}
         />
       </div>
-      <AddLocationModal />
     </div>
   );
 };
