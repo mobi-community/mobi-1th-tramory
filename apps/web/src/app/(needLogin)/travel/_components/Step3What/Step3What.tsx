@@ -3,6 +3,7 @@ import { useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import { formModeAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 import { TravelPlanType } from '@/types/travelPlan.types';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
@@ -34,6 +35,8 @@ export const postForm = async (formdata) => {
 };
 
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
+  const [registerAtom] = useAtom(registerStateAtom);
+
   const [formAtom, setFormAtom] = useAtom(formModeAtom);
   const { handleSubmit, control } = useForm<TravelPlanType>({
     defaultValues: formAtom,
@@ -59,20 +62,30 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
           <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
             <div>
               <div className='mt-[14px]'>
-                <div className='text-primaryGray-500  mb-[10px] ml-[150px] mt-[60px] text-[30px] font-semibold'>
-                  {config.label}
+                <div
+                  className={`${
+                    registerAtom == 'record' ? 'mt-[150px]' : 'mt-0'
+                  }`}
+                >
+                  <div className='text-primaryGray-500  mb-[10px] ml-[150px] mt-[60px] text-[30px] font-semibold'>
+                    {config.label}
+                  </div>
+                  <Step3Category control={control} />
                 </div>
-                <Step3Category control={control} />
-                <div className='text-primaryGray-500  mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
-                  {config.subLabel}
-                </div>
-                <div className='mt-[30px] flex justify-center '>
-                  {travelTag.map((tag) => (
-                    <div key={tag.id}>
-                      <Step3Tag control={control} id={tag.id} />
+                {registerAtom == 'plan' && (
+                  <>
+                    <div className='text-primaryGray-500  mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
+                      {config.subLabel}
                     </div>
-                  ))}
-                </div>
+                    <div className='mt-[30px] flex justify-center '>
+                      {travelTag.map((tag) => (
+                        <div key={tag.id}>
+                          <Step3Tag control={control} id={tag.id} />
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

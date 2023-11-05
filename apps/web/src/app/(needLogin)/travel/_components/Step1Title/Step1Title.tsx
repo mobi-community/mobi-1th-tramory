@@ -24,7 +24,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const router = useRouter();
   const headerHeight = 90;
 
-  // pathname에 /travel/plan을 포함할 경우 'plan'으로 로컬스토리지에 저장
+  // pathname에 /travel/plan을 포함할 경우 'plan'으로 atomstorage 저장
   // 아닐경우 'record'로 저장
   useEffect(() => {
     pathname.includes('/travel/plan')
