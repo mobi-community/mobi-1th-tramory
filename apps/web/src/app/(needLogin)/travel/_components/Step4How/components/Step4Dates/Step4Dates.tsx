@@ -23,6 +23,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
   const startIdx = currentPage * itemsPerPage;
   const endIdx = (currentPage + 1) * itemsPerPage;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getDates = async () => {
     try {
       const res = await fetch('/dates');
@@ -37,7 +38,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
 
   useEffect(() => {
     getDates();
-  }, []);
+  }, [getDates]);
 
   return (
     <>

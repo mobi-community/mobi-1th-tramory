@@ -1,3 +1,4 @@
+// 여행 계획 데이터 타입
 export type TravelPlanType = {
   title?: string;
   id?: number;
@@ -12,8 +13,18 @@ export type TravelPlanType = {
   travelDailyPlansDetails?: TravelDailyPlansDetails[];
 };
 
-export type User = {
-  nickname?: string;
+// 여행 기록 데이터 타입
+export type TravelRecordType = {
+  title?: string;
+  id?: number;
+  startDate?: string;
+  endDate?: string;
+  theme?: number;
+  isPublic?: boolean;
+  isComplete?: string;
+  isRecord?: string;
+  user?: { nickname?: string };
+  travelDailyPlansDetails?: TravelDailyPlansDetails[];
 };
 
 export type TravelHashTags = {
@@ -23,6 +34,7 @@ export type TravelHashTags = {
   };
 };
 
+// 상세 모달 데이터 타입
 export type TravelDailyPlansDetails = {
   id?: number;
   sequence?: number;

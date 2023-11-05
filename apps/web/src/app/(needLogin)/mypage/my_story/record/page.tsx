@@ -1,19 +1,20 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { CommonStory, Pagination } from '@/components';
+import { Pagination } from '@/components';
+import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
-import { MyPageContainer } from '../../_components';
+import { MypageCommonStory, MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
-import { planDescription } from '../_mocks';
 
 const MyStoryRecordPage = () => {
+  const [recordStories, setRecordStories] = useAtom(userRecordStoriesAtom);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
-  //추후 실제 데이터로 변경 예정
-  const testData = 80;
+  const dataLength = recordStories.length;
 
   const router = useRouter();
 
@@ -21,16 +22,37 @@ const MyStoryRecordPage = () => {
     router.push(`/mypage/my_story/${id}?page=record`);
   };
 
+  useEffect(() => {
+    const fetchUserRecordStories = async () => {
+      try {
+        const response = await fetch('/user/my_story/record');
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setRecordStories(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserRecordStories();
+    // eslint fix
+  }, [setRecordStories]);
+
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {planDescription.map((planData) => (
-            <CommonStory
+          {recordStories.map((stories) => (
+            <MypageCommonStory
               handleMoveToDetail={handleMoveToDetail}
-              story={planData}
-              key={Math.random() * 1000}
+              story={stories}
+              key={stories.id}
             />
           ))}
         </div>
@@ -39,7 +61,7 @@ const MyStoryRecordPage = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
-            testData={testData}
+            dataLength={dataLength}
             bgColor='gray'
           />
         </div>

@@ -25,6 +25,9 @@ const buttonVariants = cva(
         roundednavy:
           'bg-transparent p-0 border border-solid border-primaryBlue-500 text-primaryBlue-500 hover:bg-primaryBlue-700 hover:text-white hover:bg-opacity-70 transition-all duration-300',
         // 초록 라인 투명 배경 버튼
+        roundednavyWhite:
+          'bg-white bg-opacity-70 p-0 border border-solid border-primaryBlue-500 text-primaryBlue-500 hover:bg-primaryBlue-700 hover:text-white hover:bg-opacity-70 transition-all duration-300',
+        // 초록 라인 투명 배경 버튼
         roundedgreen:
           'rounded-[30px] bg-transparent p-0 border border-solid border-primaryGreen text-primaryGreen hover:bg-primaryGreen hover:text-white hover:bg-opacity-70 transition-all duration-300',
         outline:

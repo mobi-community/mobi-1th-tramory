@@ -1,7 +1,10 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+
+import { registerStateAtom } from '@/store/travelState.atom';
 
 import { stepArray } from '../../../../../constants/stepnavbar.constants';
 
@@ -11,7 +14,7 @@ import { stepArray } from '../../../../../constants/stepnavbar.constants';
 // 내용을 저장하고 다음 페이지로 넘어간 경우 : bg + primaryBlue-400
 
 const StepNavbar: React.FC = () => {
-  const registerState = localStorage.getItem('registerState');
+  const [registerState] = useAtom(registerStateAtom);
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
 

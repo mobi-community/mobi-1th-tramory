@@ -4,27 +4,33 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Pagination } from '@/components';
-import { formModeAtom } from '@/store';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 
-import { IStep4Props } from '../../Travel.typs';
+import { postPlan, postRecord } from '../../apis/planPostApi';
+import type { IStep4Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
-import { postForm } from '../Step3What/Step3What';
 import Step4Dates from './components/Step4Dates/Step4Dates';
 import { dates } from './mocks';
 
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
-  const [formAtom] = useAtom(formModeAtom);
+  const [registerState] = useAtom(registerStateAtom);
+  const [planAtom] = useAtom(formModePlanAtom);
+  const [recordAtom] = useAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  console.log(formAtom);
+  console.log(planAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
 
-  console.log('post data', formAtom);
+  registerState == 'plan'
+    ? console.log('plan data', planAtom)
+    : console.log('record data', recordAtom);
+
   useEffect(() => {
-    postForm(formAtom);
-  }, []);
+    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
+  }, [planAtom, recordAtom, registerState]);
 
   return (
     <>
@@ -48,7 +54,7 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     itemsPerPage={itemsPerPage}
-                    testData={dates.length}
+                    dataLength={dates.length}
                     bgColor='blue'
                   />
                 </div>

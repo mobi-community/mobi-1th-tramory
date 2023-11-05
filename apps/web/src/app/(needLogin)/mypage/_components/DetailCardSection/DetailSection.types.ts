@@ -1,5 +1,5 @@
-import { PlanDataType } from '../../my_story/_components/MyStoryPlanCard/MyStoryPlanCard.types';
+import { storyType } from '@/components/CommonStory';
 
 export interface DetailSectionProps {
-  planDetail: PlanDataType;
+  planDetail: storyType;
 }

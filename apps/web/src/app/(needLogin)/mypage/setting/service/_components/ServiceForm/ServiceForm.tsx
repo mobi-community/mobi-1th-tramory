@@ -34,11 +34,30 @@ export const ServiceForm = () => {
    */
   const justifyBetween = 'flex justify-between';
 
-  const onSubmit = (data: ServiceValidateType) => {
+  const onSubmit = async (data: ServiceValidateType) => {
     alert(
       `문의 종류: ${data.serviceType}, 제목: ${data.title}, 내용: ${data.description}`
     );
     console.log(data.serviceType, data.title, data.description);
+    try {
+      const response = await fetch('/user/service/serviceform', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('문의하기 post 실패');
+      }
+
+      const responseData = await response.json();
+
+      console.log('response', responseData);
+    } catch (error) {
+      console.error('로그인 에러:', error);
+    }
   };
 
   return (
