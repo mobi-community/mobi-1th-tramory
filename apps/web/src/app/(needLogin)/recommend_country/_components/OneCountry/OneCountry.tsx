@@ -8,14 +8,13 @@ export const OneCountry: React.FC<{
   country: string;
   coverImage: StaticImageData;
 }> = ({ country, coverImage }) => {
-  const { openCountryInfoModal, targetLocation } = useCountryInfoModal(country);
+  const { openCountryInfoModal } = useCountryInfoModal(country);
 
   return (
     <>
       <div
         className={`relative h-[180px] w-[270px] bg-black`}
         onClick={() => {
-          console.log(targetLocation, 'clicked');
           openCountryInfoModal();
         }}
       >

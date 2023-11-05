@@ -46,6 +46,7 @@ export const LayoutForCity: React.FC<{ city: string }> = ({ city }) => {
             <Image
               src={cityData.flagImage}
               width={188}
+              height={150}
               alt='국기 이미지'
               className='m-auto'
             />
