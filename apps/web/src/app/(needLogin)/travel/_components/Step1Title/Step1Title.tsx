@@ -8,11 +8,13 @@ import { Controller, useForm } from 'react-hook-form';
 import { Input } from 'ui';
 
 import { formModeAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 import { TravelPlanType } from '@/types/travelPlan.types';
 
 import { Step1TitleProps } from '../../Travel.type';
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [formAtom, setFormAtom] = useAtom(formModeAtom);
+  const [registerState, setRegisterState] = useAtom(registerStateAtom);
   const { handleSubmit, control, watch } = useForm<TravelPlanType>({
     defaultValues: formAtom,
   });
@@ -26,16 +28,14 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   // 아닐경우 'record'로 저장
   useEffect(() => {
     pathname.includes('/travel/plan')
-      ? localStorage.setItem('registerState', 'plan')
-      : localStorage.setItem('registerState', 'record');
+      ? setRegisterState('plan')
+      : setRegisterState('record');
   }, []);
 
   const onSubmit = (data) => {
     if (fieldValue.trim() === '') {
       return;
     } else {
-      const registerState = localStorage.getItem('registerState');
-
       router.push(`/travel/${registerState}?stepId=1`);
       setFormAtom((prev) => ({ ...prev, title: data.title }));
     }
