@@ -10,7 +10,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
     handleCheckButtonClick,
   } = useDndItem(props);
 
-  // const [isAddMemo, setIsAddMemo] = useState(false);
+  // 리팩터 예정 const [isAddMemo, setIsAddMemo] = useState(false);
 
   const isEditingDescription = editingMemoIndex === props.item.id;
 
@@ -62,7 +62,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
             </button>
           )}
 
-          {/* {props.item.memos.length === 0 && !isAddMemo && (
+          {/* 리팩터 예정 {props.item.memos.length === 0 && !isAddMemo && (
             <button
               onClick={() => setIsAddMemo(true)}
               className='mt-2 flex items-center text-sm '

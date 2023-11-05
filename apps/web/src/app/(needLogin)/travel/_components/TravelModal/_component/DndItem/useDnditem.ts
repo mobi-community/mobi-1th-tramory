@@ -46,7 +46,7 @@ export const useDndItem = (props: DraggableItemProps) => {
             ? {
                 ...detail,
                 placeName: props.item.placeName,
-                description: props.item.description,
+                description: memoState.currentMemo,
               }
             : detail
         );
