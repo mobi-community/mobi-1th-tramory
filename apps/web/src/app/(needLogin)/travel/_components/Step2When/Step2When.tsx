@@ -1,25 +1,32 @@
 'use client';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import { formModeAtom } from '@/store';
-import type { TravelPlanType } from '@/types/travelPlan.types';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 
 import type { IStep2Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
-  const [formAtom, setFormAtom] = useAtom(formModeAtom);
-  const { handleSubmit, control } = useForm<TravelPlanType>({
-    defaultValues: formAtom,
-  });
+  const [registerState] = useAtom(registerStateAtom);
+  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const { handleSubmit, control } = useForm();
+
   const onSubmit = (data) => {
-    setFormAtom((prev) => ({
-      ...prev,
-      startDate: data.postDate[0].toISOString().split('T')[0],
-      endDate: data.postDate[1].toISOString().split('T')[0],
-    }));
+    registerState == 'plan'
+      ? setPlanAtom((prev) => ({
+          ...prev,
+          startDate: data.postDate[0].toISOString().split('T')[0],
+          endDate: data.postDate[1].toISOString().split('T')[0],
+        }))
+      : setRecordAtom((prev) => ({
+          ...prev,
+          startDate: data.postDate[0].toISOString().split('T')[0],
+          endDate: data.postDate[1].toISOString().split('T')[0],
+        }));
   };
 
   return (

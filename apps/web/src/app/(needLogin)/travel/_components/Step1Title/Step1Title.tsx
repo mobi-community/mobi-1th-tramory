@@ -1,23 +1,21 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Input } from 'ui';
 
-import { formModeAtom } from '@/store';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
-import { TravelPlanType } from '@/types/travelPlan.types';
 
-import { Step1TitleProps } from '../../Travel.type';
+import type { Step1TitleProps } from '../../Travel.type';
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
-  const [formAtom, setFormAtom] = useAtom(formModeAtom);
+  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const setRecordAtom = useSetAtom(formModeRecordAtom);
   const [registerState, setRegisterState] = useAtom(registerStateAtom);
-  const { handleSubmit, control, watch } = useForm<TravelPlanType>({
-    defaultValues: formAtom,
-  });
+  const { handleSubmit, control, watch } = useForm();
   const fieldValue = watch('title', '');
   const pathname = usePathname();
 
@@ -37,7 +35,9 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       return;
     } else {
       router.push(`/travel/${registerState}?stepId=1`);
-      setFormAtom((prev) => ({ ...prev, title: data.title }));
+      registerState == 'plan'
+        ? setPlanAtom((prev) => ({ ...prev, title: data.title }))
+        : setRecordAtom((prev) => ({ ...prev, title: data.title }));
     }
   };
 

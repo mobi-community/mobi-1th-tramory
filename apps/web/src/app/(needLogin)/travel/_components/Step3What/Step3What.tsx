@@ -1,10 +1,9 @@
 'use client';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import { formModeAtom } from '@/store';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
-import { TravelPlanType } from '@/types/travelPlan.types';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
 import type { IStep3Props } from '../../Travel.type';
@@ -12,47 +11,29 @@ import NavigateButton from '../NavigateButton/NavigateButton';
 import Step3Category from './components/Step3Category/Step3Category';
 import Step3Tag from './components/Step3Tag/Step3Tag';
 
-// formModeAtom에 타입이 있어야함
-export const postForm = async (formdata) => {
-  await fetch('/api/plans', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify(formdata),
-  })
-    .then((res) => {
-      if (res.status === 200) {
-        alert('post 요청 성공');
-        localStorage.removeItem('formAtom'); // formAtom 데이터 삭제할 때 사용
-      } else if (res.status === 403) {
-        return res.json();
-      }
-    })
-    .catch((error) => {
-      console.log('네트워크 에러', error);
-    });
-};
-
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [registerAtom] = useAtom(registerStateAtom);
 
-  const [formAtom, setFormAtom] = useAtom(formModeAtom);
-  const { handleSubmit, control } = useForm<TravelPlanType>({
-    defaultValues: formAtom,
-  });
+  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const { handleSubmit, control } = useForm();
 
   const onSubmit = async (data) => {
-    setFormAtom((prev) => ({
-      ...prev,
-      theme: data.theme,
-      travelHashTags: Array(4)
-        .fill(null)
-        .map((_, index) => ({
-          id: Math.floor(Math.random() * 100000),
-          hashTag: { name: data[`tag${index}`] },
-        })),
-    }));
+    registerAtom == 'plan'
+      ? setPlanAtom((prev) => ({
+          ...prev,
+          theme: data.theme,
+          travelHashTags: Array(4)
+            .fill(null)
+            .map((_, index) => ({
+              id: Math.floor(Math.random() * 100000),
+              hashTag: { name: data[`tag${index}`] },
+            })),
+        }))
+      : setRecordAtom((prev) => ({
+          ...prev,
+          theme: data.theme,
+        }));
   };
 
   return (
