@@ -71,17 +71,10 @@ export const useDndList = () => {
     setItems([...items, newItem]);
   };
 
-  const handleEditMemo = (
-    itemId: number,
-    memoIndex: number,
-    updatedMemo: string
-  ) => {
+  const handleEditMemo = (itemId: number, updatedMemo: string) => {
     const updatedItems = items.map((item) => {
       if (item.id === itemId) {
-        const memos = item.description.split(', ');
-
-        memos[memoIndex] = updatedMemo;
-        return { ...item, description: memos.join(', ') };
+        return { ...item, description: updatedMemo };
       }
       return item;
     });
