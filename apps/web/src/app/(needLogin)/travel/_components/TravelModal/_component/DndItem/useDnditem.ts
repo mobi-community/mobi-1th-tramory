@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 
-import { travelDetailModal } from '@/store/travelDetailModal.atoms';
+import { travelDetailModalAtoms } from '@/store/travelDetailModal.atoms';
 
 import { DraggableItemProps } from './useDndItems.type';
 
@@ -18,8 +18,9 @@ const memoStateAtom = atom<MemoState>(defaultState);
 
 export const useDndItem = (props: DraggableItemProps) => {
   const [memoState, setMemoState] = useAtom(memoStateAtom);
-  const [travelDailyPlansDetails, setTravelDailyPlansDetails] =
-    useAtom(travelDetailModal);
+  const [travelDailyPlansDetails, setTravelDailyPlansDetails] = useAtom(
+    travelDetailModalAtoms
+  );
 
   console.log('travelDailyPlansDetails', travelDailyPlansDetails);
 

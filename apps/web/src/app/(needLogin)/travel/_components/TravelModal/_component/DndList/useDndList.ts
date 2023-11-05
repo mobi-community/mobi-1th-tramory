@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
 import { DropResult } from 'react-beautiful-dnd';
 
-import { Item, travelDetailModal } from '@/store/travelDetailModal.atoms';
+import { Item, travelDetailModalAtoms } from '@/store/travelDetailModal.atoms';
 
 export const useDndList = () => {
-  const [items, setItems] = useAtom(travelDetailModal);
+  const [items, setItems] = useAtom(travelDetailModalAtoms);
 
   const handleDeleteItem = (itemId: number) => {
     const updatedItems = items.filter((item) => item.id !== itemId);
@@ -64,10 +64,20 @@ export const useDndList = () => {
     setItems([...items, newItem]);
   };
 
-  const handleEditMemo = (itemId: number, updatedMemo: string) => {
-    const updatedItems = items.map((item) =>
-      item.id === itemId ? { ...item, description: updatedMemo } : item
-    );
+  const handleEditMemo = (
+    itemId: number,
+    memoIndex: number,
+    updatedMemo: string
+  ) => {
+    const updatedItems = items.map((item) => {
+      if (item.id === itemId) {
+        const memos = item.description.split(', ');
+
+        memos[memoIndex] = updatedMemo;
+        return { ...item, description: memos.join(', ') };
+      }
+      return item;
+    });
 
     setItems(updatedItems);
   };

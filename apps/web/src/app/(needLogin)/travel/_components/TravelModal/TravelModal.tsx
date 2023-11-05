@@ -1,13 +1,13 @@
 import { useAtom } from 'jotai';
 import { Button } from 'ui';
 
-import { travelDetailModal } from '@/store/travelDetailModal.atoms';
+import { travelDetailModalAtoms } from '@/store/travelDetailModal.atoms';
 
 import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
 
 const TravelModal: React.FC = () => {
-  const [detailModalState] = useAtom(travelDetailModal);
+  const [detailModalState] = useAtom(travelDetailModalAtoms);
 
   const handleSave = async () => {
     try {

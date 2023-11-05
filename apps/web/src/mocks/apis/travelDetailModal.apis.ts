@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 import { Item } from '@/store/travelDetailModal.atoms';
 
-export const travelDetailModal = rest.post<Item[]>(
+export const travelDetailModalHandler = rest.post<Item[]>(
   '/updateDetailModal',
   (req, res, ctx) => {
     const travelDailyPlansState = req.body;
