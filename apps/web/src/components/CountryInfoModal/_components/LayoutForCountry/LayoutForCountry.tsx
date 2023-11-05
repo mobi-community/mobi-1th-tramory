@@ -27,7 +27,7 @@ export const LayoutForCountry: React.FC<{ country: string }> = ({
     } catch (error) {
       console.error(error, '국가 정보 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [country, countryData, setCountryData]);
+  }, [country, setCountryData]);
 
   const stampImage = (isVisited: boolean) => {
     if (countryData && countryData.continent)

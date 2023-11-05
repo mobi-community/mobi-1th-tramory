@@ -5,6 +5,8 @@ import {
   countryDataMock,
 } from '@/app/(needLogin)/recommend_country/_mocks';
 
+import fakeImage from '../../../public/images/이탈리아.gif';
+
 export const getCountryData = rest.get('/api/countries', (req, res, ctx) => {
   return res(
     ctx.status(200),
@@ -22,7 +24,7 @@ export const getCountryInfo = rest.get(
     const data = {
       ...countryDataMock,
       countryEng: country,
-      flagImage: '/public/images/이탈리아.gif',
+      flagImage: fakeImage,
     };
 
     return res(
