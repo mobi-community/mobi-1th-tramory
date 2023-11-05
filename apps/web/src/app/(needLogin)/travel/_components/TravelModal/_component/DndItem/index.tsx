@@ -12,7 +12,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
 
   // const [isAddMemo, setIsAddMemo] = useState(false);
 
-  const isEditingDescription = editingMemoIndex === 0;
+  const isEditingDescription = editingMemoIndex === props.index;
 
   return (
     <div
@@ -76,39 +76,43 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
           {isAddMemo && <input className='w-full border bg-gray-100'></input>} */}
         </div>
       </div>
-      <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
-        {isEditingDescription ? (
-          <input
-            value={currentMemo}
-            onChange={(e) => {
-              setMemoState((prev) => ({
-                ...prev,
-                currentMemo: e.target.value,
-              }));
-            }}
-            className='w-full border bg-gray-100'
-          />
-        ) : (
-          <span className='max-w-[450px]'>{props.item.description}</span>
-        )}
-
-        <div className='space-x-3'>
+      {props.item.description.length > 0 && (
+        <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
           {isEditingDescription ? (
-            <button onClick={() => handleCheckButtonClick(0)}>
-              <span className='material-icons-outlined h-5 w-5'>check</span>
-            </button>
+            <input
+              value={currentMemo}
+              onChange={(e) => {
+                setMemoState((prev) => ({
+                  ...prev,
+                  currentMemo: e.target.value,
+                }));
+              }}
+              className='w-full border bg-gray-100'
+            />
           ) : (
-            <>
-              <button onClick={() => handleEditButtonClick(0)}>
-                <span className='material-icons-outlined h-5 w-5'>edit</span>
-              </button>
-              <button onClick={() => props.onDeleteMemo(props.item.id, 0)}>
-                <span className='material-icons-outlined h-5 w-5'>delete</span>
-              </button>
-            </>
+            <span className='max-w-[450px]'>{props.item.description}</span>
           )}
+
+          <div className='space-x-3'>
+            {isEditingDescription ? (
+              <button onClick={() => handleCheckButtonClick(0)}>
+                <span className='material-icons-outlined h-5 w-5'>check</span>
+              </button>
+            ) : (
+              <>
+                <button onClick={() => handleEditButtonClick(0)}>
+                  <span className='material-icons-outlined h-5 w-5'>edit</span>
+                </button>
+                <button onClick={() => props.onDeleteMemo(props.item.id, 0)}>
+                  <span className='material-icons-outlined h-5 w-5'>
+                    delete
+                  </span>
+                </button>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
