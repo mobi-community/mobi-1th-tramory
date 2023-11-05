@@ -26,7 +26,7 @@ const OthenrStoryList: React.FC = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
-            testData={storyMock.length}
+            dataLength={storyMock.length}
             bgColor='gray'
           />
         </div>

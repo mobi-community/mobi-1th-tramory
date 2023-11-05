@@ -30,7 +30,7 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
 
   useEffect(() => {
     registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
-  }, []);
+  }, [planAtom, recordAtom, registerState]);
 
   return (
     <>
@@ -54,7 +54,7 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     itemsPerPage={itemsPerPage}
-                    testData={dates.length}
+                    dataLength={dates.length}
                     bgColor='blue'
                   />
                 </div>

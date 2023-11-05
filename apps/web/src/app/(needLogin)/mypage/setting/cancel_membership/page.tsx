@@ -1,11 +1,52 @@
+'use client';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import { Button, Checkbox } from 'ui';
 
 import { cancelMembersipConfig } from '@/constants';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
 import { SettingContainer } from '../_components';
 
 const SettingCancelMembershipPage = () => {
+  const [userInfo, setUserInfo] = useAtom(userProfileInfoAtom);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('/user/info');
+        const data = await response.json();
+
+        if (response.ok) {
+          setUserInfo(data.data);
+        } else {
+          console.error(
+            '서버로부터 정보를 가져오는 데 실패했습니다:',
+            data.message
+          );
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserInfo();
+    // eslint fix
+  }, [setUserInfo]);
+
+  const handleDeleteMember = async () => {
+    try {
+      const response = await fetch(`/user/cancelmember/${userInfo.email}`, {
+        method: 'DELETE',
+      });
+
+      console.log('삭제 확인', response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
       <SettingContainer title='회원 탈퇴'>
@@ -28,15 +69,16 @@ const SettingCancelMembershipPage = () => {
 
                   {info.user?.profileImage && (
                     <div className='bg-primaryBlue-100 mb-8 ml-7 flex w-[400px] items-center rounded-3xl border border-[#CFDDEE] p-4'>
-                      <Image
-                        src={info.user?.profileImage}
-                        width={40}
-                        height={40}
-                        alt='유저 프로필'
-                        className='mr-5 rounded-full'
-                        priority
-                      />
-                      <p className='text-base'>{info.user?.email}</p>
+                      <div className='relative h-[40px] w-[40px]'>
+                        <Image
+                          src={userInfo?.profileImage}
+                          fill
+                          alt='유저 프로필'
+                          className='rounded-full'
+                          priority
+                        />
+                      </div>
+                      <p className='ml-3 text-base'>{userInfo?.email}</p>
                     </div>
                   )}
 
@@ -68,6 +110,7 @@ const SettingCancelMembershipPage = () => {
                 weight='bold'
                 shape='full'
                 className='px-12 text-white'
+                onClick={handleDeleteMember}
               >
                 탈퇴하기
               </Button>

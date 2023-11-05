@@ -18,7 +18,6 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const { handleSubmit, control, watch } = useForm();
   const fieldValue = watch('title', '');
   const pathname = usePathname();
-
   const router = useRouter();
   const headerHeight = 90;
 
@@ -28,7 +27,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     pathname.includes('/travel/plan')
       ? setRegisterState('plan')
       : setRegisterState('record');
-  }, []);
+  }, [pathname, setRegisterState]);
 
   const onSubmit = (data) => {
     if (fieldValue.trim() === '') {
