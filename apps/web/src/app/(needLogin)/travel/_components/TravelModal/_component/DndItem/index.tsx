@@ -12,7 +12,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
 
   // const [isAddMemo, setIsAddMemo] = useState(false);
 
-  const isEditingDescription = editingMemoIndex === props.index;
+  const isEditingDescription = editingMemoIndex === props.item.id;
 
   return (
     <div
@@ -95,12 +95,12 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
 
           <div className='space-x-3'>
             {isEditingDescription ? (
-              <button onClick={() => handleCheckButtonClick(0)}>
+              <button onClick={() => handleCheckButtonClick()}>
                 <span className='material-icons-outlined h-5 w-5'>check</span>
               </button>
             ) : (
               <>
-                <button onClick={() => handleEditButtonClick(0)}>
+                <button onClick={() => handleEditButtonClick()}>
                   <span className='material-icons-outlined h-5 w-5'>edit</span>
                 </button>
                 <button onClick={() => props.onDeleteMemo(props.item.id, 0)}>

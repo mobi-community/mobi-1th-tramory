@@ -29,7 +29,14 @@ export const useDndList = () => {
 
     if (memo) {
       const updatedItems = items.map((item) =>
-        item.id === itemId ? { ...item, description: item.description } : item
+        item.id === itemId
+          ? {
+              ...item,
+              description: item.description
+                ? `${item.description}, ${memo}`
+                : memo,
+            }
+          : item
       );
 
       setItems(updatedItems);
