@@ -1,10 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
-import { UserInfo, userInfo } from '@/app/(needLogin)/mypage/_mocks';
+import { UserInfo } from '@/app/(needLogin)/mypage/_mocks';
 import { ValidatorInput } from '@/components';
+import { userProfileInfoAtom } from '@/store/mypage.atoms';
 import materialIcon from '@/utils/materialIcon';
 
 import {
@@ -15,11 +17,78 @@ import type { ModifyType } from './ModifyForm.types';
 const isPWVisibleAtom = atom(false);
 
 export const ModifyForm = ({ modifyType }) => {
-  const { handleSubmit, control } = useForm<ModifyType>({
+  const { handleSubmit, control, reset } = useForm<ModifyType>({
     mode: 'onChange',
     resolver: yupResolver(ACCOUT_SCHEMAS[modifyType]),
     defaultValues: MODIFYFORM_DEFAULT_VALUES[modifyType],
   });
+  const setSettingUserInfo = useSetAtom(userProfileInfoAtom);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('/user/info');
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setSettingUserInfo(data.data);
+          reset({ ...data.data });
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserInfo();
+    // eslint fix
+  }, [reset, setSettingUserInfo]);
+
+  const editUserPrivacy = async (nickName: string) => {
+    try {
+      const response = await fetch(`user/info/privacy`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nickName: nickName,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log(data.data);
+      }
+    } catch (error) {
+      console.error('데이터를 가져오는 중 에러가 발생했습니다:', error);
+    }
+  };
+  const editUserPassword = async (password: string, pwconfirm: string) => {
+    try {
+      const response = await fetch(`user/info/password`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password,
+          pwconfirm,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log(data.data);
+      }
+    } catch (error) {
+      console.error('데이터를 가져오는 중 에러가 발생했습니다:', error);
+    }
+  };
 
   const isTypePrivacy = modifyType === 'privacy';
 
@@ -47,7 +116,11 @@ export const ModifyForm = ({ modifyType }) => {
   };
 
   const onSubmit = (data: UserInfo) => {
-    console.log('onSumbit!', data);
+    if (modifyType === 'privacy') {
+      editUserPrivacy(data.nickName);
+    } else if (modifyType === 'password') {
+      editUserPassword(data.password, data.pwconfirm);
+    }
   };
 
   return (
@@ -67,7 +140,6 @@ export const ModifyForm = ({ modifyType }) => {
                   type={'text'}
                   control={control}
                   style={{ ...defaultStyle, ...emailStyle }}
-                  placeholder={userInfo.email}
                 />
               </div>
               <div className='flex justify-between'>

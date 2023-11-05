@@ -12,3 +12,4 @@ export * from './story.atoms';
 export * from './storyCommunity.atoms';
 export * from './toggle.atoms';
 export * from './travelDate.atom';
+export * from './TravelForm.atom';

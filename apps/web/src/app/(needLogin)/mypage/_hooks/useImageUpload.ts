@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai';
 import { useRef } from 'react';
 
-export const useImageUpload = (imageAtom) => {
-  const [image, setImage] = useAtom(imageAtom);
+export const useImageUpload = (atom, path) => {
+  const [state, setState] = useAtom(atom);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,17 +10,16 @@ export const useImageUpload = (imageAtom) => {
       return;
     }
     const file = e.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
 
-    setImage(file);
+    setState((prev) => ({ ...prev, [path]: imageUrl }));
   };
 
   const handleDeleteImage = () => {
-    if (image) {
-      URL.revokeObjectURL(imageUrl);
-      setImage(null);
-      if (inputRef.current) {
-        inputRef.current.value = '';
-      }
+    URL.revokeObjectURL(state[path]);
+    setState((prev) => ({ ...prev, [path]: null }));
+    if (inputRef.current) {
+      inputRef.current.value = '';
     }
   };
 
@@ -30,13 +29,13 @@ export const useImageUpload = (imageAtom) => {
     }
   };
 
-  const imageUrl = image instanceof Blob ? URL.createObjectURL(image) : null;
+  // const imageUrl = image instanceof Blob ? URL.createObjectURL(image) : null;
 
   return {
     inputRef,
     handleUploadImage,
     handleDeleteImage,
     handleUploadButtonClick,
-    imageUrl,
+    imageUrl: state[path],
   };
 };

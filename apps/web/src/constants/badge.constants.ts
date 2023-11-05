@@ -1,5 +1,7 @@
 import badgeDefault from '/public/assets/badge_default.svg';
 
+import badgeImage from '../../public/images/test-badge1.png';
+
 export type BadgeConfig = typeof badgeConfig;
 
 export const badgeConfig = {
@@ -13,22 +15,27 @@ export const badgeConfig = {
         {
           title: '첫 여행',
           subtitle: '축하합니다!',
+          badgeImage,
         },
         {
           title: '여행',
           subtitle: '5회 달성!',
+          badgeImage,
         },
         {
           title: '여행',
           subtitle: '10회 달성!',
+          badgeImage,
         },
         {
           title: '여행',
           subtitle: '50회 달성!',
+          badgeImage,
         },
         {
           title: '여행',
           subtitle: '100회 달성!',
+          badgeImage,
         },
       ],
       info: {
@@ -44,22 +51,27 @@ export const badgeConfig = {
         {
           title: '첫 여행',
           subtitle: '기록 작성!',
+          badgeImage,
         },
         {
           title: '여행 기록',
           subtitle: '5회 작성!',
+          badgeImage,
         },
         {
           title: '여행 기록',
           subtitle: '10회 작성!',
+          badgeImage,
         },
         {
           title: '여행 기록',
           subtitle: '50회 작성!',
+          badgeImage,
         },
         {
           title: '여행 기록',
           subtitle: '100회 작성!',
+          badgeImage,
         },
       ],
       info: {
@@ -75,26 +87,32 @@ export const badgeConfig = {
         {
           title: '메리 크리스마스',
           subtitle: '크리스마스<br />여행 일정 달성!',
+          badgeImage,
         },
         {
           title: '해피 뉴 이어',
           subtitle: '1월 1일<br />여행 일정 달성!',
+          badgeImage,
         },
         {
           title: '봄봄봄',
           subtitle: '따뜻한 봄 여행',
+          badgeImage,
         },
         {
           title: '여름',
           subtitle: '뜨거운 여름 여행',
+          badgeImage,
         },
         {
           title: '가을',
           subtitle: '선선한 가을 여행',
+          badgeImage,
         },
         {
           title: '겨울',
           subtitle: '설레는 겨울 여행',
+          badgeImage,
         },
       ],
       info: {
@@ -109,21 +127,27 @@ export const badgeConfig = {
       description: [
         {
           title: '남아메리카',
+          badgeImage,
         },
         {
           title: '북아메리카',
+          badgeImage,
         },
         {
           title: '아시아',
+          badgeImage,
         },
         {
           title: '아프리카',
+          badgeImage,
         },
         {
           title: '오세아니아',
+          badgeImage,
         },
         {
           title: '유럽',
+          badgeImage,
         },
       ],
       info: {
@@ -138,18 +162,23 @@ export const badgeConfig = {
       description: [
         {
           title: '액티비티',
+          badgeImage,
         },
         {
           title: '식도락',
+          badgeImage,
         },
         {
           title: '문화예술',
+          badgeImage,
         },
         {
           title: '휴양',
+          badgeImage,
         },
         {
           title: '쇼핑',
+          badgeImage,
         },
       ],
       info: {

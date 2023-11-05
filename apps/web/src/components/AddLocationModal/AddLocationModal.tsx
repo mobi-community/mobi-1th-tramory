@@ -3,8 +3,7 @@
 import { AddLocationConfig } from '@/constants';
 import materialIcon from '@/utils/materialIcon';
 
-import { SearchBar } from './_components';
-import { AddedLocation } from './_components/AddedLocation/AddedLocation';
+import { AddedLocation, SearchBar } from './_components';
 import { useAddLocationModal } from './_hooks/useAddLocationModal';
 
 export const AddLocationModal: React.FC = () => {

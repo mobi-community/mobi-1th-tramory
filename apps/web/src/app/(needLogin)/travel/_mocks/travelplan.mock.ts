@@ -137,15 +137,3 @@ export const mockData = {
     ],
   },
 };
-
-// export const convertMockDataToFormData = () => {
-//   const formData = new FormData();
-
-//   for (const key in mockData.result) {
-//     if (mockData.result.hasOwnProperty(key)) {
-//       formData.append(key, JSON.stringify(mockData.result[key]));
-//     }
-//   }
-
-//   return formData;
-// };

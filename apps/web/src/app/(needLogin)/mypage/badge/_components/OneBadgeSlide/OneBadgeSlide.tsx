@@ -18,11 +18,7 @@ import { isIndividualOneBadgeToggleAtom } from '@/store';
 import { HowToNotification } from '../HowToNotification';
 import type { OneBadgeSlideProps } from './OneBadgeSlide.types';
 
-export const OneBadgeSlide = ({
-  item,
-  badgeDefault,
-  id,
-}: OneBadgeSlideProps) => {
+export const OneBadgeSlide = ({ item, id }: OneBadgeSlideProps) => {
   const { title, description, info } = item;
   const [isIndividualToggle, setIsIndividualToggle] = useAtom(
     isIndividualOneBadgeToggleAtom(id)
@@ -68,7 +64,7 @@ export const OneBadgeSlide = ({
                 <div key={i} className='relative'>
                   <div className='flex justify-center pl-[80px]'>
                     <Image
-                      src={badgeDefault}
+                      src={desc.badgeImage}
                       width={126}
                       height={152}
                       alt='배지 디폴트 이미지'

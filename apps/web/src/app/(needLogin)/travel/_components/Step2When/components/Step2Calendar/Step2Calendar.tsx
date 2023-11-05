@@ -7,10 +7,9 @@ import DatePicker from 'react-datepicker';
 import { Control, Controller } from 'react-hook-form';
 
 import { dateRangeAtom } from '@/store';
-import type { IregisterFormvalue } from '@/types/registerStep.types';
 
 interface IStep2CalendarProps {
-  control: Control<IregisterFormvalue>;
+  control: Control;
   name: string;
 }
 
