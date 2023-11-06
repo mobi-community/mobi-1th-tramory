@@ -16,14 +16,28 @@ export const useMapSearchBar = () => {
     MapPageAtom.isSearchModalOpen
   );
 
+  const [locationKeyword, setLocationKeyword] = useAtom(
+    MapPageAtom.locationKeyword
+  );
+
   return {
     isSearchModalOpen,
     isSelectModalOpen,
-    handleSearchModal: () => setIsSearchModalOpen((prev: boolean) => !prev),
+    handleSearchModal: () =>
+      setIsSearchModalOpen((prev: boolean) => {
+        if (!prev) setIsSelectModalOpen(false);
+        return !prev;
+      }),
     closeSearchModal: () => setIsSearchModalOpen(false),
-    handleSelectModal: () => setIsSelectModalOpen((prev: boolean) => !prev),
+    handleSelectModal: () =>
+      setIsSelectModalOpen((prev: boolean) => {
+        if (!prev) setIsSearchModalOpen(false);
+        return !prev;
+      }),
     searchRange,
     setSearchRange,
     isRangeCountry: searchRange === '국가',
+    locationKeyword,
+    setLocationKeyword,
   };
 };

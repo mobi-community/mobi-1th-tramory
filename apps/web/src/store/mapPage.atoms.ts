@@ -5,4 +5,5 @@ export const MapPageAtom = {
   isSearchModalOpen: atom<boolean>(false),
   isSelectModalOpen: atom<boolean>(false),
   range: atom<string>('국가'),
+  locationKeyword: atom<string>(''),
 };

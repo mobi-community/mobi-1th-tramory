@@ -11,7 +11,8 @@ import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const { handleSearchModal, isRangeCountry } = useMapSearchBar();
+  const { handleSearchModal, isRangeCountry, setLocationKeyword } =
+    useMapSearchBar();
 
   const router = useRouter();
 
@@ -21,7 +22,7 @@ export const SearchInput: React.FC = () => {
         className='flex flex-col justify-center'
         onSubmit={handleSubmit((data: { searchKeyword: string }) => {
           if (isRangeCountry) {
-            console.log('data', data);
+            console.log('data', data.searchKeyword);
           } else {
             router.push(`/story_community?keyword=${data.searchKeyword}`);
           }
@@ -36,6 +37,10 @@ export const SearchInput: React.FC = () => {
               <div className='relative flex w-[400px]'>
                 <input
                   {...field}
+                  onChange={(e) => {
+                    field.onChange(e.target.value);
+                    setLocationKeyword(e.target.value);
+                  }}
                   onClick={handleSearchModal}
                   className='text-align-center text-s ml-12 w-[380px] focus:outline-none'
                   placeholder={MapPageConfig.searchBarText}

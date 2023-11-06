@@ -25,7 +25,12 @@ export const Header: React.FC = () => {
       }`}
     >
       <Link href='/map'>
-        <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
+        <Image
+          src={logo}
+          alt='트래모리 로고'
+          className='cursor-pointer'
+          priority={true}
+        />
       </Link>
       <div className='flex'>
         {isMapPage && <ModeSwitchButton />}
