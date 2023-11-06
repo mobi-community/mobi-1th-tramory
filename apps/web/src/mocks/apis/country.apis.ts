@@ -44,7 +44,7 @@ export const getCityInfo = rest.get('/api/city_info/:city', (req, res, ctx) => {
   const data = {
     ...cityDataMock,
     cityEng: city,
-    flagImage: '/public/images/이탈리아.gif',
+    flagImage: fakeImage,
   };
 
   return res(
