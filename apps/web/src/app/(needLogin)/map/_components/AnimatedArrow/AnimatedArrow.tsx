@@ -6,7 +6,7 @@ import materialIcon from '@/utils/materialIcon';
 
 export const AnimatedArrow: React.FC = () => {
   return (
-    <div className='text-primaryGray-400 cursor-pointer'>
+    <div className='text-primaryGray-400 m-auto cursor-pointer'>
       <Link
         href='/recommend_country'
         className='hover:text-primaryGreen m-auto w-[250px] font-medium hover:font-bold'

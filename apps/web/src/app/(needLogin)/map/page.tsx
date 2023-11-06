@@ -42,7 +42,7 @@ const MapPage: React.FC = () => {
 
   if (apiKey)
     return (
-      <div className='w-[100%] text-center'>
+      <div className='m-auto overflow-hidden text-center'>
         <SearchBar />
         <Wrapper apiKey={apiKey}>
           <Map

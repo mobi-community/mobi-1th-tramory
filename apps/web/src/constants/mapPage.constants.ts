@@ -9,7 +9,9 @@ export const MapPageConfig = {
   wrapperStyle: {
     width: '91%',
     minHeight: '650px',
-    margin: '50px auto',
+    margin: '25px auto',
+    marginTop: '50px',
+    zIndex: '10',
   },
   mapStyle: {
     dark: [

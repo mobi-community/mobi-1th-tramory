@@ -32,7 +32,7 @@ export const SearchInput: React.FC = () => {
           control={control}
           defaultValue=''
           render={({ field }) => (
-            <div className='relative mt-1'>
+            <div className='relative z-[100] mt-1'>
               <div className='relative flex w-[400px]'>
                 <input
                   {...field}
