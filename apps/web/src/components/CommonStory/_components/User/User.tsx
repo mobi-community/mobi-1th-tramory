@@ -5,10 +5,7 @@ import { StoryButtons } from '../StoryButtons/StoryButtons';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
   const { profileImage, userId, date } = user;
-  const formattedDate =
-    date instanceof Date
-      ? `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`
-      : '날짜 정보 없음';
+  const formattedDate = date ? date.split('T')[0] : '날짜 정보 없음';
 
   return (
     <div>

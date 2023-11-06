@@ -1,16 +1,12 @@
 'use client';
 
-import { useAtom } from 'jotai';
-
+import { useStoryCommunity } from '@/app/(needLogin)/story_community/_hooks/useStoryCommunity';
 import { mockKeywordsArray } from '@/app/(needLogin)/story_community/_mocks';
-import { storyCommunityAtoms } from '@/store';
 
 import type { modalProps } from './SuggestionModal.types';
 
 export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
-  const [isSearchModalOpen, setIsSearchModalOpen] = useAtom(
-    storyCommunityAtoms.isSearchModalOpenAtom
-  );
+  const { isSearchModalOpen, handleSearchModal } = useStoryCommunity();
 
   const isLast = (i: number, arr: string[]) =>
     i !== arr.length - 1 ? 'border-b-[1px] border-b-primaryGray-100' : '';
@@ -27,7 +23,7 @@ export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
                 array
               )}`}
               onClick={() => {
-                setIsSearchModalOpen((prev: boolean) => !prev);
+                handleSearchModal();
                 field.onChange(keyword);
               }}
             >
