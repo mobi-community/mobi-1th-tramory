@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use client';
 import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react';
@@ -15,8 +16,8 @@ import { dates } from './mocks';
 
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
-  const [planAtom] = useAtom(formModePlanAtom);
-  const [recordAtom] = useAtom(formModeRecordAtom);
+  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
+  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -29,7 +30,11 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
     : console.log('record data', recordAtom);
 
   useEffect(() => {
-    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
+    if (registerState == 'plan') {
+      postPlan(planAtom);
+    } else {
+      postRecord(recordAtom);
+    }
   }, []);
 
   return (

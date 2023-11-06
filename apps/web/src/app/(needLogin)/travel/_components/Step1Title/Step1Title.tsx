@@ -1,6 +1,6 @@
 'use client';
 
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -13,9 +13,9 @@ import { registerStateAtom } from '@/store/travelState.atom';
 import type { Step1TitleProps } from '../../Travel.type';
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const [registerState, setRegisterState] = useAtom(registerStateAtom);
-  const { handleSubmit, control, watch } = useForm();
+  const { handleSubmit, control, watch, setValue } = useForm();
   const fieldValue = watch('title', '');
   const pathname = usePathname();
   const router = useRouter();
@@ -27,7 +27,25 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     pathname.includes('/travel/plan')
       ? setRegisterState('plan')
       : setRegisterState('record');
-  }, [pathname, setRegisterState]);
+    // const updateTitle = async () => {
+    // 상태 업데이트가 완료될 때까지 기다립니다.
+    // await new Promise((resolve) => setTimeout(resolve));
+
+    registerState == 'plan'
+      ? setValue('title', planAtom.title)
+      : setValue('title', recordAtom.title);
+    // };
+
+    // 비동기 함수를 호출합니다.
+    // updateTitle();
+  }, [
+    pathname,
+    setRegisterState,
+    planAtom,
+    recordAtom,
+    setValue,
+    registerState,
+  ]);
 
   const onSubmit = (data) => {
     if (fieldValue.trim() === '') {
@@ -37,7 +55,6 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       registerState == 'plan'
         ? setPlanAtom((prev) => ({ ...prev, title: data.title }))
         : setRecordAtom((prev) => ({ ...prev, title: data.title }));
-      console.log(planAtom);
       console.log(data);
     }
   };

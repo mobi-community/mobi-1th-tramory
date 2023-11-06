@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 'use client';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
@@ -15,7 +17,8 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [registerAtom] = useAtom(registerStateAtom);
 
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  // eslint-disable-next-line no-unused-vars
+  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
 
   const onSubmit = async (data) => {
@@ -34,7 +37,8 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
           ...prev,
           theme: data.theme,
         }));
-    console.log(planAtom);
+    // console.log(planAtom);
+    // console.log(recordAtom);
   };
 
   return (

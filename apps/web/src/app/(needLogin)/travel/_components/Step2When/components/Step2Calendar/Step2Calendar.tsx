@@ -2,19 +2,27 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.css';
 
-import { useAtom } from 'jotai';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { Control, Controller } from 'react-hook-form';
 
-import { dateRangeAtom } from '@/store';
-
+import { TravelPlanType } from '@/types/TravelRegister.types';
 interface IStep2CalendarProps {
   control: Control;
   name: string;
+  planAtom: TravelPlanType;
+  range: any;
 }
 
-const Step2Calendar: React.FC<IStep2CalendarProps> = ({ control, name }) => {
-  const [dateRange, setDateRange] = useAtom(dateRangeAtom);
+const Step2Calendar: React.FC<IStep2CalendarProps> = ({
+  control,
+  name,
+  planAtom,
+  range,
+}) => {
+  const [dateRange, setDateRange] = useState(
+    planAtom.startDate == '' ? [new Date(), null] : [range[0], range[1]]
+  );
   const [startDate, endDate] = dateRange;
 
   return (

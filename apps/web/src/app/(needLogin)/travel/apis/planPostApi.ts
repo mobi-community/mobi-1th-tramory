@@ -1,5 +1,5 @@
 // plan post fetch 요청 로직
-// formModeAtom에 타입이 있어야함
+
 export const postPlan = async (formdata) => {
   await fetch('/api/plans', {
     method: 'POST',
@@ -8,10 +8,10 @@ export const postPlan = async (formdata) => {
     },
     body: JSON.stringify(formdata),
   })
-    .then((res) => {
+    .then(async (res) => {
       if (res.status === 200) {
         alert('post 요청 성공');
-        localStorage.removeItem('formAtom'); // formAtom 데이터 삭제할 때 사용
+        localStorage.removeItem('formPlanAtom');
       } else if (res.status === 403) {
         return res.json();
       }
@@ -33,7 +33,7 @@ export const postRecord = async (formdata) => {
     .then((res) => {
       if (res.status === 200) {
         alert('post 요청 성공');
-        localStorage.removeItem('formAtom'); // formAtom 데이터 삭제할 때 사용
+        localStorage.removeItem('formRecordAtom'); // formAtom 데이터 삭제할 때 사용
       } else if (res.status === 403) {
         return res.json();
       }
