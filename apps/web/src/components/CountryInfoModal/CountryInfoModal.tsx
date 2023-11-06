@@ -5,10 +5,12 @@ import materialIcon from '@/utils/materialIcon';
 import { useCountryInfoModal } from './_hooks/useCountryInfoModal';
 
 export const CountryInfoModal: React.FC<
-  PropsWithChildren<{ country: string }>
-> = ({ children, country }) => {
+  PropsWithChildren<{
+    target: string;
+  }>
+> = ({ children, target }) => {
   const { isCountryInfoOpen, closeCountryInfoModal } =
-    useCountryInfoModal(country);
+    useCountryInfoModal(target);
 
   if (!isCountryInfoOpen.isOpen) return null;
 
