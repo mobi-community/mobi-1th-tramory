@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 import { UserInfo } from '@/app/(needLogin)/otherspage/_mocks';
-import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
+import { storyMock } from '@/app/(needLogin)/story_community/_mocks/storyMock';
 import { currentBadge, currentBanner } from '@/utils/otherPageMockFunc';
 
 export const getOtherStories = rest.get(

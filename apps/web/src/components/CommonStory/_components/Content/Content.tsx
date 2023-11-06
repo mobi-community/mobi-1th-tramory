@@ -5,11 +5,15 @@ import { ReactionBox } from '../ReactionBox/ReactionBox';
 export const Content: React.FC<{
   content: storyContentType;
   postId: number | string;
-}> = ({ content, postId }) => {
+  handleMoveToDetail: () => void;
+}> = ({ content, postId, handleMoveToDetail }) => {
   const { title, text, images, liked, viewed, tags } = content;
 
   return (
-    <div className='mt-[20px] flex w-[95%] justify-between pl-[5px]'>
+    <div
+      className='mt-[20px] flex w-[95%] justify-between pl-[5px]'
+      onClick={handleMoveToDetail}
+    >
       <div className='mr-[40px]'>
         <div className='text-base font-bold'>{title}</div>
         <div className='text-primaryGray-400 mt-[15px] h-[80px] min-w-[250px] max-w-[400px] overflow-hidden text-ellipsis text-sm'>

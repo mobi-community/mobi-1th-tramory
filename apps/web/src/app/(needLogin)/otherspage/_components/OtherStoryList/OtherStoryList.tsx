@@ -1,14 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import {
-  type storyMockType,
-  storyMock,
-} from '@/app/(needLogin)/story_community/_mocks';
+import { storyMock } from '@/app/(needLogin)/story_community/_mocks/storyMock';
 import { CommonStory, Pagination } from '@/components';
 
 const OthenrStoryList: React.FC = () => {
-  const [storyList, setStoryList] = useState<storyMockType>([]);
+  const [storyList, setStoryList] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
   const startIdx = currentPage * itemsPerPage;
@@ -35,13 +32,7 @@ const OthenrStoryList: React.FC = () => {
       <div className='m-auto mt-[-147px] h-[800px] w-[1024px] border  shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
         <div className='m-auto mt-[150px] grid w-[950px] grid-cols-2  '>
           {storyList.slice(startIdx, endIdx).map((story) => (
-            <CommonStory
-              story={story}
-              key={Math.random() * 1000}
-              handleMoveToDetail={(id) => {
-                console.log(id);
-              }}
-            />
+            <CommonStory story={story} key={Math.random() * 1000} />
           ))}
         </div>
         <div className='ml-[393px] mt-[30px] h-[100px] w-full'>
