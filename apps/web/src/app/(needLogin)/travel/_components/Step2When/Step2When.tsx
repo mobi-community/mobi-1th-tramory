@@ -18,6 +18,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const { handleSubmit, control } = useForm();
   const [range, setRange] = useState([]);
 
+  // date 값이 제대로 안 들어가고 있음
   const onSubmit = (data) => {
     if (registerState == 'plan') {
       setPlanAtom((prev) => ({
