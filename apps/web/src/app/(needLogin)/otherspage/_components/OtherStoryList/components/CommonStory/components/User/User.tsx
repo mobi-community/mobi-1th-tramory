@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { storyUserType } from '@/components';
+import { storyUserType } from '@/components/CommonStory';
 import { formattedDateFunc } from '@/utils/formattedDate';
 
 export const User: React.FC<{ user: storyUserType }> = ({ user }) => {
