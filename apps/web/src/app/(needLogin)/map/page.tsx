@@ -28,7 +28,8 @@ const MapPage: React.FC = () => {
         email: session.user.email,
       });
     }
-  }, [session]);
+    // eslint fix
+  }, [session, setUserInfo]);
 
   const onClick = (e: google.maps.MapMouseEvent) => {
     setClicks([...clicks, e.latLng!]);

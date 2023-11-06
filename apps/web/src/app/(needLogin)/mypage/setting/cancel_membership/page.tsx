@@ -32,7 +32,8 @@ const SettingCancelMembershipPage = () => {
     };
 
     fetchUserInfo();
-  }, []);
+    // eslint fix
+  }, [setUserInfo]);
 
   const handleDeleteMember = async () => {
     try {

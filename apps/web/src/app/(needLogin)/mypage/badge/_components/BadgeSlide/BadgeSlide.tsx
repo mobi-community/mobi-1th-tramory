@@ -25,7 +25,8 @@ export const BadgeSlide = () => {
     };
 
     fetchUserBadges();
-  }, []);
+    // eslint fix
+  }, [setBadges]);
 
   return (
     <div>

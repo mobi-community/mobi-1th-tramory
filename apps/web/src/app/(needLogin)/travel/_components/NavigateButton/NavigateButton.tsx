@@ -1,11 +1,14 @@
 'use client';
+import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+
+import { registerStateAtom } from '@/store/travelState.atom';
 
 const NavigateButton = ({ handleSubmit, onSubmit }) => {
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
-  const registerState = localStorage.getItem('registerState');
+  const [registerState] = useAtom(registerStateAtom);
 
   return (
     <>

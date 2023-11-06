@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { storyModalAtom } from '@/store';
@@ -10,7 +10,7 @@ import materialIcon from '@/utils/materialIcon';
 import { ImageModal } from './ImageModal';
 
 export const ImageSlide: React.FC<{
-  images: StaticImageData[];
+  images: string[];
   postId: number | string;
 }> = ({ images, postId }) => {
   const mainImage = images[0];

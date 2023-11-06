@@ -31,7 +31,8 @@ const MyVisitedPage = () => {
     };
 
     fetchUserMyVisited();
-  }, []);
+    // eslint fix
+  }, [setMyVisitedAtom]);
 
   const mockData = myVisitedAtom?.map((tabs) => tabs)[0]?.continents;
 

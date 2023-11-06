@@ -31,7 +31,8 @@ export const ViewStory = () => {
     };
 
     fetchUserViewStories();
-  }, []);
+    // eslint fix
+  }, [setViewStories]);
 
   if (viewStories.length <= 0) {
     return (

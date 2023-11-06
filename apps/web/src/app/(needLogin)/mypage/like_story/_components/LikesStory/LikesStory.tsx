@@ -31,7 +31,8 @@ export const LikeStory = () => {
     };
 
     fetchUserLikeStories();
-  }, []);
+    // eslint fix
+  }, [setLikeStories]);
 
   if (likeStories.length <= 0) {
     return (

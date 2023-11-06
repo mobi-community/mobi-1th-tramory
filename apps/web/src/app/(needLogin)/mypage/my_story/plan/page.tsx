@@ -34,7 +34,8 @@ const MyStoryPlanPage = () => {
     };
 
     fetchUserPlanStories();
-  }, []);
+    // eslint fix
+  }, [setPlanStories]);
 
   const handleMoveToDetail = (id) => {
     router.push(`/mypage/my_story/${id}?page=plan&isEdit=true`);

@@ -41,7 +41,8 @@ const MyPage = () => {
     };
 
     fetchUserInfo();
-  }, []);
+    // eslint fix
+  }, [setUserInfoState]);
 
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>

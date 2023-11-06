@@ -43,7 +43,8 @@ export const ModifyForm = ({ modifyType }) => {
     };
 
     fetchUserInfo();
-  }, []);
+    // eslint fix
+  }, [reset, setSettingUserInfo]);
 
   const editUserPrivacy = async (nickName: string) => {
     try {
