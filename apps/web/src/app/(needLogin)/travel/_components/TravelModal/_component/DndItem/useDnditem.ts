@@ -1,5 +1,9 @@
 import { atom, useAtom } from 'jotai';
 
+import { travelDetailModalAtoms } from '@/store/travelDetailModal.atoms';
+
+import { DraggableItemProps } from './useDndItems.type';
+
 interface MemoState {
   editingMemoIndex: number | null;
   currentMemo: string;
@@ -12,25 +16,42 @@ const defaultState: MemoState = {
 
 const memoStateAtom = atom<MemoState>(defaultState);
 
-interface UseDndItemProps {
-  item: { id: number; name: string; memos: string[] };
-  // eslint-disable-next-line no-unused-vars
-  onEditMemo: (id: number, memoIndex: number, updatedMemo: string) => void;
-}
-
-export const useDndItem = (props: UseDndItemProps) => {
+export const useDndItem = (props: DraggableItemProps) => {
   const [memoState, setMemoState] = useAtom(memoStateAtom);
+  // eslint-disable-next-line no-unused-vars
+  const [travelDailyPlansDetails, setTravelDailyPlansDetails] = useAtom(
+    travelDetailModalAtoms
+  );
 
-  const handleEditButtonClick = (memoIndex: number) => {
+  console.log('travelDailyPlansDetails', travelDailyPlansDetails);
+
+  // 메모 수정 버튼
+  const handleEditButtonClick = () => {
     setMemoState({
-      editingMemoIndex: memoIndex,
-      currentMemo: props.item.memos[memoIndex],
+      editingMemoIndex: props.item.id,
+      currentMemo: props.item.description,
     });
   };
 
-  const handleCheckButtonClick = (memoIndex: number) => {
+  // 메모 수정 완료 체크버튼
+  const handleCheckButtonClick = () => {
     if (memoState.currentMemo) {
-      props.onEditMemo(props.item.id, memoIndex, memoState.currentMemo);
+      props.onEditMemo(props.item.id, memoState.currentMemo);
+      // 전역 travelDailyPlansDetails 상태 업데이트
+      setTravelDailyPlansDetails((oldDetails) => {
+        console.log('olddetail', oldDetails);
+
+        return oldDetails.map((detail) =>
+          detail.id === props.item.id
+            ? {
+                ...detail,
+                placeName: props.item.placeName,
+                description: memoState.currentMemo,
+              }
+            : detail
+        );
+      });
+
       setMemoState(defaultState);
     }
   };
