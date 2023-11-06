@@ -1,11 +1,9 @@
 'use client';
 
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-export const ImageModal: React.FC<{ images: StaticImageData[] }> = ({
-  images,
-}) => {
+export const ImageModal: React.FC<{ images: string[] }> = ({ images }) => {
   const pathName = usePathname();
   const isMyStory = pathName.includes('mypage');
 
