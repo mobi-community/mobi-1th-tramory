@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-import { storyMock } from '@/app/(needLogin)/story_community/_mocks';
+import { storyMock } from '@/app/(needLogin)/story_community/_mocks/storyMock';
 import type { storyType } from '@/components/CommonStory';
 
 // 스토리 목록
