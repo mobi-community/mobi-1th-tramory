@@ -14,7 +14,7 @@ import Step3Tag from './components/Step3Tag/Step3Tag';
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [registerAtom] = useAtom(registerStateAtom);
 
-  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
 
@@ -34,6 +34,7 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
           ...prev,
           theme: data.theme,
         }));
+    console.log(planAtom);
   };
 
   return (

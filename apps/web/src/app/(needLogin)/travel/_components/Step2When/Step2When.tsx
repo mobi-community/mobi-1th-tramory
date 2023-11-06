@@ -11,7 +11,7 @@ import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
-  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
 
@@ -27,6 +27,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
           startDate: data.postDate[0].toISOString().split('T')[0],
           endDate: data.postDate[1].toISOString().split('T')[0],
         }));
+    console.log(planAtom);
   };
 
   return (

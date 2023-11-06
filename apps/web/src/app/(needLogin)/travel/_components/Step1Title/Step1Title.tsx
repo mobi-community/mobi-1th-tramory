@@ -12,7 +12,7 @@ import { registerStateAtom } from '@/store/travelState.atom';
 
 import type { Step1TitleProps } from '../../Travel.type';
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
-  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
   const [registerState, setRegisterState] = useAtom(registerStateAtom);
   const { handleSubmit, control, watch } = useForm();
@@ -37,6 +37,8 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       registerState == 'plan'
         ? setPlanAtom((prev) => ({ ...prev, title: data.title }))
         : setRecordAtom((prev) => ({ ...prev, title: data.title }));
+      console.log(planAtom);
+      console.log(data);
     }
   };
 

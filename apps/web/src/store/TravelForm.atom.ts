@@ -5,14 +5,11 @@ import type {
   TravelRecordType,
 } from '@/types/TravelRegister.types';
 
-const today = new Date();
-
 export const formModePlanAtom = atomWithStorage<TravelPlanType>('formAtom', {
   id: 0,
   title: '',
-  startDate:
-    today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay(),
-  endDate: today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay(),
+  startDate: '',
+  endDate: '',
   theme: 0,
   isPublic: false,
   isComplete: '',
@@ -45,10 +42,8 @@ export const formModeRecordAtom = atomWithStorage<TravelRecordType>(
   {
     id: 0,
     title: '',
-    startDate:
-      today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay(),
-    endDate:
-      today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay(),
+    startDate: '',
+    endDate: '',
     theme: 0,
     isPublic: false,
     isComplete: '',

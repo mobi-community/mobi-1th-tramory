@@ -30,7 +30,7 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
 
   useEffect(() => {
     registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
-  }, [planAtom, recordAtom, registerState]);
+  }, []);
 
   return (
     <>
