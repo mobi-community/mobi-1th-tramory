@@ -1,12 +1,19 @@
 import { Content, User } from './_components';
 import type { CommonStoryProps } from './CommonStory.types';
 
-export const CommonStory: React.FC<CommonStoryProps> = ({ story }) => {
+export const CommonStory: React.FC<CommonStoryProps> = ({
+  story,
+  handleMoveToDetail,
+}) => {
   return (
     <div className='relative cursor-pointer'>
       <div className='relative z-50 max-w-[740px] bg-white/[0.5] pb-[30px] pl-[30px] drop-shadow-xl'>
         <User user={story.user} />
-        <Content content={story.content} postId={story.id} />
+        <Content
+          content={story.content}
+          postId={story.id}
+          handleMoveToDetail={handleMoveToDetail}
+        />
       </div>
       <div className='bg-primaryYellow absolute left-[95%] top-5 z-0 h-[20px] w-[60px]'></div>
     </div>

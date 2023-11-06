@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/image';
 
-type DataType = {
+export type FlagMockType = {
   ko: string;
   en: string;
   bannerImg: StaticImageData;
@@ -11,6 +11,6 @@ type DataType = {
 };
 
 export type FlagInfoDataProps = {
-  data: DataType;
+  data: FlagMockType;
   id: number;
 };

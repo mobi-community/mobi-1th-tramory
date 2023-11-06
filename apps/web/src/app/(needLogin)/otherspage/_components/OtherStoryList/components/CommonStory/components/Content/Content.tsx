@@ -1,4 +1,4 @@
-import { storyContentType } from '@/components';
+import { storyContentType } from '@/components/CommonStory';
 
 import { ImageSlide } from '../ImageSlide/ImageSlide';
 import { ReactionBox } from '../ReactionBox/ReactionBox';

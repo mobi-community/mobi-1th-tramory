@@ -1,4 +1,4 @@
-import { storyType } from '@/components';
+import { storyType } from '@/components/CommonStory';
 
 import { Content } from './components/Content/Content';
 import { User } from './components/User/User';

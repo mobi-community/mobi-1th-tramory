@@ -1,21 +1,20 @@
-import { StaticImageData } from 'next/image';
-
 import { DetailDescriptionType } from '@/app/(needLogin)/mypage/my_story/_components/MyStoryPlanCard/MyStoryPlanCard.types';
 
 export type storyUserType = {
   profileImage: string;
   userId: string;
-  date: Date;
+  date: string;
 };
 
 export type storyContentType = {
-  title: string;
+  title?: string;
   date?: string;
   location?: string;
   text: string;
-  images: StaticImageData[];
+  images: string[];
   liked: number;
   viewed: number;
+  category: string;
   tags: string[];
 };
 
@@ -30,8 +29,7 @@ export type storyType = {
 
 export type CommonStoryProps = {
   story?: storyType;
-  // eslint-disable-next-line no-unused-vars
-  handleMoveToDetail?: (id: number) => void;
+  handleMoveToDetail?: () => void;
   width?: number;
   height?: number;
 };
