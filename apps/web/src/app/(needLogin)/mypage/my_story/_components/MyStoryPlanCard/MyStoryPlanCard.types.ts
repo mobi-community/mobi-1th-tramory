@@ -1,9 +1,9 @@
 import { StaticImageData } from 'next/image';
 
-import { storyType } from '@/components/CommonStory';
+import { StoryType } from '@/app/(needLogin)/mypage/_components/CommonStory/CommonStory.types';
 
 export interface MyStoryPlanCardProps {
-  planData: storyType;
+  planData: StoryType;
   // eslint-disable-next-line no-unused-vars
   handleMoveToDetail: (id: number) => void;
 }

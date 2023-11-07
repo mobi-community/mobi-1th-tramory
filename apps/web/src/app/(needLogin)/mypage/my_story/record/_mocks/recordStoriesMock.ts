@@ -2,15 +2,16 @@ export type RecordStoriesMock = typeof recordStoriesMock;
 
 export const recordStoriesMock = [
   {
-    id: 9886652,
+    id: 'KWDS12384K12',
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',
-      userId: '히수짱',
-      date: new Date().toISOString(),
+      userId: '히수',
+      date: new Date(),
     },
     content: {
-      date: new Date().toISOString(),
+      category: '식도락',
+      date: new Date(),
       location: 'Japan, Osaka',
       title: '일본 오사카 여행 hihi',
       text: '오사카에서의 멋진 시간! 타코야끼와 함께한 거리 탐험, 도톤보리의 활기찬 분위기를 느끼며 특별한 추억을 만들었습니다.',
@@ -28,7 +29,7 @@ export const recordStoriesMock = [
     detailDescription: [
       {
         day: 1,
-        date: new Date().toISOString(),
+        date: new Date(),
         country: '일본',
         location: '1 Chome Dotonbori, Chuo Ward, Osaka, 542-0071',
         description:
@@ -37,15 +38,16 @@ export const recordStoriesMock = [
     ],
   },
   {
-    id: 9886653,
+    id: 'KWDS12384K13',
     user: {
       profileImage:
         'https://i.pinimg.com/564x/2c/09/ca/2c09caff53e90c49e4313719a3e90fb2.jpg',
       userId: '히수짱',
-      date: new Date().toISOString(),
+      date: new Date(),
     },
     content: {
-      date: new Date().toISOString(),
+      category: '식도락',
+      date: new Date(),
       location: 'South Korea, Seoul',
       title: '한국 서울 여행 기록',
       text: '서울의 명동에서 쇼핑을 즐기고 남산 타워에서 아름다운 야경을 감상했습니다.',

@@ -1,13 +1,17 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { storyMock } from '@/app/(needLogin)/story_community/_mocks/storyMock';
-import { CommonStory, Pagination } from '@/components';
+import { CommonStory } from '@/app/(needLogin)/mypage/_components';
+import { recordStoriesMock } from '@/app/(needLogin)/mypage/my_story/record/_mocks/recordStoriesMock';
+import { Pagination } from '@/components';
 
 const OthenrStoryList: React.FC = () => {
   const [storyList, setStoryList] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
+  const router = useRouter();
+
   const startIdx = currentPage * itemsPerPage;
 
   const endIdx = (currentPage + 1) * itemsPerPage;
@@ -17,11 +21,15 @@ const OthenrStoryList: React.FC = () => {
       const res = await fetch('/api/othersStories');
       const data = await res.json();
 
-      setStoryList(data);
+      console.log(data.data);
+
+      setStoryList(data.data);
     } catch (error) {
       console.log('에러', error);
     }
   };
+
+  console.log(storyList);
 
   useEffect(() => {
     getStoryList();
@@ -32,7 +40,13 @@ const OthenrStoryList: React.FC = () => {
       <div className='m-auto mt-[-147px] h-[800px] w-[1024px] border  shadow-[0_4px_20px_0_rgba(0,0,0,0.1)]'>
         <div className='m-auto mt-[150px] grid w-[950px] grid-cols-2  '>
           {storyList.slice(startIdx, endIdx).map((story) => (
-            <CommonStory story={story} key={Math.random() * 1000} />
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
+              handleMoveToDetail={() =>
+                router.push(`/story_detail/${story.id}`)
+              }
+            />
           ))}
         </div>
         <div className='ml-[393px] mt-[30px] h-[100px] w-full'>
@@ -40,7 +54,7 @@ const OthenrStoryList: React.FC = () => {
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             itemsPerPage={itemsPerPage}
-            dataLength={storyMock.length}
+            dataLength={recordStoriesMock.length}
             bgColor='gray'
           />
         </div>

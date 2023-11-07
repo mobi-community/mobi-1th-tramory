@@ -5,7 +5,10 @@ import { useEffect } from 'react';
 
 import badgeDefaultImage from '/public/images/badge-default.png';
 import badgeDefaultImage2 from '/public/images/badge-default2.png';
-import { userProfileInfoAtom } from '@/store/mypage.atoms';
+import {
+  userProfileInfoAtom,
+  userRecordStoriesAtom,
+} from '@/store/mypage.atoms';
 
 import {
   BestTravelStories,
@@ -16,6 +19,7 @@ import { MypageCardSection } from './_components/MypageCardSection/MypageCardSec
 import { badgeImages, badgeImages2 } from './_mocks';
 
 const MyPage = () => {
+  const setBestStories = useSetAtom(userRecordStoriesAtom);
   const setUserInfoState = useSetAtom(userProfileInfoAtom);
 
   useEffect(() => {
@@ -43,6 +47,27 @@ const MyPage = () => {
     fetchUserInfo();
     // eslint fix
   }, [setUserInfoState]);
+
+  useEffect(() => {
+    const fetchUserRecordStories = async () => {
+      try {
+        const response = await fetch('/user/my_story/record');
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setBestStories(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('사용자 정보를 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchUserRecordStories();
+    // eslint fix
+  }, [setBestStories]);
 
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>

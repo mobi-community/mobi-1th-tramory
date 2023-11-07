@@ -7,15 +7,26 @@ export const getUserRecordStories = rest.get(
   '/user/my_story/record',
   (req, res, ctx) => {
     const mockSotriesData = recordStoriesMock;
+    const resoibseStatus = (
+      status: number,
+      success: boolean,
+      message: string
+    ) => {
+      return res(ctx.status(status), ctx.json({ success, message }));
+    };
 
-    return res(
-      ctx.status(200),
-      ctx.json({
-        success: true,
-        message: '성공',
-        data: mockSotriesData,
-      })
-    );
+    if (!mockSotriesData) {
+      return resoibseStatus(401, false, '실패');
+    } else {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          success: true,
+          message: '성공',
+          data: mockSotriesData,
+        })
+      );
+    }
   }
 );
 
@@ -83,9 +94,7 @@ export const getUserRecordStoryById = rest.get(
   '/user/my_story/record/:postId',
   (req, res, ctx) => {
     const { postId } = req.params;
-    const story = recordStoriesMock.find(
-      (story) => story.id === Number(postId)
-    );
+    const story = recordStoriesMock.find((story) => story.id === postId);
 
     if (!story) {
       return res(

@@ -6,6 +6,7 @@ export * from './likestory.apis';
 export * from './mystory.apis';
 export * from './othersPage.api';
 export * from './setting.apis';
+export * from './story.apis';
 export * from './travelDetailModal.apis';
 export * from './travelRegister.api';
 export * from './user.apis';

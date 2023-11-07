@@ -4,15 +4,13 @@ import { useRouter } from 'next/navigation';
 
 import { userProfileInfoAtom } from '@/store/mypage.atoms';
 
-import { MypageCommonStory } from '../MypageCommonStory/MypageCommonStory';
+import { CommonStory } from '../CommonStory/CommonStory';
 
 export const BestTravelStories = () => {
   const { bestRecordStories } = useAtomValue(userProfileInfoAtom);
   const router = useRouter();
 
-  console.log(bestRecordStories);
-
-  const handleMoveToDetail = (id) => {
+  const handleMoveToDetail = (id: string) => {
     router.push(`/mypage/my_story/${id}?page=record`);
   };
 
@@ -22,12 +20,13 @@ export const BestTravelStories = () => {
       <div className='border-primaryGray-300 mb-6 w-full flex-wrap border-t-[1px]'></div>
       <div className='flex flex-wrap gap-12'>
         {bestRecordStories ? (
-          bestRecordStories.map((bestRecord) => (
-            <MypageCommonStory
-              key={bestRecord.id}
-              handleMoveToDetail={handleMoveToDetail}
-              story={bestRecord}
-            />
+          bestRecordStories.map((story) => (
+            <div key={story.id}>
+              <CommonStory
+                story={story}
+                handleMoveToDetail={handleMoveToDetail}
+              />
+            </div>
           ))
         ) : (
           <div className='mb-[70px] mt-10 flex w-full items-center justify-center font-bold'>
