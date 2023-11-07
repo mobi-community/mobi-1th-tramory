@@ -1,11 +1,13 @@
+import { Item } from '@/store/travelDetailModal.atoms';
+
 export interface DraggableItemProps {
   dragProvided: any;
-  item: { id: number; name: string; memos: string[] };
+  item: Item;
   index: number;
   // eslint-disable-next-line no-unused-vars
   onAddMemo: (id: number) => void;
   // eslint-disable-next-line no-unused-vars
-  onEditMemo: (id: number, memoIndex: number, updatedMemo: string) => void;
+  onEditMemo: (id: number, updatedMemo: string) => void;
   // eslint-disable-next-line no-unused-vars
   onDeleteMemo: (id: number, memoIndex: number) => void;
   // eslint-disable-next-line no-unused-vars

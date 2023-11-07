@@ -1,3 +1,5 @@
+'use client';
+
 import Image, { StaticImageData } from 'next/image';
 
 import { useCountryInfoModal } from '@/components';
@@ -12,7 +14,9 @@ export const OneCountry: React.FC<{
     <>
       <div
         className={`relative h-[180px] w-[270px] bg-black`}
-        onClick={openCountryInfoModal}
+        onClick={() => {
+          openCountryInfoModal();
+        }}
       >
         <Image
           src={coverImage}

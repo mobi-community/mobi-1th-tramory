@@ -27,5 +27,4 @@ export const ImageModal: React.FC<{ images: string[] }> = ({ images }) => {
       ))}
     </div>
   );
-  // );
 };

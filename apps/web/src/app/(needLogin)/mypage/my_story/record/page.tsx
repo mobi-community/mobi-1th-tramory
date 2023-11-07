@@ -4,10 +4,10 @@ import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
 import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
-import { MypageCommonStory, MyPageContainer } from '../../_components';
+import { MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
@@ -17,10 +17,6 @@ const MyStoryRecordPage = () => {
   const dataLength = recordStories.length;
 
   const router = useRouter();
-
-  const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/${id}?page=record`);
-  };
 
   useEffect(() => {
     const fetchUserRecordStories = async () => {
@@ -48,11 +44,13 @@ const MyStoryRecordPage = () => {
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {recordStories.map((stories) => (
-            <MypageCommonStory
-              handleMoveToDetail={handleMoveToDetail}
-              story={stories}
-              key={stories.id}
+          {recordStories.map((story) => (
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
+              handleMoveToDetail={() =>
+                router.push(`/mypage/my_story/${story.id}?page=record`)
+              }
             />
           ))}
         </div>

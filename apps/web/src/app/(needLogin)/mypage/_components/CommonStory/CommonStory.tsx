@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Button } from 'ui';
 
+import { ImageSlide } from '@/components/CommonStory/_components/ImageSlide/ImageSlide';
 import { formattedDateFunc } from '@/utils/formattedDate';
 
-import { ImageSlide } from './_components/ImageSlide/ImageSlide';
 import type { CommonStoryProps } from './CommonStory.types';
 
 export const CommonStory: React.FC<CommonStoryProps> = ({
@@ -17,6 +17,7 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
       <Button
         variant='skyblue'
         className='flex h-[24px] w-[40px] items-center p-0 text-[12px]'
+
       >
         수정
       </Button>
