@@ -1,6 +1,5 @@
 import { rest } from 'msw';
 
-// import { StoryType } from '@/app/(needLogin)/mypage/_components/CommonStory/CommonStory.types';
 import { recordStoriesMock } from '@/app/(needLogin)/mypage/my_story/record/_mocks/recordStoriesMock';
 
 // 스토리 목록

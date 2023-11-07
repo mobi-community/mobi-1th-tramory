@@ -1,5 +1,4 @@
 export * from './BestTravelStories/BestTravelStories';
-export * from './CommonStory/CommonStory';
 export * from './DetailCardSection/DetailCardSection';
 export * from './DropdownFormSection/DropdownFormSection';
 export * from './MapSection/MapSections';

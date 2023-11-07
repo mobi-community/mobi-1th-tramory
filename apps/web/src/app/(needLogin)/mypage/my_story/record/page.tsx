@@ -4,10 +4,10 @@ import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
 import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
-import { CommonStory, MyPageContainer } from '../../_components';
+import { MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
@@ -26,7 +26,6 @@ const MyStoryRecordPage = () => {
         const data = await response.json();
 
         if (response.ok) {
-          console.log('data', data.data);
           setRecordStories(data.data);
         } else {
           console.error(data.message);
@@ -50,7 +49,7 @@ const MyStoryRecordPage = () => {
               story={story}
               key={Math.random() * 1000}
               handleMoveToDetail={() =>
-                router.push(`/story_detail/${story.id}`)
+                router.push(`/mypage/my_story/${story.id}?page=record`)
               }
             />
           ))}
