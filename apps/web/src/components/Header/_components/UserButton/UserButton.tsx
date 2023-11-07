@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from 'ui';
@@ -20,12 +21,16 @@ export const UserButton: React.FC = () => {
         })}
       </PopoverTrigger>
       <PopoverContent className='min-h-[115px] w-[120px] pt-[8px] text-center text-[15px]'>
-        <div className={`${headerConfig.settingStyle} border-b-[1px]`}>
-          마이페이지
-        </div>
-        <div className={`${headerConfig.settingStyle} border-b-[1px]`}>
-          설정하기
-        </div>
+        <Link href={headerConfig.href[2].href}>
+          <div className={`${headerConfig.settingStyle} border-b-[1px]`}>
+            마이페이지
+          </div>
+        </Link>
+        <Link href={headerConfig.href[3].href}>
+          <div className={`${headerConfig.settingStyle} border-b-[1px]`}>
+            설정하기
+          </div>
+        </Link>
         <div onClick={() => signOut()} className={headerConfig.settingStyle}>
           {status === 'authenticated' ? '로그아웃' : '로그인'}
         </div>

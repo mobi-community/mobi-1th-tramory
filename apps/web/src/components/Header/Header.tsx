@@ -36,12 +36,12 @@ export const Header: React.FC = () => {
               ...headerConfig.iconStyle,
             })}
           </Link>
-          <div>
+          <Link href='/mypage/badge'>
             {materialIcon({
               iconName: 'notifications',
               ...headerConfig.iconStyle,
             })}
-          </div>
+          </Link>
           <UserButton />
         </div>
       </div>

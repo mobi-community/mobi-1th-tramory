@@ -17,7 +17,7 @@ export default function BagdeLayout({
   ];
 
   return (
-    <div>
+    <div className='mb-14'>
       <div className='ml-5 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
         {paths.map((path, index) => (
           <Tab

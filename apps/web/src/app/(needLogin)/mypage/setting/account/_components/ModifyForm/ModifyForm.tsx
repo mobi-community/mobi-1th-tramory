@@ -100,6 +100,7 @@ export const ModifyForm = ({ modifyType }) => {
     marginRight: '104px',
     border: '1px solid #ccc',
     borderRadius: '4px',
+    fontSize: '14px',
   };
 
   const emailStyle = {
@@ -108,7 +109,7 @@ export const ModifyForm = ({ modifyType }) => {
   };
 
   const nicknameConfirmStyle = {
-    marginRight: '23px',
+    marginRight: '16px',
   };
 
   const handleVisibleState = () => {
@@ -153,7 +154,7 @@ export const ModifyForm = ({ modifyType }) => {
                     control={control}
                     style={{ ...defaultStyle, ...nicknameConfirmStyle }}
                   />
-                  <Button variant='roundednavy' font='xs' className='h-[36px]'>
+                  <Button variant='roundednavy' className='h-[36px]'>
                     중복 확인
                   </Button>
                 </div>

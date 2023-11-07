@@ -8,11 +8,15 @@ export const ImageModal: React.FC<{ images: string[] }> = ({ images }) => {
   const isMyStory = pathName.includes('mypage');
 
   return (
-    <div className='absolute right-[165px] top-0 flex flex-row-reverse'>
+    <div
+      className={`absolute ${
+        isMyStory ? 'right-[145px]' : 'right-[165px]'
+      } top-0 flex flex-row-reverse`}
+    >
       {images.map((image) => (
         <div
           className={`z-100 relative ml-[5px] ${
-            isMyStory ? 'h-[160px] w-[160px]' : 'h-[170px] w-[170px]'
+            isMyStory ? 'h-[140px] w-[140px]' : 'h-[170px] w-[170px]'
           }`}
           key={Math.random() * 10000}
         >
