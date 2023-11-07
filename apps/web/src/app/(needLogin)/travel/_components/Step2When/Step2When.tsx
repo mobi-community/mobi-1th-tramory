@@ -1,13 +1,13 @@
 'use client';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from 'ui';
 
-import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { formModePlanAtom, formModeRecordAtom, localDateAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
+import { formattedDateFunc } from '@/utils/formattedDate';
 
 import type { IStep2Props } from '../../Travel.type';
+import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
@@ -16,19 +16,17 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   // eslint-disable-next-line no-unused-vars
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
-  const [range, setRange] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [dateAtom, setDateAtom] = useAtom(localDateAtom);
 
-  // date 값이 제대로 안 들어가고 있음
   const onSubmit = (data) => {
     if (registerState == 'plan') {
       setPlanAtom((prev) => ({
         ...prev,
-        startDate: data.postDate[0].toISOString().split('T')[0],
-        endDate: data.postDate[1].toISOString().split('T')[0],
+        startDate: formattedDateFunc(data.postDate[0]),
+        endDate: formattedDateFunc(data.postDate[1]),
       }));
-      setRange([data.postDate[0], data.postDate[1]]);
-      console.log(data);
-      console.log(data.postDate);
+      setDateAtom([data.postDate[0], data.postDate[1]]);
     } else {
       setRecordAtom((prev) => ({
         ...prev,
@@ -51,16 +49,11 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
                 control={control}
                 name='postDate'
                 planAtom={planAtom}
-                range={range}
-              />{' '}
-              <Button variant='roundednavy' font='xs' className='h-[36px]'>
-                중복 확인
-              </Button>
+              />
             </div>
           </div>
         </div>
-
-        {/* <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} /> */}
+        <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} />
       </div>
     </form>
   );

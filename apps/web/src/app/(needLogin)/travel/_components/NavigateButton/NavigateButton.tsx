@@ -30,12 +30,12 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
         <span
           className='material-icons-outlined '
           style={{ fontSize: '50px', color: '#ECF1F7' }}
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
+            // e.preventDefault();
             handleSubmit(onSubmit)();
-            window.location.href = `/travel/${registerState}?stepId=${
-              search + 1
-            }`;
+            // window.location.href = `/travel/${registerState}?stepId=${
+            //   search + 1
+            // }`;
           }}
         >
           arrow_forward_ios

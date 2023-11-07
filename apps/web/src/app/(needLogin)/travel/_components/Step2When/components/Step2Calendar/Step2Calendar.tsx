@@ -2,28 +2,35 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.css';
 
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { Control, Controller } from 'react-hook-form';
 
+import { localDateAtom } from '@/store';
 import { TravelPlanType } from '@/types/TravelRegister.types';
+import { formattedDateFunc } from '@/utils/formattedDate';
 interface IStep2CalendarProps {
   control: Control;
   name: string;
   planAtom: TravelPlanType;
-  range: any;
 }
 
 const Step2Calendar: React.FC<IStep2CalendarProps> = ({
   control,
   name,
   planAtom,
-  range,
 }) => {
+  // date 데이터 뒤로가기 해도 유지, date타입 오류 해결해주기
+  const [dateAtom] = useAtom(localDateAtom);
   const [dateRange, setDateRange] = useState(
-    planAtom.startDate == '' ? [new Date(), null] : [range[0], range[1]]
+    planAtom.startDate == '' ? [new Date(), null] : [dateAtom[0], dateAtom[1]]
   );
+
   const [startDate, endDate] = dateRange;
+
+  const start = formattedDateFunc(startDate);
+  const end = formattedDateFunc(endDate);
 
   return (
     <>
@@ -46,11 +53,11 @@ const Step2Calendar: React.FC<IStep2CalendarProps> = ({
             />
             <div className='mt-2 flex'>
               <div className='jusify-center border-primaryGray flex  h-[40px] w-[214px] items-center justify-center border bg-white font-semibold text-[#2c5c84]'>
-                start : {startDate && startDate.toLocaleDateString()}
+                start :{start}
               </div>
 
               <div className='jusify-center border-primaryGray ml-[13px] flex h-[40px] w-[214px]  items-center justify-center border bg-white font-semibold text-[#2c5c84]'>
-                end : {endDate && endDate.toLocaleDateString()}
+                end : {end}
               </div>
             </div>
           </>
