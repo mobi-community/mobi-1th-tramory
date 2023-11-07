@@ -29,7 +29,8 @@ export type storyType = {
 
 export type CommonStoryProps = {
   story?: storyType;
-  handleMoveToDetail?: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleMoveToDetail?: (id: string) => void;
   width?: number;
   height?: number;
 };

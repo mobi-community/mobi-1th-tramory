@@ -11,6 +11,7 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   targetStory,
 }) => {
   const { user, content } = targetStory;
+  const formattedDate = content.date.split('T')[0];
 
   if (targetStory) {
     return (
@@ -18,7 +19,7 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
         <div className='flex w-full items-center justify-between'>
           <div className='text-[24px] font-bold'>{content.title}</div>
           <div className=' text-primaryGray-400 text-[14px]'>
-            {content.date}
+            {formattedDate}
           </div>
         </div>
         <Link

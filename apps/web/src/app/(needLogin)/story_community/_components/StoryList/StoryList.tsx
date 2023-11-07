@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from 'ui';
 
-import { CommonStory, Pagination } from '@/components';
-import type { storyType } from '@/components/CommonStory';
+import { CommonStory } from '@/app/(needLogin)/mypage/_components';
+import { StoryType } from '@/app/(needLogin)/mypage/_components/CommonStory/CommonStory.types';
+import { Pagination } from '@/components';
 import { storyCommunityPageConfig } from '@/constants';
 
 import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
@@ -20,26 +21,32 @@ export const StoryList: React.FC = () => {
     storyPage,
     setStoryPage,
     searchKeyword,
-    total,
-    setTotal,
+    // total,
+    // setTotal,
   } = useStoryCommunity();
 
   useEffect(() => {
-    try {
-      fetch(`/story/story_list/${storyPage + ''}`)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setTotal(data.total);
-          setStoryData(data.data);
-        });
-    } catch (error) {
-      console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
-    }
-  }, [setStoryData, setTotal, storyPage, total]);
+    const fetchStoryList = async () => {
+      try {
+        const response = await fetch(`/story/storypage/${storyPage}`);
 
-  const searchedArray: storyType[] = searchKeyword
+        const data = await response.json();
+
+        if (response.ok) {
+          setStoryData(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('스토리 목록을 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchStoryList();
+    // eslint fix
+  }, [setStoryData]);
+
+  const searchedArray: StoryType[] = searchKeyword
     ? storyData?.filter(
         (story) =>
           story.content.title.includes(searchKeyword) ||
@@ -51,7 +58,7 @@ export const StoryList: React.FC = () => {
       )
     : storyData;
 
-  const filteredStoryArray: storyType[] =
+  const filteredStoryArray: StoryType[] =
     selectedCategory && selectedCategory !== '전체'
       ? searchedArray?.filter(
           (story) => story.content.category === selectedCategory

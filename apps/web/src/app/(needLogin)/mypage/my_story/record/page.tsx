@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { Pagination } from '@/components';
 import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
-import { MypageCommonStory, MyPageContainer } from '../../_components';
+import { CommonStory, MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
@@ -18,10 +18,6 @@ const MyStoryRecordPage = () => {
 
   const router = useRouter();
 
-  const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/${id}?page=record`);
-  };
-
   useEffect(() => {
     const fetchUserRecordStories = async () => {
       try {
@@ -30,6 +26,7 @@ const MyStoryRecordPage = () => {
         const data = await response.json();
 
         if (response.ok) {
+          console.log('data', data.data);
           setRecordStories(data.data);
         } else {
           console.error(data.message);
@@ -48,11 +45,13 @@ const MyStoryRecordPage = () => {
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {recordStories.map((stories) => (
-            <MypageCommonStory
-              handleMoveToDetail={handleMoveToDetail}
-              story={stories}
-              key={stories.id}
+          {recordStories.map((story) => (
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
+              handleMoveToDetail={() =>
+                router.push(`/story_detail/${story.id}`)
+              }
             />
           ))}
         </div>
