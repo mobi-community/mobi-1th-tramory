@@ -57,6 +57,7 @@ const MyPage = () => {
 
         if (response.ok) {
           setBestStories(data.data);
+          console.log('best', data.data);
         } else {
           console.error(data.message);
         }

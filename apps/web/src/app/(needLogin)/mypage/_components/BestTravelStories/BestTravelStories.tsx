@@ -2,12 +2,12 @@
 import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/navigation';
 
-import { userProfileInfoAtom } from '@/store/mypage.atoms';
+import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
 import { CommonStory } from '../CommonStory/CommonStory';
 
 export const BestTravelStories = () => {
-  const { bestRecordStories } = useAtomValue(userProfileInfoAtom);
+  const bestRecordStories = useAtomValue(userRecordStoriesAtom);
   const router = useRouter();
 
   const handleMoveToDetail = (id: string) => {
