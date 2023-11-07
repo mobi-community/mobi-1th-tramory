@@ -11,7 +11,7 @@ import { ImageModal } from './ImageModal';
 
 export const ImageSlide: React.FC<{
   images: string[];
-  postId: number | string;
+  postId: string;
 }> = ({ images, postId }) => {
   const mainImage = images[0];
   const pathName = usePathname();

@@ -2,10 +2,8 @@ import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
 import { likeStoriesAtom } from '@/store/mypage.atoms';
-
-import { CommonStory } from '../../../_components';
 
 export const LikeStory = () => {
   const router = useRouter();

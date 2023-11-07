@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from 'ui';
 
-import { CommonStory } from '@/app/(needLogin)/mypage/_components';
-import { StoryType } from '@/app/(needLogin)/mypage/_components/CommonStory/CommonStory.types';
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
+import { StoryType } from '@/components/CommonStory/CommonStory.types';
 import { storyCommunityPageConfig } from '@/constants';
 
 import { useStoryCommunity } from '../../_hooks/useStoryCommunity';

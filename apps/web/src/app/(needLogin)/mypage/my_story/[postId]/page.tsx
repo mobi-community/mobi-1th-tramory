@@ -23,6 +23,7 @@ const MyStoryPlanDetailPage = () => {
   const { postId } = useParams();
   const params = useSearchParams();
   const page = params.get('page');
+
   const allToggleAction = useSetAtom(toggleAllDropdownsAtom);
   const [storyDetail, setStoryDetail] = useAtom(userStoryDetailsAtom);
 
@@ -75,7 +76,7 @@ const MyStoryPlanDetailPage = () => {
         </Button>
       </div>
       <MapSections />
-      <SlideImages />
+      {isPlanPage ? null : <SlideImages storyDetail={storyDetail} />}
       {placeInfoStateData.map((dayData, index) => (
         <DropdownFormSection key={index} dayData={dayData} index={index} />
       ))}

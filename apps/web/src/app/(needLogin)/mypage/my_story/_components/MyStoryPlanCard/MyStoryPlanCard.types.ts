@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/image';
 
-import { StoryType } from '@/app/(needLogin)/mypage/_components/CommonStory/CommonStory.types';
+import { StoryType } from '@/components/CommonStory/CommonStory.types';
 
 export interface MyStoryPlanCardProps {
   planData: StoryType;

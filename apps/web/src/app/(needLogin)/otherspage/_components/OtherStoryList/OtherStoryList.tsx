@@ -2,9 +2,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { CommonStory } from '@/app/(needLogin)/mypage/_components';
 import { recordStoriesMock } from '@/app/(needLogin)/mypage/my_story/record/_mocks/recordStoriesMock';
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
 
 const OthenrStoryList: React.FC = () => {
   const [storyList, setStoryList] = useState([]);

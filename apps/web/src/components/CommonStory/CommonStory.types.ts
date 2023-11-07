@@ -1,36 +1,34 @@
-import { DetailDescriptionType } from '@/app/(needLogin)/mypage/my_story/_components/MyStoryPlanCard/MyStoryPlanCard.types';
+export interface StoryType {
+  id: string;
+  user: {
+    profileImage: string;
+    userId: string;
+    date: Date;
+  };
+  content: {
+    date: Date;
+    category: string;
+    location: string;
+    title: string;
+    text: string;
+    images: string[];
+    liked: number;
+    viewed: number;
+    tags: string[];
+  };
+  isRecord: boolean;
+  isDraft: boolean;
+  detailDescription: {
+    day: number;
+    date: Date;
+    country: string;
+    location: string;
+    description: string;
+  }[];
+}
 
-export type storyUserType = {
-  profileImage: string;
-  userId: string;
-  date: string;
-};
-
-export type storyContentType = {
-  title?: string;
-  date?: string;
-  location?: string;
-  text: string;
-  images: string[];
-  liked: number;
-  viewed: number;
-  category: string;
-  tags: string[];
-};
-
-export type storyType = {
-  id: number;
-  user: storyUserType;
-  content: storyContentType;
-  detailDescription?: DetailDescriptionType[];
-  isRecord?: boolean;
-  isDraft?: boolean;
-};
-
-export type CommonStoryProps = {
-  story?: storyType;
+export interface CommonStoryProps {
+  story: StoryType;
   // eslint-disable-next-line no-unused-vars
-  handleMoveToDetail?: (id: string) => void;
-  width?: number;
-  height?: number;
-};
+  handleMoveToDetail: (id: string) => void;
+}

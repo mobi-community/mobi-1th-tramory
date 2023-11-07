@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-import { StoryType } from '@/app/(needLogin)/mypage/_components/CommonStory/CommonStory.types';
+import { StoryType } from '@/components/CommonStory/CommonStory.types';
 
 interface IuserProfileInfoAtom {
   nickName: string;
