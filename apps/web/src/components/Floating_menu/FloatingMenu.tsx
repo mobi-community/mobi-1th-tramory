@@ -70,7 +70,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
         </div>
       </div>
       <TravelModal isOpen={isModalOpen} onClose={closeModal}>
-        <ViewTravelRecordType />
+        <ViewTravelRecordType closeModal={closeModal} />
       </TravelModal>
     </div>
   );
