@@ -1,20 +1,59 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useMapSearchBar } from '@/app/(needLogin)/map/hooks/useMapSearchBar';
 import { MapPageConfig } from '@/constants';
 import materialIcon from '@/utils/materialIcon';
 
-import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
+import { LocationKeywordModal } from '../KeywordModal/LocationKeywordModal';
+import { StoryKeywordModal } from '../KeywordModal/StoryKeywordModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const { handleSearchModal, isRangeCountry, setLocationKeyword } =
-    useMapSearchBar();
+  const {
+    handleSearchModal,
+    isRangeCountry,
+    locationKeyword,
+    setLocationKeyword,
+    storyKeyword,
+    setStoryKeyword,
+    setKeywordData,
+    keywordData,
+  } = useMapSearchBar();
 
   const router = useRouter();
+
+  useEffect(() => {
+    const requestUrl = isRangeCountry
+      ? `/searchKeyword/location?inputValue=${locationKeyword}`
+      : `/searchKeyword/stories?inputValue=${storyKeyword}`;
+
+    const fetchKeywordList = async () => {
+      try {
+        const response = await fetch(requestUrl);
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setKeywordData(data.data);
+          console.log('data', keywordData);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error(
+          '연관 검색어 목록을 가져오는 중 오류가 발생했습니다:',
+          error
+        );
+      }
+    };
+
+    fetchKeywordList();
+    // eslint fix
+  }, [storyKeyword, locationKeyword, isRangeCountry, setKeywordData]);
 
   return (
     <div>
@@ -39,7 +78,9 @@ export const SearchInput: React.FC = () => {
                   {...field}
                   onChange={(e) => {
                     field.onChange(e.target.value);
-                    setLocationKeyword(e.target.value);
+                    isRangeCountry
+                      ? setLocationKeyword(e.target.value)
+                      : setStoryKeyword(e.target.value);
                   }}
                   onClick={handleSearchModal}
                   className='text-align-center text-s ml-12 w-[380px] focus:outline-none'
@@ -54,7 +95,11 @@ export const SearchInput: React.FC = () => {
                   })}
                 </div>
               </div>
-              <SuggestionModal field={field} />
+              {isRangeCountry ? (
+                <LocationKeywordModal field={field} />
+              ) : (
+                <StoryKeywordModal field={field} />
+              )}
             </div>
           )}
         />

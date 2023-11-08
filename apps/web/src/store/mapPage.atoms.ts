@@ -6,4 +6,6 @@ export const MapPageAtom = {
   isSelectModalOpen: atom<boolean>(false),
   range: atom<string>('국가'),
   locationKeyword: atom<string>(''),
+  storyKeyword: atom<string>(''),
+  keywordData: atom([]),
 };

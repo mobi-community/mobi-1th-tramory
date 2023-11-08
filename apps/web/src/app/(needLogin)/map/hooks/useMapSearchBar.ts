@@ -19,6 +19,9 @@ export const useMapSearchBar = () => {
   const [locationKeyword, setLocationKeyword] = useAtom(
     MapPageAtom.locationKeyword
   );
+  const [storyKeyword, setStoryKeyword] = useAtom(MapPageAtom.storyKeyword);
+
+  const [keywordData, setKeywordData] = useAtom(MapPageAtom.keywordData);
 
   return {
     isSearchModalOpen,
@@ -39,5 +42,9 @@ export const useMapSearchBar = () => {
     isRangeCountry: searchRange === '국가',
     locationKeyword,
     setLocationKeyword,
+    storyKeyword,
+    setStoryKeyword,
+    keywordData,
+    setKeywordData,
   };
 };
