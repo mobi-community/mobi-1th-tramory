@@ -1,8 +1,6 @@
 'use client';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import { Button } from 'ui';
 
 import { Tab } from '@/components';
 import { likeStoryConfig } from '@/constants';
@@ -10,24 +8,19 @@ import { currentTabAtom } from '@/store/tab.atoms';
 
 // import materialIcon from '@/utils/materialIcon';
 import { MyPageContainer } from '../_components';
-import { SortingModal, ViewStory } from './_components';
+import { ViewStory } from './_components';
 import { LikeStory } from './_components/LikesStory/LikesStory';
 
 const LikeStoryPage = () => {
   // const router = useRouter();
   const params = useSearchParams();
   const filter = params.get('filter');
-  const [isToggleModal, setIsToggleModal] = useState(false);
+
   const [currentTab] = useAtom(currentTabAtom);
   // const [draftTab] = useAtom(draftTabAtom);
 
-  const handleSortingModal = () => {
-    setIsToggleModal((prev: boolean) => !prev);
-  };
-
   return (
     <div>
-      {isToggleModal && <SortingModal setIsToggleModal={setIsToggleModal} />}
       <div className='ml-5 mt-10 flex w-full items-end justify-end space-x-[-30px]'>
         {likeStoryConfig.map((path, index) => {
           // const isSelected =
@@ -61,23 +54,9 @@ const LikeStoryPage = () => {
           );
         })}
       </div>
-      <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
+      <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
         <MyPageContainer title='관심 스토리'>
-          <div className='px-12'>
-            <div className='my-5 flex items-center'>
-              <p className='text-primaryBlue-default ml-5 mr-4 text-lg'>
-                최신순
-              </p>
-              <Button
-                variant='lightblue'
-                weight='bold'
-                onClick={handleSortingModal}
-              >
-                정렬 및 필터
-              </Button>
-            </div>
-            {filter ? <ViewStory /> : <LikeStory />}
-          </div>
+          <div className='px-12'>{filter ? <ViewStory /> : <LikeStory />}</div>
         </MyPageContainer>
       </div>
     </div>

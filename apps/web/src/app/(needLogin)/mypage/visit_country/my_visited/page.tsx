@@ -37,7 +37,7 @@ const MyVisitedPage = () => {
   const mockData = myVisitedAtom?.map((tabs) => tabs)[0]?.continents;
 
   return (
-    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
+    <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer title={navTitle}>
         {/* 목데이터입니다. */}
         <div className='my-12'>

@@ -72,24 +72,26 @@ const MyPage = () => {
 
   return (
     <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
-      <MyPageContainer>
-        <MyPageProfile />
-        <div className='px-12 pt-8 '>
-          <div className='flex items-center justify-between'>
-            <MypageCardSection
-              title='획득한 배지'
-              image={badgeImages}
-              defaultImage={badgeDefaultImage}
-            />
-            <MypageCardSection
-              title='방문 국가'
-              image={badgeImages2}
-              defaultImage={badgeDefaultImage2}
-            />
+      <div className='my-14'>
+        <MyPageContainer>
+          <MyPageProfile />
+          <div className='px-12 py-8'>
+            <div className='mt-3 flex items-center justify-between'>
+              <MypageCardSection
+                title='획득한 배지'
+                image={badgeImages}
+                defaultImage={badgeDefaultImage}
+              />
+              <MypageCardSection
+                title='방문 국가'
+                image={badgeImages2}
+                defaultImage={badgeDefaultImage2}
+              />
+            </div>
+            <BestTravelStories />
           </div>
-          <BestTravelStories />
-        </div>
-      </MyPageContainer>
+        </MyPageContainer>
+      </div>
     </div>
   );
 };
