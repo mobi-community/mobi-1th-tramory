@@ -1,12 +1,12 @@
 import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
 import { viewStoriesAtom } from '@/store/mypage.atoms';
 
-import { MypageCommonStory } from '../../../_components';
-
 export const ViewStory = () => {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
   const startIdx = currentPage * itemsPerPage;
@@ -47,7 +47,13 @@ export const ViewStory = () => {
       <>
         <div className='grid grid-cols-2 gap-8'>
           {viewStories.slice(startIdx, endIdx).map((story) => (
-            <MypageCommonStory story={story} key={Math.random() * 1000} />
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
+              handleMoveToDetail={() =>
+                router.push(`/story_detail/${story.id}`)
+              }
+            />
           ))}
         </div>
         <div className='my-8 flex justify-center'>

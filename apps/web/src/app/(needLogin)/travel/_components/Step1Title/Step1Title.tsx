@@ -1,5 +1,6 @@
 'use client';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -10,12 +11,15 @@ import { Input } from 'ui';
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
+import { TITLE_SCHEMA } from '../../_schema/travel.schema';
 import type { Step1TitleProps } from '../../Travel.type';
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const [registerState, setRegisterState] = useAtom(registerStateAtom);
-  const { handleSubmit, control, watch, setValue } = useForm();
+  const { handleSubmit, control, watch, setValue } = useForm({
+    resolver: yupResolver(TITLE_SCHEMA),
+  });
   const fieldValue = watch('title', '');
   const pathname = usePathname();
   const router = useRouter();
@@ -121,16 +125,22 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
                     name='title'
                     control={control}
                     defaultValue={''}
-                    render={({ field }) => (
+                    render={({ field, fieldState: { error } }) => (
                       <>
                         <Input
                           {...field}
                           className='w-[80%] border-b-2 border-gray-300 bg-transparent text-center text-lg'
                           placeholder={config.inputPlaceholder}
                         />
+                        {error && (
+                          <div className='mb-1 ml-3 mt-1 text-[11px] text-red-500'>
+                            {error.message}
+                          </div>
+                        )}
                       </>
                     )}
                   />
+
                   <span
                     className={`material-icons-outlined ${
                       fieldValue.trim()

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Button } from 'ui';
 
+import { ImageSlide } from '@/components/CommonStory/_components/ImageSlide/ImageSlide';
 import { formattedDateFunc } from '@/utils/formattedDate';
 
-import { ImageSlide } from './_components/ImageSlide/ImageSlide';
 import type { CommonStoryProps } from './CommonStory.types';
 
 export const CommonStory: React.FC<CommonStoryProps> = ({

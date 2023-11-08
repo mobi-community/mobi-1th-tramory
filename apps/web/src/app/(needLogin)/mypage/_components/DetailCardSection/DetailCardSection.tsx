@@ -2,26 +2,17 @@ import Image from 'next/image';
 
 import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
+import { formattedDateFunc } from '@/utils/formattedDate';
 import materialIcon from '@/utils/materialIcon';
-
-// import type { DetailSectionProps } from './DetailSection.types';
 
 export const DetailCardSection = ({ storyDetail }) => {
   const { date = 'Default Date', location = 'Default location' } =
     storyDetail?.content || {};
-
+  const formattedDate = formattedDateFunc(
+    date instanceof Date ? date : new Date(date)
+  );
   const { tags = [] } = storyDetail?.content || {};
-  // const { userId = 'Default User ID', profileImage = '/default-image.jpg' } =
-  //   storyDetail?.user || {};
 
-  console.log(storyDetail);
-
-  // const handleSubtitleDescription = (subtitle) => {
-  //   if (subtitle === '여행지') return location;
-  //   else if (subtitle === '날짜') return date;
-  // else return date;
-  // };
-  // 추후 실제 데이터로 변경 예정
   const country = ['일본', '영국', '프랑스'];
 
   return (
@@ -61,7 +52,7 @@ export const DetailCardSection = ({ storyDetail }) => {
             {detailPageConfig.subtitle[1]}
           </div>
           <div className=' text-primaryBlue-700 text-[14px] font-semibold'>
-            {date}
+            {formattedDate}
           </div>
         </div>
 

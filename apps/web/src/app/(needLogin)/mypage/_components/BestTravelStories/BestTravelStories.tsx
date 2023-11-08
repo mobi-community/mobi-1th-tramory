@@ -2,17 +2,14 @@
 import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/navigation';
 
-import { userProfileInfoAtom } from '@/store/mypage.atoms';
-
-import { MypageCommonStory } from '../MypageCommonStory/MypageCommonStory';
+import { CommonStory } from '@/components';
+import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
 export const BestTravelStories = () => {
-  const { bestRecordStories } = useAtomValue(userProfileInfoAtom);
+  const bestRecordStories = useAtomValue(userRecordStoriesAtom);
   const router = useRouter();
 
-  console.log(bestRecordStories);
-
-  const handleMoveToDetail = (id) => {
+  const handleMoveToDetail = (id: string) => {
     router.push(`/mypage/my_story/${id}?page=record`);
   };
 
@@ -22,11 +19,11 @@ export const BestTravelStories = () => {
       <div className='border-primaryGray-300 mb-6 w-full flex-wrap border-t-[1px]'></div>
       <div className='flex flex-wrap gap-12'>
         {bestRecordStories ? (
-          bestRecordStories.map((bestRecord) => (
-            <MypageCommonStory
-              key={bestRecord.id}
+          bestRecordStories.map((story) => (
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
               handleMoveToDetail={handleMoveToDetail}
-              story={bestRecord}
             />
           ))
         ) : (

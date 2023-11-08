@@ -1,4 +1,5 @@
 'use client';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
@@ -6,6 +7,7 @@ import { formModePlanAtom, formModeRecordAtom, localDateAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 import { formattedDateFunc } from '@/utils/formattedDate';
 
+import { POST_DATE_SCHEMA } from '../../_schema/travel.schema';
 import type { IStep2Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
@@ -15,7 +17,9 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   // eslint-disable-next-line no-unused-vars
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm({
+    resolver: yupResolver(POST_DATE_SCHEMA),
+  });
   // eslint-disable-next-line no-unused-vars
   const [dateAtom, setDateAtom] = useAtom(localDateAtom);
 

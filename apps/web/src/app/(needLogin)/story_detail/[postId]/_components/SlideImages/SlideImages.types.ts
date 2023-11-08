@@ -1,5 +1,5 @@
-import type { storyType } from '@/components/CommonStory';
+import type { StoryType } from '@/components/CommonStory/CommonStory.types';
 
 export interface SlideImagesProps {
-  targetStory: storyType;
+  targetStory: StoryType;
 }

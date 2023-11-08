@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
+import { formattedDateFunc } from '@/utils/formattedDate';
 
 import type { DetailSectionProps } from './DetailSection.types';
 
@@ -10,7 +11,10 @@ export const DetailCardSection = ({ targetStory }: DetailSectionProps) => {
 
   const handleSubtitleDescription = (subtitle: string) => {
     if (subtitle === '여행지') return content.location;
-    else if (subtitle === '날짜') return content.date;
+    else if (subtitle === '날짜')
+      return formattedDateFunc(
+        content.date instanceof Date ? content.date : new Date(content.date)
+      );
     else if (subtitle === '카테고리') return content.category;
     else return targetStory.id;
   };

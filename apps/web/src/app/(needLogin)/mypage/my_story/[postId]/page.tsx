@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom, useSetAtom } from 'jotai';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from 'ui';
 
@@ -21,10 +21,9 @@ import {
 
 const MyStoryPlanDetailPage = () => {
   const { postId } = useParams();
-  const router = useRouter();
   const params = useSearchParams();
   const page = params.get('page');
-  const isEdit = params.get('isEdit');
+
   const allToggleAction = useSetAtom(toggleAllDropdownsAtom);
   const [storyDetail, setStoryDetail] = useAtom(userStoryDetailsAtom);
 
@@ -46,14 +45,6 @@ const MyStoryPlanDetailPage = () => {
     fetchUserPlanStoryDetails();
     // eslint fix
   }, [page, postId, setStoryDetail]);
-
-  const handleMoveToDetail = () => {
-    if (isEdit === 'true') {
-      router.push(`/mypage/my_story/${postId}?page=record`);
-    } else {
-      router.push(`/mypage/my_story/${postId}?page=record&isEdit=true`);
-    }
-  };
 
   const isPlanPage = page === 'plan';
 
@@ -85,7 +76,7 @@ const MyStoryPlanDetailPage = () => {
         </Button>
       </div>
       <MapSections />
-      <SlideImages />
+      {isPlanPage ? null : <SlideImages storyDetail={storyDetail} />}
       {placeInfoStateData.map((dayData, index) => (
         <DropdownFormSection key={index} dayData={dayData} index={index} />
       ))}
@@ -98,12 +89,11 @@ const MyStoryPlanDetailPage = () => {
           목록보기
         </Button>
         <Button
-          onClick={handleMoveToDetail}
           size='xsm'
           className=' border-primaryGray-500 hover:bg-primaryBlue-200 hover:border-primaryBlue-200 hover:text-primaryGray-500 h-[40px] w-[145px] rounded-3xl border-opacity-40 font-bold text-white'
           variant='defaultnavy'
         >
-          {isEdit ? '저장하기' : '수정하기'}
+          수정하기
         </Button>
       </div>
     </div>
