@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useMapSearchBar } from '@/app/(needLogin)/map/hooks/useMapSearchBar';
 import { MapPageConfig } from '@/constants';
+import { useDebounce } from '@/hooks/useDebounce';
 import materialIcon from '@/utils/materialIcon';
 
 import { LocationKeywordModal } from '../KeywordModal/LocationKeywordModal';
@@ -26,34 +26,35 @@ export const SearchInput: React.FC = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const requestUrl = isRangeCountry
-      ? `/searchKeyword/location?inputValue=${locationKeyword}`
-      : `/searchKeyword/stories?inputValue=${storyKeyword}`;
+  const requestUrl = isRangeCountry
+    ? `/searchKeyword/location?inputValue=${locationKeyword}`
+    : `/searchKeyword/stories?inputValue=${storyKeyword}`;
 
-    const fetchKeywordList = async () => {
-      try {
-        const response = await fetch(requestUrl);
+  const fetchKeywordList = async () => {
+    try {
+      const response = await fetch(requestUrl);
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (response.ok) {
-          setKeywordData(data.data);
-          console.log('data', keywordData);
-        } else {
-          console.error(data.message);
-        }
-      } catch (error) {
-        console.error(
-          '연관 검색어 목록을 가져오는 중 오류가 발생했습니다:',
-          error
-        );
+      if (response.ok) {
+        setKeywordData(data.data);
+        console.log('data', keywordData);
+      } else {
+        console.error(data.message);
       }
-    };
+    } catch (error) {
+      console.error(
+        '연관 검색어 목록을 가져오는 중 오류가 발생했습니다:',
+        error
+      );
+    }
+  };
 
-    fetchKeywordList();
-    // eslint fix
-  }, [storyKeyword, locationKeyword, isRangeCountry, setKeywordData]);
+  useDebounce(fetchKeywordList, 500, [
+    storyKeyword,
+    locationKeyword,
+    isRangeCountry,
+  ]);
 
   return (
     <div>
@@ -84,7 +85,11 @@ export const SearchInput: React.FC = () => {
                   }}
                   onClick={handleSearchModal}
                   className='text-align-center text-s ml-12 w-[380px] focus:outline-none'
-                  placeholder={MapPageConfig.searchBarText}
+                  placeholder={
+                    isRangeCountry
+                      ? MapPageConfig.locationSearchText
+                      : MapPageConfig.storiesSearchText
+                  }
                   autoComplete='off'
                 />
                 <div className='mt-1 cursor-pointer'>

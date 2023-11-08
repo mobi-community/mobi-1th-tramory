@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 export const useDebounce = (
   func: () => void,
   delay: number,
-  dependency: string[]
+  dependency: (string | number | boolean)[]
 ) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const callbackFunc = useCallback(func, [...dependency]);

@@ -1,5 +1,6 @@
 export const MapPageConfig = {
-  searchBarText: '국가명 또는 도시명을 입력해주세요',
+  locationSearchText: '국가명 또는 도시명을 입력해주세요',
+  storiesSearchText: '원하는 스토리를 검색해보세요',
   rangeArray: ['국가', '스토리'],
   arrowText: '다른 사람의 여행이 궁금하신가요?',
   noKeywordText: '연관된 최근 검색어 내역이 없습니다.',
