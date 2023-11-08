@@ -1,55 +1,50 @@
-import { useAtom } from 'jotai';
 import { Controller } from 'react-hook-form';
 
-import { openSelectAtom } from '../../../../store/simpleRecordModal.atom';
+import { useSelectControl } from '@/components/SimpleRecordModal/_components/ValidateSelect/use-select-control';
+import { ValidatorInput } from '@/components/ValidatorInput/ValidatorInput';
+
 import mockdata from '../../_mock/mockOption.json';
 
-const ValidateSelect = ({ control }) => {
-  const [openSelect, setOpenSelect] = useAtom(openSelectAtom);
+const ValidateSelect = ({ control, name, label, required }) => {
+  const { openSelect, setOpenSelect, handleSelect } = useSelectControl();
 
   return (
     <>
-      <div className='text-primaryGray-500 ml-6 mt-7 flex'>
-        국가명<p className='text-primaryGreen mb-1 ml-1'>*</p>
-      </div>
-
+      <label className='text-primaryGray-500'>
+        {label}
+        {required && <span className='text-primaryGreen'>*</span>}
+      </label>
       <Controller
-        name='country'
+        name={name}
         control={control}
         defaultValue=''
         render={({ field }) => (
-          <div className='relative mt-1'>
-            <div className='flex'>
-              <input
-                {...field}
-                onClick={() => setOpenSelect(!openSelect)}
-                className='text-align-center ml-6 h-8 w-full max-w-[404px] rounded-sm border border-gray-300 pl-1.5 text-sm text-xs focus:outline-none'
-                placeholder='국가명을 입력해 주세요'
-              ></input>
-              <div className='absolute ml-[400px] mt-[6px] cursor-pointer'>
-                <span
-                  className='material-icons-outlined '
-                  style={{ fontSize: '20px', color: 'gray' }}
-                >
-                  search
-                </span>
-              </div>
-            </div>
+          <div className='relative'>
+            <ValidatorInput
+              type='text'
+              {...field}
+              onClick={() => setOpenSelect(!openSelect)}
+              placeholder='국가명을 입력해주세요'
+              name={name}
+              control={control}
+              label={''}
+              className=' mt-1 h-8 w-[404px] rounded-sm border border-gray-300 pl-1.5 text-sm text-xs focus:outline-none'
+            />
             {openSelect && (
-              <div className='absolute mt-2 max-h-[100px] w-[450px] overflow-y-auto'>
+              <ul className='absolute z-10 w-full border border-gray-300 bg-white'>
                 {mockdata.selectMock.map((select) => (
                   <li
                     key={select.code}
-                    className='z-20 ml-5 mt-0 flex h-8 list-none items-center rounded-[2px] border-b-[1px] border-l-[1px] border-t-[1px] border-gray-300 bg-white pl-1.5 text-xs font-semibold text-green-700'
                     onClick={() => {
-                      setOpenSelect(!openSelect);
-                      field.onChange(select.country);
+                      handleSelect(select.country, field);
+                      setOpenSelect(false);
                     }}
+                    className='list-none px-4 py-2 text-xs hover:bg-gray-100'
                   >
                     {select.country}
                   </li>
                 ))}
-              </div>
+              </ul>
             )}
           </div>
         )}
