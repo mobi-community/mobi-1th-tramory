@@ -1,11 +1,11 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAtom } from 'jotai';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom, localDateAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
-import { formattedDateFunc } from '@/utils/formattedDate';
 
 import { POST_DATE_SCHEMA } from '../../_schema/travel.schema';
 import type { IStep2Props } from '../../Travel.type';
@@ -22,22 +22,33 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   });
   // eslint-disable-next-line no-unused-vars
   const [dateAtom, setDateAtom] = useAtom(localDateAtom);
+  const [prevDates, setPrevDates] = useState({
+    startDate: dateAtom[0],
+    endDate: dateAtom[1],
+  });
 
   const onSubmit = (data) => {
+    const newStartDate =
+      data?.postDate?.[0]?.toISOString()?.split('T')[0] || prevDates.startDate;
+    const newEndDate =
+      data?.postDate?.[1]?.toISOString()?.split('T')[0] || prevDates.endDate;
+
     if (registerState == 'plan') {
       setPlanAtom((prev) => ({
         ...prev,
-        startDate: formattedDateFunc(data.postDate[0]),
-        endDate: formattedDateFunc(data.postDate[1]),
+        startDate: newStartDate,
+        endDate: newEndDate,
       }));
-      setDateAtom([data.postDate[0], data.postDate[1]]);
+      setDateAtom([new Date(newStartDate), new Date(newEndDate)]);
     } else {
       setRecordAtom((prev) => ({
         ...prev,
-        startDate: data.postDate[0].toISOString().split('T')[0],
-        endDate: data.postDate[1].toISOString().split('T')[0],
+        startDate: newStartDate,
+        endDate: newEndDate,
       }));
+      setDateAtom([new Date(newStartDate), new Date(newEndDate)]);
     }
+    setPrevDates({ startDate: newStartDate, endDate: newEndDate });
   };
 
   return (
