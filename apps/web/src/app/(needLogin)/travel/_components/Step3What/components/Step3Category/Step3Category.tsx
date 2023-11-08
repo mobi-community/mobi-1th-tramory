@@ -18,8 +18,7 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
       <Controller
         name='theme'
         control={control}
-        defaultValue={''}
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <div>
             <div className='mt-[20px] flex w-[600px] flex-wrap justify-center '>
               {travelCategory.map((category) => (
@@ -41,11 +40,17 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                     </span>
                   </div>
                   <div>
-                    <div className='bg-primaryBlue-100 ml-[10px] mt-[-13px] h-[20px] w-[20px] rounded-[50%] '></div>
-                    <div className='text-primaryGray-300 ml-[5px] mt-[3px]  flex w-[32px] justify-center text-[22px]'>
+                    <div className='bg-primaryBlue-100 ml-[10px] mt-[-11px] h-[20px] w-[20px] rounded-[50%] '></div>
+                    <div
+                      className={` ml-[4px]  mt-[0px] flex w-[32px] justify-center  text-[22px] text-xl ${
+                        selectedCategoryId === category.id
+                          ? 'text-white'
+                          : 'text-primaryGray-300'
+                      }`}
+                    >
                       |
                     </div>
-                    <div className='bg-primaryBlue-100 ml-[10px] mt-[2px] h-[20px] w-[20px] rounded-[50%]'></div>
+                    <div className='bg-primaryBlue-100 ml-[10px]  mt-[5px] h-[20px] w-[20px] rounded-[50%] '></div>
                   </div>
                   <li
                     className={`flex list-none items-center justify-center text-[19px] font-semibold ${
@@ -60,6 +65,11 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                   </li>
                 </div>
               ))}
+              {error && (
+                <div className='mb-1 ml-3 mt-1 text-[11px] text-red-500'>
+                  {error.message}
+                </div>
+              )}
             </div>
           </div>
         )}

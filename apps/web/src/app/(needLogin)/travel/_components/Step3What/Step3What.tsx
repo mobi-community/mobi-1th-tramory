@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 'use client';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,6 +9,7 @@ import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
+import { CATEGORY_SCHEMA } from '../../_schema/travel.schema';
 import type { IStep3Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import Step3Category from './components/Step3Category/Step3Category';
@@ -19,13 +21,15 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   // eslint-disable-next-line no-unused-vars
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm({
+    resolver: yupResolver(CATEGORY_SCHEMA),
+  });
 
   const onSubmit = async (data) => {
     registerAtom == 'plan'
       ? setPlanAtom((prev) => ({
           ...prev,
-          theme: data.theme,
+          theme: data.theme.toString(),
           travelHashTags: Array(4)
             .fill(null)
             .map((_, index) => ({
@@ -37,8 +41,6 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
           ...prev,
           theme: data.theme,
         }));
-    // console.log(planAtom);
-    // console.log(recordAtom);
   };
 
   return (

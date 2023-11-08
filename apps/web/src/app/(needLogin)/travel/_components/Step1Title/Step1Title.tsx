@@ -31,17 +31,9 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     pathname.includes('/travel/plan')
       ? setRegisterState('plan')
       : setRegisterState('record');
-    // const updateTitle = async () => {
-    // 상태 업데이트가 완료될 때까지 기다립니다.
-    // await new Promise((resolve) => setTimeout(resolve));
-
     registerState == 'plan'
       ? setValue('title', planAtom.title)
       : setValue('title', recordAtom.title);
-    // };
-
-    // 비동기 함수를 호출합니다.
-    // updateTitle();
   }, [
     pathname,
     setRegisterState,
@@ -52,7 +44,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   ]);
 
   const onSubmit = (data) => {
-    if (fieldValue.trim() === '') {
+    if (fieldValue.trim() == '') {
       return;
     } else {
       router.push(`/travel/${registerState}?stepId=1`);

@@ -10,3 +10,7 @@ export const TITLE_SCHEMA = yup.object({
 export const POST_DATE_SCHEMA = yup.object({
   postDate: yup.array().of(yup.date().required('날짜를 선택해 주세요')),
 });
+
+export const CATEGORY_SCHEMA = yup.object({
+  theme: yup.string().required('카테고리를 선택해 주세요'),
+});

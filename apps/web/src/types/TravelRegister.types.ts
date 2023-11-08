@@ -4,7 +4,7 @@ export type TravelPlanType = {
   id?: number;
   startDate?: string;
   endDate?: string;
-  theme?: number;
+  theme?: string;
   isPublic?: boolean;
   isComplete?: string;
   isRecord?: string;

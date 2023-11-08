@@ -11,7 +11,6 @@ export const postPlan = async (formdata) => {
     .then(async (res) => {
       if (res.status === 200) {
         alert('post 요청 성공');
-        localStorage.removeItem('formPlanAtom');
       } else if (res.status === 403) {
         return res.json();
       }
@@ -33,7 +32,7 @@ export const postRecord = async (formdata) => {
     .then((res) => {
       if (res.status === 200) {
         alert('post 요청 성공');
-        localStorage.removeItem('formRecordAtom'); // formAtom 데이터 삭제할 때 사용
+        // localStorage.removeItem('formRecordAtom'); // formAtom 데이터 삭제할 때 사용
       } else if (res.status === 403) {
         return res.json();
       }

@@ -4,15 +4,14 @@ import type {
   TravelPlanType,
   TravelRecordType,
 } from '@/types/TravelRegister.types';
-
 export const formModePlanAtom = atomWithStorage<TravelPlanType>(
   'formPlanAtom',
   {
     id: 0,
     title: '',
-    startDate: '',
-    endDate: '',
-    theme: 0,
+    startDate: new Date().toISOString()?.split('T')[0],
+    endDate: new Date().toISOString()?.split('T')[0],
+    theme: '',
     isPublic: false,
     isComplete: '',
     isRecord: '',
