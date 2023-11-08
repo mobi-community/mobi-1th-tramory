@@ -1,17 +1,16 @@
-import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { CommonStory, Pagination } from '@/components';
-import { likeStoriesAtom } from '@/store/mypage.atoms';
+
+import { useLikeStory } from '../../_hooks/useLikeStory';
+import { usePagination } from '../../_hooks/usePagination';
 
 export const LikeStory = () => {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage] = useState(4);
-  const startIdx = currentPage * itemsPerPage;
-  const endIdx = (currentPage + 1) * itemsPerPage;
-  const [likeStories, setLikeStories] = useAtom(likeStoriesAtom);
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(4);
+  const { likeStories, setLikeStories } = useLikeStory();
 
   useEffect(() => {
     const fetchUserLikeStories = async () => {
