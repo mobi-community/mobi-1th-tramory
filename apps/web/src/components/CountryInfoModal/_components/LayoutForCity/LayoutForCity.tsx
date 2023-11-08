@@ -33,25 +33,25 @@ export const LayoutForCity: React.FC<{ city: string }> = ({ city }) => {
 
   if (cityData)
     return (
-      <div className='m-auto w-[560px] items-center text-center'>
+      <div className='m-auto w-[90%] items-center text-center'>
         <div>
-          <div className='text-[26px] font-medium'>
+          <div className='text-base font-medium'>
             {cityData.countryEng}, {cityData.cityEng}
           </div>
-          <div className='mb-[20px] text-[41px] font-bold'>
+          <div className='mb-[10px] text-[24px] font-bold'>
             {cityData.countryKor}, {cityData.cityKor}
           </div>
           <div>
             <Image
               src={cityData.flagImage}
-              width={188}
-              height={150}
+              width={120}
+              height={80}
               alt='국기 이미지'
               className='m-auto'
             />
           </div>
         </div>
-        <div className='bg-primaryGray-200 m-auto my-[40px] h-[233px] w-[546px]'>
+        <div className='bg-primaryGray-200 m-auto my-[15px] h-[150px]'>
           지도
         </div>
         <Link

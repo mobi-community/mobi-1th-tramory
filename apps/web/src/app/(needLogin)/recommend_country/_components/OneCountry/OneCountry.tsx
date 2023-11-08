@@ -25,7 +25,7 @@ export const OneCountry: React.FC<{
         className='cursor-pointer opacity-70'
         priority={true}
       />
-      <div className='absolute right-2 top-[80%] text-2xl font-bold text-white'>
+      <div className='absolute bottom-0 right-1 w-[80%] text-right text-base font-bold text-white'>
         {country.toUpperCase()}
       </div>
     </div>

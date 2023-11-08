@@ -21,13 +21,13 @@ export const CountryInfoModal: React.FC<
 
   return (
     <div className='bg-primaryGray-300 fixed inset-0 z-50 flex items-center justify-center bg-opacity-20'>
-      <div className='bg-primaryBeige flex w-[606px] flex-col border border-gray-300 p-5 shadow-md'>
-        <div className='mb-1 flex justify-end'>
+      <div className='bg-primaryBeige flex max-h-[450px] w-[400px] flex-col border border-gray-300 p-5 shadow-md'>
+        <div className='relative mb-1 flex justify-end'>
           <button
-            className='bg-primaryGreen bg-primaryGreen h-6 h-[24px] h-[24px] w-6 w-[24px] w-[24px] cursor-pointer p-[2px] text-white'
+            className='bg-primaryGreen bg-primaryGreen h-[20px] w-[20px] cursor-pointer p-[1px] text-white'
             onClick={closeCountryInfoModal}
           >
-            {materialIcon({ iconName: 'close', size: 20 })}
+            {materialIcon({ iconName: 'close', size: 18 })}
           </button>
         </div>
         <div className='flex-1'>{children}</div>
