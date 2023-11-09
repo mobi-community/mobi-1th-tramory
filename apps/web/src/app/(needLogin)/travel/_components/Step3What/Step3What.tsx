@@ -41,7 +41,7 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='mt-[57px] flex h-[600px] items-center justify-center '>
           <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] flex-col items-center justify-center'>
-            <div className='text-primaryGray-500 my-5 h-[50px] w-full items-center text-center text-[30px] font-semibold'>
+            <div className='text-primaryGray-500 my-5 h-[50px] w-full text-center text-[30px] font-semibold'>
               {config.label}
             </div>
             <div>

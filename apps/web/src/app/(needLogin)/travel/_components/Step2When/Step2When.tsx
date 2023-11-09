@@ -1,5 +1,6 @@
 'use client';
 import { useAtom, useSetAtom } from 'jotai';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
@@ -14,19 +15,30 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const setPlanAtom = useSetAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
+  const [isDateSelected, setIsDateSelected] = useState(false);
 
   const onSubmit = (data) => {
-    registerState == 'plan'
-      ? setPlanAtom((prev) => ({
-          ...prev,
-          startDate: data.postDate[0].toISOString().split('T')[0],
-          endDate: data.postDate[1].toISOString().split('T')[0],
-        }))
-      : setRecordAtom((prev) => ({
-          ...prev,
-          startDate: data.postDate[0].toISOString().split('T')[0],
-          endDate: data.postDate[1].toISOString().split('T')[0],
-        }));
+    console.log('data', data);
+    if (isDateSelected) {
+      registerState == 'plan'
+        ? setPlanAtom((prev) => ({
+            ...prev,
+            startDate: data.postDate[0].toISOString().split('T')[0],
+            endDate: data.postDate[1].toISOString().split('T')[0],
+          }))
+        : setRecordAtom((prev) => ({
+            ...prev,
+            startDate: data.postDate[0].toISOString().split('T')[0],
+            endDate: data.postDate[1].toISOString().split('T')[0],
+          }));
+    } else {
+      alert('날짜를 선택해주세요');
+    }
+  };
+
+  const handleDateSelect = (data: Date[]) => {
+    console.log('확인용', data);
+    setIsDateSelected(data.length > 0);
   };
 
   return (
@@ -38,7 +50,11 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
               {config.label}
             </div>
             <div className='mt-[14px]'>
-              <Step2Calendar control={control} name='postDate' />
+              <Step2Calendar
+                control={control}
+                name='postDate'
+                onChange={handleDateSelect}
+              />
             </div>
           </div>
         </div>

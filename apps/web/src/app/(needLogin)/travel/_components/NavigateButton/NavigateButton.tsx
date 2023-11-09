@@ -1,7 +1,7 @@
 'use client';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { registerStateAtom } from '@/store/travelState.atom';
 
@@ -9,6 +9,13 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
   const [registerState] = useAtom(registerStateAtom);
+  const router = useRouter();
+
+  const handleNextButtonClick = (e) => {
+    e.preventDefault();
+    handleSubmit(onSubmit)();
+    router.push(`/travel/${registerState}?stepId=${search + 1}`);
+  };
 
   return (
     <>
@@ -30,13 +37,7 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
         <span
           className='material-icons-outlined '
           style={{ fontSize: '50px', color: '#ECF1F7' }}
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit(onSubmit)();
-            window.location.href = `/travel/${registerState}?stepId=${
-              search + 1
-            }`;
-          }}
+          onClick={handleNextButtonClick}
         >
           arrow_forward_ios
         </span>
