@@ -11,7 +11,8 @@ const TravelDetailModal: React.FC = () => {
   const [detailModalState] = useAtom(travelDetailModalAtoms);
   const [selectedDateId] = useAtom(selectedDateIdAtom);
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
     try {
       console.log('data?', detailModalState);
 
