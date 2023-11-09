@@ -8,6 +8,7 @@ import { visitedMyVisitedAtom } from '@/store/mypage.atoms';
 import { MyPageContainer } from '../../_components';
 import OneMockFlag from './_components/OneMockFlag';
 
+// Tab 수정 후 삭제할 라우팅 페이지 입니다(컴포넌트로 대체)
 const MyVisitedPage = () => {
   const navTitle = mypageNavConfig.nav.find((nav) =>
     nav.href.includes('visit_country')
