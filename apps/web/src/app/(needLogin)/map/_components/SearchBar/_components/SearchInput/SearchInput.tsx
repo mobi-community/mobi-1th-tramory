@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useMapSearchBar } from '@/app/(needLogin)/map/hooks/useMapSearchBar';
+import { useCountryInfoModal } from '@/components';
 import { MapPageConfig } from '@/constants';
 import { useDebounce } from '@/hooks/useDebounce';
 import materialIcon from '@/utils/materialIcon';
@@ -21,33 +22,39 @@ export const SearchInput: React.FC = () => {
     storyKeyword,
     setStoryKeyword,
     setKeywordData,
-    keywordData,
+    closeSearchModal,
   } = useMapSearchBar();
+
+  const { openCountryInfoModal } = useCountryInfoModal();
 
   const router = useRouter();
 
+  const isKeyworlNotNull = locationKeyword.length || storyKeyword.length;
+
   const requestUrl = isRangeCountry
-    ? `/searchKeyword/location?inputValue=${locationKeyword}`
-    : `/searchKeyword/stories?inputValue=${storyKeyword}`;
+    ? `/searchKeyword/location?inputValue=${
+        locationKeyword ? locationKeyword : ''
+      }`
+    : `/searchKeyword/stories?inputValue=${storyKeyword ? storyKeyword : ''}`;
 
   const fetchKeywordList = async () => {
-    try {
-      const response = await fetch(requestUrl);
+    if (isKeyworlNotNull)
+      try {
+        const response = await fetch(requestUrl);
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
-        setKeywordData(data.data);
-        console.log('data', keywordData);
-      } else {
-        console.error(data.message);
+        if (response.ok) {
+          setKeywordData(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error(
+          '연관 검색어 목록을 가져오는 중 오류가 발생했습니다:',
+          error
+        );
       }
-    } catch (error) {
-      console.error(
-        '연관 검색어 목록을 가져오는 중 오류가 발생했습니다:',
-        error
-      );
-    }
   };
 
   useDebounce(fetchKeywordList, 500, [
@@ -62,7 +69,14 @@ export const SearchInput: React.FC = () => {
         className='flex flex-col justify-center'
         onSubmit={handleSubmit((data: { searchKeyword: string }) => {
           if (isRangeCountry) {
-            console.log('data', data.searchKeyword);
+            const isCountry = !data.searchKeyword.includes(',');
+
+            const location = isCountry
+              ? data.searchKeyword
+              : data.searchKeyword.split(',')[0];
+
+            closeSearchModal();
+            openCountryInfoModal(location, isCountry);
           } else {
             router.push(`/story_community?keyword=${data.searchKeyword}`);
           }
@@ -93,11 +107,13 @@ export const SearchInput: React.FC = () => {
                   autoComplete='off'
                 />
                 <div className='mt-1 cursor-pointer'>
-                  {materialIcon({
-                    iconName: 'search',
-                    size: 30,
-                    style: 'text-primaryGray-400 ',
-                  })}
+                  <button>
+                    {materialIcon({
+                      iconName: 'search',
+                      size: 30,
+                      style: 'text-primaryGray-400 ',
+                    })}
+                  </button>
                 </div>
               </div>
               {isRangeCountry ? (

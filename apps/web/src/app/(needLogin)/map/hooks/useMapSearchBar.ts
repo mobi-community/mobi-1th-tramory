@@ -28,10 +28,16 @@ export const useMapSearchBar = () => {
     isSelectModalOpen,
     handleSearchModal: () =>
       setIsSearchModalOpen((prev: boolean) => {
-        if (!prev) setIsSelectModalOpen(false);
+        if (!prev) {
+          setIsSelectModalOpen(false);
+          setKeywordData([]);
+        }
         return !prev;
       }),
-    closeSearchModal: () => setIsSearchModalOpen(false),
+    closeSearchModal: () => {
+      setLocationKeyword('');
+      setIsSearchModalOpen(false);
+    },
     handleSelectModal: () =>
       setIsSelectModalOpen((prev: boolean) => {
         if (!prev) setIsSearchModalOpen(false);

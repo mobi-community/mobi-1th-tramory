@@ -14,7 +14,7 @@ export const OneCountry: React.FC<{
     <div
       className={`relative h-[140px] w-[160px] bg-black`}
       onClick={() => {
-        openCountryInfoModal();
+        openCountryInfoModal(country);
       }}
     >
       <Image

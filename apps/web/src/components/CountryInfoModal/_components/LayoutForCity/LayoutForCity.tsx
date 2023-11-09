@@ -15,13 +15,13 @@ import { useCountryInfoModal } from '../../_hooks/useCountryInfoModal';
     레이아웃 적용 방법을 수정해보도록 하겠습니다.
 */
 
-export const LayoutForCity: React.FC<{ city: string }> = ({ city }) => {
-  const { cityData, setCityData } = useCountryInfoModal();
+export const LayoutForCity: React.FC = () => {
+  const { targetLocation, cityData, setCityData } = useCountryInfoModal();
   const { text } = CountryInfoConfig;
 
   useEffect(() => {
     try {
-      fetch(`/api/city_info/${city}`)
+      fetch(`/api/city_info/${targetLocation}`)
         .then((res) => res.json())
         .then((data) => {
           setCityData(data.total);
@@ -29,7 +29,7 @@ export const LayoutForCity: React.FC<{ city: string }> = ({ city }) => {
     } catch (error) {
       console.error(error, '도시 정보 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [city, setCityData]);
+  }, [targetLocation, setCityData]);
 
   if (cityData)
     return (

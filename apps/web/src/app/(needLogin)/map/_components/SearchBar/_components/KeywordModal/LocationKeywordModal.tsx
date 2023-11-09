@@ -5,8 +5,13 @@ import materialIcon from '@/utils/materialIcon';
 import type { modalProps } from './KeywordModal.types';
 
 export const LocationKeywordModal: React.FC<modalProps> = ({ field }) => {
-  const { isSearchModalOpen, handleSearchModal, locationKeyword, keywordData } =
-    useMapSearchBar();
+  const {
+    isSearchModalOpen,
+    handleSearchModal,
+    locationKeyword,
+    keywordData,
+    setLocationKeyword,
+  } = useMapSearchBar();
 
   const NoSuggestedWord = (
     <li className='ml-2 mt-3 h-10 w-[400px] list-none items-center pl-1.5 text-left'>
@@ -23,6 +28,7 @@ export const LocationKeywordModal: React.FC<modalProps> = ({ field }) => {
       onClick={() => {
         handleSearchModal();
         field.onChange(word.keyword);
+        setLocationKeyword(word.keyword);
       }}
     >
       {materialIcon({
@@ -38,7 +44,10 @@ export const LocationKeywordModal: React.FC<modalProps> = ({ field }) => {
     return (
       <div className='no-scroll border-primaryGray-200 z-100 fixed z-[100] mt-5 max-h-[200px] w-[420px] overflow-y-scroll border bg-white drop-shadow-xl'>
         {locationKeyword && (
-          <li className='border-b-primaryGray-500 ml-2 mt-3 h-10 w-[400px] list-none items-center border-b-[1px] pl-1.5 text-left'>
+          <li
+            key={locationKeyword}
+            className='border-b-primaryGray-500 ml-2 mt-3 h-10 w-[400px] list-none items-center border-b-[1px] pl-1.5 text-left'
+          >
             {locationKeyword}
           </li>
         )}

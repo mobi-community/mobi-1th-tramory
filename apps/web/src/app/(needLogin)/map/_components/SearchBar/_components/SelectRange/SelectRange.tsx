@@ -13,7 +13,7 @@ export const SelectRange: React.FC = () => {
     <>
       <div
         onClick={handleSelectModal}
-        className='relative z-[100] flex h-[50px] w-[158px] cursor-pointer items-center justify-between bg-transparent px-3 pl-5 text-center'
+        className='relative z-[50] flex h-[50px] w-[158px] cursor-pointer items-center justify-between bg-transparent px-3 pl-5 text-center'
       >
         <div className='w-[50px]'>{searchRange}</div>
         <div className='pt-[7px]'>

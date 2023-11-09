@@ -1,5 +1,6 @@
 'use client';
 
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { recommendPageConfig } from '@/constants';
 
 import { ContinentSlide } from './_components';
@@ -20,6 +21,7 @@ const RecommendCountryPage: React.FC = () => {
           ))}
         </div>
       </div>
+      <FloatingMenu />
     </div>
   );
 };

@@ -20,7 +20,7 @@ export const CountryInfoModal: React.FC<
   */
 
   return (
-    <div className='bg-primaryGray-300 fixed inset-0 z-50 flex items-center justify-center bg-opacity-20'>
+    <div className='bg-primaryGray-300 fixed inset-0 z-[200] flex items-center justify-center bg-opacity-20'>
       <div className='bg-primaryBeige flex max-h-[450px] w-[400px] flex-col border border-gray-300 p-5 shadow-md'>
         <div className='relative mb-1 flex justify-end'>
           <button

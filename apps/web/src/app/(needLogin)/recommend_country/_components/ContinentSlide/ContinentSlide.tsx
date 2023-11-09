@@ -60,7 +60,7 @@ export const ContinentSlide: React.FC<{
         </Swiper>
       </div>
       <CountryInfoModal target={targetLocation}>
-        <LayoutForCountry country={targetLocation} />
+        <LayoutForCountry />
       </CountryInfoModal>
       <SimpleRecordModal />
     </div>
