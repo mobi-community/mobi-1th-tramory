@@ -24,16 +24,6 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
     resolver: yupResolver(CATEGORY_SCHEMA),
   });
 
-  // useEffect(() => {
-  //   if (registerState == 'plan') {
-  //     setValue('theme', planAtom.theme);
-  //   } else {
-  //     setValue('travelHashTags', recordAtom.travelHashTags);
-  //     setValue('theme', recordAtom.theme);
-  //   }
-  //   console.log(recordAtom.travelHashTags);
-  // }, [planAtom, recordAtom, registerState, setValue]);
-
   const onSubmit = async (data) => {
     registerState == 'record'
       ? setRecordAtom((prev) => ({
@@ -43,7 +33,7 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
             .fill(null)
             .map((_, index) => ({
               id: Math.floor(Math.random() * 100000),
-              hashTag: { name: data[`tag${index}`] },
+              hashTag: { name: data[`tag${index}`].slice(1) },
             })),
         }))
       : setPlanAtom((prev) => ({
