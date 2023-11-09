@@ -6,7 +6,6 @@ import { Button } from 'ui';
 import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
 
 import FloatingMenu from '../components/Floating_menu/FloatingMenu';
-import SimpleRecordModal from '../components/SimpleRecordModal/SimpleRecordModal';
 import TravelModal from './(needLogin)/travel/_components/TravelModal/TravelModal';
 
 const buttonVariants = [
@@ -60,7 +59,6 @@ export default function Page() {
           <TravelModal />
         </TravelModalDefault>
       </div>
-      <SimpleRecordModal />
     </div>
   );
 }

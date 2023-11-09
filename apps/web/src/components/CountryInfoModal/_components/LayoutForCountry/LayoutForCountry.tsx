@@ -64,7 +64,7 @@ export const LayoutForCountry: React.FC<{ country: string }> = ({
           <span className='text-primaryYellow mr-[3px]'>간편</span>{' '}
           {text.record}
         </Button>
-        <Link href={'/travel/plan?stepId=0'}>
+        <Link href={'/travel/plan?stepId=1'}>
           <Button className='z-100 relative my-[10px] mt-4 font-bold'>
             <span className='text-primaryYellow mr-[3px]'>상세</span>{' '}
             {text.record}
