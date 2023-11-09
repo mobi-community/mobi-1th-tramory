@@ -31,6 +31,7 @@ export const useStoryCommunity = () => {
     setSelectedCategory,
     clearCategory: () => setSelectedCategory('전체'),
     handleSearchModal: () => setIsSearchModalOpen((prev: boolean) => !prev),
+    closeSearchModal: () => setIsSearchModalOpen(false),
     setStoryPage,
     setTotal,
   };

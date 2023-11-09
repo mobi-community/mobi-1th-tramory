@@ -1,7 +1,11 @@
+'use client';
+
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Button } from 'ui';
 
 import { formattedDateFunc } from '@/utils/formattedDate';
+import materialIcon from '@/utils/materialIcon';
 
 import { ImageSlide } from './_components/ImageSlide/ImageSlide';
 import type { CommonStoryProps } from './CommonStory.types';
@@ -12,6 +16,8 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
 }) => {
   const { user, content, id } = story;
 
+  const pathname = usePathname();
+  const isMyPage = pathname.includes('mypage');
   const StoryButtons = (
     <div className='mr-[35px] mt-[45px] flex'>
       <Button
@@ -51,20 +57,20 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
           </div>
         </div>
       </div>
-      {StoryButtons}
+      {isMyPage && StoryButtons}
     </div>
   );
 
-  const ReactionBox = (
+  const ReactionBox = (category: string, value: number) => (
     <div className='border-primaryGray-300 flex h-[24px] min-w-[60px] items-center justify-center rounded-[20px] border p-[3px]'>
-      {/* {materialIcon({
-          iconName: category === 'liked' ? 'favorite' : 'visibility',
-          style: `mt-[4px] mr-[3px] ${
-            category === 'liked' ? 'text-primaryYellow' : 'text-primaryGray-300'
-          }`,
-          size: 15,
-        })} */}
-      <div className='text-primaryGray-300 text-[12px]'>value</div>
+      {materialIcon({
+        iconName: category === 'liked' ? 'favorite' : 'visibility',
+        style: `mt-[4px] mr-[5px] ${
+          category === 'liked' ? 'text-primaryYellow' : 'text-primaryGray-300'
+        }`,
+        size: 10,
+      })}
+      <div className='text-primaryGray-300 text-[12px]'>{value}</div>
     </div>
   );
 
@@ -77,7 +83,8 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
         </div>
         <div className='mt-[20px] flex flex-col'>
           <div className='flex w-[125px] justify-between'>
-            <div>{ReactionBox}</div>
+            <div>{ReactionBox('liked', content.liked)}</div>
+            <div>{ReactionBox('viewed', content.viewed)}</div>
           </div>
           <div>
             {content.tags.map((tag) => (

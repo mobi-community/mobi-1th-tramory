@@ -43,7 +43,7 @@ export const StoryList: React.FC = () => {
 
     fetchStoryList();
     // eslint fix
-  }, [setStoryData]);
+  }, [setStoryData, storyPage]);
 
   const searchedArray: StoryType[] = searchKeyword
     ? storyData?.filter(
@@ -68,7 +68,7 @@ export const StoryList: React.FC = () => {
 
   const HaveData = (
     <div>
-      <div className='m-auto grid grid-cols-2 gap-8 gap-x-[5%]'>
+      <div className='m-auto grid grid-cols-2 gap-8 gap-x-[10%]'>
         {filteredStoryArray?.map((story) => (
           <CommonStory
             story={story}

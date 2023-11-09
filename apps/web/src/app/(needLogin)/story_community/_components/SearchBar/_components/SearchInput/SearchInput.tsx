@@ -10,7 +10,7 @@ import { SuggestionModal } from '../SuggestionModal/SuggestionModal';
 
 export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
-  const { handleSearchModal } = useStoryCommunity();
+  const { handleSearchModal, closeSearchModal } = useStoryCommunity();
   const router = useRouter();
 
   return (
@@ -19,6 +19,7 @@ export const SearchInput: React.FC = () => {
         onSubmit={handleSubmit((data: { searchKeyword: string }) => {
           if (data.searchKeyword)
             router.push(`/story_community?keyword=${data.searchKeyword}`);
+          closeSearchModal();
         })}
       >
         <Controller
@@ -36,11 +37,13 @@ export const SearchInput: React.FC = () => {
                   autoComplete='off'
                 />
                 <div>
-                  {materialIcon({
-                    iconName: 'search',
-                    size: 30,
-                    style: 'text-primaryGray-400 ',
-                  })}
+                  <button>
+                    {materialIcon({
+                      iconName: 'search',
+                      size: 30,
+                      style: 'text-primaryGray-400 ',
+                    })}
+                  </button>
                 </div>
               </div>
               <SuggestionModal field={field} />
