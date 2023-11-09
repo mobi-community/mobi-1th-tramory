@@ -1,10 +1,13 @@
 'use client';
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
+import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
 import { selectedDateIdAtom, travelDateAtom } from '@/store';
+
+import TravelDetailModal from '../../../TravelModal/TravelDetailModal';
 
 interface IStep4DatesProps {
   control: Control;
@@ -19,6 +22,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
 }) => {
   const [date, setDate] = useAtom(travelDateAtom);
   const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const startIdx = currentPage * itemsPerPage;
   const endIdx = (currentPage + 1) * itemsPerPage;
@@ -39,6 +43,11 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
   useEffect(() => {
     getDates();
   }, []);
+
+  const openModal = (id) => {
+    setSelectedDateId(id);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -105,12 +114,19 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                       className='mt-[10px] flex h-[26px] w-[120px] pt-[2px] text-black'
                       variant='roundednavy'
                       size='sm'
+                      onClick={() => openModal(date.id)}
                     >
                       기록 등록
                     </Button>
                   </div>
                 </div>
               ))}
+              <TravelModalDefault
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+              >
+                <TravelDetailModal />
+              </TravelModalDefault>
             </div>
           </div>
         )}

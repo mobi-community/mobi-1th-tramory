@@ -6,7 +6,7 @@ import { Button } from 'ui';
 import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
 
 import FloatingMenu from '../components/Floating_menu/FloatingMenu';
-import TravelModal from './(needLogin)/travel/_components/TravelModal/TravelModal';
+import TravelModal from './(needLogin)/travel/_components/TravelModal/TravelDetailModal';
 
 const buttonVariants = [
   'default',
