@@ -1,4 +1,7 @@
+import { useAtom } from 'jotai';
 import { Control, Controller } from 'react-hook-form';
+
+import { formModeRecordAtom } from '@/store';
 
 interface IStep3TagProps {
   control: Control;
@@ -6,13 +9,15 @@ interface IStep3TagProps {
 }
 
 const Step3Tag: React.FC<IStep3TagProps> = ({ control, id }) => {
+  const [recordAtom] = useAtom(formModeRecordAtom);
+
   return (
     <>
       <div>
         <Controller
           name={`tag${id}`}
           control={control}
-          defaultValue={''}
+          defaultValue={recordAtom.travelHashTags[id]?.hashTag.name || ''}
           render={({ field }) => (
             <>
               <input

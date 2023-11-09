@@ -16,18 +16,27 @@ import Step3Category from './components/Step3Category/Step3Category';
 import Step3Tag from './components/Step3Tag/Step3Tag';
 
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
-  const [registerAtom] = useAtom(registerStateAtom);
+  const [registerState] = useAtom(registerStateAtom);
 
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  // eslint-disable-next-line no-unused-vars
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     resolver: yupResolver(CATEGORY_SCHEMA),
   });
 
+  // useEffect(() => {
+  //   if (registerState == 'plan') {
+  //     setValue('theme', planAtom.theme);
+  //   } else {
+  //     setValue('travelHashTags', recordAtom.travelHashTags);
+  //     setValue('theme', recordAtom.theme);
+  //   }
+  //   console.log(recordAtom.travelHashTags);
+  // }, [planAtom, recordAtom, registerState, setValue]);
+
   const onSubmit = async (data) => {
-    registerAtom == 'plan'
-      ? setPlanAtom((prev) => ({
+    registerState == 'record'
+      ? setRecordAtom((prev) => ({
           ...prev,
           theme: data.theme.toString(),
           travelHashTags: Array(4)
@@ -37,9 +46,9 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
               hashTag: { name: data[`tag${index}`] },
             })),
         }))
-      : setRecordAtom((prev) => ({
+      : setPlanAtom((prev) => ({
           ...prev,
-          theme: data.theme,
+          theme: data.theme.toString(),
         }));
   };
 
@@ -52,7 +61,7 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
               <div className='mt-[14px]'>
                 <div
                   className={`${
-                    registerAtom == 'record' ? 'mt-[150px]' : 'mt-0'
+                    registerState == 'plan' ? 'mt-[150px]' : 'mt-0'
                   }`}
                 >
                   <div className='text-primaryGray-500  mb-[10px] ml-[150px] mt-[60px] text-[30px] font-semibold'>
@@ -60,9 +69,9 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
                   </div>
                   <Step3Category control={control} />
                 </div>
-                {registerAtom == 'plan' && (
+                {registerState == 'record' && (
                   <>
-                    <div className='text-primaryGray-500  mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
+                    <div className='text-primaryGray-500 mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
                       {config.subLabel}
                     </div>
                     <div className='mt-[30px] flex justify-center '>

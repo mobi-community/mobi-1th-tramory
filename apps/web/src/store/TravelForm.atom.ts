@@ -16,7 +16,6 @@ export const formModePlanAtom = atomWithStorage<TravelPlanType>(
     isComplete: '',
     isRecord: '',
     user: { nickname: '' },
-    travelHashTags: Array(4).fill({ id: 0, hashTag: { name: '' } }),
     travelDailyPlansDetails: [
       {
         id: 0,
@@ -46,11 +45,12 @@ export const formModeRecordAtom = atomWithStorage<TravelRecordType>(
     title: '',
     startDate: '',
     endDate: '',
-    theme: 0,
+    theme: '',
     isPublic: false,
     isComplete: '',
     isRecord: '',
     user: { nickname: '' },
+    travelHashTags: Array(4).fill({ id: 0, hashTag: { name: '' } }),
     travelDailyPlansDetails: [
       {
         id: 0,

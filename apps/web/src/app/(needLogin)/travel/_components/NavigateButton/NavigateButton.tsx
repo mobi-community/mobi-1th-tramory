@@ -1,7 +1,7 @@
 'use client';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { registerStateAtom } from '@/store/travelState.atom';
@@ -9,7 +9,9 @@ import { registerStateAtom } from '@/store/travelState.atom';
 const NavigateButton = ({ handleSubmit, onSubmit }) => {
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
+  const router = useRouter();
   const [registerState] = useAtom(registerStateAtom);
+  // 데이터 제출 여부 상태 저장
   const [isValid, setIsValid] = useState(false);
 
   // 데이터 제출 여부 구분해주기 위한 함수
@@ -20,7 +22,7 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
 
   useEffect(() => {
     if (isValid) {
-      window.location.href = `/travel/${registerState}?stepId=${search + 1}`;
+      router.push(`/travel/${registerState}?stepId=${search + 1}`);
     }
   }, [isValid]);
 
@@ -40,6 +42,7 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
       <Link
         href={`/travel/${registerState}?stepId=${search + 1}`}
         className='relative z-10 ml-[380px]  flex  h-[60px] w-[60px] items-center justify-center rounded-[50%] bg-white pl-1'
+        // href 작동 막기 (데이터 전송 후 이동을 위해)
         onClick={(e) => {
           e.preventDefault();
           handleSubmit(modifyOnSumit)();

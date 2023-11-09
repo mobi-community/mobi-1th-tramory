@@ -17,7 +17,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const [registerState, setRegisterState] = useAtom(registerStateAtom);
-  const { handleSubmit, control, watch, setValue } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     resolver: yupResolver(TITLE_SCHEMA),
   });
   const fieldValue = watch('title', '');
@@ -31,17 +31,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     pathname.includes('/travel/plan')
       ? setRegisterState('plan')
       : setRegisterState('record');
-    registerState == 'plan'
-      ? setValue('title', planAtom.title)
-      : setValue('title', recordAtom.title);
-  }, [
-    pathname,
-    setRegisterState,
-    planAtom,
-    recordAtom,
-    setValue,
-    registerState,
-  ]);
+  }, [pathname, setRegisterState, planAtom, recordAtom, registerState]);
 
   const onSubmit = (data) => {
     if (fieldValue.trim() == '') {
@@ -51,7 +41,6 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       registerState == 'plan'
         ? setPlanAtom((prev) => ({ ...prev, title: data.title }))
         : setRecordAtom((prev) => ({ ...prev, title: data.title }));
-      console.log(data);
     }
   };
 
@@ -116,29 +105,34 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
                   <Controller
                     name='title'
                     control={control}
-                    defaultValue={''}
+                    defaultValue={
+                      registerState == 'plan'
+                        ? planAtom.title || ''
+                        : recordAtom.title || ''
+                    }
                     render={({ field, fieldState: { error } }) => (
-                      <>
+                      <div className='ml-9'>
                         <Input
                           {...field}
-                          className='w-[80%] border-b-2 border-gray-300 bg-transparent text-center text-lg'
+                          className='w-[330px] border-b-2 border-gray-300 bg-transparent text-center text-lg'
                           placeholder={config.inputPlaceholder}
                         />
                         {error && (
-                          <div className='mb-1 ml-3 mt-1 text-[11px] text-red-500'>
+                          <div className='absolute mb-1 ml-[0px]  mt-2 text-[14px] text-red-500'>
                             {error.message}
                           </div>
                         )}
-                      </>
+                      </div>
                     )}
                   />
 
                   <span
-                    className={`material-icons-outlined ${
+                    className={`material-icons-outlined mt-[5px] ${
                       fieldValue.trim()
                         ? 'cursor-pointer'
                         : 'pointer-events-none opacity-40'
-                    }`}
+                    }
+                    `}
                     style={{ fontSize: '30px' }}
                     onClick={() => {
                       if (fieldValue.trim()) {

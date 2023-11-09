@@ -39,6 +39,7 @@ const Step2Calendar: React.FC<IStep2CalendarProps> = ({
 
   useEffect(() => {
     setPrevDateRange(dateRange);
+    console.log('랜더링됐음');
   }, [dateRange]);
 
   return (

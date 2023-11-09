@@ -2,22 +2,32 @@ import { useAtom } from 'jotai';
 import { Control, Controller } from 'react-hook-form';
 
 import { travelCategory } from '@/constants/travelStep3Category.constants';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
+import { registerStateAtom } from '@/store/travelState.atom';
 
 interface IStep3CategoryProps {
   control: Control;
 }
 
 const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
+  const [registerState] = useAtom(registerStateAtom);
   const [selectedCategoryId, setSelectedCategoryId] = useAtom(
     selectedCategoryIdAtom
   );
+  const [planAtom] = useAtom(formModePlanAtom);
+  const [recordAtom] = useAtom(formModeRecordAtom);
 
   return (
     <>
       <Controller
         name='theme'
         control={control}
+        defaultValue={
+          registerState == 'plan'
+            ? planAtom.theme || ''
+            : recordAtom.theme || ''
+        }
         render={({ field, fieldState: { error } }) => (
           <div>
             <div className='mt-[20px] flex w-[600px] flex-wrap justify-center '>
@@ -66,7 +76,7 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                 </div>
               ))}
               {error && (
-                <div className='mb-1 ml-3 mt-1 text-[11px] text-red-500'>
+                <div className='mb-1 mr-[10px] mt-1 text-[18px] text-red-500'>
                   {error.message}
                 </div>
               )}

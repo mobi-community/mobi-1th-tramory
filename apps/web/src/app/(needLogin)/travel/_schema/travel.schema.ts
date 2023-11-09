@@ -7,10 +7,15 @@ export const TITLE_SCHEMA = yup.object({
     .required('제목을 입력해 주세요 '),
 });
 
-export const POST_DATE_SCHEMA = yup.object({
-  postDate: yup.array().of(yup.date().required('날짜를 선택해 주세요')),
-});
+// export const POST_DATE_SCHEMA = yup.object({
+//   postDate: yup.array().of(yup.date().required('날짜를 선택해 주세요')),
+// });
 
 export const CATEGORY_SCHEMA = yup.object({
   theme: yup.string().required('카테고리를 선택해 주세요'),
+  travelHashTags: yup.array(),
+});
+
+export const DATE_SCHEMA = yup.object({
+  days: yup.string().required('작성할 일자를 선택해 주세요'),
 });

@@ -43,10 +43,10 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
   return (
     <>
       <Controller
-        name='category'
+        name='days'
         control={control}
         defaultValue={''}
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <div>
             <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[50px] text-[30px] font-semibold'></div>
             <div className='mt-[20px] flex  flex-wrap justify-center'>
@@ -111,6 +111,11 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                   </div>
                 </div>
               ))}
+              {error && (
+                <div className='absolute mb-1 ml-[0px]  mt-2 text-[14px] text-red-500'>
+                  {error.message}
+                </div>
+              )}
             </div>
           </div>
         )}
