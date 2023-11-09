@@ -1,6 +1,6 @@
 'use client';
+
 import { useAtom, useSetAtom } from 'jotai';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
@@ -8,6 +8,7 @@ import { registerStateAtom } from '@/store/travelState.atom';
 
 import { IStep2Props } from '../../Travel.typs';
 import NavigateButton from '../NavigateButton/NavigateButton';
+import { useDateSelection } from '../NavigateButton/use-data-selection';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
@@ -15,7 +16,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const setPlanAtom = useSetAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
-  const [isDateSelected, setIsDateSelected] = useState(false);
+  const { isDateSelected, setIsDateSelected } = useDateSelection();
 
   const onSubmit = (data) => {
     console.log('data', data);

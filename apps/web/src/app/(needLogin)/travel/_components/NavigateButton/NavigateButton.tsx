@@ -5,16 +5,23 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import { registerStateAtom } from '@/store/travelState.atom';
 
+import { useDateSelection } from './use-data-selection';
+
 const NavigateButton = ({ handleSubmit, onSubmit }) => {
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
   const [registerState] = useAtom(registerStateAtom);
   const router = useRouter();
+  const { isDateSelected } = useDateSelection();
 
   const handleNextButtonClick = (e) => {
     e.preventDefault();
-    handleSubmit(onSubmit)();
-    router.push(`/travel/${registerState}?stepId=${search + 1}`);
+    if (isDateSelected) {
+      handleSubmit(onSubmit)();
+      router.push(`/travel/${registerState}?stepId=${search + 1}`);
+    } else {
+      alert('날짜를 선택해주세요');
+    }
   };
 
   return (
