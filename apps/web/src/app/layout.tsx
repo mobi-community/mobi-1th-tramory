@@ -3,6 +3,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
+
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -20,7 +22,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className='font-display'>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <FloatingMenu />
+        </Providers>
       </body>
     </html>
   );
