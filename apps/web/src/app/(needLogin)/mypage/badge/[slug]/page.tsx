@@ -1,7 +1,7 @@
 'use client';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
 import { badgeAtom } from '@/store/mypage.atoms';
@@ -13,11 +13,12 @@ const isOneHowToAtom = atom(false);
 
 const MyPageTabs = () => {
   const pathname = usePathname();
-  const slug = pathname.split('/').pop();
   const basePath = pathname.replace(/\/[^/]+$/, '');
   const navTitle = mypageNavConfig.nav.find(
     (nav) => nav.href === basePath
   ).title;
+  const params = useSearchParams();
+  const slug = params.get('filter');
 
   const badges = useAtomValue(badgeAtom);
   const currentBadge = badges.find((badge) => badge.slug === slug);
