@@ -77,7 +77,6 @@ export const SearchInput: React.FC = () => {
                 ? data.searchKeyword
                 : data.searchKeyword.split(',')[0];
 
-              // openCountryInfoModal(location, isCountry);
               setIsCountry(isCountry);
               setTargetLocation(location);
               setIsCountryInfoOpen({ isOpen: true });
