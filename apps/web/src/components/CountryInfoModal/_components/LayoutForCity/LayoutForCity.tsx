@@ -24,7 +24,7 @@ export const LayoutForCity: React.FC = () => {
       fetch(`/api/city_info/${targetLocation}`)
         .then((res) => res.json())
         .then((data) => {
-          setCityData(data.total);
+          setCityData(data.data);
         });
     } catch (error) {
       console.error(error, '도시 정보 데이터를 불러오는 데 실패하였습니다.🥲');

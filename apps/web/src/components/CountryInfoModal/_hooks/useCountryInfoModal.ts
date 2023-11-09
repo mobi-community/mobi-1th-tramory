@@ -23,6 +23,7 @@ export const useCountryInfoModal = (target?: string) => {
   const [cityData, setCityData] = useAtom(cityDataAtom);
 
   const [isCountry, setIsCountry] = useAtom(isCountryAtom);
+
   const openCountryInfoModal = (target: string, isCountry?: boolean) => {
     if (isCountry) setIsCountry(isCountry);
     console.log('모달모달', target);
@@ -34,6 +35,7 @@ export const useCountryInfoModal = (target?: string) => {
     isCountryInfoOpen,
     targetLocation,
     setTargetLocation,
+    setIsCountryInfoOpen,
     openCountryInfoModal,
     closeCountryInfoModal: () => {
       setIsCountryInfoOpen({ isOpen: false });
@@ -46,5 +48,6 @@ export const useCountryInfoModal = (target?: string) => {
     setCountryData,
     setCityData,
     isCountry,
+    setIsCountry,
   };
 };

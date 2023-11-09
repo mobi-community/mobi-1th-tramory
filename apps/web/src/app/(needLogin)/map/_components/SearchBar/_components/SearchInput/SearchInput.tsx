@@ -25,7 +25,8 @@ export const SearchInput: React.FC = () => {
     closeSearchModal,
   } = useMapSearchBar();
 
-  const { openCountryInfoModal } = useCountryInfoModal();
+  const { setTargetLocation, setIsCountryInfoOpen, setIsCountry } =
+    useCountryInfoModal(locationKeyword);
 
   const router = useRouter();
 
@@ -68,17 +69,22 @@ export const SearchInput: React.FC = () => {
       <form
         className='flex flex-col justify-center'
         onSubmit={handleSubmit((data: { searchKeyword: string }) => {
-          if (isRangeCountry) {
-            const isCountry = !data.searchKeyword.includes(',');
+          if (data.searchKeyword) {
+            if (isRangeCountry) {
+              const isCountry = !data.searchKeyword.includes(',');
 
-            const location = isCountry
-              ? data.searchKeyword
-              : data.searchKeyword.split(',')[0];
+              const location = isCountry
+                ? data.searchKeyword
+                : data.searchKeyword.split(',')[0];
 
-            closeSearchModal();
-            openCountryInfoModal(location, isCountry);
-          } else {
-            router.push(`/story_community?keyword=${data.searchKeyword}`);
+              // openCountryInfoModal(location, isCountry);
+              setIsCountry(isCountry);
+              setTargetLocation(location);
+              setIsCountryInfoOpen({ isOpen: true });
+              closeSearchModal();
+            } else {
+              router.push(`/story_community?keyword=${data.searchKeyword}`);
+            }
           }
         })}
       >

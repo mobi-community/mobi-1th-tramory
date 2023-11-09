@@ -11,7 +11,6 @@ import {
   LayoutForCountry,
   useCountryInfoModal,
 } from '@/components';
-import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 import { MapPageConfig } from '@/constants';
 import { MapAtom, MapPageAtom } from '@/store';
 import { userInfoAtom } from '@/store/userInfo.atoms';
@@ -69,7 +68,6 @@ const MapPage: React.FC = () => {
           {isCountry ? <LayoutForCountry /> : <LayoutForCity />}
         </CountryInfoModal>
         <AnimatedArrow />
-        <FloatingMenu />
       </div>
     );
   return null;
