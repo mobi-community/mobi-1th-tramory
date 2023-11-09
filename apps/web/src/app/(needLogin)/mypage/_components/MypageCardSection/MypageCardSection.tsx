@@ -22,9 +22,9 @@ export const MypageCardSection: React.FC<MypageCardSectionProps> = ({
   const isVisitedCountries = title === '방문 국가';
 
   return (
-    <div className='flex w-[380px] flex-col items-start justify-center'>
-      <div className='flex w-full justify-between'>
-        <div className='text-[15px] font-bold'>{title}</div>
+    <div className='flex w-[420px] flex-col items-start justify-center'>
+      <div className='flex w-full items-center justify-between'>
+        <div className='text-[18px] font-bold'>{title}</div>
         <Link
           href={`${
             isVisitedCountries
@@ -32,7 +32,7 @@ export const MypageCardSection: React.FC<MypageCardSectionProps> = ({
               : '/mypage/badge'
           }`}
         >
-          <div className='cursor-pointer text-[12px]'>전체보기</div>
+          <div className='cursor-pointer text-[14px]'>전체보기</div>
         </Link>
       </div>
       <div className='border-primaryGray-300 mb-6 w-full border-t-[1px]'></div>
@@ -48,7 +48,7 @@ export const MypageCardSection: React.FC<MypageCardSectionProps> = ({
           arrow_back_ios
         </span>
         <div className='flex items-center justify-center'>
-          <div className='flex items-center justify-center transition-all duration-300'>
+          <div className='flex items-center justify-center gap-2 transition-all duration-300'>
             {visibleImages.map((icon, index) => (
               <div
                 key={index}

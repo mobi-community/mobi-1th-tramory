@@ -14,8 +14,8 @@ export const BestTravelStories = () => {
   };
 
   return (
-    <div className='mb-10 mt-10 flex w-full flex-col items-start justify-center'>
-      <div className='text-[15px] font-bold'>인기 스토리</div>
+    <div className='mt-12 flex w-full flex-col items-start justify-center'>
+      <div className='text-[18px] font-bold'>인기 스토리</div>
       <div className='border-primaryGray-300 mb-6 w-full flex-wrap border-t-[1px]'></div>
       <div className='flex flex-wrap gap-12'>
         {bestRecordStories ? (

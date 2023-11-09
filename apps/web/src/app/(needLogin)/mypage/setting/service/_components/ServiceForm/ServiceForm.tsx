@@ -27,6 +27,7 @@ export const ServiceForm = () => {
     marginLeft: '0',
     border: '1px solid #e5e7eb',
     borderRadius: '4px',
+    fontSize: '14px',
   };
 
   /**

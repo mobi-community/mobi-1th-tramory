@@ -56,7 +56,7 @@ export const ViewStory = () => {
             />
           ))}
         </div>
-        <div className='my-8 flex justify-center'>
+        <div className='mb-8 mt-20 flex justify-center'>
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}

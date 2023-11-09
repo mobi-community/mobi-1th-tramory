@@ -39,9 +39,9 @@ const VisitedContriesPage = () => {
   }, [setVisitedContinent]);
 
   return (
-    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
+    <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
       <MyPageContainer title={navTitle}>
-        <div className='my-12 px-12'>
+        <div className='mb-20 mt-12 px-12'>
           {bannerData?.map((data, index) => (
             <div key={index} className='flex flex-col'>
               <FlagInfo data={data} id={index} />
