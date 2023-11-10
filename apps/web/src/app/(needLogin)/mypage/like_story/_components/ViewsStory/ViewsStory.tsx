@@ -2,8 +2,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 import { CommonStory, Pagination } from '@/components';
+import { usePagination } from '@/hooks/usePagination';
 
-import { usePagination } from '../../_hooks/usePagination';
 import { useViewStory } from '../../_hooks/useViewStory';
 
 export const ViewStory = () => {
