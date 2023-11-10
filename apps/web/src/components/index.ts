@@ -12,4 +12,5 @@ export * from './Pagination/Pagination';
 export * from './PlaceInfo/PlaceInfo';
 export * from './Profile';
 export * from './Tab/Tab';
+export * from './ValidatorCalendar/ValiedatorCaleander';
 export * from './ValidatorInput/ValidatorInput';
