@@ -59,7 +59,7 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
                   itemsPerPage={itemsPerPage}
                   currentPage={currentPage}
                 />
-                <div className='absolute mt-[450px]'>
+                <div className='absolute mt-[470px]'>
                   <Pagination
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}

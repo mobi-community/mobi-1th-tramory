@@ -18,7 +18,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
   currentPage,
 }) => {
   const [date, setDate] = useAtom(travelDateAtom);
-  const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
+  const [, setSelectedDateId] = useAtom(selectedDateIdAtom);
 
   const startIdx = currentPage * itemsPerPage;
   const endIdx = (currentPage + 1) * itemsPerPage;
@@ -53,12 +53,8 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
               {date.slice(startIdx, endIdx).map((date) => (
                 <div
                   key={date.id}
-                  className={` m-3 flex h-[90px] w-[320px] cursor-pointer  rounded-sm  bg-white
-                  ${
-                    selectedDateId == date.id
-                      ? 'border-primaryBlue-400 border'
-                      : 'border-none'
-                  }`}
+                  className={` hover:border-primaryBlue-700 m-3 flex h-[90px] w-[320px]  cursor-pointer  rounded-sm border bg-white 
+                  `}
                   onClick={() => {
                     setSelectedDateId(date.id);
                     field.onChange(date.dates);
@@ -79,22 +75,14 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                   </div>
                   <div>
                     <div
-                      className={`bg-primaryBlue-100  ml-[10px] mt-[-23px] h-[40px] w-[40px] rounded-[50%]                   ${
-                        selectedDateId == date.id
-                          ? 'border-primaryBlue-300 border-b'
-                          : 'border-none'
-                      }`}
+                      className={`bg-primaryBlue-100  hover:border-primaryBlue-300 ml-[10px] mt-[-23px] h-[40px] w-[40px] rounded-[50%] border-b`}
                     ></div>
                     <div className='text-primaryGray-300 ml-[14px] mt-[5px]  flex w-[32px] justify-center text-[30px]'>
                       |
                     </div>
                     <div
-                      className={` bg-primaryBlue-100 ml-[10px] mt-[5px] h-[40px] w-[40px] rounded-[50%]
-                      ${
-                        selectedDateId == date.id
-                          ? 'border-primaryBlue-300 border-t'
-                          : 'border-none'
-                      }`}
+                      className={` bg-primaryBlue-100 hover:border-primaryBlue-300 ml-[10px] mt-[5px] h-[40px] w-[40px] rounded-[50%] border-t
+                      `}
                     ></div>
                   </div>
                   <div className='ml-[20px] flex-col  border-black'>
@@ -112,7 +100,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                 </div>
               ))}
               {error && (
-                <div className='absolute mb-1 ml-[0px]  mt-2 text-[14px] text-red-500'>
+                <div className='absolute mb-1 ml-[0px]  mt-[230px] text-[14px] text-red-500'>
                   {error.message}
                 </div>
               )}
