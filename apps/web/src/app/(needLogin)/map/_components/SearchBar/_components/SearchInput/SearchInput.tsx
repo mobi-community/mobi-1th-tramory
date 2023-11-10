@@ -22,7 +22,7 @@ export const SearchInput: React.FC = () => {
     storyKeyword,
     setStoryKeyword,
     setKeywordData,
-    closeSearchModal,
+    handleSubmitCountry,
   } = useMapSearchBar();
 
   const { setTargetLocation, setIsCountryInfoOpen, setIsCountry } =
@@ -71,16 +71,12 @@ export const SearchInput: React.FC = () => {
         onSubmit={handleSubmit((data: { searchKeyword: string }) => {
           if (data.searchKeyword) {
             if (isRangeCountry) {
-              const isCountry = !data.searchKeyword.includes(',');
-
-              const location = isCountry
-                ? data.searchKeyword
-                : data.searchKeyword.split(',')[0];
-
-              setIsCountry(isCountry);
-              setTargetLocation(location);
-              setIsCountryInfoOpen({ isOpen: true });
-              closeSearchModal();
+              handleSubmitCountry({
+                searchKeyword: data.searchKeyword,
+                setIsCountry,
+                setTargetLocation,
+                setIsCountryInfoOpen,
+              });
             } else {
               router.push(`/story_community?keyword=${data.searchKeyword}`);
             }
