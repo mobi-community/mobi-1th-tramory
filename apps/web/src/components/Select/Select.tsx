@@ -1,6 +1,4 @@
-import { atom, useAtom } from 'jotai';
-import { useEffect } from 'react';
-
+import { useSelect } from './_hooks/useSelect';
 import {
   getMypageCategoryClasses,
   getOneOptionClasses,
@@ -9,9 +7,6 @@ import {
 } from './Select.styles';
 import type { SelectType } from './Select.types';
 
-const isToggleAtom = atom(false);
-const valueAtom = atom('');
-
 export const Select = ({
   options,
   onChange,
@@ -19,27 +14,13 @@ export const Select = ({
   variant = 'service',
   value,
 }: SelectType) => {
-  const [currentValue, setCurrentValue] = useAtom(valueAtom);
-  const [isToggle, setIsToggle] = useAtom(isToggleAtom);
+  const { isToggle, currentValue, handleOpenOptions, handleChangeValue } =
+    useSelect(value, onChange);
+
   const selectClasses = getSelectClasses(variant, isToggle);
   const optionClasses = getOptionClasses(variant);
   const onlyMypageCategory = getMypageCategoryClasses(variant);
   const oneOptionClasses = getOneOptionClasses(variant);
-
-  useEffect(() => {
-    setCurrentValue(value);
-  }, [setCurrentValue, value]);
-
-  const handleOpenOptions = () => {
-    setIsToggle((prev) => !prev);
-    if (isToggle) return setIsToggle(false);
-  };
-
-  const handleChangeValue = (value: string) => {
-    setCurrentValue(value);
-    if (onChange) onChange(value); // 선택한 값으로 현재 값을 업데이트
-    setIsToggle(false);
-  };
 
   return (
     <div className='relative' onClick={handleOpenOptions}>
