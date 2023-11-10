@@ -1,4 +1,5 @@
 'use client ';
+
 import React, { forwardRef, Ref } from 'react';
 
 const CustomInput = forwardRef(
@@ -11,9 +12,9 @@ const CustomInput = forwardRef(
         type='text'
         value={value}
         readOnly
-        className='ml-12 mt-1 h-8 w-[403px] rounded-sm border border-gray-300 pl-1.5 text-sm text-xs focus:outline-none'
+        className='ml-6 mt-1 h-8 w-[404px] rounded-sm border border-gray-300 pl-1.5 text-sm text-xs focus:outline-none'
       />
-      <div className='absolute ml-[427px] mt-[11px] cursor-pointer'>
+      <div className='absolute ml-[400px] mt-[11px] cursor-pointer'>
         <span
           className='material-icons-outlined '
           onClick={onClick}

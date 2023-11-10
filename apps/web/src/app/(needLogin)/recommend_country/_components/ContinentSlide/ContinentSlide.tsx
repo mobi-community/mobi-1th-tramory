@@ -11,7 +11,6 @@ register();
 import { useAtomValue } from 'jotai';
 
 import { CountryInfoModal, LayoutForCountry } from '@/components';
-import SimpleRecordModal from '@/components/SimpleRecordModal/SimpleRecordModal';
 import type { recomContinentType } from '@/constants';
 import { targetLocationAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
@@ -62,7 +61,6 @@ export const ContinentSlide: React.FC<{
       <CountryInfoModal target={targetLocation}>
         <LayoutForCountry />
       </CountryInfoModal>
-      <SimpleRecordModal />
     </div>
   );
 };

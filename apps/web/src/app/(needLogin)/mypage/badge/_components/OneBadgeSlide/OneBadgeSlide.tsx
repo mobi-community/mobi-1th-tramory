@@ -8,11 +8,11 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useIndiviualToggle } from '@/hooks/useIndiviualToggle';
 import { isIndividualOneBadgeToggleAtom } from '@/store';
 
 import { HowToNotification } from '../HowToNotification';
@@ -20,9 +20,11 @@ import type { OneBadgeSlideProps } from './OneBadgeSlide.types';
 
 export const OneBadgeSlide = ({ item, id }: OneBadgeSlideProps) => {
   const { title, description, info } = item;
-  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
-    isIndividualOneBadgeToggleAtom(id)
-  );
+
+  const {
+    toggleState: isIndividualToggle,
+    setToggleState: setIsIndividualToggle,
+  } = useIndiviualToggle(isIndividualOneBadgeToggleAtom, id);
 
   return (
     <div className='mb-12 pr-12'>
