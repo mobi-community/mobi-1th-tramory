@@ -1,18 +1,13 @@
 'use client';
-import { useAtom } from 'jotai';
 import { Button } from 'ui';
-
-import { isAccountPrivacyAtom } from '@/store/mypage.atoms';
 
 import { SettingContainer } from '../_components';
 import { ModifyForm } from './_components/ModifyForm/ModifyForm';
+import { useSettingAccountPage } from './_hooks/useSettingAccountPage';
 
 const SettingAccountPage = () => {
-  const [isAccountPrivacy, setIsAccountPrivacy] = useAtom(isAccountPrivacyAtom);
-
-  const handleChangeAccountPrivacy = (value: boolean) => {
-    setIsAccountPrivacy(value);
-  };
+  const { isAccountPrivacy, setIsAccountPrivacy, handleChangeAccountPrivacy } =
+    useSettingAccountPage();
 
   const patchAccountPrivacy = async () => {
     try {

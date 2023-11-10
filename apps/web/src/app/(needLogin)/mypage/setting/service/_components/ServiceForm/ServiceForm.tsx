@@ -1,39 +1,16 @@
 'use client';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
 import { Button, Input } from 'ui';
 
 import { serviceOption } from '@/constants/select_options.constants';
 
-import { SERVICE_SCHEMA } from '../../_schema/service.schema';
+import { useServiceForm } from '../../_hooks/useServiceForm';
 import { ServiceValidator } from '../ServiceValidator/ServiceValidator';
 import { ServiceValidateType } from '../ServiceValidator/ServiceValidator.types';
+import { defaultStyle, justifyBetween } from './style';
 
 export const ServiceForm = () => {
-  const { handleSubmit, control } = useForm<ServiceValidateType>({
-    mode: 'onChange',
-    resolver: yupResolver(SERVICE_SCHEMA),
-    defaultValues: { title: '', description: '' },
-  });
-
-  const fileInputRef = useRef(null);
-
-  const onButtonClick = () => {
-    fileInputRef.current.click();
-  };
-  const defaultStyle = {
-    width: '700px',
-    marginLeft: '0',
-    border: '1px solid #e5e7eb',
-    borderRadius: '4px',
-    fontSize: '14px',
-  };
-
-  /**
-   * @todo common style 리팩터링해야할 것 같아요
-   */
-  const justifyBetween = 'flex justify-between';
+  const { handleSubmit, control, fileInputRef, onButtonClick } =
+    useServiceForm();
 
   const onSubmit = async (data: ServiceValidateType) => {
     alert(
