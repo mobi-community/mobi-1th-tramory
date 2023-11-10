@@ -37,6 +37,11 @@ export const LoginForm = () => {
     }
   };
 
+  const CustomStyle = {
+    width: '290px',
+    marginLeft: '0',
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <ValidatorInput
@@ -45,7 +50,7 @@ export const LoginForm = () => {
         name={'email'}
         type={'text'}
         control={control}
-        style={{ width: '308px', marginLeft: '0' }}
+        style={CustomStyle}
         placeholder='예)example@gmail.com'
       />
       <ValidatorInput
@@ -54,7 +59,7 @@ export const LoginForm = () => {
         name={'password'}
         type={'password'}
         control={control}
-        style={{ width: '308px', marginLeft: '0' }}
+        style={CustomStyle}
         placeholder='영문, 숫자, 특수기호를 포함한 8자 이상으로 설정해주세요'
       />
       <Button

@@ -1,7 +1,7 @@
 'use client';
-import { useAtom } from 'jotai';
 import Image from 'next/image';
 
+import { useIndiviualToggle } from '@/hooks/useIndiviualToggle';
 import { isIndividualFlagToggleAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
@@ -9,13 +9,10 @@ import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
 import type { FlagInfoDataProps } from './FlagInfo.types';
 
 export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
-  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
-    isIndividualFlagToggleAtom(id)
+  const { toggleState: isIndividualToggle, handleToggle } = useIndiviualToggle(
+    isIndividualFlagToggleAtom,
+    id
   );
-
-  const handleToggleFlags = () => {
-    setIsIndividualToggle((prev) => !prev);
-  };
 
   return (
     <>
@@ -24,7 +21,7 @@ export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
           <h1 className='mr-7 text-[22px]'>{data.en}</h1>
           <h1>{data.ko}</h1>
         </div>
-        <p onClick={handleToggleFlags} className='cursor-pointer'>
+        <p onClick={handleToggle} className='cursor-pointer'>
           {materialIcon({
             iconName: isIndividualToggle ? 'expand_less' : 'expand_more',
             size: 32,

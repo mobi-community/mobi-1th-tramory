@@ -69,7 +69,7 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
   );
 
   const Content = (
-    <div className='mt-[20px] flex pl-[5px]'>
+    <div className='mt-[20px] flex justify-between pl-[5px]'>
       <div className='mr-[20px]'>
         <div className=' text-[15px] font-bold'>{content.title}</div>
         <div className=' text-primaryGray-400 mt-[10px] h-[70px] w-[180px] overflow-hidden text-ellipsis text-[12px]'>

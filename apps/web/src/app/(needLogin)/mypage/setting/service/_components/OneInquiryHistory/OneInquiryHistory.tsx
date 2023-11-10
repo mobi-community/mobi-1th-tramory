@@ -1,24 +1,21 @@
-import { useAtom } from 'jotai';
 import { Button } from 'ui';
 
+import { useIndiviualToggle } from '@/hooks/useIndiviualToggle';
 import { isIndividualToggleAtom } from '@/store';
 
 import type { InquiryDataProps } from './OneInquiryHistory.types';
 
 export const OneInquiryHistory = ({ data }: InquiryDataProps) => {
-  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
-    isIndividualToggleAtom(data.id)
+  const { toggleState: isIndividualToggle, handleToggle } = useIndiviualToggle(
+    isIndividualToggleAtom,
+    data.id
   );
-
-  const handleToggleOneInquiryHistory = () => {
-    setIsIndividualToggle((prev) => !prev);
-  };
 
   return (
     <div className='flex flex-col justify-between'>
       <div className='bg-primaryGray-300 h-px w-full'></div>
       <div
-        onClick={handleToggleOneInquiryHistory}
+        onClick={handleToggle}
         className='flex cursor-pointer justify-between p-7'
       >
         <div className='flex items-center'>

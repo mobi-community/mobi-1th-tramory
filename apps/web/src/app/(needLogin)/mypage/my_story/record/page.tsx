@@ -40,10 +40,10 @@ const MyStoryRecordPage = () => {
   }, [setRecordStories]);
 
   return (
-    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
+    <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
-        <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
+        <div className='grid grid-cols-2 gap-8 px-12 pb-12 '>
           {recordStories.map((story) => (
             <CommonStory
               story={story}

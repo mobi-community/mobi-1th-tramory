@@ -1,17 +1,16 @@
-import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { CommonStory, Pagination } from '@/components';
-import { viewStoriesAtom } from '@/store/mypage.atoms';
+import { usePagination } from '@/hooks/usePagination';
+
+import { useViewStory } from '../../_hooks/useViewStory';
 
 export const ViewStory = () => {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage] = useState(4);
-  const startIdx = currentPage * itemsPerPage;
-  const endIdx = (currentPage + 1) * itemsPerPage;
-  const [viewStories, setViewStories] = useAtom(viewStoriesAtom);
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(4);
+  const { viewStories, setViewStories } = useViewStory();
 
   useEffect(() => {
     const fetchUserViewStories = async () => {
@@ -56,7 +55,7 @@ export const ViewStory = () => {
             />
           ))}
         </div>
-        <div className='my-8 flex justify-center'>
+        <div className='mb-8 mt-20 flex justify-center'>
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}

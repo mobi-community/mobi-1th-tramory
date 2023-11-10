@@ -41,7 +41,7 @@ const MyPageTabs = () => {
           </span>
           {isOneHowTo && <HowToNotification info={currentBadge.info} />}
         </div>
-        <div className='bg-primaryGray-200 mx-12 mb-12 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
+        <div className='bg-primaryGray-200 mx-12 mb-20 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
               <Image
