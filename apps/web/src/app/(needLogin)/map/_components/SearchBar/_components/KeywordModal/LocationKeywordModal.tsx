@@ -40,7 +40,7 @@ export const LocationKeywordModal: React.FC<modalProps> = ({ field }) => {
     </li>
   ));
 
-  if (isSearchModalOpen || locationKeyword)
+  if (isSearchModalOpen)
     return (
       <div className='no-scroll border-primaryGray-200 z-100 fixed z-[100] mt-5 max-h-[200px] w-[420px] overflow-y-scroll border bg-white drop-shadow-xl'>
         {locationKeyword && (

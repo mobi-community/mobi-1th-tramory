@@ -35,10 +35,12 @@ export const useMapSearchBar = () => {
 
     const location = isCountry ? searchKeyword : searchKeyword.split(',')[0];
 
+    console.log('submit', searchKeyword);
     setIsCountry(isCountry);
     setTargetLocation(location);
     setIsCountryInfoOpen({ isOpen: true });
     setLocationKeyword('');
+    // 모달 닫아줌
     setIsSearchModalOpen(false);
   };
 

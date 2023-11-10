@@ -92,6 +92,7 @@ export const SearchInput: React.FC = () => {
               <div className='relative flex w-[400px]'>
                 <input
                   {...field}
+                  value={isRangeCountry ? locationKeyword : storyKeyword}
                   onChange={(e) => {
                     field.onChange(e.target.value);
                     isRangeCountry

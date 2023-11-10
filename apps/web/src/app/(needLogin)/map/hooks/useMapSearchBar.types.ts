@@ -1,5 +1,5 @@
-import { SetStateAction } from 'jotai';
-import { RESET } from 'jotai/utils';
+import type { SetStateAction } from 'jotai';
+import type { RESET } from 'jotai/utils';
 
 type SetStateActionWithReset<Value> =
   | Value
