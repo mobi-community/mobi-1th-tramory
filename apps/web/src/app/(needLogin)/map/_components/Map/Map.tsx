@@ -52,13 +52,12 @@ export const Map: React.FC<MapProps> = ({
   }, [map, onClick]);
 
   return (
-    <>
-      <div ref={mapRef} id='map' style={MapPageConfig.wrapperStyle} />
+    <div ref={mapRef} id='map' style={MapPageConfig.wrapperStyle}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child))
           // @ts-ignore
           return React.cloneElement(child, { map });
       })}
-    </>
+    </div>
   );
 };
