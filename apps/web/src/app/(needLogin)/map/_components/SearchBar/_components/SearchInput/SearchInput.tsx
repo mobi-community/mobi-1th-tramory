@@ -135,6 +135,7 @@ export const SearchInput: React.FC = () => {
       }
       setFocusIndex((index) => index + 1);
       setAutoSearchKeyword(keywordData[focusIndex + 1].keyword);
+      targetKeywordHandler(keywordData[focusIndex + 1].keyword);
     },
     ArrowUp: () => {
       if (focusIndex === -1) {
@@ -149,6 +150,7 @@ export const SearchInput: React.FC = () => {
 
       setFocusIndex((index) => index - 1);
       setAutoSearchKeyword(keywordData[focusIndex - 1].keyword);
+      targetKeywordHandler(keywordData[focusIndex + 1].keyword);
     },
     Escape: () => {
       setAutoSearchKeyword('');
