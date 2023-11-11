@@ -7,4 +7,4 @@ export const PROTECTED_URL = [
   '/story_community',
 ];
 
-export const PROTECTED_URL_LOGIN = ['/login', '/landing', '/sign_up'];
+export const PROTECTED_URL_LOGIN = ['/login', '/sign_up'];
