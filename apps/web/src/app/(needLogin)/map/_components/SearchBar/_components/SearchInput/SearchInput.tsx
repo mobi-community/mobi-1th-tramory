@@ -50,12 +50,8 @@ export const SearchInput: React.FC = () => {
   const isKeyworlNotNull = locationKeyword.length || storyKeyword.length;
 
   const requestUrl = isRangeCountry
-    ? `/searchKeyword/location?inputValue=${
-        isAutoSearchMode ? autoSearchKeyword : locationKeyword
-      }`
-    : `/searchKeyword/stories?inputValue=${
-        isAutoSearchMode ? autoSearchKeyword : storyKeyword
-      }`;
+    ? `/searchKeyword/location?inputValue=${locationKeyword}`
+    : `/searchKeyword/stories?inputValue=${storyKeyword}`;
 
   const fetchKeywordList = async () => {
     if (isKeyworlNotNull)
@@ -85,6 +81,7 @@ export const SearchInput: React.FC = () => {
 
   const handleSubmitData = handleSubmit((data: { searchKeyword: string }) => {
     if (data.searchKeyword) {
+      console.log('data', data.searchKeyword);
       if (isRangeCountry) {
         handleSubmitCountry({
           searchKeyword: data.searchKeyword,
@@ -116,21 +113,10 @@ export const SearchInput: React.FC = () => {
     e: ChangeEvent<HTMLInputElement>,
     field: ControllerRenderProps<FieldValues, 'searchKeyword'>
   ) => {
-    if (isAutoSearchMode) {
-      field.onChange(e.target.value);
-
-      const enteredValue =
-        (e.nativeEvent as InputEvent).inputType === 'deleteContentBackward'
-          ? targetKeyword()
-          : (e.nativeEvent as InputEvent).data;
-
-      focusIndex >= 0 && setAutoSearchKeyword(targetKeyword + enteredValue);
-      setIsAutoSearchMode(false);
-      setFocusIndex(-1);
-      return;
-    }
-
+    field.onChange(e.target.value);
     targetKeywordHandler(e.target.value);
+    setIsAutoSearchMode(false);
+    setFocusIndex(-1);
   };
 
   const KeyEvent = {

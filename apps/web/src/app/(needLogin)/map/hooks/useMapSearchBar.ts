@@ -31,6 +31,8 @@ export const useMapSearchBar = () => {
     setTargetLocation,
     setIsCountryInfoOpen,
   }: submitFuncProps) => {
+    setIsAutoSearchMode(false);
+
     const isCountry = !searchKeyword.includes(',');
 
     const location = isCountry ? searchKeyword : searchKeyword.split(',')[0];
@@ -62,6 +64,7 @@ export const useMapSearchBar = () => {
           setIsSelectModalOpen(false);
           if (!locationKeyword) setKeywordData([]);
         }
+        if (prev) setIsAutoSearchMode(true);
         return !prev;
       }),
     openSearchModal: () => setIsSearchModalOpen(true),

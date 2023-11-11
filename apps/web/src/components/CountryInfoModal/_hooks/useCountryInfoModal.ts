@@ -39,6 +39,7 @@ export const useCountryInfoModal = (target?: string) => {
     openCountryInfoModal,
     closeCountryInfoModal: () => {
       setIsCountryInfoOpen({ isOpen: false });
+      setTargetLocation('');
     },
     openSimpleRecordModal: () => {
       setIsSimpleRecordModalOpen(true);
