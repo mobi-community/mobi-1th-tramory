@@ -1,5 +1,15 @@
 import { atom } from 'jotai';
 
+export interface suggestedLocationKeywordType {
+  id: number;
+  category: string;
+  keyword: string;
+}
+
+export interface suggestedStoryKeywordType {
+  keyword: string;
+}
+
 export const MapPageAtom = {
   isDarkMode: atom<boolean>(false),
   isSearchModalOpen: atom<boolean>(false),
@@ -7,5 +17,8 @@ export const MapPageAtom = {
   range: atom<string>('국가'),
   locationKeyword: atom<string>(''),
   storyKeyword: atom<string>(''),
-  keywordData: atom([]),
+  keywordData: atom<
+    suggestedLocationKeywordType[] | suggestedStoryKeywordType[]
+  >([]),
+  focusIndex: atom(-1),
 };

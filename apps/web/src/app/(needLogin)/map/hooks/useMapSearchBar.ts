@@ -44,6 +44,8 @@ export const useMapSearchBar = () => {
     setIsSearchModalOpen(false);
   };
 
+  const [focusIndex, setFocusIndex] = useAtom(MapPageAtom.focusIndex);
+
   return {
     isSearchModalOpen,
     isSelectModalOpen,
@@ -55,6 +57,7 @@ export const useMapSearchBar = () => {
         }
         return !prev;
       }),
+    openSearchModal: () => setIsSearchModalOpen(true),
     closeSearchModal: () => {
       setLocationKeyword('');
       setIsSearchModalOpen(false);
@@ -74,5 +77,7 @@ export const useMapSearchBar = () => {
     keywordData,
     setKeywordData,
     handleSubmitCountry,
+    focusIndex,
+    setFocusIndex,
   };
 };

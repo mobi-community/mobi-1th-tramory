@@ -24,7 +24,7 @@ export const StoryKeywordModal: React.FC<modalProps> = ({ field }) => {
         field.onChange(word.keyword);
       }}
     >
-      {word}
+      {word.keyword}
     </li>
   ));
 

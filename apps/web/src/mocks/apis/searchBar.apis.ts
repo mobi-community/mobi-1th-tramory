@@ -47,13 +47,13 @@ export const getStoriesKeyword = rest.get(
   '/searchKeyword/stories',
   (req, res, ctx) => {
     const mockKeywordList = [
-      'kei',
-      'zoey',
-      'heepy',
-      'natalie',
-      'jane',
-      '일본',
-      '유럽',
+      { keyword: 'kei' },
+      { keyword: 'zoey' },
+      { keyword: 'heepy' },
+      { keyword: 'natalie' },
+      { keyword: 'jane' },
+      { keyword: '일본' },
+      { keyword: '유럽' },
     ];
     const resoibseStatus = (
       status: number,
@@ -83,7 +83,9 @@ export const getStoriesKeyword = rest.get(
         ctx.json({
           success: true,
           message: '성공',
-          data: mockKeywordList.filter((word) => word.includes(inputValue)),
+          data: mockKeywordList.filter((word) =>
+            word.keyword.includes(inputValue)
+          ),
         })
       );
     }
