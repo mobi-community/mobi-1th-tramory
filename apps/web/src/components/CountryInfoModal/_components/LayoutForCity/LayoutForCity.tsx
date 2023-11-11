@@ -8,6 +8,7 @@ import { Button } from 'ui';
 import { CountryInfoConfig } from '@/constants';
 
 import { useCountryInfoModal } from '../../_hooks/useCountryInfoModal';
+import { LayoutForNull } from '../LayoutForNull/LayoutForNull';
 
 /*
     @ Todo
@@ -31,42 +32,41 @@ export const LayoutForCity: React.FC = () => {
     }
   }, [targetLocation, setCityData]);
 
-  if (cityData)
-    return (
-      <div className='m-auto w-[90%] items-center text-center'>
+  return cityData ? (
+    <div className='m-auto w-[90%] items-center text-center'>
+      <div>
+        <div className='text-base font-medium'>
+          {cityData.countryEng}, {cityData.cityEng}
+        </div>
+        <div className='mb-[10px] text-[24px] font-bold'>
+          {cityData.countryKor}, {cityData.cityKor}
+        </div>
         <div>
-          <div className='text-base font-medium'>
-            {cityData.countryEng}, {cityData.cityEng}
-          </div>
-          <div className='mb-[10px] text-[24px] font-bold'>
-            {cityData.countryKor}, {cityData.cityKor}
-          </div>
-          <div>
-            <Image
-              src={cityData.flagImage}
-              width={120}
-              height={80}
-              alt='국기 이미지'
-              className='m-auto'
-            />
-          </div>
+          <Image
+            src={cityData.flagImage}
+            width={120}
+            height={80}
+            alt='국기 이미지'
+            className='m-auto'
+          />
         </div>
-        <div className='bg-primaryGray-200 m-auto my-[15px] h-[150px]'>
-          지도
-        </div>
-        <Link
-          href={{
-            pathname: '/story_community',
-            query: { keyword: cityData.countryKor },
-          }}
-        >
-          <Button className='font-bold'>
-            <span className='text-primaryYellow mr-[5px]'>
-              {cityData.countryKor}
-            </span>{' '}
-            {text.community}
-          </Button>
-        </Link>
       </div>
-    );
+      <div className='bg-primaryGray-200 m-auto my-[15px] h-[150px]'>지도</div>
+      <Link
+        href={{
+          pathname: '/story_community',
+          query: { keyword: cityData.countryKor },
+        }}
+      >
+        <Button className='font-bold'>
+          <span className='text-primaryYellow mr-[5px]'>
+            {cityData.countryKor}
+          </span>{' '}
+          {text.community}
+        </Button>
+      </Link>
+    </div>
+  ) : (
+    <LayoutForNull />
+  );
 };

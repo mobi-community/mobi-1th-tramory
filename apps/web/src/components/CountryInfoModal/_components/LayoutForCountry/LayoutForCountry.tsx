@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'ui';
 
 import { CountryInfoConfig } from '@/constants/countryInfo.constants';
@@ -10,17 +10,25 @@ import { CountryInfoConfig } from '@/constants/countryInfo.constants';
 import { useCountryInfoModal } from '../../_hooks/useCountryInfoModal';
 import type { CountryInfoType } from '../../CountryInfoModal.types';
 import { getContinentStamp } from '../../utils/getContinentStamp';
+import { LayoutForNull } from '../LayoutForNull/LayoutForNull';
 
 export const LayoutForCountry: React.FC = () => {
   const { targetLocation, countryData, setCountryData } = useCountryInfoModal();
   const { text } = CountryInfoConfig;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     try {
       fetch(`/api/country_info/${targetLocation}`)
-        .then((res) => res.json())
+        .then((res) => {
+          setIsLoading(true);
+          return res.json();
+        })
         .then((data) => {
+          console.log(data);
           setCountryData(data.data);
+          setIsLoading(false);
         });
     } catch (error) {
       console.error(error, '국가 정보 데이터를 불러오는 데 실패하였습니다.🥲');
@@ -73,62 +81,60 @@ export const LayoutForCountry: React.FC = () => {
     </div>
   );
 
-  return (
+  if (isLoading) return <div>로딩 중입니다.</div>;
+
+  return countryData ? (
     <div className='m-auto w-[90%] items-center'>
-      {countryData?.travelHistory ? (
-        <div>
-          <div className='ml-[10px]'>
-            <div className='text-base font-medium'>
-              {countryData.countryEng}
-            </div>
-            <div className='text-[24px] font-bold'>
-              {countryData.countryKor}
-            </div>
+      <div>
+        <div className='ml-[10px]'>
+          <div className='text-base font-medium'>{countryData.countryEng}</div>
+          <div className='text-[24px] font-bold'>{countryData.countryKor}</div>
+        </div>
+        <div className='m-auto mt-[13px] flex justify-between'>
+          <div>
+            <Image
+              src={countryData.flagImage}
+              width={120}
+              height={80}
+              alt='국기 이미지'
+            />
           </div>
-          <div className='m-auto mt-[13px] flex justify-between'>
-            <div>
-              <Image
-                src={countryData.flagImage}
-                width={120}
-                height={80}
-                alt='국기 이미지'
-              />
+          <div
+            className={`green-scroll w-[180px] overflow-x-hidden overflow-y-${
+              countryData.travelHistory && countryData.travelHistory.length
+                ? 'scroll'
+                : 'hidden'
+            } bg-white p-3 py-0`}
+          >
+            <div className='mb-[3px] text-[14px] font-bold'>
+              {text.passport}
             </div>
-            <div
-              className={`green-scroll w-[180px] overflow-x-hidden overflow-y-${
-                countryData.travelHistory.length ? 'scroll' : 'hidden'
-              } bg-white p-3 py-0`}
-            >
-              <div className='mb-[3px] text-[14px] font-bold'>
-                {text.passport}
-              </div>
-              {countryData.travelHistory.length
-                ? haveHistory(countryData)
-                : notHaveHistory}
-            </div>
-          </div>
-          <div className='bg-primaryGray-200 m-auto my-[15px] h-[150px]'>
-            지도
-          </div>
-          <div className='mb-[10px] text-center'>
-            <Link
-              href={{
-                pathname: '/story_community',
-                query: { keyword: countryData.countryKor },
-              }}
-            >
-              <Button className='font-bold'>
-                <span className='text-primaryYellow mr-[5px]'>
-                  {countryData.countryKor}
-                </span>{' '}
-                {text.community}
-              </Button>
-            </Link>
+            {countryData.travelHistory && countryData.travelHistory.length
+              ? haveHistory(countryData)
+              : notHaveHistory}
           </div>
         </div>
-      ) : (
-        <div>데이터를 불러오는 중입니다.</div>
-      )}
+        <div className='bg-primaryGray-200 m-auto my-[15px] h-[150px]'>
+          지도
+        </div>
+        <div className='mb-[10px] text-center'>
+          <Link
+            href={{
+              pathname: '/story_community',
+              query: { keyword: countryData.countryKor },
+            }}
+          >
+            <Button className='font-bold'>
+              <span className='text-primaryYellow mr-[5px]'>
+                {countryData.countryKor}
+              </span>{' '}
+              {text.community}
+            </Button>
+          </Link>
+        </div>
+      </div>
     </div>
+  ) : (
+    <LayoutForNull />
   );
 };

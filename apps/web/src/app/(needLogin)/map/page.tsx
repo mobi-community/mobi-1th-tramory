@@ -7,9 +7,9 @@ import React, { useEffect } from 'react';
 
 import {
   CountryInfoModal,
-  LayoutForCity,
+  // LayoutForCity,
   LayoutForCountry,
-  useCountryInfoModal,
+  // useCountryInfoModal,
 } from '@/components';
 import { MapPageConfig } from '@/constants';
 import { MapAtom, MapPageAtom } from '@/store';
@@ -45,7 +45,7 @@ const MapPage: React.FC = () => {
   // const editedLocation = clicks.map((latLng) => latLng.toJSON());
 
   const { locationKeyword } = useMapSearchBar();
-  const { isCountry } = useCountryInfoModal();
+  // const { isCountry } = useCountryInfoModal();
 
   if (apiKey)
     return (
@@ -65,7 +65,8 @@ const MapPage: React.FC = () => {
           </Map>
         </Wrapper>
         <CountryInfoModal target={locationKeyword}>
-          {isCountry ? <LayoutForCountry /> : <LayoutForCity />}
+          {/* {isCountry ? <LayoutForCountry /> : <LayoutForCity />} */}
+          <LayoutForCountry />
         </CountryInfoModal>
         <AnimatedArrow />
       </div>
