@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import materialIcon from '@/utils/materialIcon';
+
 import fakeImage from '../../_mocks/fake-profile-image.png';
 import type { UserProfileSectionProps } from './UserProfileSection.types';
 
@@ -11,29 +13,49 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   targetStory,
 }) => {
   const { user, content } = targetStory;
+
   const formattedDate = content.date.split('T')[0];
+
+  const ReactionBox = (category: string, value: number) => (
+    <div className='border-primaryGray-300 ml-[5px] flex h-[24px] min-w-[60px] cursor-pointer items-center justify-center rounded-[20px] border p-[3px]'>
+      {materialIcon({
+        iconName: category === 'liked' ? 'favorite' : 'visibility',
+        style: `mt-[4px] mr-[5px] ${
+          category === 'liked' ? 'text-primaryYellow' : 'text-primaryGray-300'
+        }`,
+        size: 10,
+      })}
+      <div className='text-primaryGray-300 text-[12px]'>{value}</div>
+    </div>
+  );
 
   if (targetStory) {
     return (
-      <div className='flex w-full flex-col justify-between'>
+      <div className='mb-[20px] flex w-full flex-col justify-between'>
         <div className='flex w-full items-center justify-between'>
           <div className='text-[24px] font-bold'>{content.title}</div>
           <div className=' text-primaryGray-400 text-[14px]'>
             {formattedDate}
           </div>
         </div>
-        <Link
-          className='mt-3 flex w-full cursor-pointer items-center justify-start gap-3'
-          href={'/otherspage?tab=1'}
-        >
-          <div
-            style={{ boxShadow: '0 0 3px rgba(0, 0, 0, 0.15)' }}
-            className='w-[35px] rounded-full '
+        <div className='flex justify-between'>
+          <Link
+            className='mt-3 flex w-full cursor-pointer items-center justify-start gap-3'
+            href={'/otherspage?tab=1'}
           >
-            <Image src={fakeImage} alt='fakeProfile' width={35} height={35} />
+            <div
+              style={{ boxShadow: '0 0 3px rgba(0, 0, 0, 0.15)' }}
+              className='w-[35px] rounded-full '
+            >
+              <Image src={fakeImage} alt='fakeProfile' width={35} height={35} />
+            </div>
+            <div className=' font-semibold'>{user.userId}</div>
+          </Link>
+          <div className='flex pt-[25px]'>
+            {ReactionBox('liked', content.liked)}
+            {ReactionBox('viewed', content.viewed)}
           </div>
-          <div className=' font-semibold'>{user.userId}</div>
-        </Link>
+        </div>
       </div>
     );
   } else {
