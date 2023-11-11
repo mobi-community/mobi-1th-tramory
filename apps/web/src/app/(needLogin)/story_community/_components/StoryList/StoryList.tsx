@@ -82,7 +82,7 @@ export const StoryList: React.FC = () => {
           currentPage={storyPage}
           setCurrentPage={setStoryPage}
           itemsPerPage={10}
-          dataLength={100}
+          dataLength={filteredStoryArray?.length}
           bgColor='gray'
         />
       </div>
