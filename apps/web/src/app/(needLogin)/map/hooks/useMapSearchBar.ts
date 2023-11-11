@@ -40,11 +40,18 @@ export const useMapSearchBar = () => {
     setTargetLocation(location);
     setIsCountryInfoOpen({ isOpen: true });
     setLocationKeyword('');
+    setAutoSearchKeyword('');
     // 모달 닫아줌
     setIsSearchModalOpen(false);
   };
 
   const [focusIndex, setFocusIndex] = useAtom(MapPageAtom.focusIndex);
+  const [isAutoSearchMode, setIsAutoSearchMode] = useAtom(
+    MapPageAtom.isAutoSearchMode
+  );
+  const [autoSearchKeyword, setAutoSearchKeyword] = useAtom(
+    MapPageAtom.autoSearchKeyword
+  );
 
   return {
     isSearchModalOpen,
@@ -79,5 +86,9 @@ export const useMapSearchBar = () => {
     handleSubmitCountry,
     focusIndex,
     setFocusIndex,
+    isAutoSearchMode,
+    setIsAutoSearchMode,
+    autoSearchKeyword,
+    setAutoSearchKeyword,
   };
 };

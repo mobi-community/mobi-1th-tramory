@@ -20,5 +20,7 @@ export const MapPageAtom = {
   keywordData: atom<
     suggestedLocationKeywordType[] | suggestedStoryKeywordType[]
   >([]),
-  focusIndex: atom(-1),
+  focusIndex: atom<number>(-1),
+  isAutoSearchMode: atom<boolean>(false),
+  autoSearchKeyword: atom<string>(''),
 };

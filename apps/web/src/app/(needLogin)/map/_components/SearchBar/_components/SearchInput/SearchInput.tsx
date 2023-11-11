@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useRef } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
+// eslint-disable-next-line no-duplicate-imports
+import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import type {
   ControllerRenderProps,
@@ -21,7 +23,6 @@ export const SearchInput: React.FC = () => {
   const { handleSubmit, control } = useForm();
   const {
     searchRange,
-    isSearchModalOpen,
     handleSearchModal,
     openSearchModal,
     closeSearchModal,
@@ -35,6 +36,10 @@ export const SearchInput: React.FC = () => {
     handleSubmitCountry,
     focusIndex,
     setFocusIndex,
+    isAutoSearchMode,
+    setIsAutoSearchMode,
+    autoSearchKeyword,
+    setAutoSearchKeyword,
   } = useMapSearchBar();
 
   const { setTargetLocation, setIsCountryInfoOpen, setIsCountry } =
@@ -46,9 +51,11 @@ export const SearchInput: React.FC = () => {
 
   const requestUrl = isRangeCountry
     ? `/searchKeyword/location?inputValue=${
-        locationKeyword ? locationKeyword : ''
+        isAutoSearchMode ? autoSearchKeyword : locationKeyword
       }`
-    : `/searchKeyword/stories?inputValue=${storyKeyword ? storyKeyword : ''}`;
+    : `/searchKeyword/stories?inputValue=${
+        isAutoSearchMode ? autoSearchKeyword : storyKeyword
+      }`;
 
   const fetchKeywordList = async () => {
     if (isKeyworlNotNull)
@@ -94,8 +101,9 @@ export const SearchInput: React.FC = () => {
   const listRef = useRef(null);
   const focusRef = useRef(null);
 
-  const handleKeyUp = (e) => {
-    if (KeyEvent[e.key]) KeyEvent[e.key]();
+  const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (!!KeyEvent[e.key]) KeyEvent[e.key]();
+    else openSearchModal();
   };
 
   const targetKeyword = () =>
@@ -108,16 +116,16 @@ export const SearchInput: React.FC = () => {
     e: ChangeEvent<HTMLInputElement>,
     field: ControllerRenderProps<FieldValues, 'searchKeyword'>
   ) => {
-    if (isSearchModalOpen) {
+    if (isAutoSearchMode) {
       field.onChange(e.target.value);
 
       const enteredValue =
         (e.nativeEvent as InputEvent).inputType === 'deleteContentBackward'
-          ? ''
+          ? targetKeyword()
           : (e.nativeEvent as InputEvent).data;
 
-      focusIndex >= 0 && targetKeywordHandler(targetKeyword + enteredValue);
-      closeSearchModal();
+      focusIndex >= 0 && setAutoSearchKeyword(targetKeyword + enteredValue);
+      setIsAutoSearchMode(false);
       setFocusIndex(-1);
       return;
     }
@@ -133,33 +141,33 @@ export const SearchInput: React.FC = () => {
       if (targetKeyword().length === 0) {
         return;
       }
-      if (listRef.current.childElementCount === focusIndex + 1) {
-        setFocusIndex(() => 0);
+      if (focusIndex === keywordData.length - 1) {
         return;
       }
       if (focusIndex === -1) {
-        openSearchModal();
+        setIsAutoSearchMode(true);
       }
       setFocusIndex((index) => index + 1);
-      targetKeywordHandler(keywordData[focusIndex + 1].keyword);
+      setAutoSearchKeyword(keywordData[focusIndex + 1].keyword);
     },
     ArrowUp: () => {
       if (focusIndex === -1) {
         return;
       }
       if (focusIndex === 0) {
-        targetKeywordHandler('');
+        setAutoSearchKeyword('');
         setFocusIndex((index) => index - 1);
-        closeSearchModal();
+        setIsAutoSearchMode(false);
         return;
       }
 
       setFocusIndex((index) => index - 1);
-      targetKeywordHandler(keywordData[focusIndex - 1].keyword);
+      setAutoSearchKeyword(keywordData[focusIndex - 1].keyword);
     },
     Escape: () => {
-      targetKeywordHandler('');
+      setAutoSearchKeyword('');
       setFocusIndex(-1);
+      setIsAutoSearchMode(false);
       closeSearchModal();
     },
   };
@@ -179,7 +187,7 @@ export const SearchInput: React.FC = () => {
               <div className='relative flex w-[400px]'>
                 <input
                   {...field}
-                  value={isRangeCountry ? locationKeyword : storyKeyword}
+                  value={isAutoSearchMode ? autoSearchKeyword : targetKeyword()}
                   onChange={(e) => handleInputChange(e, field)}
                   onClick={handleSearchModal}
                   className='text-align-center text-s ml-12 w-[380px] focus:outline-none'

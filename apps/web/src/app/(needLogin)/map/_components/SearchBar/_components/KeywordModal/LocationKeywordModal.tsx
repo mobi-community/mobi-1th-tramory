@@ -17,6 +17,8 @@ export const LocationKeywordModal: React.FC<modalProps> = ({
     keywordData,
     setLocationKeyword,
     focusIndex,
+    isAutoSearchMode,
+    autoSearchKeyword,
   } = useMapSearchBar();
 
   const NoSuggestedWord = (
@@ -74,7 +76,7 @@ export const LocationKeywordModal: React.FC<modalProps> = ({
             key={locationKeyword}
             className='border-b-primaryGray-500 ml-2 mt-3 h-10 w-[400px] list-none items-center border-b-[1px] pl-1.5 text-left'
           >
-            {locationKeyword}
+            {isAutoSearchMode ? autoSearchKeyword : locationKeyword}
           </li>
         )}
         {keywordData.length ? HaveSuggestedWord : NoSuggestedWord}
