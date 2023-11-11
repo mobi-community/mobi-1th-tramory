@@ -34,7 +34,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
             <span className='text-lg font-bold leading-normal'>
               {props.item.placeName}
             </span>
-            <div className='space-x-3 text-xs'>
+            <div className='flex items-center space-x-3 text-xs'>
               <button
                 className='ml-3 rounded border px-3 py-1 leading-5'
                 onClick={() => props.onEditItemName(props.item.id)}
