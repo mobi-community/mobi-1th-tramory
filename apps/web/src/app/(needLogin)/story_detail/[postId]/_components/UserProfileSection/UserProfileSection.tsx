@@ -1,5 +1,6 @@
 'use client';
 
+import { atom, useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -9,25 +10,39 @@ import materialIcon from '@/utils/materialIcon';
 import fakeImage from '../../_mocks/fake-profile-image.png';
 import type { UserProfileSectionProps } from './UserProfileSection.types';
 
+const likedStatusAtom = atom(false);
+
 export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   targetStory,
 }) => {
-  const { user, content } = targetStory;
+  const { id, user, content } = targetStory;
 
   const formattedDate = content.date.split('T')[0];
 
-  const ReactionBox = (category: string, value: number) => (
-    <div className='border-primaryGray-300 ml-[5px] flex h-[24px] min-w-[60px] cursor-pointer items-center justify-center rounded-[20px] border p-[3px]'>
-      {materialIcon({
-        iconName: category === 'liked' ? 'favorite' : 'visibility',
-        style: `mt-[4px] mr-[5px] ${
-          category === 'liked' ? 'text-primaryYellow' : 'text-primaryGray-300'
-        }`,
-        size: 10,
-      })}
-      <div className='text-primaryGray-300 text-[12px]'>{value}</div>
-    </div>
-  );
+  const [likedStatus, setLikedStatus] = useAtom(likedStatusAtom);
+
+  const handlePostLiked = async () => {
+    try {
+      const response = await fetch('/story/detail/like', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ storyId: id, isLiked: likedStatus }),
+      });
+
+      if (response.ok) {
+        const res = await response.json();
+
+        console.log('res', res.data);
+        setLikedStatus(res.data.status);
+      } else {
+        throw new Error('오류');
+      }
+    } catch (error) {
+      console.error('fetch오류', error);
+    }
+  };
 
   if (targetStory) {
     return (
@@ -52,8 +67,31 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
             <div className=' font-semibold'>{user.userId}</div>
           </Link>
           <div className='flex pt-[25px]'>
-            {ReactionBox('liked', content.liked)}
-            {ReactionBox('viewed', content.viewed)}
+            <div
+              className='border-primaryGray-300 ml-[5px] flex h-[24px] min-w-[60px] cursor-pointer items-center justify-center rounded-[20px] border p-[3px]'
+              onClick={handlePostLiked}
+            >
+              {materialIcon({
+                iconName: 'favorite',
+                style: `mt-[4px] mr-[5px] text-${
+                  likedStatus ? 'primaryYellow' : 'primaryGray-300'
+                }`,
+                size: 10,
+              })}
+              <div className='text-primaryGray-300 text-[12px]'>
+                {content.liked}
+              </div>
+            </div>
+            <div className='border-primaryGray-300 ml-[5px] flex h-[24px] min-w-[60px] cursor-pointer items-center justify-center rounded-[20px] border p-[3px]'>
+              {materialIcon({
+                iconName: 'visibility',
+                style: 'mt-[4px] mr-[5px] text-primaryGray-300',
+                size: 10,
+              })}
+              <div className='text-primaryGray-300 text-[12px]'>
+                {content.viewed}
+              </div>
+            </div>
           </div>
         </div>
       </div>

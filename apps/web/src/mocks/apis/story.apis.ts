@@ -55,3 +55,54 @@ export const getStoryDetail = rest.get(
     );
   }
 );
+
+// 좋아요 반영
+export const postLikedStatus = rest.post(
+  '/story/detail/like',
+  async (req, res, ctx) => {
+    // req로 전달한 상품 id
+    let storyId: string;
+    let isLiked: boolean;
+
+    await req.json().then((data) => {
+      storyId = data.storyId;
+      isLiked = data.isLiked;
+    });
+
+    const newStoryList = [...recordStoriesMock];
+    const targetIdx = newStoryList.findIndex((story) => story.id === storyId);
+
+    const resoibseStatus = (
+      status: number,
+      success: boolean,
+      message: string
+    ) => {
+      return res(ctx.status(status), ctx.json({ success, message }));
+    };
+
+    // 스토리가 존재하는 경우
+    if (targetIdx !== -1) {
+      isLiked
+        ? (newStoryList[targetIdx].content.liked -= 1) // 좋아요가 눌러져있던 스토리면 취소하기
+        : (newStoryList[targetIdx].content.liked += 1); // 좋아요가 눌러져있지 않던 스토리면 추가하기
+    } else {
+      return resoibseStatus(401, false, '실패');
+    }
+
+    const data = {
+      status: !isLiked,
+      likedCnt: newStoryList[targetIdx].content.liked,
+    };
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        message: 'success',
+        data,
+      })
+    );
+  }
+);
+
+// 조회수 반영
