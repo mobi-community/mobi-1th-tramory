@@ -24,9 +24,7 @@ export const useDndList = () => {
     }
   };
 
-  const handleAddMemo = (itemId: number) => {
-    const memo = prompt('기록하기:');
-
+  const handleAddMemo = (itemId: number, memo: string) => {
     if (memo) {
       const updatedItems = items.map((item) =>
         item.id === itemId

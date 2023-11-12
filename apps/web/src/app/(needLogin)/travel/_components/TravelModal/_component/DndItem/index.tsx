@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useDndItem } from './useDnditem';
 import { DraggableItemProps } from './useDndItems.type';
 
@@ -10,9 +12,22 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
     handleCheckButtonClick,
   } = useDndItem(props);
 
-  // 리팩터 예정 const [isAddMemo, setIsAddMemo] = useState(false);
+  const [isAddMemo, setIsAddMemo] = useState(false);
+  const [newMemo, setNewMemo] = useState('');
 
   const isEditingDescription = editingMemoIndex === props.item.id;
+
+  const handleAddMemoClick = () => {
+    setIsAddMemo(true);
+  };
+
+  const handleSaveMemoClick = () => {
+    if (newMemo) {
+      props.onAddMemo(props.item.id, newMemo);
+      setIsAddMemo(false);
+      setNewMemo('');
+    }
+  };
 
   return (
     <div
@@ -50,7 +65,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               <span className='material-icons-outlined leading-5'>menu</span>
             </div>
           </div>
-          {props.item.description.length === 0 && (
+          {/* {props.item.description.length === 0 && (
             <button
               onClick={() => props.onAddMemo(props.item.id)}
               className='mt-2 flex items-center text-sm '
@@ -60,11 +75,11 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               </span>
               기록하기
             </button>
-          )}
+          )} */}
 
-          {/* 리팩터 예정 {props.item.memos.length === 0 && !isAddMemo && (
+          {props.item.description.length === 0 && !isAddMemo && (
             <button
-              onClick={() => setIsAddMemo(true)}
+              onClick={handleAddMemoClick}
               className='mt-2 flex items-center text-sm '
             >
               <span className='material-icons-outlined mr-2 h-5 w-5'>
@@ -73,7 +88,22 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               기록하기
             </button>
           )}
-          {isAddMemo && <input className='w-full border bg-gray-100'></input>} */}
+          {isAddMemo && (
+            <div className='mt-2 flex items-center bg-gray-100 text-sm'>
+              <input
+                type='text'
+                value={newMemo}
+                onChange={(e) => setNewMemo(e.target.value)}
+                className='ml-3 w-full max-w-[550px] border bg-gray-100'
+              />
+              <button
+                onClick={handleSaveMemoClick}
+                className='ml-3 rounded  px-3 py-1 leading-5'
+              >
+                <span className='material-icons-outlined h-5 w-5'>check</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {props.item.description.length > 0 && (
