@@ -31,16 +31,12 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
         body: JSON.stringify({ storyId: id, isLiked: likedStatus }),
       });
 
-      if (response.ok) {
-        const res = await response.json();
+      const res = await response.json();
 
-        console.log('res', res.data);
-        setLikedStatus(res.data.status);
-      } else {
-        throw new Error('오류');
-      }
+      console.log('res', res.data);
+      setLikedStatus(res.data.status);
     } catch (error) {
-      console.error('fetch오류', error);
+      console.error('좋아요 정보를 전달하는 데 실패했습니다🥲', error);
     }
   };
 
