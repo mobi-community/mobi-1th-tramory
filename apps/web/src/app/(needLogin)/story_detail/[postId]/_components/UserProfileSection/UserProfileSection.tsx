@@ -1,16 +1,14 @@
 'use client';
 
-import { atom, useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 import materialIcon from '@/utils/materialIcon';
 
+import { useStoryDetailPage } from '../../_hooks/useStoryDetailPage';
 import fakeImage from '../../_mocks/fake-profile-image.png';
 import type { UserProfileSectionProps } from './UserProfileSection.types';
-
-const likedStatusAtom = atom(false);
 
 export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   targetStory,
@@ -19,7 +17,7 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
 
   const formattedDate = content.date.split('T')[0];
 
-  const [likedStatus, setLikedStatus] = useAtom(likedStatusAtom);
+  const { likedStatus, setLikedStatus } = useStoryDetailPage(id);
 
   const handlePostLiked = async () => {
     try {

@@ -60,7 +60,7 @@ export const getStoryDetail = rest.get(
 export const postLikedStatus = rest.post(
   '/story/detail/like',
   async (req, res, ctx) => {
-    // req로 전달한 상품 id
+    // req로 전달한 스토리 id
     let storyId: string;
     let isLiked: boolean;
 
@@ -69,7 +69,9 @@ export const postLikedStatus = rest.post(
       isLiked = data.isLiked;
     });
 
+    // 불변성 유지
     const newStoryList = [...recordStoriesMock];
+    // 목데이터에서 타겟 스토리 찾기
     const targetIdx = newStoryList.findIndex((story) => story.id === storyId);
 
     const resoibseStatus = (
@@ -106,3 +108,46 @@ export const postLikedStatus = rest.post(
 );
 
 // 조회수 반영
+export const postViewedStatus = rest.patch(
+  '/story/detail/viewed',
+  async (req, res, ctx) => {
+    let storyId: string;
+    let viewCnt: number;
+
+    await req.json().then((data) => {
+      storyId = data.storyId;
+    });
+
+    const newStoryList = [...recordStoriesMock];
+    const targetIdx = newStoryList.findIndex((story) => story.id === storyId);
+
+    const resoibseStatus = (
+      status: number,
+      success: boolean,
+      message: string
+    ) => {
+      return res(ctx.status(status), ctx.json({ success, message }));
+    };
+
+    // 스토리가 존재하는 경우
+    if (targetIdx !== -1) {
+      viewCnt = newStoryList[targetIdx].content.viewed + 1;
+    } else {
+      return resoibseStatus(401, false, '실패');
+    }
+
+    const data = {
+      storyId,
+      viewCnt,
+    };
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        success: true,
+        message: 'success',
+        data,
+      })
+    );
+  }
+);
