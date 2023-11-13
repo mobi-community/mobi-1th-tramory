@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { AddLocationModal } from '@/components';
+
 import { useDndItem } from './useDnditem';
 import { DraggableItemProps } from './useDndItems.type';
 
@@ -8,9 +10,12 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
     editingMemoIndex,
     currentMemo,
     setMemoState,
-    handleEditButtonClick,
+    //handleEditButtonClick,
     handleCheckButtonClick,
   } = useDndItem(props);
+
+  // eslint-disable-next-line no-unused-vars
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [isAddMemo, setIsAddMemo] = useState(false);
   const [newMemo, setNewMemo] = useState('');
@@ -27,6 +32,12 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
       setIsAddMemo(false);
       setNewMemo('');
     }
+  };
+
+  const handleEditButtonClick = () => {
+    console.log('click됨');
+
+    setIsEditModalOpen(true);
   };
 
   return (
@@ -52,7 +63,8 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
             <div className='flex items-center space-x-3 text-xs'>
               <button
                 className='ml-3 rounded border px-3 py-1 leading-5'
-                onClick={() => props.onEditItemName(props.item.id)}
+                //onClick={() => props.onEditItemName(props.item.id)}
+                onClick={handleEditButtonClick}
               >
                 수정
               </button>
@@ -64,6 +76,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               </button>
               <span className='material-icons-outlined leading-5'>menu</span>
             </div>
+            {isEditModalOpen && <AddLocationModal />}
           </div>
           {/* {props.item.description.length === 0 && (
             <button
