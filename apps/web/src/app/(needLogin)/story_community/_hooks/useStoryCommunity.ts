@@ -2,6 +2,7 @@ import { useAtom } from 'jotai';
 
 import {
   isSearchModalOpenAtom,
+  keywordDataAtom,
   searchKeywordAtom,
   selectedCategoryAtom,
   storyDataAtom,
@@ -19,6 +20,8 @@ export const useStoryCommunity = () => {
   const [storyPage, setStoryPage] = useAtom(storyPageAtom);
   const [total, setTotal] = useAtom(totalAtom);
 
+  const [keywordData, setKeywordData] = useAtom(keywordDataAtom);
+
   return {
     storyData,
     searchKeyword,
@@ -34,5 +37,7 @@ export const useStoryCommunity = () => {
     closeSearchModal: () => setIsSearchModalOpen(false),
     setStoryPage,
     setTotal,
+    keywordData,
+    setKeywordData,
   };
 };

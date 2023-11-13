@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from 'ui';
 
@@ -19,10 +19,11 @@ export const StoryList: React.FC = () => {
     setSelectedCategory,
     storyPage,
     setStoryPage,
-    searchKeyword,
-    // total,
-    // setTotal,
   } = useStoryCommunity();
+
+  const searchParams = useSearchParams();
+
+  const searchedCountry = searchParams.get('keyword');
 
   useEffect(() => {
     const fetchStoryList = async () => {
@@ -45,15 +46,15 @@ export const StoryList: React.FC = () => {
     // eslint fix
   }, [setStoryData, storyPage]);
 
-  const searchedArray: StoryType[] = searchKeyword
+  const searchedArray: StoryType[] = searchedCountry
     ? storyData?.filter(
         (story) =>
-          story.content.title.includes(searchKeyword) ||
-          story.content.text.includes(searchKeyword) ||
+          story.content.title.includes(searchedCountry) ||
+          story.content.text.includes(searchedCountry) ||
           story.content.tags.some((tag: string) =>
-            tag.includes(searchKeyword)
+            tag.includes(searchedCountry)
           ) ||
-          story.user.userId.includes(searchKeyword)
+          story.user.userId.includes(searchedCountry)
       )
     : storyData;
 
