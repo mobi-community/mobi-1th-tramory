@@ -7,7 +7,7 @@ import type { suggestedStoryKeywordType } from '@/store';
 import type { modalProps } from './SuggestionModal.types';
 
 export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
-  const { isSearchModalOpen, handleSearchModal, searchKeyword, keywordData } =
+  const { isSearchModalOpen, handleSearchModal, keywordData } =
     useStoryCommunity();
 
   const isLast = (i: number, arr: suggestedStoryKeywordType[]) =>
@@ -38,13 +38,8 @@ export const SuggestionModal: React.FC<modalProps> = ({ field }) => {
   if (isSearchModalOpen)
     return (
       <div>
-        {searchKeyword && (
-          <li className='h-10 w-[250px] list-none items-center border-b-[1px] text-left'>
-            {searchKeyword}
-          </li>
-        )}
-        <div className='no-scroll border-primaryGray-200 absolute z-20 mt-5 max-h-[100px] w-[250px] overflow-y-scroll border bg-white drop-shadow-xl'>
-          {keywordData ? HaveSuggestedWord : NoSuggestedWord}
+        <div className='no-scroll border-primaryGray-200 absolute z-20 mt-5 max-h-[100px] w-[250px] overflow-y-scroll border bg-white text-[13px] drop-shadow-xl'>
+          {keywordData.length ? HaveSuggestedWord : NoSuggestedWord}
         </div>
       </div>
     );
