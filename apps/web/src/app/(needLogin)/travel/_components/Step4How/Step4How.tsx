@@ -2,6 +2,7 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { cva } from 'class-variance-authority';
 import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';

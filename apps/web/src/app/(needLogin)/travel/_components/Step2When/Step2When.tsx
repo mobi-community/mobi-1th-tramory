@@ -16,7 +16,6 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   // eslint-disable-next-line no-unused-vars
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
-  // eslint-disable-next-line no-unused-vars
   const [dateAtom, setDateAtom] = useAtom(localDateAtom);
   const [prevDates, setPrevDates] = useState({
     startDate: dateAtom[0],
@@ -48,25 +47,28 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='mt-[57px] flex h-[600px] items-center justify-center '>
-        <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
-          <div>
-            <div className='text-primaryGray-500 ml-[120px] mt-[25px] text-[30px] font-semibold'>
-              {config.label}
-            </div>
-            <div className='mt-[14px]'>
-              <Step2Calendar
-                control={control}
-                name='postDate'
-                planAtom={planAtom}
-              />
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='mt-[57px] flex h-[600px] items-center justify-center '>
+          <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
+            <div>
+              <div className='text-primaryGray-500 ml-[120px] mt-[25px] text-[30px] font-semibold'>
+                {config.label}
+              </div>
+              <div className='mt-[14px]'>
+                <Step2Calendar
+                  control={control}
+                  name='postDate'
+                  planAtom={planAtom}
+                />
+              </div>
             </div>
           </div>
+
+          <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} />
         </div>
-        <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} />
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 
