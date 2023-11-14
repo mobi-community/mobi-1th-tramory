@@ -1,10 +1,10 @@
 export const likeStoryConfig = [
   {
-    tabName: 'LIKES',
+    slug: 'LIKES',
     query: '',
   },
   {
-    tabName: 'VIEWS',
+    slug: 'VIEWS',
     query: 'views',
   },
 ];

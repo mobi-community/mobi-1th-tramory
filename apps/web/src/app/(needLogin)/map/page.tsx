@@ -5,12 +5,18 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
 
-import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
+import {
+  CountryInfoModal,
+  // LayoutForCity,
+  LayoutForCountry,
+  // useCountryInfoModal,
+} from '@/components';
 import { MapPageConfig } from '@/constants';
 import { MapAtom, MapPageAtom } from '@/store';
 import { userInfoAtom } from '@/store/userInfo.atoms';
 
 import { AnimatedArrow, Map, Marker, SearchBar } from './_components';
+import { useMapSearchBar } from './hooks/useMapSearchBar';
 
 const MapPage: React.FC = () => {
   const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
@@ -36,13 +42,14 @@ const MapPage: React.FC = () => {
   };
 
   // 클릭된 위치 좌표 반환하는 함수
-  const editedLocation = clicks.map((latLng) => latLng.toJSON());
+  // const editedLocation = clicks.map((latLng) => latLng.toJSON());
 
-  console.log('click', editedLocation);
+  const { locationKeyword } = useMapSearchBar();
+  // const { isCountry } = useCountryInfoModal();
 
   if (apiKey)
     return (
-      <div className='w-[100%] text-center'>
+      <div className='m-auto overflow-hidden text-center'>
         <SearchBar />
         <Wrapper apiKey={apiKey}>
           <Map
@@ -57,8 +64,11 @@ const MapPage: React.FC = () => {
             ))}
           </Map>
         </Wrapper>
+        <CountryInfoModal target={locationKeyword}>
+          {/* {isCountry ? <LayoutForCountry /> : <LayoutForCity />} */}
+          <LayoutForCountry />
+        </CountryInfoModal>
         <AnimatedArrow />
-        <FloatingMenu />
       </div>
     );
   return null;

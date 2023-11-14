@@ -1,44 +1,20 @@
 import { atom } from 'jotai';
+import { atomFamily } from 'jotai/utils';
 
-export const currentTabAtom = atom({
-  state: true,
-  color: 'white',
-  zIndex: '9',
-  param: 'current',
-});
-export const draftTabAtom = atom({
-  state: false,
-  color: 'primaryGray-200',
-  zIndex: '1',
-  param: 'draft',
-});
+export const tabStateFamily = atomFamily(() =>
+  atom({
+    state: false,
+  })
+);
 
-export const tabSelectedAtom = atom(null, (get, set) => {
-  if (get(currentTabAtom).state === true) {
-    set(currentTabAtom, {
-      ...get(currentTabAtom),
-      state: false,
-      color: 'primaryGray-200',
-      zIndex: '1',
-    });
-    set(draftTabAtom, {
-      ...get(draftTabAtom),
-      state: true,
-      color: 'white',
-      zIndex: '9',
-    });
-  } else {
-    set(currentTabAtom, {
-      ...get(currentTabAtom),
-      state: true,
-      color: 'white',
-      zIndex: '9',
-    });
-    set(draftTabAtom, {
-      ...get(draftTabAtom),
-      state: false,
-      color: 'primaryGray-200',
-      zIndex: '1',
-    });
+export const activeTabSlugAtom = atom('');
+
+export const selectTabAtom = atom(null, (get, set, selectedSlug: string) => {
+  const currentActiveSlug = get(activeTabSlugAtom);
+
+  if (currentActiveSlug !== selectedSlug) {
+    set(tabStateFamily(currentActiveSlug), { state: false });
   }
+  set(tabStateFamily(selectedSlug), { state: true });
+  set(activeTabSlugAtom, selectedSlug);
 });

@@ -24,7 +24,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
   }
 
   const toTravelPlan =
-    travelPlan || (() => router.push('/travel/plan?stepId=0'));
+    travelPlan || (() => router.push('/travel/plan?stepId=1'));
 
   const openModal = () => {
     setIsModalOpen(true);

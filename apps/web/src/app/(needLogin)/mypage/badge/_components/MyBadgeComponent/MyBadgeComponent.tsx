@@ -14,7 +14,7 @@ const isOneHowToAtom = atom(false);
 export const MyBadgeComponent = () => {
   const pathname = usePathname();
   const params = useSearchParams();
-  const category = params.get('category');
+  const category = params.get('filter');
   const navTitle = mypageNavConfig.nav.find(
     (nav) => nav.href === pathname
   ).title;

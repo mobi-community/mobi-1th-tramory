@@ -1,6 +1,7 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { travelPlanStep1config } from '@/constants';
 
@@ -8,15 +9,23 @@ import Step1Title from '../_components/Step1Title/Step1Title';
 import TravelPlanTemplete from './travelPlanTemplete';
 
 const TravelPlan = () => {
+  const router = useRouter();
   const params = useSearchParams();
-  const search = params.get('stepId');
+  const stepId = params.get('stepId');
 
-  // `search`가 '0'이면 Step1Title을 사용, 그렇지 않으면 TravelPlanTemplete를 사용
+  useEffect(() => {
+    const validStepIds = ['1', '2', '3', '4', '5'];
+
+    if (!validStepIds.includes(stepId)) {
+      router.push('/404');
+    }
+  }, [stepId]);
+
   const StepComponent =
-    search === '0' ? (
+    stepId === '1' ? (
       <Step1Title config={travelPlanStep1config} />
     ) : (
-      <TravelPlanTemplete search={search} />
+      <TravelPlanTemplete search={stepId} />
     );
 
   return <div>{StepComponent}</div>;
