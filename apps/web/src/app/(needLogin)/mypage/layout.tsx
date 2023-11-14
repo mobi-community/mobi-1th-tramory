@@ -22,7 +22,7 @@ export default function MyPageLayout({
           <div>
             <MyPageNavBar />
           </div>
-          <div>
+          <div className='ml-[320px]'>
             {!isDetailPage && <MyPageHeader />}
             {children}
           </div>

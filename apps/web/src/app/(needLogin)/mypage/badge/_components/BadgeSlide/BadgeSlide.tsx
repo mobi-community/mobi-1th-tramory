@@ -29,7 +29,7 @@ export const BadgeSlide = () => {
   }, [setBadges]);
 
   return (
-    <div>
+    <div className='pb-12'>
       {badges.map((item, index) => (
         <OneBadgeSlide id={index} key={index} item={item} />
       ))}

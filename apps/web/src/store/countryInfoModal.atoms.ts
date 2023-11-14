@@ -19,3 +19,4 @@ export const targetLocationAtom = atomWithStorage('targetLocation', '');
 
 export const countryDataAtom = atom<CountryInfoType>({} as CountryInfoType);
 export const cityDataAtom = atom<CityInfoType>({} as CityInfoType);
+export const isCountryAtom = atom<boolean>(true);

@@ -26,7 +26,7 @@ export const ImageSlide: React.FC<{
       <div className='flex flex-row-reverse'>
         <div
           className={`relative ${
-            isMyStory ? 'h-[160px] w-[160px]' : 'h-[170px] w-[170px]'
+            isMyStory ? 'h-[140px] w-[140px]' : 'h-[170px] w-[170px]'
           }`}
           key={Math.random() * 10000}
         >
@@ -41,7 +41,9 @@ export const ImageSlide: React.FC<{
       </div>
       {images.length > 1 && (
         <div
-          className='bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] top-[140px] h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150'
+          className={`bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] ${
+            isMyStory ? 'top-[110px]' : 'top-[140px]'
+          }  h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150`}
           onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.stopPropagation();
             setIsImageModalOpen(({ isOpen }) => ({
