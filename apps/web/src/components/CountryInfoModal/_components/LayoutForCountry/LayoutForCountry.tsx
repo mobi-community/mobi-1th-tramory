@@ -71,10 +71,10 @@ export const LayoutForCountry: React.FC = () => {
           <div className='text-primaryYellow mr-[3px] text-[10px]'>간편</div>{' '}
           <div>{text.record}</div>
         </Button>
-        <Link href={'/travel/plan?stepId=0'}>
-          <Button className='relative z-[100] block h-[35px] w-[70px] p-0 text-[7px] font-bold'>
-            <div className='text-primaryYellow mr-[3px] text-[10px]'>상세</div>{' '}
-            <div>{text.record}</div>
+        <Link href={'/travel/plan?stepId=1'}>
+          <Button className='z-100 relative my-[10px] mt-4 font-bold'>
+            <span className='text-primaryYellow mr-[3px]'>상세</span>{' '}
+            {text.record}
           </Button>
         </Link>
       </div>

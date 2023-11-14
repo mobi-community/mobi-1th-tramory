@@ -21,7 +21,7 @@ const ViewTravelRecordType: React.FC<{ closeModal: () => void }> = ({
 
   const handleDetailedRecordClick = () => {
     closeModal();
-    router.push('/travel/record?stepId=0');
+    router.push('/travel/record?stepId=1');
   };
 
   if (isOpen) {
