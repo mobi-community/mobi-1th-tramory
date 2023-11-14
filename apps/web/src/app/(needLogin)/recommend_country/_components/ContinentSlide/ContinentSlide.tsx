@@ -25,25 +25,25 @@ export const ContinentSlide: React.FC<{
 
   return (
     <div className='relative mt-[20px]'>
-      <div className='mb-[10px] ml-[80px] flex items-center text-3xl font-bold'>
+      <div className='mb-[6px] ml-[3.5vw] flex items-center text-xl font-bold'>
         # {continentName.toUpperCase()}
       </div>
-      <div className='relatvie z-0'>
+      <div className='relatvie z-0 mb-[40px]'>
         <Swiper
           modules={[Navigation]}
           slidesPerView={4}
-          spaceBetween={10}
+          spaceBetween={1}
           navigation={{
             nextEl: '.next-button',
             prevEl: '.prev-button',
           }}
-          style={{ paddingLeft: '80px' }}
+          style={{ paddingLeft: '45px' }}
         >
           {materialIcon({
             iconName: 'arrow_back_ios',
             size: 50,
             style:
-              'prev-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute left-0 top-[60px] z-10',
+              'prev-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute left-0 top-[35px] z-10',
           })}
           {countries.map(({ country, coverImage }) => (
             <SwiperSlide key={country}>
@@ -54,12 +54,12 @@ export const ContinentSlide: React.FC<{
             iconName: 'arrow_forward_ios',
             size: 50,
             style:
-              'next-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute right-0 top-[60px] z-10',
+              'next-button cursor-pointer text-primaryGray-300 hover:text-primaryGray-500 absolute right-0 top-[35px] z-10',
           })}
         </Swiper>
       </div>
       <CountryInfoModal target={targetLocation}>
-        <LayoutForCountry country={targetLocation} />
+        <LayoutForCountry />
       </CountryInfoModal>
     </div>
   );

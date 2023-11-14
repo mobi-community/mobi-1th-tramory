@@ -17,7 +17,6 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
       <Button
         variant='skyblue'
         className='flex h-[24px] w-[40px] items-center p-0 text-[12px]'
-
       >
         수정
       </Button>

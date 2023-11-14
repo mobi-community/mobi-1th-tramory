@@ -9,14 +9,14 @@ import googleImage from '/public/images/google-signin.png';
 import { AuthSloganSection } from '@/components';
 import { loginContants } from '@/constants/login.constants';
 
-import { LoginForm } from './_components';
+import { LoginForm } from './_components/LoginForm/LoginForm';
 
 const LoginPage = () => {
   return (
     <div className='m-12 flex justify-center'>
       <div className='flex flex-col items-center justify-between p-7'>
         <div className='mb-4 flex w-full items-end justify-between font-semibold'>
-          <Link href='/landing'>
+          <Link href='/'>
             <Image
               src={LogoImage}
               width={120}
@@ -30,7 +30,7 @@ const LoginPage = () => {
           <div className='flex flex-col items-center px-[30px] pb-[35px] pt-[33px]'>
             <Image
               src={loginContants.images.mainImage}
-              width={394}
+              width={376}
               alt='로그인 페이지 메인 이미지'
               priority
             />

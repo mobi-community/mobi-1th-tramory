@@ -1,7 +1,7 @@
 'use client';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
 import { badgeAtom } from '@/store/mypage.atoms';
@@ -13,11 +13,12 @@ const isOneHowToAtom = atom(false);
 
 const MyPageTabs = () => {
   const pathname = usePathname();
-  const slug = pathname.split('/').pop();
   const basePath = pathname.replace(/\/[^/]+$/, '');
   const navTitle = mypageNavConfig.nav.find(
     (nav) => nav.href === basePath
   ).title;
+  const params = useSearchParams();
+  const slug = params.get('filter');
 
   const badges = useAtomValue(badgeAtom);
   const currentBadge = badges.find((badge) => badge.slug === slug);
@@ -41,7 +42,7 @@ const MyPageTabs = () => {
           </span>
           {isOneHowTo && <HowToNotification info={currentBadge.info} />}
         </div>
-        <div className='bg-primaryGray-200 mx-12 mb-12 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
+        <div className='bg-primaryGray-200 mx-12 mb-20 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
             <div key={index} className='relative flex justify-center'>
               <Image
