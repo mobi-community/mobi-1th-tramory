@@ -6,18 +6,18 @@ import 'swiper/css/navigation';
 import { register } from 'swiper/element/bundle';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-import { SlideImagesProps } from './SlideImages.types';
 register();
-
 import Image from 'next/image';
 
 import materialIcon from '@/utils/materialIcon';
 
+import { SlideImagesProps } from './SlideImages.types';
+
 export const SlideImages: React.FC<SlideImagesProps> = ({ targetStory }) => {
   const images = targetStory?.content.images;
+  const length = images.length;
 
-  return (
+  const multipleImages = (
     <div className='relatvie z-0 my-10 w-full'>
       <Swiper
         modules={[Navigation]}
@@ -50,4 +50,16 @@ export const SlideImages: React.FC<SlideImagesProps> = ({ targetStory }) => {
       </Swiper>
     </div>
   );
+
+  const oneImage = (
+    <div
+      className={`relative my-10 h-[350px] w-[350px]`}
+      key={Math.random() * 1000}
+    >
+      <Image src={images[0]} alt='여행 이미지' fill priority={true} />
+    </div>
+  );
+
+  console.log(images, length);
+  if (length) return length === 1 ? oneImage : multipleImages;
 };

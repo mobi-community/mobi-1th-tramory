@@ -97,4 +97,32 @@ export const storyMock = [
       },
     ],
   },
+  {
+    id: 'I910JKLNN',
+    user: {
+      profileImage: fakeProfile,
+      userId: 'User_ID_4',
+      date: new Date(),
+    },
+    content: {
+      date: new Date(),
+      location: 'South Korea, Seoul',
+      title: '한국 서울 여행 계획',
+      text: '명동과 남산, 그리고 한강에서의 즐거운 시간들...',
+      images: [],
+      liked: 8,
+      viewed: 50,
+      tags: ['한국', '서울', '한강'],
+    },
+    isRecord: true,
+    isDraft: false,
+    detailDescription: [
+      {
+        day: 1,
+        country: '한국',
+        location: '명동',
+        description: '서울 명동에서의 쇼핑 시간입니다.',
+      },
+    ],
+  },
 ];
