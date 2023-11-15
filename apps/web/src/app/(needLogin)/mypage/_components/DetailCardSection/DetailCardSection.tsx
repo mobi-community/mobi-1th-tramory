@@ -28,17 +28,6 @@ export const DetailCardSection = ({ storyDetail }) => {
         </div>
       </div>
       <div className='flex w-full flex-col gap-2'>
-        {/* {detailPageConfig.subtitle.map((subtitle, index) => (
-          //  key 유니크한 값으로 변경 예정
-          <div key={index} className='ml-10 flex items-center gap-5'>
-            <div className='border-primaryGray-500 flex h-[30px] w-[120px] items-center justify-center rounded-sm border border-[1px] border-opacity-60 text-[14px] '>
-              {subtitle}
-            </div>
-            <div className=' text-primaryBlue-700 text-[14px] font-semibold'>
-              {handleSubtitleDescription(subtitle)}
-            </div>
-          </div>
-        ))} */}
         <div className='ml-10 flex items-center gap-5'>
           <div className='border-primaryGray-500 flex h-[30px] w-[120px] items-center justify-center rounded-sm border border-[1px] border-opacity-60 text-[14px] '>
             {detailPageConfig.subtitle[0]}

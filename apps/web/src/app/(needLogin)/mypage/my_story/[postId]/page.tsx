@@ -76,7 +76,9 @@ const MyStoryPlanDetailPage = () => {
         </Button>
       </div>
       <MapSections />
-      {isPlanPage ? null : <SlideImages storyDetail={storyDetail} />}
+      <div className='w-full'>
+        {isPlanPage ? null : <SlideImages storyDetail={storyDetail} />}
+      </div>
       {placeInfoStateData.map((dayData, index) => (
         <DropdownFormSection key={index} dayData={dayData} index={index} />
       ))}
