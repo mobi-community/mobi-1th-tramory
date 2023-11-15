@@ -1,30 +1,24 @@
-/* eslint-disable no-unused-vars */
 'use client';
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import { cva } from 'class-variance-authority';
 import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Pagination } from '@/components';
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { postPlan, postRecord } from '../../_apis/planPostApi';
-import { DATE_SCHEMA } from '../../_schema/travel.schema';
-import type { IStep4Props } from '../../Travel.type';
+import { IStep4Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
+import { CustomPagination } from './components/Step4Dates/CustomPagination';
 import Step4Dates from './components/Step4Dates/Step4Dates';
 import { dates } from './mocks';
 
 const Step4How: React.FC<IStep4Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
-  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
-  const { handleSubmit, control } = useForm({
-    resolver: yupResolver(DATE_SCHEMA),
-  });
+  const [planAtom] = useAtom(formModePlanAtom);
+  const [recordAtom] = useAtom(formModeRecordAtom);
+  const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
 
   console.log(planAtom);
@@ -36,12 +30,8 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
     : console.log('record data', recordAtom);
 
   useEffect(() => {
-    if (registerState == 'plan') {
-      postPlan(planAtom);
-    } else {
-      postRecord(recordAtom);
-    }
-  }, []);
+    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
+  }, [planAtom, recordAtom, registerState]);
 
   return (
     <>
@@ -59,9 +49,10 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
                   control={control}
                   itemsPerPage={itemsPerPage}
                   currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
                 />
-                <div className='absolute mt-[470px]'>
-                  <Pagination
+                <div className='absolute mt-[450px]'>
+                  <CustomPagination
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     itemsPerPage={itemsPerPage}

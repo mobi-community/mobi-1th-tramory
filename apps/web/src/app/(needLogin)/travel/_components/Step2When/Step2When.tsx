@@ -1,74 +1,67 @@
 'use client';
-import { useAtom } from 'jotai';
-import { useState } from 'react';
+
+import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
-import { formModePlanAtom, formModeRecordAtom, localDateAtom } from '@/store';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
-import type { IStep2Props } from '../../Travel.type';
+import { IStep2Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
+import { useDateSelection } from '../NavigateButton/use-data-selection';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
 
 const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
-  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  // eslint-disable-next-line no-unused-vars
-  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
+  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const setRecordAtom = useSetAtom(formModeRecordAtom);
   const { handleSubmit, control } = useForm();
-  const [dateAtom, setDateAtom] = useAtom(localDateAtom);
-  const [prevDates, setPrevDates] = useState({
-    startDate: dateAtom[0],
-    endDate: dateAtom[1],
-  });
+  const { isDateSelected, setIsDateSelected } = useDateSelection();
 
   const onSubmit = (data) => {
-    const newStartDate =
-      data?.postDate?.[0]?.toISOString()?.split('T')[0] || prevDates.startDate;
-    const newEndDate =
-      data?.postDate?.[1]?.toISOString()?.split('T')[0] || prevDates.endDate;
-
-    if (registerState == 'plan') {
-      setPlanAtom((prev) => ({
-        ...prev,
-        startDate: newStartDate,
-        endDate: newEndDate,
-      }));
-      setDateAtom([new Date(newStartDate), new Date(newEndDate)]);
+    console.log('data', data);
+    if (isDateSelected) {
+      registerState == 'plan'
+        ? setPlanAtom((prev) => ({
+            ...prev,
+            startDate: data.postDate[0].toISOString().split('T')[0],
+            endDate: data.postDate[1].toISOString().split('T')[0],
+          }))
+        : setRecordAtom((prev) => ({
+            ...prev,
+            startDate: data.postDate[0].toISOString().split('T')[0],
+            endDate: data.postDate[1].toISOString().split('T')[0],
+          }));
     } else {
-      setRecordAtom((prev) => ({
-        ...prev,
-        startDate: newStartDate,
-        endDate: newEndDate,
-      }));
-      setDateAtom([new Date(newStartDate), new Date(newEndDate)]);
+      alert('날짜를 선택해주세요');
     }
-    setPrevDates({ startDate: newStartDate, endDate: newEndDate });
+  };
+
+  const handleDateSelect = (data: Date[]) => {
+    console.log('확인용', data);
+    setIsDateSelected(data.length > 0);
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='mt-[57px] flex h-[600px] items-center justify-center '>
-          <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
-            <div>
-              <div className='text-primaryGray-500 ml-[120px] mt-[25px] text-[30px] font-semibold'>
-                {config.label}
-              </div>
-              <div className='mt-[14px]'>
-                <Step2Calendar
-                  control={control}
-                  name='postDate'
-                  planAtom={planAtom}
-                />
-              </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className='mt-[57px] flex h-[600px] items-center justify-center '>
+        <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
+          <div>
+            <div className='text-primaryGray-500 my-3 h-[50px] w-full text-center text-[30px] font-semibold'>
+              {config.label}
+            </div>
+            <div className='mt-[14px]'>
+              <Step2Calendar
+                control={control}
+                name='postDate'
+                onChange={handleDateSelect}
+              />
             </div>
           </div>
-
-          <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} />
         </div>
-      </form>
-    </>
+        <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} />
+      </div>
+    </form>
   );
 };
 

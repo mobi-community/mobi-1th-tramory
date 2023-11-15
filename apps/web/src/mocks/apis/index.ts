@@ -5,6 +5,7 @@ export * from './date.apis';
 export * from './likestory.apis';
 export * from './mystory.apis';
 export * from './othersPage.api';
+export * from './searchBar.apis';
 export * from './setting.apis';
 export * from './story.apis';
 export * from './travelDetailModal.apis';

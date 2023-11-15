@@ -1,15 +1,19 @@
 'use client';
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
+import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
 import { selectedDateIdAtom, travelDateAtom } from '@/store';
+
+import TravelDetailModal from '../../../TravelModal/TravelDetailModal';
 
 interface IStep4DatesProps {
   control: Control;
   itemsPerPage: number;
   currentPage: number;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Step4Dates: React.FC<IStep4DatesProps> = ({
@@ -18,12 +22,12 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
   currentPage,
 }) => {
   const [date, setDate] = useAtom(travelDateAtom);
-  const [, setSelectedDateId] = useAtom(selectedDateIdAtom);
+  const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const startIdx = currentPage * itemsPerPage;
   const endIdx = (currentPage + 1) * itemsPerPage;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getDates = async () => {
     try {
       const res = await fetch('/dates');
@@ -40,25 +44,32 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
     getDates();
   }, []);
 
+  const openModal = (id) => {
+    setSelectedDateId(id);
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <Controller
-        name='days'
+        name='category'
         control={control}
         defaultValue={''}
-        render={({ field, fieldState: { error } }) => (
+        render={() => (
           <div>
             <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[50px] text-[30px] font-semibold'></div>
             <div className='mt-[20px] flex  flex-wrap justify-center'>
               {date.slice(startIdx, endIdx).map((date) => (
                 <div
                   key={date.id}
-                  className={` hover:border-primaryBlue-700 m-3 flex h-[90px] w-[320px]  cursor-pointer  rounded-sm border bg-white 
-                  `}
-                  onClick={() => {
-                    setSelectedDateId(date.id);
-                    field.onChange(date.dates);
-                  }}
+                  className={` m-3 flex h-[90px] w-[320px] cursor-pointer  rounded-sm  bg-white
+                  ${
+                    selectedDateId == date.id
+                      ? 'border-primaryBlue-400 border'
+                      : 'border-none'
+                  }`}
+                  onMouseEnter={() => setSelectedDateId(date.id)}
+                  onMouseLeave={() => setSelectedDateId(null)}
                 >
                   <div className='ml-[20px] mt-[0px] flex-col items-center  justify-center '>
                     {date.id < 10 && (
@@ -75,14 +86,22 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                   </div>
                   <div>
                     <div
-                      className={`bg-primaryBlue-100  hover:border-primaryBlue-300 ml-[10px] mt-[-23px] h-[40px] w-[40px] rounded-[50%] border-b`}
+                      className={`bg-primaryBlue-100  ml-[10px] mt-[-23px] h-[40px] w-[40px] rounded-[50%]                   ${
+                        selectedDateId == date.id
+                          ? 'border-primaryBlue-300 border-b'
+                          : 'border-none'
+                      }`}
                     ></div>
                     <div className='text-primaryGray-300 ml-[14px] mt-[5px]  flex w-[32px] justify-center text-[30px]'>
                       |
                     </div>
                     <div
-                      className={` bg-primaryBlue-100 hover:border-primaryBlue-300 ml-[10px] mt-[5px] h-[40px] w-[40px] rounded-[50%] border-t
-                      `}
+                      className={` bg-primaryBlue-100 ml-[10px] mt-[5px] h-[40px] w-[40px] rounded-[50%]
+                      ${
+                        selectedDateId == date.id
+                          ? 'border-primaryBlue-300 border-t'
+                          : 'border-none'
+                      }`}
                     ></div>
                   </div>
                   <div className='ml-[20px] flex-col  border-black'>
@@ -93,17 +112,22 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                       className='mt-[10px] flex h-[26px] w-[120px] pt-[2px] text-black'
                       variant='roundednavy'
                       size='sm'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal(date.id);
+                      }}
                     >
                       기록 등록
                     </Button>
                   </div>
                 </div>
               ))}
-              {error && (
-                <div className='absolute mb-1 ml-[0px]  mt-[230px] text-[14px] text-red-500'>
-                  {error.message}
-                </div>
-              )}
+              <TravelModalDefault
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+              >
+                <TravelDetailModal />
+              </TravelModalDefault>
             </div>
           </div>
         )}

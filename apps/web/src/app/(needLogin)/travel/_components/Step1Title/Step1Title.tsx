@@ -12,7 +12,8 @@ import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { TITLE_SCHEMA } from '../../_schema/travel.schema';
-import type { Step1TitleProps } from '../../Travel.type';
+import { type Step1TitleProps } from '../../Travel.type';
+
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
   const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
@@ -37,7 +38,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     if (fieldValue.trim() == '') {
       return;
     } else {
-      router.push(`/travel/${registerState}?stepId=1`);
+      router.push(`/travel/${registerState}?stepId=2`);
       registerState == 'plan'
         ? setPlanAtom((prev) => ({ ...prev, title: data.title }))
         : setRecordAtom((prev) => ({ ...prev, title: data.title }));

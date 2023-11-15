@@ -46,34 +46,32 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='mt-[57px] flex h-[600px] items-center justify-center '>
-          <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
+          <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] flex-col items-center justify-center'>
             <div>
-              <div className='mt-[14px]'>
-                <div
-                  className={`${
-                    registerState == 'plan' ? 'mt-[150px]' : 'mt-0'
-                  }`}
-                >
-                  <div className='text-primaryGray-500  mb-[10px] ml-[150px] mt-[60px] text-[30px] font-semibold'>
-                    {config.label}
-                  </div>
-                  <Step3Category control={control} />
+              <div
+                className={`${
+                  registerState == 'record' ? 'mt-[-80px]' : 'mt-[-80px] '
+                }`}
+              >
+                <div className='text-primaryGray-500  mb-[10px] ml-[150px] mt-[0px] text-[30px] font-semibold'>
+                  {config.label}
                 </div>
-                {registerState == 'record' && (
-                  <>
-                    <div className='text-primaryGray-500 mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
-                      {config.subLabel}
-                    </div>
-                    <div className='mt-[30px] flex justify-center '>
-                      {travelTag.map((tag) => (
-                        <div key={tag.id}>
-                          <Step3Tag control={control} id={tag.id} />
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
+                <Step3Category control={control} />
               </div>
+              {registerState == 'record' && (
+                <>
+                  <div className='text-primaryGray-500  mb-[10px] ml-[93px] mt-[60px] text-[30px] font-semibold'>
+                    {config.subLabel}
+                  </div>
+                  <div className='mt-[30px] flex justify-center '>
+                    {travelTag.map((tag) => (
+                      <div key={tag.id}>
+                        <Step3Tag control={control} id={tag.id} />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
           <NavigateButton handleSubmit={handleSubmit} onSubmit={onSubmit} />

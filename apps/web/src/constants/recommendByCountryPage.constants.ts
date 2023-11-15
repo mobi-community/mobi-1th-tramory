@@ -112,6 +112,7 @@ export type recomContinentType = {
 };
 
 export const recommendPageConfig = {
+  titleText: '대륙별 대표 여행지',
   pageButtonIcon: (isReadMore: boolean) =>
     materialIcon({
       iconName: `keyboard_double_arrow_${isReadMore ? 'up' : 'down'}`,
