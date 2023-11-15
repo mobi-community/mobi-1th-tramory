@@ -58,7 +58,10 @@ const TravelDetailModal: React.FC = () => {
           </div>
           <div className=' flex gap-3 pt-6'>
             <Button
-              onClick={handleClearAllItems}
+              onClick={(e) => {
+                e.preventDefault();
+                handleClearAllItems();
+              }}
               variant='roundednavy'
               size='lg'
               className='min-w-[200px] rounded-3xl font-bold'
