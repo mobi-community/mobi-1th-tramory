@@ -1,12 +1,12 @@
 import { rest } from 'msw';
 
-import { recordStoriesMock } from '@/app/(needLogin)/mypage/my_story/record/_mocks/recordStoriesMock';
+import { storyMock } from '@/app/(needLogin)/story_community/_mocks/storyMock';
 
 // 스토리 목록
 export const getStoryList = rest.get(
   '/story/storypage/:page',
   (req, res, ctx) => {
-    const mockStoryList = recordStoriesMock;
+    const mockStoryList = storyMock;
     const resoibseStatus = (
       status: number,
       success: boolean,
@@ -41,9 +41,7 @@ export const getStoryDetail = rest.get(
   (req, res, ctx) => {
     const postId = req.params.postId;
 
-    const targetStory = recordStoriesMock.find(
-      (detail) => detail.id === postId
-    );
+    const targetStory = storyMock.find((detail) => detail.id === postId);
 
     return res(
       ctx.status(200),
@@ -70,7 +68,7 @@ export const postLikedStatus = rest.post(
     });
 
     // 불변성 유지
-    const newStoryList = [...recordStoriesMock];
+    const newStoryList = [...storyMock];
     // 목데이터에서 타겟 스토리 찾기
     const targetIdx = newStoryList.findIndex((story) => story.id === storyId);
 
@@ -118,7 +116,7 @@ export const postViewedStatus = rest.patch(
       storyId = data.storyId;
     });
 
-    const newStoryList = [...recordStoriesMock];
+    const newStoryList = [...storyMock];
     const targetIdx = newStoryList.findIndex((story) => story.id === storyId);
 
     const resoibseStatus = (
