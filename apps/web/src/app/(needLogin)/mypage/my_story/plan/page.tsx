@@ -1,10 +1,11 @@
 'use client';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Checkbox } from 'ui';
 
 import { Pagination } from '@/components';
+import { usePagination } from '@/hooks/usePagination';
 import { userPlanStoriesAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
@@ -12,8 +13,8 @@ import { MyStoryPlanCard, Tabs } from '../_components';
 
 const MyStoryPlanPage = () => {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(8);
   const [planStories, setPlanStories] = useAtom(userPlanStoriesAtom);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const MyStoryPlanPage = () => {
           <div className='ml-2 font-semibold'>지난 계획 모아보기</div>
         </div>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {planStories.map((stories) => (
+          {planStories.slice(startIdx, endIdx).map((stories) => (
             <MyStoryPlanCard
               handleMoveToDetail={handleMoveToDetail}
               key={stories.id}
