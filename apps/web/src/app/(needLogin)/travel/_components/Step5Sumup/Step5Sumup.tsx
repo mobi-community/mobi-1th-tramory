@@ -64,7 +64,7 @@ const Step5Sumup: React.FC<Step5SumupProps> = ({ config }) => {
   return (
     <div
       style={{ height: `calc(100vh - ${headerHeight}px)` }}
-      className='flex min-h-full w-auto flex-col items-center justify-center'
+      className='flex min-h-full w-auto flex-col items-center justify-center overflow-hidden'
     >
       <div className='bg-primaryBlue-100 min-h-[550px] w-[1000px] rounded-2xl pb-[50px] pl-[70px] pr-[70px] pt-[50px]'>
         <div className='flex gap-2'>
@@ -100,7 +100,7 @@ const Step5Sumup: React.FC<Step5SumupProps> = ({ config }) => {
             </div>
           </div>
         )}
-        <div className='relative min-h-[300px]'>
+        <div className='relative min-h-[300px] '>
           <ImageSlider images={images} />
         </div>
         <div className='my-4 flex items-center'>
