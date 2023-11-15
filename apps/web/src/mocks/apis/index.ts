@@ -9,7 +9,7 @@ export * from './searchBar.apis';
 export * from './setting.apis';
 export * from './story.apis';
 export * from './travelDetailModal.apis';
-export * from './travelRegister.api';
+export * from './travelregister.api';
 export * from './user.apis';
 export * from './viewstory.apis';
 export * from './visited.apis';

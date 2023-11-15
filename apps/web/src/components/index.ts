@@ -6,6 +6,7 @@ export * from './ContentInfo/ContentInfo';
 export * from './CountryInfoModal';
 export * from './DateHeader/DateHeader';
 export * from './Header/Header';
+export * from './InformModal/InformModal';
 export * from './Landing/Landing';
 export * from './Line/Line';
 export * from './Pagination/Pagination';
