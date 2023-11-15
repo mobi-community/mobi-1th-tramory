@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
@@ -18,9 +16,9 @@ import Step3Tag from './components/Step3Tag/Step3Tag';
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
 
-  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
-  const { handleSubmit, control, setValue } = useForm({
+  const setPlanAtom = useSetAtom(formModePlanAtom);
+  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const { handleSubmit, control } = useForm({
     resolver: yupResolver(CATEGORY_SCHEMA),
   });
 
