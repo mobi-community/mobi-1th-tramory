@@ -38,7 +38,7 @@ const MyStoryPlanPage = () => {
   }, [setPlanStories]);
 
   const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/${id}?page=plan&isEdit=true`);
+    router.push(`/mypage/my_story/${id}?page=plan`);
   };
   const dataLength = planStories.length;
 

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
 import { formattedDateFunc } from '@/utils/formattedDate';
-import materialIcon from '@/utils/materialIcon';
 
 export const DetailCardSection = ({ storyDetail }) => {
   const { date = 'Default Date', location = 'Default location' } =
@@ -60,12 +59,6 @@ export const DetailCardSection = ({ storyDetail }) => {
             ))}
           </div>
         </div>
-      </div>
-      <div className='border-primaryBlue-700 hover:bg-primaryBlue-700 absolute right-3 top-3 flex h-[22px] w-[22px] cursor-pointer items-center justify-center rounded-full border p-1 hover:text-white hover:opacity-80'>
-        {materialIcon({
-          iconName: 'edit',
-          size: 18,
-        })}
       </div>
     </div>
   );
