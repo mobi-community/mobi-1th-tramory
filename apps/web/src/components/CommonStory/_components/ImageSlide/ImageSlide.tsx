@@ -3,6 +3,7 @@
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 
+import basicImage from '/public/images/replaceImg.jpg';
 import { storyModalAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
@@ -18,7 +19,7 @@ export const ImageSlide: React.FC<{
     storyModalAtom({ postId, isOpen: false })
   );
 
-  return (
+  const hasImages = (
     <div className='relative mr-8'>
       <div className='flex flex-row-reverse'>
         <div
@@ -51,7 +52,26 @@ export const ImageSlide: React.FC<{
           })}
         </div>
       )}
-      {isImageModalOpen.isOpen && <ImageModal images={images.slice(1)} />}
+      {isImageModalOpen.isOpen && <ImageModal images={images.slice(1, 3)} />}
     </div>
   );
+
+  const noImage = (
+    <div className='relative mr-8'>
+      <div
+        className={`relative h-[140px] w-[140px]`}
+        key={Math.random() * 10000}
+      >
+        <Image
+          src={basicImage}
+          alt='대표 여행 사진'
+          key={Math.random() * 1000}
+          fill
+          className='rounded-[8px]'
+        />
+      </div>
+    </div>
+  );
+
+  return images.length ? hasImages : noImage;
 };
