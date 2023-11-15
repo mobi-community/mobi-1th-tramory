@@ -1,6 +1,7 @@
 'use client';
 
-import { useAtom, useSetAtom } from 'jotai';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -10,13 +11,16 @@ import { Input } from 'ui';
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
-import { Step1TitleProps } from '../../Travel.typs';
+import { TITLE_SCHEMA } from '../../_schema/travel.schema';
+import { type Step1TitleProps } from '../../Travel.type';
 
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
-  const setPlanAtom = useSetAtom(formModePlanAtom);
-  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
+  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
   const [registerState, setRegisterState] = useAtom(registerStateAtom);
-  const { handleSubmit, control, watch } = useForm();
+  const { handleSubmit, control, watch } = useForm({
+    resolver: yupResolver(TITLE_SCHEMA),
+  });
   const fieldValue = watch('title', '');
   const pathname = usePathname();
   const router = useRouter();
@@ -28,10 +32,10 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
     pathname.includes('/travel/plan')
       ? setRegisterState('plan')
       : setRegisterState('record');
-  }, [pathname, setRegisterState]);
+  }, [pathname, setRegisterState, planAtom, recordAtom, registerState]);
 
   const onSubmit = (data) => {
-    if (fieldValue.trim() === '') {
+    if (fieldValue.trim() == '') {
       return;
     } else {
       router.push(`/travel/${registerState}?stepId=2`);
@@ -102,23 +106,34 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
                   <Controller
                     name='title'
                     control={control}
-                    defaultValue={''}
-                    render={({ field }) => (
-                      <>
+                    defaultValue={
+                      registerState == 'plan'
+                        ? planAtom.title || ''
+                        : recordAtom.title || ''
+                    }
+                    render={({ field, fieldState: { error } }) => (
+                      <div className='ml-9'>
                         <Input
                           {...field}
-                          className='w-[80%] border-b-2 border-gray-300 bg-transparent text-center text-lg'
+                          className='w-[330px] border-b-2 border-gray-300 bg-transparent text-center text-lg'
                           placeholder={config.inputPlaceholder}
                         />
-                      </>
+                        {error && (
+                          <div className='absolute mb-1 ml-[0px]  mt-2 text-[14px] text-red-500'>
+                            {error.message}
+                          </div>
+                        )}
+                      </div>
                     )}
                   />
+
                   <span
-                    className={`material-icons-outlined ${
+                    className={`material-icons-outlined mt-[5px] ${
                       fieldValue.trim()
                         ? 'cursor-pointer'
                         : 'pointer-events-none opacity-40'
-                    }`}
+                    }
+                    `}
                     style={{ fontSize: '30px' }}
                     onClick={() => {
                       if (fieldValue.trim()) {

@@ -1,5 +1,5 @@
 'use client';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -10,7 +10,7 @@ import { useDateSelection } from './use-data-selection';
 const NavigateButton = ({ handleSubmit, onSubmit }) => {
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
-  const [registerState] = useAtom(registerStateAtom);
+  const registerState = useAtomValue(registerStateAtom);
   const router = useRouter();
   const { isDateSelected } = useDateSelection();
 

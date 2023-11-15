@@ -7,8 +7,8 @@ import { useForm } from 'react-hook-form';
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
-import { postPlan, postRecord } from '../../apis/planPostApi';
-import { IStep4Props } from '../../Travel.typs';
+import { postPlan, postRecord } from '../../_apis/planPostApi';
+import { IStep4Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import { CustomPagination } from './components/Step4Dates/CustomPagination';
 import Step4Dates from './components/Step4Dates/Step4Dates';
