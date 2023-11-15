@@ -1,15 +1,18 @@
 import { useAtom } from 'jotai';
 import { Button } from 'ui';
 
+import { selectedDateIdAtom } from '@/store';
 import { travelDetailModalAtoms } from '@/store/travelDetailModal.atoms';
 
 import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
 
-const TravelModal: React.FC = () => {
+const TravelDetailModal: React.FC = () => {
   const [detailModalState] = useAtom(travelDetailModalAtoms);
+  const [selectedDateId] = useAtom(selectedDateIdAtom);
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
     try {
       console.log('data?', detailModalState);
 
@@ -39,7 +42,9 @@ const TravelModal: React.FC = () => {
     <>
       <div className='inline-flex max-h-[85vh] justify-center overflow-y-auto	'>
         <div className='flex w-full flex-col items-center px-2.5'>
-          <h2 className='mb-4 text-center text-lg font-bold'>1일차 기록</h2>
+          <h2 className='mb-4 text-center text-lg font-bold'>
+            {selectedDateId}일차 기록
+          </h2>
           <div className='flex w-full flex-col gap-4'>
             <div className='h-[350px] w-[650px] bg-gray-200'>지도</div>
             <UploadImgFiles />
@@ -68,4 +73,4 @@ const TravelModal: React.FC = () => {
   );
 };
 
-export default TravelModal;
+export default TravelDetailModal;

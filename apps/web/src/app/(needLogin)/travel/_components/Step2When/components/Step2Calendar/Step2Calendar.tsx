@@ -11,11 +11,27 @@ import { dateRangeAtom } from '@/store';
 interface IStep2CalendarProps {
   control: Control;
   name: string;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (data: Date[]) => void;
 }
 
-const Step2Calendar: React.FC<IStep2CalendarProps> = ({ control, name }) => {
+const Step2Calendar: React.FC<IStep2CalendarProps> = ({
+  control,
+  name,
+  onChange,
+}) => {
   const [dateRange, setDateRange] = useAtom(dateRangeAtom);
   const [startDate, endDate] = dateRange;
+
+  const handleDateSelect = (update: Date | [Date, Date]) => {
+    if (Array.isArray(update)) {
+      setDateRange(update);
+      onChange(update);
+    } else {
+      setDateRange([update, update]);
+      onChange([update, update]);
+    }
+  };
 
   return (
     <>
@@ -30,8 +46,8 @@ const Step2Calendar: React.FC<IStep2CalendarProps> = ({ control, name }) => {
               selectsRange={true}
               startDate={startDate} // 시작 날짜
               endDate={endDate}
-              onChange={(update) => {
-                setDateRange(update);
+              onChange={(update: Date | [Date, Date]) => {
+                handleDateSelect(update);
                 field.onChange(update);
               }}
               inline
