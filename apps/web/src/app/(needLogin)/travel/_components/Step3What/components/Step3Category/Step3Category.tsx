@@ -2,24 +2,33 @@ import { useAtom } from 'jotai';
 import { Control, Controller } from 'react-hook-form';
 
 import { travelCategory } from '@/constants/travelStep3Category.constants';
+import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
+import { registerStateAtom } from '@/store/travelState.atom';
 
 interface IStep3CategoryProps {
   control: Control;
 }
 
 const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
+  const [registerState] = useAtom(registerStateAtom);
   const [selectedCategoryId, setSelectedCategoryId] = useAtom(
     selectedCategoryIdAtom
   );
+  const [planAtom] = useAtom(formModePlanAtom);
+  const [recordAtom] = useAtom(formModeRecordAtom);
 
   return (
     <>
       <Controller
         name='theme'
         control={control}
-        defaultValue={''}
-        render={({ field }) => (
+        defaultValue={
+          registerState == 'plan'
+            ? planAtom.theme || ''
+            : recordAtom.theme || ''
+        }
+        render={({ field, fieldState: { error } }) => (
           <div>
             <div className='mt-[20px] flex w-[600px] flex-wrap justify-center '>
               {travelCategory.map((category) => (
@@ -41,11 +50,17 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                     </span>
                   </div>
                   <div>
-                    <div className='bg-primaryBlue-100 ml-[10px] mt-[-13px] h-[20px] w-[20px] rounded-[50%] '></div>
-                    <div className='text-primaryGray-300 ml-[5px] mt-[3px]  flex w-[32px] justify-center text-[22px]'>
+                    <div className='bg-primaryBlue-100 ml-[10px] mt-[-11px] h-[20px] w-[20px] rounded-[50%] '></div>
+                    <div
+                      className={` ml-[4px]  mt-[0px] flex w-[32px] justify-center  text-[22px] text-xl ${
+                        selectedCategoryId === category.id
+                          ? 'text-white'
+                          : 'text-primaryGray-300'
+                      }`}
+                    >
                       |
                     </div>
-                    <div className='bg-primaryBlue-100 ml-[10px] mt-[2px] h-[20px] w-[20px] rounded-[50%]'></div>
+                    <div className='bg-primaryBlue-100 ml-[10px]  mt-[5px] h-[20px] w-[20px] rounded-[50%] '></div>
                   </div>
                   <li
                     className={`flex list-none items-center justify-center text-[19px] font-semibold ${
@@ -60,6 +75,11 @@ const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
                   </li>
                 </div>
               ))}
+              {error && (
+                <div className='mb-1 mr-[10px] mt-1 text-[18px] text-red-500'>
+                  {error.message}
+                </div>
+              )}
             </div>
           </div>
         )}

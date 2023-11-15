@@ -4,7 +4,7 @@ import { Button } from 'ui';
 import img from './_mock/airplane.png';
 
 // atom, setAtom, title, size 주기
-const InformModal = ({ atom, title, size, setAtom }) => {
+export const InformModal = ({ atom, title, size, setAtom }) => {
   return (
     <>
       {atom && (
@@ -55,7 +55,7 @@ const InformModal = ({ atom, title, size, setAtom }) => {
               {title}
             </div>
             <Button
-              className={`border-primaryGray-200  border-2 
+              className={`border-primaryGray-200  border-2
               ${
                 size == 'small'
                   ? 'mt-[20px] h-[27px] w-[120px] rounded-[13px] text-[10px]'
@@ -74,5 +74,3 @@ const InformModal = ({ atom, title, size, setAtom }) => {
     </>
   );
 };
-
-export default InformModal;

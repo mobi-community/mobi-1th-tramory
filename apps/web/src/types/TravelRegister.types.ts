@@ -4,12 +4,11 @@ export type TravelPlanType = {
   id?: number;
   startDate?: string;
   endDate?: string;
-  theme?: number;
+  theme?: string;
   isPublic?: boolean;
   isComplete?: string;
   isRecord?: string;
   user?: { nickname?: string };
-  travelHashTags?: TravelHashTags[];
   travelDailyPlansDetails?: TravelDailyPlansDetails[];
 };
 
@@ -19,11 +18,12 @@ export type TravelRecordType = {
   id?: number;
   startDate?: string;
   endDate?: string;
-  theme?: number;
+  theme?: string;
   isPublic?: boolean;
   isComplete?: string;
   isRecord?: string;
   user?: { nickname?: string };
+  travelHashTags?: TravelHashTags[];
   travelDailyPlansDetails?: TravelDailyPlansDetails[];
 };
 

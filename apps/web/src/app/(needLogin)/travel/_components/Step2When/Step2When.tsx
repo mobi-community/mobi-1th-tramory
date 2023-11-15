@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
-import { IStep2Props } from '../../Travel.typs';
+import { IStep2Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import { useDateSelection } from '../NavigateButton/use-data-selection';
 import Step2Calendar from './components/Step2Calendar/Step2Calendar';
