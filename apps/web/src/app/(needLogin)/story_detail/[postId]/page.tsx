@@ -20,7 +20,8 @@ import { useStoryDetailPage } from './_hooks/useStoryDetailPage';
 
 const StoryDetail = () => {
   const { postId } = useParams();
-  const { allToggleAction, targetStory, setTargetStory } = useStoryDetailPage();
+  const { allToggleAction, targetStory, setTargetStory, setViewedStatus } =
+    useStoryDetailPage(postId as string);
 
   useEffect(() => {
     try {
@@ -31,11 +32,34 @@ const StoryDetail = () => {
         })
         .then((data) => {
           setTargetStory(data.data);
+          setViewedStatus(data.data.content.viewed);
         });
     } catch (error) {
       console.error(error, '스토리 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [postId, setTargetStory]);
+  }, [postId, setTargetStory, setViewedStatus]);
+
+  useEffect(() => {
+    const handlePatchViewedStatus = async () => {
+      try {
+        const response = await fetch('/story/detail/viewed', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ storyId: postId }),
+        });
+
+        const res = await response.json();
+
+        console.log('res', res.data);
+      } catch (error) {
+        console.error('조회수 정보를 전달하는 데 실패했습니다🥲', error);
+      }
+    };
+
+    handlePatchViewedStatus();
+  }, []);
 
   if (!targetStory)
     return (
