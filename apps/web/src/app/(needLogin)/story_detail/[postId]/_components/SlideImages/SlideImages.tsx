@@ -32,12 +32,17 @@ export const SlideImages: React.FC<SlideImagesProps> = ({ targetStory }) => {
           iconName: 'arrow_back_ios',
           size: 50,
           style:
-            'prev-button cursor-pointer text-primaryGray-300 hover:text-white absolute left-0 top-[70px] z-10',
+            'prev-button cursor-pointer text-primaryGray-300 hover:text-white absolute left-0 top-[60px] z-10',
         })}
         {images.map((image, i) => (
           <SwiperSlide key={Math.random() * 10000}>
-            <div className={`h-[200px] w-[350px]`} key={Math.random() * 1000}>
-              <Image src={image} alt={'여행 이미지' + i} fill priority={true} />
+            <div className={`h-[200px] w-[250px]`} key={Math.random() * 1000}>
+              <Image
+                src={image}
+                alt={'여행 이미지' + i}
+                className='object-contain'
+                priority={true}
+              />
             </div>
           </SwiperSlide>
         ))}
@@ -45,7 +50,7 @@ export const SlideImages: React.FC<SlideImagesProps> = ({ targetStory }) => {
           iconName: 'arrow_forward_ios',
           size: 50,
           style:
-            'next-button cursor-pointer text-primaryGray-300 hover:text-white absolute right-0 top-[70px] z-10',
+            'next-button cursor-pointer text-primaryGray-300 hover:text-white absolute right-0 top-[60px] z-10',
         })}
       </Swiper>
     </div>
