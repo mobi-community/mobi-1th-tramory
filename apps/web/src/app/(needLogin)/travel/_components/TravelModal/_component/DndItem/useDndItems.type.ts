@@ -5,7 +5,7 @@ export interface DraggableItemProps {
   item: Item;
   index: number;
   // eslint-disable-next-line no-unused-vars
-  onAddMemo: (id: number) => void;
+  onAddMemo: (itemId: number, memo: string) => void;
   // eslint-disable-next-line no-unused-vars
   onEditMemo: (id: number, updatedMemo: string) => void;
   // eslint-disable-next-line no-unused-vars

@@ -55,7 +55,10 @@ const DndList: React.FC = () => {
       <Button
         variant='roundednavy'
         className='my-5 mr-5'
-        onClick={handleAddNewItem}
+        onClick={(e) => {
+          e.preventDefault();
+          handleAddNewItem();
+        }}
       >
         장소 추가
       </Button>
