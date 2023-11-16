@@ -15,10 +15,10 @@ export default function BagdeLayout({
   const selectTab = useSetAtom(selectTabAtom);
 
   useEffect(() => {
-    selectTab('all'); // 첫번째 탭을 활성화하기 위해 selectTab을 호출합니다.
+    selectTab(''); // 첫번째 탭을 활성화하기 위해 selectTab을 호출합니다.
   }, [selectTab]);
 
-  const tabsWithAll = [{ slug: 'all', title: 'ALL' }, ...badgeConfig.badges];
+  const tabsWithAll = [{ slug: '', title: 'ALL' }, ...badgeConfig.badges];
 
   return (
     <div className='mb-14'>

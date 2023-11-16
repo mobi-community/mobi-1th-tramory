@@ -5,10 +5,10 @@ import { useEffect } from 'react';
 import { mypageNavConfig } from '@/constants';
 import { visitedMyVisitedAtom } from '@/store/mypage.atoms';
 
-import { MyPageContainer } from '../../_components';
-import OneMockFlag from './_components/OneMockFlag';
+import { MyPageContainer } from '../../../_components';
+import { OneMockFlag } from './OneMockFlag';
 
-const MyVisitedPage = () => {
+export const MyVisitedContries = () => {
   const navTitle = mypageNavConfig.nav.find((nav) =>
     nav.href.includes('visit_country')
   ).title;
@@ -49,5 +49,3 @@ const MyVisitedPage = () => {
     </div>
   );
 };
-
-export default MyVisitedPage;

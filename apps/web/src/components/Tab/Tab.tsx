@@ -17,9 +17,6 @@ export const Tab = ({ children, slug }: TabProps) => {
     selectTab(slug);
     router.push(`${pathName}?filter=${slug}`);
     if (slug === '') router.push(`${pathName}`);
-    if (pathName.includes('/mypage/visit_country')) {
-      router.push(`/mypage/visit_country/${slug}`);
-    }
   };
 
   const bgColorClass = tabState.state ? 'bg-white' : 'bg-primaryGray-200';

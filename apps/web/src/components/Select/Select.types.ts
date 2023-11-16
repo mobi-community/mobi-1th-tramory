@@ -4,5 +4,5 @@ export type SelectType = {
   onChange?: (value: string) => void;
   options: string[];
   initialValue?: string;
-  variant?: 'service' | 'mypageCategory' | 'modalCategory';
+  variant?: 'service' | 'modalCategory';
 };

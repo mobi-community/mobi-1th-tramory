@@ -10,7 +10,7 @@ const selectConfig = {
     variant: {
       control: { type: 'select' },
       description: '셀렉트 디자인 확인',
-      options: ['service', 'mypageCategory', 'modalCategory'],
+      options: ['service', 'modalCategory'],
     },
     value: {
       control: 'text',
@@ -41,14 +41,6 @@ Service.args = {
   value: '오류 신고',
   options: ['오류 신고', '신고하기', '회원가입/탈퇴/ID/PW 관련', '기타'],
   initialValue: '문의 종류를 선택해주세요',
-};
-
-export const MypageCategory = (args) => <Select {...args} />;
-MypageCategory.args = {
-  value: '식도락',
-  options: ['식도락', '문화예술', '휴양', '쇼핑', '기타'],
-  initialValue: '식도락',
-  variant: 'mypageCategory',
 };
 
 export const ModalCategory = (args) => <Select {...args} />;
