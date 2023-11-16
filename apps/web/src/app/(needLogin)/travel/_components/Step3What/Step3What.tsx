@@ -4,6 +4,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { getStepBarAtom } from '@/store/stepNavbar.atom';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
@@ -15,14 +16,15 @@ import Step3Tag from './components/Step3Tag/Step3Tag';
 
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
-
   const setPlanAtom = useSetAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const setStepbarAtom = useSetAtom(getStepBarAtom(3));
   const { handleSubmit, control } = useForm({
     resolver: yupResolver(CATEGORY_SCHEMA),
   });
 
   const onSubmit = async (data) => {
+    setStepbarAtom(true);
     registerState == 'record'
       ? setRecordAtom((prev) => ({
           ...prev,

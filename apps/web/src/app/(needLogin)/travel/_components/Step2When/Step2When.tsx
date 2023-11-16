@@ -4,6 +4,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { getStepBarAtom } from '@/store/stepNavbar.atom';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { IStep2Props } from '../../Travel.type';
@@ -15,12 +16,14 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
   const setPlanAtom = useSetAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const setStepbarAtom = useSetAtom(getStepBarAtom(2));
   const { handleSubmit, control } = useForm();
   const { isDateSelected, setIsDateSelected } = useDateSelection();
 
   const onSubmit = (data) => {
     console.log('data', data);
     if (isDateSelected) {
+      setStepbarAtom(true);
       registerState == 'plan'
         ? setPlanAtom((prev) => ({
             ...prev,
