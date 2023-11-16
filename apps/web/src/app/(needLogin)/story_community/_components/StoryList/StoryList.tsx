@@ -6,24 +6,22 @@ import { useEffect } from 'react';
 import { Button } from 'ui';
 
 import { CommonStory, Pagination } from '@/components';
-import { StoryType } from '@/components/CommonStory/CommonStory.types';
 import { storyCommunityPageConfig } from '@/constants';
 
 import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
 
 export const StoryList: React.FC = () => {
   const {
-    storyData,
     setStoryData,
-    selectedCategory,
     setSelectedCategory,
     storyPage,
     setStoryPage,
+    filterWithCategory,
   } = useStoryCommunity();
 
   const searchParams = useSearchParams();
 
-  const searchedCountry = searchParams.get('keyword');
+  const searchedKeyword = searchParams.get('keyword');
 
   useEffect(() => {
     const fetchStoryList = async () => {
@@ -43,34 +41,14 @@ export const StoryList: React.FC = () => {
     };
 
     fetchStoryList();
-    // eslint fix
   }, [setStoryData, storyPage]);
-
-  const searchedArray: StoryType[] = searchedCountry
-    ? storyData?.filter(
-        (story) =>
-          story.content.title.includes(searchedCountry) ||
-          story.content.text.includes(searchedCountry) ||
-          story.content.tags.some((tag: string) =>
-            tag.includes(searchedCountry)
-          ) ||
-          story.user.userId.includes(searchedCountry)
-      )
-    : storyData;
-
-  const filteredStoryArray: StoryType[] =
-    selectedCategory && selectedCategory !== '전체'
-      ? searchedArray?.filter(
-          (story) => story.content.category === selectedCategory
-        )
-      : searchedArray;
 
   const router = useRouter();
 
   const HaveData = (
     <div>
       <div className='m-auto grid w-full grid-cols-2 gap-8'>
-        {filteredStoryArray?.map((story) => (
+        {filterWithCategory(searchedKeyword)?.map((story) => (
           <CommonStory
             story={story}
             key={Math.random() * 1000}
@@ -83,7 +61,7 @@ export const StoryList: React.FC = () => {
           currentPage={storyPage}
           setCurrentPage={setStoryPage}
           itemsPerPage={10}
-          dataLength={filteredStoryArray?.length}
+          dataLength={filterWithCategory(searchedKeyword)?.length}
           bgColor='gray'
         />
       </div>
@@ -106,7 +84,7 @@ export const StoryList: React.FC = () => {
   return (
     <div className='relatve'>
       <div className='flex justify-center'>
-        {filteredStoryArray.length ? HaveData : NotHaveData}
+        {filterWithCategory(searchedKeyword).length ? HaveData : NotHaveData}
       </div>
     </div>
   );

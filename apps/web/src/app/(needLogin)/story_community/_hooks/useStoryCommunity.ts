@@ -1,5 +1,7 @@
 import { useAtom } from 'jotai';
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
+import { StoryType } from '@/components/CommonStory/CommonStory.types';
 import {
   isSearchModalOpenAtom,
   keywordDataAtom,
@@ -22,6 +24,31 @@ export const useStoryCommunity = () => {
 
   const [keywordData, setKeywordData] = useAtom(keywordDataAtom);
 
+  const handleCategory = (category: string, router: AppRouterInstance) => {
+    setSelectedCategory(category);
+    router.push(`/story_community?category=${category}`);
+  };
+
+  const filterWithSearchedContent = (searchedKeyword: string): StoryType[] =>
+    searchedKeyword
+      ? storyData?.filter(
+          (story) =>
+            story.content.title.includes(searchedKeyword) ||
+            story.content.text.includes(searchedKeyword) ||
+            story.content.tags.some((tag: string) =>
+              tag.includes(searchedKeyword)
+            ) ||
+            story.user.userId.includes(searchedKeyword)
+        )
+      : storyData;
+
+  const filterWithCategory = (searchedKeyword: string): StoryType[] =>
+    selectedCategory && selectedCategory !== '전체'
+      ? filterWithSearchedContent(searchedKeyword)?.filter(
+          (story) => story.content.category === selectedCategory
+        )
+      : filterWithSearchedContent(searchedKeyword);
+
   return {
     storyData,
     searchKeyword,
@@ -39,5 +66,8 @@ export const useStoryCommunity = () => {
     setTotal,
     keywordData,
     setKeywordData,
+    handleCategory,
+    filterWithSearchedContent,
+    filterWithCategory,
   };
 };
