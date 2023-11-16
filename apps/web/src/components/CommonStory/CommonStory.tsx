@@ -78,7 +78,11 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
     <div className='mt-[20px] flex justify-between pl-[5px]'>
       <div className='mr-[20px]'>
         <div className=' text-[15px] font-bold'>{content.title}</div>
-        <div className=' text-primaryGray-400 mt-[10px] h-[70px] w-[180px] overflow-hidden text-ellipsis text-[12px]'>
+        <div
+          className={`text-primaryGray-400 mt-[10px] h-[70px] ${
+            isMyPage ? 'w-[180px]' : 'w-[250px]'
+          } overflow-hidden text-ellipsis text-[12px]`}
+        >
           {content.text}
         </div>
         <div className='mt-[20px] flex flex-col'>
@@ -109,11 +113,19 @@ export const CommonStory: React.FC<CommonStoryProps> = ({
       onClick={() => handleMoveToDetail(id)}
       className='relative cursor-pointer'
     >
-      <div className='relative z-50 w-[430px] bg-white/[0.5] pb-[30px] pl-[30px] drop-shadow-xl'>
+      <div
+        className={`relative z-50 ${
+          isMyPage ? 'w-[430px]' : 'w-[500px]'
+        } bg-white/[0.5] pb-[30px] pl-[30px] drop-shadow-xl`}
+      >
         <div>{User}</div>
         <div>{Content}</div>
       </div>
-      <div className='bg-primaryYellow absolute left-[390px] top-5 z-0 h-[20px] w-[60px]'></div>
+      <div
+        className={`bg-primaryYellow absolute ${
+          isMyPage ? 'left-[390px] top-5' : 'left-[460px] top-5'
+        } z-0 h-[20px] w-[60px]`}
+      ></div>
     </div>
   );
 };
