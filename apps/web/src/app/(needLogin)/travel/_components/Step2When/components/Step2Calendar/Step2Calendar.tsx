@@ -7,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import { Control, Controller } from 'react-hook-form';
 
 import { dateRangeAtom } from '@/store';
+import { registerStateAtom } from '@/store/travelState.atom';
 
 interface IStep2CalendarProps {
   control: Control;
@@ -15,15 +16,26 @@ interface IStep2CalendarProps {
   onChange: (data: Date[]) => void;
 }
 
+export const differenceInDaysFunc = (data) => {
+  const differenceInMilliseconds =
+    new Date(data[1]).getTime() - new Date(data[0]).getTime();
+
+  return differenceInMilliseconds / (1000 * 60 * 60 * 24);
+};
+
 const Step2Calendar: React.FC<IStep2CalendarProps> = ({
   control,
   name,
   onChange,
 }) => {
+  const [registerState] = useAtom(registerStateAtom);
   const [dateRange, setDateRange] = useAtom(dateRangeAtom);
   const [startDate, endDate] = dateRange;
-
   const handleDateSelect = (update: Date | [Date, Date]) => {
+    if (differenceInDaysFunc(update) > 10) {
+      alert('10일 이상은 선택이 불가능 합니다');
+      onChange([update[0], update[0]]);
+    }
     if (Array.isArray(update)) {
       setDateRange(update);
       onChange(update);
@@ -42,11 +54,17 @@ const Step2Calendar: React.FC<IStep2CalendarProps> = ({
           <>
             <DatePicker
               dateFormat='yyyy.MM.dd'
-              selected={startDate}
               selectsRange={true}
               startDate={startDate} // 시작 날짜
-              endDate={endDate}
+              endDate={
+                differenceInDaysFunc([startDate, endDate]) > 10
+                  ? startDate
+                  : endDate
+              }
+              minDate={registerState == 'plan' ? new Date() : null}
+              maxDate={registerState == 'record' ? new Date() : null}
               onChange={(update: Date | [Date, Date]) => {
+                console.log('update', update);
                 handleDateSelect(update);
                 field.onChange(update);
               }}

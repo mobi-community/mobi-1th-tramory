@@ -41,7 +41,6 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   };
 
   const handleDateSelect = (data: Date[]) => {
-    console.log('확인용', data);
     setIsDateSelected(data.length > 0);
   };
 
