@@ -4,24 +4,22 @@ import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
-import { badgeAtom } from '@/store/mypage.atoms';
 
-import { MyPageContainer } from '../../_components';
-import { HowToNotification } from '../_components';
+import { MyPageContainer } from '../../../_components';
+import { BADGES } from '../BadgeSlide';
+import { HowToNotification } from '../HowToNotification';
 
 const isOneHowToAtom = atom(false);
 
-const MyPageTabs = () => {
+export const MyBadgeComponent = () => {
   const pathname = usePathname();
-  const basePath = pathname.replace(/\/[^/]+$/, '');
-  const navTitle = mypageNavConfig.nav.find(
-    (nav) => nav.href === basePath
-  ).title;
   const params = useSearchParams();
-  const slug = params.get('filter');
-
-  const badges = useAtomValue(badgeAtom);
-  const currentBadge = badges.find((badge) => badge.slug === slug);
+  const category = params.get('filter');
+  const navTitle = mypageNavConfig.nav.find(
+    (nav) => nav.href === pathname
+  ).title;
+  const badges = useAtomValue(BADGES);
+  const currentBadge = badges.find((badge) => badge.slug === category);
 
   const [isOneHowTo, setIsOneHowTo] = useAtom(isOneHowToAtom);
 
@@ -40,7 +38,7 @@ const MyPageTabs = () => {
           >
             info
           </span>
-          {isOneHowTo && <HowToNotification info={currentBadge.info} />}
+          {isOneHowTo && <HowToNotification info={currentBadge?.info} />}
         </div>
         <div className='bg-primaryGray-200 mx-12 mb-20 grid grid-cols-5 items-center gap-4 gap-y-16 rounded-[30px] px-8 py-16'>
           {currentBadge.description.map((item, index: number) => (
@@ -78,5 +76,3 @@ const MyPageTabs = () => {
     </div>
   );
 };
-
-export default MyPageTabs;

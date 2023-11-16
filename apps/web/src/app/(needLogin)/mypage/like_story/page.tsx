@@ -12,7 +12,6 @@ import { ViewStory } from './_components';
 import { LikeStory } from './_components/LikesStory/LikesStory';
 
 const LikeStoryPage = () => {
-  // const router = useRouter();
   const params = useSearchParams();
   const filter = params.get('filter') || '';
   const selectTab = useSetAtom(selectTabAtom);

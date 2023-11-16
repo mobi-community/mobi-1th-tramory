@@ -8,7 +8,9 @@ import DndList from './_component/DndList';
 import UploadImgFiles from './_component/UploadImgFiles';
 
 const TravelDetailModal: React.FC = () => {
-  const [detailModalState] = useAtom(travelDetailModalAtoms);
+  const [detailModalState, setDetailModalState] = useAtom(
+    travelDetailModalAtoms
+  );
   const [selectedDateId] = useAtom(selectedDateIdAtom);
 
   const handleSave = async (e) => {
@@ -37,6 +39,10 @@ const TravelDetailModal: React.FC = () => {
       console.error('fetch오류', error);
     }
   };
+  const handleClearAllItems = () => {
+    setDetailModalState([]);
+    console.log('reset?', detailModalState);
+  };
 
   return (
     <>
@@ -52,6 +58,7 @@ const TravelDetailModal: React.FC = () => {
           </div>
           <div className=' flex gap-3 pt-6'>
             <Button
+              onClick={handleClearAllItems}
               variant='roundednavy'
               size='lg'
               className='min-w-[200px] rounded-3xl font-bold'

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const OneMockFlag = ({ data }) => {
+export const OneMockFlag = ({ data }) => {
   return (
     <div className='grid grid-cols-5 gap-x-4 px-7'>
       {data.map((oneData, idx) => (
@@ -14,5 +14,3 @@ const OneMockFlag = ({ data }) => {
     </div>
   );
 };
-
-export default OneMockFlag;

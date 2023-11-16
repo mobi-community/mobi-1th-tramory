@@ -9,4 +9,14 @@ export const storyModalAtom = atomFamily(
   (a, b) => a.postId === b.postId
 );
 
+export const likedStatusAtom = atomFamily(
+  ({ liked }: { postId: string; liked: number }) => atom({ liked }),
+  (a, b) => a.postId === b.postId
+);
+
+export const viewedStatusAtom = atomFamily(
+  ({ viewed }: { postId: string; viewed: number }) => atom({ viewed }),
+  (a, b) => a.postId === b.postId
+);
+
 export const targetStoryAtom = atom<StoryType>({} as StoryType);
