@@ -2,8 +2,8 @@
 
 import { useAtom } from 'jotai';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 
+import basicImage from '/public/images/replaceImg.jpg';
 import { storyModalAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
@@ -14,20 +14,16 @@ export const ImageSlide: React.FC<{
   postId: string;
 }> = ({ images, postId }) => {
   const mainImage = images[0];
-  const pathName = usePathname();
-  const isMyStory = pathName.includes('mypage');
 
   const [isImageModalOpen, setIsImageModalOpen] = useAtom(
     storyModalAtom({ postId, isOpen: false })
   );
 
-  return (
+  const hasImages = (
     <div className='relative mr-8'>
       <div className='flex flex-row-reverse'>
         <div
-          className={`relative ${
-            isMyStory ? 'h-[140px] w-[140px]' : 'h-[170px] w-[170px]'
-          }`}
+          className={`relative h-[140px] w-[140px]`}
           key={Math.random() * 10000}
         >
           <Image
@@ -41,9 +37,7 @@ export const ImageSlide: React.FC<{
       </div>
       {images.length > 1 && (
         <div
-          className={`bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] ${
-            isMyStory ? 'top-[110px]' : 'top-[140px]'
-          }  h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150`}
+          className={`bg-primaryGray-100/[80%] hover:bg-primaryGray-400 absolute right-[5px] top-[110px] h-[25px] w-[25px] rounded-[50%] p-[2.5px] transition-all duration-150`}
           onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.stopPropagation();
             setIsImageModalOpen(({ isOpen }) => ({
@@ -58,7 +52,26 @@ export const ImageSlide: React.FC<{
           })}
         </div>
       )}
-      {isImageModalOpen.isOpen && <ImageModal images={images.slice(1)} />}
+      {isImageModalOpen.isOpen && <ImageModal images={images.slice(1, 3)} />}
     </div>
   );
+
+  const noImage = (
+    <div className='relative mr-8'>
+      <div
+        className={`relative h-[140px] w-[140px]`}
+        key={Math.random() * 10000}
+      >
+        <Image
+          src={basicImage}
+          alt='대표 여행 사진'
+          key={Math.random() * 1000}
+          fill
+          className='rounded-[8px]'
+        />
+      </div>
+    </div>
+  );
+
+  return images.length ? hasImages : noImage;
 };
