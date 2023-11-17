@@ -1,13 +1,12 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
-import { postPlan, postRecord } from '../../_apis/planPostApi';
 import { IStep4Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import { CustomPagination } from './components/Step4Dates/CustomPagination';
@@ -21,17 +20,12 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
   const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  console.log(planAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
 
   registerState == 'plan'
     ? console.log('plan data', planAtom)
     : console.log('record data', recordAtom);
-
-  useEffect(() => {
-    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
-  }, [planAtom, recordAtom, registerState]);
 
   return (
     <>

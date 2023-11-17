@@ -20,8 +20,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const { handleSubmit, control } = useForm();
   const { isDateSelected, setIsDateSelected } = useDateSelection();
 
-  const onSubmit = (data) => {
-    console.log('data', data);
+  const onSubmit = (data: { postDate: { toISOString: () => string }[] }) => {
     if (isDateSelected) {
       setStepbarAtom(true);
       registerState == 'plan'
@@ -49,7 +48,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
       <div className='mt-[57px] flex h-[600px] items-center justify-center '>
         <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
           <div>
-            <div className='text-primaryGray-500 my-3 h-[50px] w-full text-center text-[30px] font-semibold'>
+            <div className='text-primaryGray-500 my-3 mt-10 h-[50px] w-full text-center text-[30px] font-semibold'>
               {config.label}
             </div>
             <div className='mt-[14px]'>

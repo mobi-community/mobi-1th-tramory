@@ -34,7 +34,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       : setRegisterState('record');
   }, [pathname, setRegisterState, planAtom, recordAtom, registerState]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { title: string }) => {
     if (fieldValue.trim() == '') {
       return;
     } else {

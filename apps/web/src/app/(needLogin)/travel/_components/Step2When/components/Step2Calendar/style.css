@@ -54,7 +54,7 @@
 
 /* 선택된 일자 가르킴*/
 .react-datepicker__day--selected {
-  /* background-color: #ecf1f7; */
+  background-color: white;
 }
 
 /* 선택된 기간 가르킴*/

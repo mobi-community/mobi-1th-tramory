@@ -1,5 +1,6 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
@@ -8,6 +9,7 @@ import { getStepBarAtom } from '@/store/stepNavbar.atom';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
+import { postPlan, postRecord } from '../../_apis/planPostApi';
 import { CATEGORY_SCHEMA } from '../../_schema/travel.schema';
 import type { IStep3Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
@@ -15,15 +17,28 @@ import Step3Category from './components/Step3Category/Step3Category';
 import Step3Tag from './components/Step3Tag/Step3Tag';
 
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
+  // const queryClient = useQueryClient();
   const [registerState] = useAtom(registerStateAtom);
-  const setPlanAtom = useSetAtom(formModePlanAtom);
-  const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
+  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
+
   const setStepbarAtom = useSetAtom(getStepBarAtom(3));
+  // const mutation = useMutation(postPlan, {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries();
+  //   },
+  // });
   const { handleSubmit, control } = useForm({
     resolver: yupResolver(CATEGORY_SCHEMA),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: {
+    tag0: string;
+    tag1: string;
+    tag2: string;
+    tag3: string;
+    theme: string;
+  }) => {
     setStepbarAtom(true);
     registerState == 'record'
       ? setRecordAtom((prev) => ({
@@ -40,6 +55,7 @@ const Step3What: React.FC<IStep3Props> = ({ config }) => {
           ...prev,
           theme: data.theme.toString(),
         }));
+    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
   };
 
   return (
