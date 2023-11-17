@@ -2,7 +2,7 @@
 
 import { useAtom, useSetAtom } from 'jotai';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
 import { mypageNavStatesAtom, selectedNavAtom } from '@/store';
@@ -13,6 +13,8 @@ export const MyPageNavBar = () => {
   const subActiveState = 'text-primaryBlue-700 bg-primaryBlue-200';
   const router = useRouter();
   const pathName = usePathname();
+  const params = useSearchParams();
+  const page = params.get('page');
   const setNavSelection = useSetAtom(selectedNavAtom);
 
   const handleMoveToPage = (href: string, title: string) => {
@@ -28,7 +30,11 @@ export const MyPageNavBar = () => {
   };
 
   const handleIsActive = (href: string) => {
-    if (pathName === href) return subActiveState;
+    const isPathIncluded = pathName.includes(href.split('/')[2]);
+    const isQueryParamMatching = href.endsWith(page);
+
+    if (pathName === href || (isPathIncluded && isQueryParamMatching))
+      return subActiveState;
   };
 
   const isParentActive = (parentHref: string) => {

@@ -57,7 +57,10 @@ const UploadImgFiles: React.FC = () => {
         />
         <button
           className='rounded border px-5 py-1'
-          onClick={() => inputFileRef.current?.click()}
+          onClick={(e) => {
+            e.preventDefault();
+            inputFileRef.current?.click();
+          }}
         >
           <span className='material-icons-outlined'>add_a_photo</span>
         </button>

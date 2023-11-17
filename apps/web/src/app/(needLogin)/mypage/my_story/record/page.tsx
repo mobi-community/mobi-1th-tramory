@@ -2,9 +2,10 @@
 
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { CommonStory, Pagination } from '@/components';
+import { usePagination } from '@/hooks/usePagination';
 import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
@@ -12,8 +13,8 @@ import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
   const [recordStories, setRecordStories] = useAtom(userRecordStoriesAtom);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(8);
   const dataLength = recordStories.length;
 
   const router = useRouter();
@@ -44,7 +45,7 @@ const MyStoryRecordPage = () => {
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
         <div className='grid grid-cols-2 gap-8 px-12 pb-12 '>
-          {recordStories.map((story) => (
+          {recordStories.slice(startIdx, endIdx).map((story) => (
             <CommonStory
               story={story}
               key={Math.random() * 1000}

@@ -27,7 +27,7 @@ export const DropdownFormSection = ({ dayData, index }) => {
         <DateHeader index={index} date={dayData.date} id={dayData.id} />
         {toggleState && (
           <div className=' text-primaryBlue-700'>
-            <PlaceInfo dayData={dayData} />
+            <PlaceInfo />
             <ContentInfo dayData={dayData} />
           </div>
         )}
