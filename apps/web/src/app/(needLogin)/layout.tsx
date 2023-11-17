@@ -2,6 +2,7 @@
 import { usePathname } from 'next/navigation';
 
 import { Header } from '@/components';
+import FloatingMenu from '@/components/Floating_menu/FloatingMenu';
 
 // 로그인 하지 않은 사람이 접속하면 되돌리게 처리
 
@@ -30,6 +31,7 @@ export default function NeedLoginLayout({
     <>
       {!isMyPage && <Header />}
       <div>{children}</div>
+      <FloatingMenu />
     </>
   );
 }
