@@ -1,7 +1,8 @@
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 
-import { MapPageAtom } from '@/store';
+import { MapAtom, MapPageAtom } from '@/store';
 
+import { getGoogleGeocode } from '../apis/geocoding';
 import type { submitFuncProps } from './useMapSearchBar.types';
 
 export const useMapSearchBar = () => {
@@ -25,6 +26,9 @@ export const useMapSearchBar = () => {
 
   const [keywordData, setKeywordData] = useAtom(MapPageAtom.keywordData);
 
+  const setCenter = useSetAtom(MapAtom.center);
+  const setZoom = useSetAtom(MapAtom.zoom);
+
   const handleSubmitCountry = ({
     searchKeyword,
     setIsCountry,
@@ -38,6 +42,12 @@ export const useMapSearchBar = () => {
     const location = isCountry ? searchKeyword : searchKeyword.split(',')[0];
 
     console.log('submit', searchKeyword);
+    getGoogleGeocode(searchKeyword).then((res) => {
+      if (res.results) {
+        setCenter(res.results[0].geometry.location);
+        setZoom(5);
+      }
+    });
     setIsCountry(isCountry);
     setTargetLocation(location);
     setIsCountryInfoOpen({ isOpen: true });
