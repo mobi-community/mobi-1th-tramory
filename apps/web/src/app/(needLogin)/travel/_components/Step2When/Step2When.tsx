@@ -4,6 +4,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
+import { getStepBarAtom } from '@/store/stepNavbar.atom';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { IStep2Props } from '../../Travel.type';
@@ -15,12 +16,13 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   const [registerState] = useAtom(registerStateAtom);
   const setPlanAtom = useSetAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
+  const setStepbarAtom = useSetAtom(getStepBarAtom(2));
   const { handleSubmit, control } = useForm();
   const { isDateSelected, setIsDateSelected } = useDateSelection();
 
-  const onSubmit = (data) => {
-    console.log('data', data);
+  const onSubmit = (data: { postDate: { toISOString: () => string }[] }) => {
     if (isDateSelected) {
+      setStepbarAtom(true);
       registerState == 'plan'
         ? setPlanAtom((prev) => ({
             ...prev,
@@ -38,7 +40,6 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
   };
 
   const handleDateSelect = (data: Date[]) => {
-    console.log('확인용', data);
     setIsDateSelected(data.length > 0);
   };
 
@@ -47,7 +48,7 @@ const Step2When: React.FC<IStep2Props> = ({ config }) => {
       <div className='mt-[57px] flex h-[600px] items-center justify-center '>
         <div className='bg-primaryBlue-100 absolute flex h-[600px] w-full max-w-[969px] justify-center '>
           <div>
-            <div className='text-primaryGray-500 my-3 h-[50px] w-full text-center text-[30px] font-semibold'>
+            <div className='text-primaryGray-500 my-3 mt-10 h-[50px] w-full text-center text-[30px] font-semibold'>
               {config.label}
             </div>
             <div className='mt-[14px]'>

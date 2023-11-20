@@ -1,6 +1,8 @@
 // plan post fetch 요청 로직
 
-export const postPlan = async (formdata) => {
+import { TravelPlanType, TravelRecordType } from '@/types/TravelRegister.types';
+
+export const postPlan = async (formdata: TravelPlanType) => {
   await fetch('/api/plans', {
     method: 'POST',
     headers: {
@@ -11,6 +13,7 @@ export const postPlan = async (formdata) => {
     .then(async (res) => {
       if (res.status === 200) {
         alert('post 요청 성공');
+        return res;
       } else if (res.status === 403) {
         return res.json();
       }
@@ -21,7 +24,7 @@ export const postPlan = async (formdata) => {
 };
 
 // record post fetch 요청 로직
-export const postRecord = async (formdata) => {
+export const postRecord = async (formdata: TravelRecordType) => {
   await fetch('/api/records', {
     method: 'POST',
     headers: {
