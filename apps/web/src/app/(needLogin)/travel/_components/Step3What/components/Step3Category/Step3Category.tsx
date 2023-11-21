@@ -1,22 +1,20 @@
-import { useAtom } from 'jotai';
 import { Control, Controller } from 'react-hook-form';
 
+import { useTravelForm } from '@/app/(needLogin)/travel/_hooks/useTravelRegister';
 import { travelCategory } from '@/constants/travelStep3Category.constants';
-import { formModePlanAtom, formModeRecordAtom } from '@/store';
-import { selectedCategoryIdAtom } from '@/store/step3Category.atom';
-import { registerStateAtom } from '@/store/travelState.atom';
 
 interface IStep3CategoryProps {
   control: Control;
 }
 
 const Step3Category: React.FC<IStep3CategoryProps> = ({ control }) => {
-  const [registerState] = useAtom(registerStateAtom);
-  const [selectedCategoryId, setSelectedCategoryId] = useAtom(
-    selectedCategoryIdAtom
-  );
-  const [planAtom] = useAtom(formModePlanAtom);
-  const [recordAtom] = useAtom(formModeRecordAtom);
+  const {
+    registerState,
+    selectedCategoryId,
+    setSelectedCategoryId,
+    planAtom,
+    recordAtom,
+  } = useTravelForm();
 
   return (
     <>

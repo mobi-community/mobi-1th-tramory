@@ -1,29 +1,31 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAtom } from 'jotai';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Input } from 'ui';
 
-import { formModePlanAtom, formModeRecordAtom } from '@/store';
-import { registerStateAtom } from '@/store/travelState.atom';
-
+import { useTravelForm } from '../../_hooks/useTravelRegister';
 import { TITLE_SCHEMA } from '../../_schema/travel.schema';
 import { type Step1TitleProps } from '../../Travel.type';
 
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
-  const [planAtom, setPlanAtom] = useAtom(formModePlanAtom);
-  const [recordAtom, setRecordAtom] = useAtom(formModeRecordAtom);
-  const [registerState, setRegisterState] = useAtom(registerStateAtom);
+  const {
+    planAtom,
+    recordAtom,
+    registerState,
+    setRegisterState,
+    step1onSubmit,
+  } = useTravelForm();
+
   const { handleSubmit, control, watch } = useForm({
     resolver: yupResolver(TITLE_SCHEMA),
   });
+
   const fieldValue = watch('title', '');
   const pathname = usePathname();
-  const router = useRouter();
   const headerHeight = 90;
 
   // pathname에 /travel/plan을 포함할 경우 'plan'으로 atomstorage 저장
@@ -34,19 +36,8 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       : setRegisterState('record');
   }, [pathname, setRegisterState, planAtom, recordAtom, registerState]);
 
-  const onSubmit = (data: { title: string }) => {
-    if (fieldValue.trim() == '') {
-      return;
-    } else {
-      router.push(`/travel/${registerState}?stepId=2`);
-      registerState == 'plan'
-        ? setPlanAtom((prev) => ({ ...prev, title: data.title }))
-        : setRecordAtom((prev) => ({ ...prev, title: data.title }));
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(step1onSubmit)}>
       <div
         style={{
           height: `calc(100vh - ${headerHeight}px)`,
@@ -137,7 +128,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
                     style={{ fontSize: '30px' }}
                     onClick={() => {
                       if (fieldValue.trim()) {
-                        handleSubmit(onSubmit)();
+                        handleSubmit(step1onSubmit)();
                       }
                     }}
                   >

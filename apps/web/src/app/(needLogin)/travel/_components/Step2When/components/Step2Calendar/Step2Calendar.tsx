@@ -2,14 +2,12 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import './style.css';
 
-import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { Control, Controller } from 'react-hook-form';
 
+import { useCalendar } from '@/app/(needLogin)/travel/_hooks/useCalendar';
 import { InformModal } from '@/components';
-import { dateRangeAtom } from '@/store';
-import { registerStateAtom } from '@/store/travelState.atom';
 
 interface IStep2CalendarProps {
   control: Control;
@@ -18,40 +16,26 @@ interface IStep2CalendarProps {
   onChange: (data: Date[]) => void;
 }
 
-export const differenceInDaysFunc = (data) => {
-  const differenceInMilliseconds =
-    new Date(data[1]).getTime() - new Date(data[0]).getTime();
-
-  return differenceInMilliseconds / (1000 * 60 * 60 * 24);
-};
-
 const Step2Calendar: React.FC<IStep2CalendarProps> = ({
   control,
   name,
   onChange,
 }) => {
-  const [registerState] = useAtom(registerStateAtom);
-  const [dateRange, setDateRange] = useAtom(dateRangeAtom);
-  const [startDate, endDate] = dateRange;
-  const [key, setKey] = useState(startDate.toISOString());
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleDateSelect = (update: Date | [Date, Date]) => {
-    if (differenceInDaysFunc(update) > 10) {
-      setOpenModal(true);
-    }
-    if (Array.isArray(update)) {
-      setDateRange(update);
-      onChange(update);
-    } else {
-      setDateRange([update, update]);
-      onChange([update, update]);
-    }
-  };
+  const {
+    key,
+    setKey,
+    startDate,
+    endDate,
+    registerState,
+    openModal,
+    setOpenModal,
+    handleDateSelect,
+    differenceInDaysFunc,
+  } = useCalendar();
 
   useEffect(() => {
     setKey(startDate.toISOString());
-  }, [startDate]);
+  }, [setKey, startDate]);
 
   return (
     <>
@@ -74,7 +58,7 @@ const Step2Calendar: React.FC<IStep2CalendarProps> = ({
               maxDate={registerState == 'record' ? new Date() : null}
               onChange={(update: Date | [Date, Date]) => {
                 console.log('update', update);
-                handleDateSelect(update);
+                handleDateSelect(update, onChange);
                 field.onChange(update);
               }}
               inline
