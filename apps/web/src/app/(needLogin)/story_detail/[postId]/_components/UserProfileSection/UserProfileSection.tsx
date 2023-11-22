@@ -15,7 +15,7 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
 }) => {
   const { id, user, content } = targetStory;
 
-  const formattedDate = content.date.split('T')[0];
+  // const formattedDate = content.date.split('T')[0];
 
   const { likedStatus, setLikedStatus } = useStoryDetailPage(id);
 
@@ -44,7 +44,7 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
         <div className='flex w-full items-center justify-between'>
           <div className='text-[24px] font-bold'>{content.title}</div>
           <div className=' text-primaryGray-400 text-[14px]'>
-            {formattedDate}
+            {/* {formattedDate} */}
           </div>
         </div>
         <div className='flex justify-between'>

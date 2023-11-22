@@ -1,5 +1,5 @@
-import { storyType } from '@/components/CommonStory';
+import { StoryType } from '@/components/CommonStory/CommonStory.types';
 
 export interface DetailSectionProps {
-  planDetail: storyType;
+  planDetail: StoryType;
 }
