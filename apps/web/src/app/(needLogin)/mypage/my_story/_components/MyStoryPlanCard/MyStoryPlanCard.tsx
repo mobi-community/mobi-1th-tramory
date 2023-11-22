@@ -1,5 +1,7 @@
 import { Button } from 'ui';
 
+import { formattedDateFunc } from '@/utils/formattedDate';
+
 import { MyStoryPlanCardProps } from './MyStoryPlanCard.types';
 
 export const MyStoryPlanCard = ({
@@ -7,6 +9,9 @@ export const MyStoryPlanCard = ({
   handleMoveToDetail,
 }: MyStoryPlanCardProps) => {
   const { id, content, isRecord } = planData;
+  const formattedDate = formattedDateFunc(
+    content.date instanceof Date ? content.date : new Date(content.date)
+  );
 
   return (
     <div
@@ -31,7 +36,7 @@ export const MyStoryPlanCard = ({
       <div className='border-primaryGray-300 my-2 w-full border-t-[1px]'></div>
       <div>
         <div className=' text-[12px]'>{content.location}</div>
-        <div className=' text-[12px]'>{content.date}</div>
+        <div className=' text-[12px]'>{formattedDate}</div>
       </div>
       <div className='mt-5 flex items-center justify-center'>
         {isRecord ? (
