@@ -5,4 +5,5 @@ export const AddLocationConfig = {
   informText:
     '장소가 정확하지 않다면, 장소명을 직접 수정하거나 지도를 통해 장소를 선택할 수 있어요.',
   suggestAddAddress: '장소 추가 시 주소가 자동으로 입력됩니다.',
+  searchBarText: '원하는 장소를 검색하세요',
 };
