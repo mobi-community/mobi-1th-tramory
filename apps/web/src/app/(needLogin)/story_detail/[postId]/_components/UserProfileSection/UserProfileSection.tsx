@@ -14,10 +14,7 @@ export const UserProfileSection: React.FC<UserProfileSectionProps> = ({
   targetStory,
 }) => {
   const { id, user, content } = targetStory;
-  /**
-   * todo
-   * split 에러 해결 필요
-   */
+
   // const formattedDate = content.date.split('T')[0];
 
   const { likedStatus, setLikedStatus } = useStoryDetailPage(id);
