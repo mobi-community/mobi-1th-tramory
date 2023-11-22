@@ -5,12 +5,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
 
-import {
-  CountryInfoModal,
-  // LayoutForCity,
-  LayoutForCountry,
-  // useCountryInfoModal,
-} from '@/components';
+import { CountryInfoModal, LayoutForCountry } from '@/components';
 import { MapPageConfig } from '@/constants';
 import { MapAtom, MapPageAtom } from '@/store';
 import { userInfoAtom } from '@/store/userInfo.atoms';
@@ -42,10 +37,11 @@ const MapPage: React.FC = () => {
   };
 
   // 클릭된 위치 좌표 반환하는 함수
-  // const editedLocation = clicks.map((latLng) => latLng.toJSON());
+  const markedLocation = clicks.map((latLng) => latLng.toJSON());
+
+  console.log(markedLocation);
 
   const { locationKeyword } = useMapSearchBar();
-  // const { isCountry } = useCountryInfoModal();
 
   if (apiKey)
     return (
