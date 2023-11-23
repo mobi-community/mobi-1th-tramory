@@ -57,7 +57,10 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
             <div className='flex items-center space-x-3 text-xs'>
               <button
                 className='ml-3 rounded border px-3 py-1 leading-5'
-                onClick={openAddLocationModal}
+                onClick={(e) => {
+                  e.preventDefault();
+                  openAddLocationModal();
+                }}
               >
                 수정
               </button>
