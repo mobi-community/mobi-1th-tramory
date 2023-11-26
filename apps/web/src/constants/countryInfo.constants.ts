@@ -46,4 +46,10 @@ export const CountryInfoConfig = {
     passport: 'passport',
     notHaveRecord: '이곳을 여행하신 적이 있나요?',
   },
+  wrapperStyle: {
+    width: '320px',
+    height: '150px',
+    margin: '20px auto',
+    zIndex: '5000',
+  },
 };

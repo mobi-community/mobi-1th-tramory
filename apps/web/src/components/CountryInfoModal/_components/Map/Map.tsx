@@ -1,22 +1,17 @@
 'use client';
 
-import { useAtom } from 'jotai';
 import React, { useEffect, useRef } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
-import { MapPageConfig } from '@/constants';
-import { MapAtom } from '@/store';
+import { CountryInfoConfig } from '@/constants';
 
+import { useMap } from '../../_hooks/useMap';
 import type { MapProps } from './Map.types';
 
-export const Map: React.FC<MapProps> = ({
-  onClick,
-  children,
-  styles,
-  ...options
-}) => {
+export const Map: React.FC<MapProps> = ({ children, ...options }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useAtom(MapAtom.map);
+  const { map, setMap, center, zoom } = useMap();
+  const mapId = process.env.NEXT_PUBLIC_MAP_INFO_ID;
 
   useEffect(() => {
     if (mapRef.current && !map) {
@@ -28,31 +23,17 @@ export const Map: React.FC<MapProps> = ({
 
   useDeepCompareEffect(() => {
     if (map) {
-      const styledMapType = new google.maps.StyledMapType(styles || [], {
-        name: 'Styled Map',
-      });
-
-      map.mapTypes.set('styled_map', styledMapType);
       map.setOptions({
-        mapTypeId: 'styled_map',
+        center,
+        zoom,
+        mapId,
         ...options,
-        styles: undefined,
       });
     }
-  }, [map, options, styles]);
-
-  useEffect(() => {
-    if (map) {
-      google.maps.event.clearListeners(map, 'click');
-
-      if (onClick) {
-        map.addListener('click', onClick);
-      }
-    }
-  }, [map, onClick]);
+  }, [map, options]);
 
   return (
-    <div ref={mapRef} id='map' style={MapPageConfig.wrapperStyle}>
+    <div ref={mapRef} id='map' style={CountryInfoConfig.wrapperStyle}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child))
           // @ts-ignore

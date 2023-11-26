@@ -1,5 +1,6 @@
 'use client';
 
+import { Wrapper } from '@googlemaps/react-wrapper';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -11,10 +12,12 @@ import { useCountryInfoModal } from '../../_hooks/useCountryInfoModal';
 import type { CountryInfoType } from '../../CountryInfoModal.types';
 import { getContinentStamp } from '../../utils/getContinentStamp';
 import { LayoutForNull } from '../LayoutForNull/LayoutForNull';
+import { Map } from '../Map';
 
 export const LayoutForCountry: React.FC = () => {
   const { targetLocation, countryData, setCountryData } = useCountryInfoModal();
   const { text } = CountryInfoConfig;
+  const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +29,6 @@ export const LayoutForCountry: React.FC = () => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
           setCountryData(data.data);
           setIsLoading(false);
         });
@@ -86,7 +88,7 @@ export const LayoutForCountry: React.FC = () => {
   if (isLoading) return <div>로딩 중입니다.</div>;
 
   return countryData ? (
-    <div className='m-auto w-[90%] items-center'>
+    <div className='relative m-auto w-[90%] items-center'>
       <div>
         <div className='ml-[10px]'>
           <div className='text-base font-medium'>{countryData.countryEng}</div>
@@ -116,9 +118,9 @@ export const LayoutForCountry: React.FC = () => {
               : notHaveHistory}
           </div>
         </div>
-        <div className='bg-primaryGray-200 m-auto my-[15px] h-[150px]'>
-          지도
-        </div>
+        <Wrapper apiKey={apiKey}>
+          <Map style={{ width: '100px', height: '100px' }} />
+        </Wrapper>
         <div className='mb-[10px] text-center'>
           <Link
             href={{
