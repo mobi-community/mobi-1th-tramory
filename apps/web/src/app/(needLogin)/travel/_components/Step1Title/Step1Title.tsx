@@ -11,6 +11,7 @@ import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import type { Step1TitleProps } from '../../Travel.type';
+
 const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
   const setPlanAtom = useSetAtom(formModePlanAtom);
   const setRecordAtom = useSetAtom(formModeRecordAtom);
@@ -50,7 +51,7 @@ const Step1Title: React.FC<Step1TitleProps> = ({ config }) => {
       >
         <div className='flex  items-center justify-between font-semibold'></div>
         <div className=' flex flex-row'>
-          <div className='bg-primaryBlue-100 relative rounded-br-[28px] rounded-tr-[28px] '>
+          <div className='bg-primaryBlue-100 rounded-tr-[cd ap28px] relative rounded-br-[28px] '>
             <div className='absolute z-20 ml-5 mt-5'>
               <div className='h-0.5 w-5 bg-white'></div>
               <div className='h-5 w-0.5 bg-white'></div>
