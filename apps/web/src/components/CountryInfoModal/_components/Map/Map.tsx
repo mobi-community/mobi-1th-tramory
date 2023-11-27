@@ -10,7 +10,7 @@ import type { MapProps } from './Map.types';
 
 export const Map: React.FC<MapProps> = ({ children, ...options }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const { map, setMap, center, zoom } = useMap();
+  const { map, setMap, center } = useMap();
   const mapId = process.env.NEXT_PUBLIC_MAP_INFO_ID;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const Map: React.FC<MapProps> = ({ children, ...options }) => {
     if (map) {
       map.setOptions({
         center,
-        zoom,
+        zoom: 6,
         mapId,
         ...options,
       });

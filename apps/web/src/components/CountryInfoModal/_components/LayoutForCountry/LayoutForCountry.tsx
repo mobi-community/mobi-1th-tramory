@@ -6,9 +6,11 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Button } from 'ui';
 
+import { getGoogleGeocode } from '@/app/(needLogin)/map/apis/geocoding';
 import { CountryInfoConfig } from '@/constants/countryInfo.constants';
 
 import { useCountryInfoModal } from '../../_hooks/useCountryInfoModal';
+import { useMap } from '../../_hooks/useMap';
 import type { CountryInfoType } from '../../CountryInfoModal.types';
 import { getContinentStamp } from '../../utils/getContinentStamp';
 import { LayoutForNull } from '../LayoutForNull/LayoutForNull';
@@ -18,6 +20,7 @@ export const LayoutForCountry: React.FC = () => {
   const { targetLocation, countryData, setCountryData } = useCountryInfoModal();
   const { text } = CountryInfoConfig;
   const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
+  const { setCenter, setZoom } = useMap();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,13 +32,20 @@ export const LayoutForCountry: React.FC = () => {
           return res.json();
         })
         .then((data) => {
-          setCountryData(data.data);
+          setCountryData(data.data as CountryInfoType);
+          getGoogleGeocode(data.data.countryEng).then((res) => {
+            if (res.results) {
+              console.log('geocode', res.results);
+              setCenter(res.results[0].geometry.location);
+              setZoom(5);
+            }
+          });
           setIsLoading(false);
         });
     } catch (error) {
       console.error(error, '국가 정보 데이터를 불러오는 데 실패하였습니다.🥲');
     }
-  }, [targetLocation, setCountryData]);
+  }, [targetLocation, setCountryData, setCenter, setZoom]);
 
   const stampImage = (isVisited: boolean) => {
     if (countryData && countryData.continent)
