@@ -1,11 +1,10 @@
 'use client';
-import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
+import { useDate } from '@/app/(needLogin)/travel/_hooks/useDate';
 import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
-import { selectedDateIdAtom, travelDateAtom } from '@/store';
 
 import TravelDetailModal from '../../../TravelModal/TravelDetailModal';
 
@@ -21,33 +20,21 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
   itemsPerPage,
   currentPage,
 }) => {
-  const [date, setDate] = useAtom(travelDateAtom);
-  const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const startIdx = currentPage * itemsPerPage;
-  const endIdx = (currentPage + 1) * itemsPerPage;
-
-  const getDates = async () => {
-    try {
-      const res = await fetch('/dates');
-      const data = await res.json();
-
-      // console.log('성공', data);
-      setDate(data);
-    } catch (error) {
-      console.error('에러', error);
-    }
-  };
+  const {
+    getDates,
+    openModal,
+    date,
+    selectedDateId,
+    setSelectedDateId,
+    isModalOpen,
+    startIdx,
+    endIdx,
+    setIsModalOpen,
+  } = useDate(itemsPerPage, currentPage);
 
   useEffect(() => {
     getDates();
   }, []);
-
-  const openModal = (id) => {
-    setSelectedDateId(id);
-    setIsModalOpen(true);
-  };
 
   return (
     <>
