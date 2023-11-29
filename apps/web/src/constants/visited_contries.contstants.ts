@@ -1,6 +1,6 @@
 import {
   africaData,
-  asiaData,
+  // asiaData,
   BannerImg,
   europeData,
   naData,
@@ -20,7 +20,7 @@ export const visitedContriesConfig = {
           ko: '아시아',
           en: 'ASIA',
           bannerImg: BannerImg.asiaBanner,
-          continentData: asiaData,
+          continentData: [],
         },
         {
           ko: '아프리카',

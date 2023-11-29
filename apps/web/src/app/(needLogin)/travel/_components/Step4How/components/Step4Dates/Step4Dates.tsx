@@ -1,15 +1,19 @@
 'use client';
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { Button } from 'ui';
 
+import TravelModalDefault from '@/components/ModalDefault/TravelModalDefault';
 import { selectedDateIdAtom, travelDateAtom } from '@/store';
+
+import TravelDetailModal from '../../../TravelModal/TravelDetailModal';
 
 interface IStep4DatesProps {
   control: Control;
   itemsPerPage: number;
   currentPage: number;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Step4Dates: React.FC<IStep4DatesProps> = ({
@@ -19,11 +23,11 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
 }) => {
   const [date, setDate] = useAtom(travelDateAtom);
   const [selectedDateId, setSelectedDateId] = useAtom(selectedDateIdAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const startIdx = currentPage * itemsPerPage;
   const endIdx = (currentPage + 1) * itemsPerPage;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getDates = async () => {
     try {
       const res = await fetch('/dates');
@@ -38,7 +42,12 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
 
   useEffect(() => {
     getDates();
-  }, [getDates]);
+  }, []);
+
+  const openModal = (id) => {
+    setSelectedDateId(id);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -46,7 +55,7 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
         name='category'
         control={control}
         defaultValue={''}
-        render={({ field }) => (
+        render={() => (
           <div>
             <div className='text-primaryGray-500  mb-[10px] ml-[120px] mt-[50px] text-[30px] font-semibold'></div>
             <div className='mt-[20px] flex  flex-wrap justify-center'>
@@ -59,10 +68,8 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                       ? 'border-primaryBlue-400 border'
                       : 'border-none'
                   }`}
-                  onClick={() => {
-                    setSelectedDateId(date.id);
-                    field.onChange(date.dates);
-                  }}
+                  onMouseEnter={() => setSelectedDateId(date.id)}
+                  onMouseLeave={() => setSelectedDateId(null)}
                 >
                   <div className='ml-[20px] mt-[0px] flex-col items-center  justify-center '>
                     {date.id < 10 && (
@@ -105,12 +112,22 @@ const Step4Dates: React.FC<IStep4DatesProps> = ({
                       className='mt-[10px] flex h-[26px] w-[120px] pt-[2px] text-black'
                       variant='roundednavy'
                       size='sm'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal(date.id);
+                      }}
                     >
                       기록 등록
                     </Button>
                   </div>
                 </div>
               ))}
+              <TravelModalDefault
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+              >
+                <TravelDetailModal />
+              </TravelModalDefault>
             </div>
           </div>
         )}

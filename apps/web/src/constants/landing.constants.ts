@@ -15,15 +15,15 @@ export const landingConfig = {
   footer: [
     {
       title: 'Contact',
-      href: '/',
+      href: '/mypage/setting/service',
     },
     {
       title: 'Terms of Use',
-      href: '/',
+      href: '/setting/cancel_membership',
     },
     {
       title: 'Privacy Policy',
-      href: '/',
+      href: '/mypage/setting/account',
     },
   ],
   copyright: '© 2023 Tramory. All rights reserved.',

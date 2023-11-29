@@ -1,58 +1,67 @@
 'use client';
 
-import { useAtom, useAtomValue } from 'jotai';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { Button } from 'ui';
 
 import { CommonStory, Pagination } from '@/components';
 import { storyCommunityPageConfig } from '@/constants';
-import {
-  searchKeywordAtom,
-  selectedCategoryAtom,
-  storyCommunityAtoms,
-} from '@/store';
 
-import { storyMock } from '../../_mocks';
+import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
 
 export const StoryList: React.FC = () => {
-  const [currentPage, setCurrentPage] = useAtom(
-    storyCommunityAtoms.storyPageAtom
-  );
+  const {
+    setStoryData,
+    setSelectedCategory,
+    storyPage,
+    setStoryPage,
+    filterWithCategory,
+  } = useStoryCommunity();
 
-  const [selectedCategory, setSelectedCategory] = useAtom(selectedCategoryAtom);
+  const searchParams = useSearchParams();
 
-  const searchKeyword = useAtomValue(searchKeywordAtom);
+  const searchedKeyword = searchParams.get('keyword');
 
-  const searchedArray = searchKeyword
-    ? storyMock.filter(
-        (story) =>
-          story.content.title.includes(searchKeyword) ||
-          story.content.text.includes(searchKeyword) ||
-          story.content.tags.some((tag) => tag.includes(searchKeyword)) ||
-          story.user.userId.includes(searchKeyword)
-      )
-    : storyMock;
+  useEffect(() => {
+    const fetchStoryList = async () => {
+      try {
+        const response = await fetch(`/story/storypage/${storyPage}`);
 
-  const filteredStoryArray =
-    selectedCategory && selectedCategory !== '전체'
-      ? searchedArray.filter(
-          (story) => story.content.category === selectedCategory
-        )
-      : searchedArray;
+        const data = await response.json();
+
+        if (response.ok) {
+          setStoryData(data.data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error('스토리 목록을 가져오는 중 오류가 발생했습니다:', error);
+      }
+    };
+
+    fetchStoryList();
+  }, [setStoryData, storyPage]);
+
+  const router = useRouter();
 
   const HaveData = (
     <div>
-      <div className='m-auto grid grid-cols-2 gap-8 gap-x-[5%]'>
-        {filteredStoryArray.map((story) => (
-          <CommonStory story={story} key={Math.random() * 1000} />
+      <div className='m-auto grid w-full grid-cols-2 gap-8'>
+        {filterWithCategory(searchedKeyword)?.map((story) => (
+          <CommonStory
+            story={story}
+            key={Math.random() * 1000}
+            handleMoveToDetail={() => router.push(`/story_detail/${story.id}`)}
+          />
         ))}
       </div>
       <div className='mt-[80px] flex h-[100px] justify-center'>
         <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          currentPage={storyPage}
+          setCurrentPage={setStoryPage}
           itemsPerPage={10}
-          dataLength={100}
+          dataLength={filterWithCategory(searchedKeyword)?.length}
           bgColor='gray'
         />
       </div>
@@ -75,7 +84,7 @@ export const StoryList: React.FC = () => {
   return (
     <div className='relatve'>
       <div className='flex justify-center'>
-        {filteredStoryArray.length ? HaveData : NotHaveData}
+        {filterWithCategory(searchedKeyword).length ? HaveData : NotHaveData}
       </div>
     </div>
   );

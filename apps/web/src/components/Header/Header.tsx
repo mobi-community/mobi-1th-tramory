@@ -24,24 +24,29 @@ export const Header: React.FC = () => {
           : 'mt-10'
       }`}
     >
-      <Link href='./map'>
-        <Image src={logo} alt='트래모리 로고' className='cursor-pointer' />
+      <Link href='/map'>
+        <Image
+          src={logo}
+          alt='트래모리 로고'
+          className='cursor-pointer'
+          priority={true}
+        />
       </Link>
       <div className='flex'>
         {isMapPage && <ModeSwitchButton />}
         <div className='flex pt-2'>
-          <Link href='./story_community'>
+          <Link href='/story_community'>
             {materialIcon({
               iconName: 'auto_stories',
               ...headerConfig.iconStyle,
             })}
           </Link>
-          <div>
+          <Link href='/mypage/badge'>
             {materialIcon({
               iconName: 'notifications',
               ...headerConfig.iconStyle,
             })}
-          </div>
+          </Link>
           <UserButton />
         </div>
       </div>

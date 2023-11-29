@@ -1,8 +1,9 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import Image from 'next/image';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 type ImageSliderProps = {
@@ -13,10 +14,11 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
   return (
     <div className='absolute left-[-50%] right-[-50%] z-20 mt-5'>
       <Swiper
-        modules={[Navigation]}
+        modules={[Navigation, Autoplay]}
         spaceBetween={1}
         slidesPerView={4}
         pagination={{ clickable: true }}
+        autoplay={{ delay: 3000 }}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>

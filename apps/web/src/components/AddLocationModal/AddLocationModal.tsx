@@ -12,7 +12,7 @@ export const AddLocationModal: React.FC = () => {
 
   if (isAddLocationModalOpen)
     return (
-      <div className='bg-primaryGray-300 fixed inset-0 z-50 flex items-center justify-center bg-opacity-20'>
+      <div className='bg-primaryGray-300 fixed inset-0 z-[200] flex items-center justify-center bg-opacity-20'>
         <div className='flex w-[700px] flex-col border border-gray-300 bg-white shadow-md'>
           <div className='mb-1 flex justify-end p-5'>
             <button

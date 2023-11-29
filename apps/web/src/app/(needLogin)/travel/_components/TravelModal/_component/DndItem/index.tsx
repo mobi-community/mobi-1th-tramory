@@ -1,3 +1,8 @@
+import { useState } from 'react';
+
+import { AddLocationModal } from '@/components';
+
+import { useOpenAddLocationModal } from '../useOpenModal/useOpenADdLocationModal';
 import { useDndItem } from './useDnditem';
 import { DraggableItemProps } from './useDndItems.type';
 
@@ -9,6 +14,25 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
     handleEditButtonClick,
     handleCheckButtonClick,
   } = useDndItem(props);
+
+  const openAddLocationModal = useOpenAddLocationModal();
+
+  const [isAddMemo, setIsAddMemo] = useState(false);
+  const [newMemo, setNewMemo] = useState('');
+
+  const isEditingDescription = editingMemoIndex === props.item.id;
+
+  const handleAddMemoClick = () => {
+    setIsAddMemo(true);
+  };
+
+  const handleSaveMemoClick = () => {
+    if (newMemo) {
+      props.onAddMemo(props.item.id, newMemo);
+      setIsAddMemo(false);
+      setNewMemo('');
+    }
+  };
 
   return (
     <div
@@ -28,12 +52,12 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
         <div className='text-primaryBlue-default flex w-full flex-col '>
           <div className='flex items-center justify-between text-center'>
             <span className='text-lg font-bold leading-normal'>
-              {props.item.name}
+              {props.item.placeName}
             </span>
-            <div className='space-x-3 text-xs'>
+            <div className='flex items-center space-x-3 text-xs'>
               <button
                 className='ml-3 rounded border px-3 py-1 leading-5'
-                onClick={() => props.onEditItemName(props.item.id)}
+                onClick={openAddLocationModal}
               >
                 수정
               </button>
@@ -45,11 +69,12 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               </button>
               <span className='material-icons-outlined leading-5'>menu</span>
             </div>
+            <AddLocationModal />
           </div>
 
-          {props.item.memos.length === 0 && (
+          {props.item.description.length === 0 && !isAddMemo && (
             <button
-              onClick={() => props.onAddMemo(props.item.id)}
+              onClick={handleAddMemoClick}
               className='mt-2 flex items-center text-sm '
             >
               <span className='material-icons-outlined mr-2 h-5 w-5'>
@@ -58,12 +83,27 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               기록하기
             </button>
           )}
+          {isAddMemo && (
+            <div className='mt-2 flex items-center bg-gray-100 text-sm'>
+              <input
+                type='text'
+                value={newMemo}
+                onChange={(e) => setNewMemo(e.target.value)}
+                className='ml-3 w-full max-w-[550px] border bg-gray-100'
+              />
+              <button
+                onClick={handleSaveMemoClick}
+                className='ml-3 rounded  px-3 py-1 leading-5'
+              >
+                <span className='material-icons-outlined h-5 w-5'>check</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
-      {props.item.memos.map((memo, memoIndex) => (
-        // eslint-disable-next-line react/jsx-key
+      {props.item.description.length > 0 && (
         <div className='ml-7 mt-2 flex items-center justify-between rounded bg-gray-100 p-5'>
-          {editingMemoIndex === memoIndex ? (
+          {isEditingDescription ? (
             <input
               value={currentMemo}
               onChange={(e) => {
@@ -75,22 +115,20 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
               className='w-full border bg-gray-100'
             />
           ) : (
-            <span className='max-w-[450px]'>{memo}</span>
+            <span className='max-w-[450px]'>{props.item.description}</span>
           )}
 
           <div className='space-x-3'>
-            {editingMemoIndex === memoIndex ? (
-              <button onClick={() => handleCheckButtonClick(memoIndex)}>
+            {isEditingDescription ? (
+              <button onClick={() => handleCheckButtonClick()}>
                 <span className='material-icons-outlined h-5 w-5'>check</span>
               </button>
             ) : (
               <>
-                <button onClick={() => handleEditButtonClick(memoIndex)}>
+                <button onClick={() => handleEditButtonClick()}>
                   <span className='material-icons-outlined h-5 w-5'>edit</span>
                 </button>
-                <button
-                  onClick={() => props.onDeleteMemo(props.item.id, memoIndex)}
-                >
+                <button onClick={() => props.onDeleteMemo(props.item.id, 0)}>
                   <span className='material-icons-outlined h-5 w-5'>
                     delete
                   </span>
@@ -99,7 +137,7 @@ const DndItem: React.FC<DraggableItemProps> = (props) => {
             )}
           </div>
         </div>
-      ))}
+      )}
     </div>
   );
 };

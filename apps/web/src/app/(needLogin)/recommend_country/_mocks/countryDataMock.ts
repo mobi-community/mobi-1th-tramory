@@ -1,11 +1,49 @@
-import fakeFlagImage from './이탈리아.gif';
+import fakeImage from '../../../../../public/images/이탈리아.gif';
 
 export const countryDataMock = {
   continent: 'europe',
   countryEng: 'ITALY',
   countryKor: '이탈리아',
-  flagImage: fakeFlagImage,
+  flagImage: fakeImage,
   lat: 41.9027835,
   lan: 12.4963655,
   travelHistory: [],
 };
+
+// 국가 정보 데이터
+export const countryListMock = [
+  { countryKor: '모리셔스', countryEng: 'mauritius' },
+  { countryKor: '모로코', countryEng: 'morocco' },
+  { countryKor: '나미비아', countryEng: 'namibia' },
+  { countryKor: '이집트', countryEng: 'egypt' },
+  { countryKor: '마다가스카르', countryEng: 'madagascar' },
+  { countryKor: '중국', countryEng: 'china' },
+  { countryKor: '일본', countryEng: 'japan' },
+  { countryKor: '대한민국', countryEng: 'south korea' },
+  { countryKor: '대만', countryEng: 'taiwan' },
+  { countryKor: '태국', countryEng: 'thailand' },
+  { countryKor: '베트남', countryEng: 'vietnam' },
+  { countryKor: '아랍에미리트공화국', countryEng: 'uae' },
+  { countryKor: '프랑스', countryEng: 'france' },
+  { countryKor: '독일', countryEng: 'germany' },
+  { countryKor: '이탈리아', countryEng: 'italy' },
+  { countryKor: '스페인', countryEng: 'spain' },
+  { countryKor: '스위스', countryEng: 'switzerland' },
+  { countryKor: '영국', countryEng: 'uk' },
+  { countryKor: '미국', countryEng: 'usa' },
+  { countryKor: '캐나다', countryEng: 'canada' },
+  { countryKor: '멕시코', countryEng: 'mexico' },
+  { countryKor: '자메이카', countryEng: 'jamaica' },
+  { countryKor: '쿠바', countryEng: 'kuba' },
+  { countryKor: '스위스', countryEng: 'argentina' },
+  { countryKor: '영국', countryEng: 'bolivia' },
+  { countryKor: '아랍에미리트공화국', countryEng: 'brazil' },
+  { countryKor: '스위스', countryEng: 'chile' },
+  { countryKor: '영국', countryEng: 'peru' },
+  { countryKor: '아랍에미리트공화국', countryEng: 'uruguay' },
+  { countryKor: '오스트레일리아', countryEng: 'australia' },
+  { countryKor: '뉴질랜드', countryEng: 'new zealand' },
+  { countryKor: '아랍에미리트공화국', countryEng: 'fiji' },
+  { countryKor: '파푸아 뉴 기니', countryEng: 'papua new guinea' },
+  { countryKor: '사모아', countryEng: 'samoa' },
+];

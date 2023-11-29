@@ -86,12 +86,12 @@ export const badgeConfig = {
       description: [
         {
           title: '메리 크리스마스',
-          subtitle: '크리스마스<br />여행 일정 달성!',
+          subtitle: '여행 일정 달성!',
           badgeImage,
         },
         {
           title: '해피 뉴 이어',
-          subtitle: '1월 1일<br />여행 일정 달성!',
+          subtitle: '여행 일정 달성!',
           badgeImage,
         },
         {

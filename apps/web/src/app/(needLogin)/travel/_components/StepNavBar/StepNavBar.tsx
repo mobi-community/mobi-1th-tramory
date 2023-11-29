@@ -1,22 +1,26 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import { stepNavbarAtomFamily } from '@/store/stepNavbar.atom';
 import { registerStateAtom } from '@/store/travelState.atom';
 
 import { stepArray } from '../../../../../constants/stepnavbar.constants';
-
-// * url 확정 후 기능 구현 시 추가할 사항
-// 기본 : border + primaryGray-300
-// 해당 url에 머무는 경우 : border + primaryBlue-400
-// 내용을 저장하고 다음 페이지로 넘어간 경우 : bg + primaryBlue-400
 
 const StepNavbar: React.FC = () => {
   const [registerState] = useAtom(registerStateAtom);
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
+  const navbarAtom = useAtomValue(stepNavbarAtomFamily(`atom${search}`));
+
+  const onClickNavbar = (e, id) => {
+    console.log(id, navbarAtom);
+    if (id > search && navbarAtom == false) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <>
@@ -35,6 +39,7 @@ const StepNavbar: React.FC = () => {
               <li
                 key={id}
                 className='relative relative z-10 z-50 mx-11 list-none	'
+                onClick={(e) => onClickNavbar(e, id)}
               >
                 <div
                   className={`	mx-5 mt-5 flex h-10 w-10 items-center justify-center rounded-full border-4 text-xs font-semibold ${

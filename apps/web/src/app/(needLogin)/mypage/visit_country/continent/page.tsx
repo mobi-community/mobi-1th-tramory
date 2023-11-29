@@ -1,17 +1,19 @@
 'use client';
 import { useAtom } from 'jotai';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 import { FlagInfo } from '@/components';
 import { mypageNavConfig } from '@/constants';
-// import { visitedContriesConfig } from '@/constants/visited_contries.contstants';
 import { visitedContinentAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
+import { MyVisitedContries } from './_components/MyVisitedContries';
 
 const VisitedContriesPage = () => {
   const pathname = usePathname();
+  const params = useSearchParams();
+  const category = params.get('filter');
   const navTitle = mypageNavConfig.nav.find(
     (nav) => nav.href === pathname
   ).title;
@@ -39,16 +41,22 @@ const VisitedContriesPage = () => {
   }, [setVisitedContinent]);
 
   return (
-    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
-      <MyPageContainer title={navTitle}>
-        <div className='my-12 px-12'>
-          {bannerData?.map((data, index) => (
-            <div key={index} className='flex flex-col'>
-              <FlagInfo data={data} id={index} />
+    <div>
+      {category === 'my_visited' ? (
+        <MyVisitedContries />
+      ) : (
+        <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
+          <MyPageContainer title={navTitle}>
+            <div className='mb-20 mt-12 px-12'>
+              {bannerData?.map((data, index) => (
+                <div key={index} className='flex flex-col'>
+                  <FlagInfo data={data} id={index} />
+                </div>
+              ))}
             </div>
-          ))}
+          </MyPageContainer>
         </div>
-      </MyPageContainer>
+      )}
     </div>
   );
 };

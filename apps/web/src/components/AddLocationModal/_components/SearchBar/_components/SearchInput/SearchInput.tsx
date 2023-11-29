@@ -2,8 +2,8 @@
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { useAddLocationModal } from '@/components/AddLocationModal';
-import { MapPageConfig } from '@/constants';
+import { useAddLocationModal } from '@/components/AddLocationModal/_hooks/useAddLocationModal';
+import { AddLocationConfig } from '@/constants';
 import materialIcon from '@/utils/materialIcon';
 
 import { KeywordModal } from '../KeywordModal/KeywordModal';
@@ -27,7 +27,7 @@ export const SearchInput: React.FC = () => {
                 {...field}
                 onClick={() => setIsSearchModalOpen((prev: boolean) => !prev)}
                 className='w-[530px] bg-transparent text-center text-lg placeholder:text-center focus:outline-none'
-                placeholder={MapPageConfig.searchBarText}
+                placeholder={AddLocationConfig.searchBarText}
                 autoComplete='off'
               />
               <div

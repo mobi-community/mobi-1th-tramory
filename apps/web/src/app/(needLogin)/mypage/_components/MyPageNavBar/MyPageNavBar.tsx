@@ -2,7 +2,7 @@
 
 import { useAtom, useSetAtom } from 'jotai';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { mypageNavConfig } from '@/constants';
 import { mypageNavStatesAtom, selectedNavAtom } from '@/store';
@@ -13,6 +13,8 @@ export const MyPageNavBar = () => {
   const subActiveState = 'text-primaryBlue-700 bg-primaryBlue-200';
   const router = useRouter();
   const pathName = usePathname();
+  const params = useSearchParams();
+  const page = params.get('page');
   const setNavSelection = useSetAtom(selectedNavAtom);
 
   const handleMoveToPage = (href: string, title: string) => {
@@ -28,7 +30,11 @@ export const MyPageNavBar = () => {
   };
 
   const handleIsActive = (href: string) => {
-    if (pathName === href) return subActiveState;
+    const isPathIncluded = pathName.includes(href.split('/')[2]);
+    const isQueryParamMatching = href.endsWith(page);
+
+    if (pathName === href || (isPathIncluded && isQueryParamMatching))
+      return subActiveState;
   };
 
   const isParentActive = (parentHref: string) => {
@@ -50,7 +56,7 @@ export const MyPageNavBar = () => {
   };
 
   return (
-    <div className='border-primaryGray-300 text-primaryGray-400 h-[108vh] w-[280px] border-r-[1px] border-opacity-60 font-medium'>
+    <div className='border-primaryGray-300 text-primaryGray-400 fixed min-h-[100vh] w-[280px] border-r-[1px] border-opacity-60 font-medium'>
       <div className='pb-6 pl-10 pt-8'>
         <Image
           src={mypageNavConfig.logoImage}

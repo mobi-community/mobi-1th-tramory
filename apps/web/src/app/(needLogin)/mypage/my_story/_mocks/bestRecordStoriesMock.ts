@@ -16,6 +16,7 @@ export const bestRecordStoriesMock = [
         'https://i.pinimg.com/564x/ee/5a/5b/ee5a5b383d3f237518ec873729187589.jpg',
         'https://i.pinimg.com/564x/27/f9/6e/27f96eca831d088cd565d1dae6fcae7c.jpg',
         'https://i.pinimg.com/564x/bc/c7/ed/bcc7edc287bebcdcb748c862e0d0f852.jpg',
+        'https://i.pinimg.com/564x/e4/36/4c/e4364c2232efb4ae71a22253fe76cf6a.jpg',
       ],
       liked: 12,
       viewed: 45,

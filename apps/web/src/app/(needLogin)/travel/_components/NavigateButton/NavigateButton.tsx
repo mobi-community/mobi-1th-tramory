@@ -1,14 +1,28 @@
 'use client';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { registerStateAtom } from '@/store/travelState.atom';
+
+import { useDateSelection } from './use-data-selection';
 
 const NavigateButton = ({ handleSubmit, onSubmit }) => {
   const params = useSearchParams();
   const search = Number(params.get('stepId'));
-  const [registerState] = useAtom(registerStateAtom);
+  const registerState = useAtomValue(registerStateAtom);
+  const router = useRouter();
+  const { isDateSelected } = useDateSelection();
+
+  const handleNextButtonClick = (e) => {
+    e.preventDefault();
+    if (isDateSelected) {
+      handleSubmit(onSubmit)();
+      router.push(`/travel/${registerState}?stepId=${search + 1}`);
+    } else {
+      alert('날짜를 선택해주세요');
+    }
+  };
 
   return (
     <>
@@ -30,13 +44,7 @@ const NavigateButton = ({ handleSubmit, onSubmit }) => {
         <span
           className='material-icons-outlined '
           style={{ fontSize: '50px', color: '#ECF1F7' }}
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit(onSubmit)();
-            window.location.href = `/travel/${registerState}?stepId=${
-              search + 1
-            }`;
-          }}
+          onClick={handleNextButtonClick}
         >
           arrow_forward_ios
         </span>

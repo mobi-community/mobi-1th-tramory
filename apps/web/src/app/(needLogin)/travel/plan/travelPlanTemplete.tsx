@@ -10,10 +10,10 @@ import Step5Sumup from '../_components/Step5Sumup/Step5Sumup';
 import TravelLayout from '../TravelLayout';
 
 const COMPONENTS_MAP = {
-  '1': <Step2When config={travelPlanStep2config} />,
-  '2': <Step3What config={travelPlanStep3config} />,
-  '3': <Step4How config={travelPlanStep4config} />,
-  '4': <Step5Sumup config={travelPlanStep5config} />,
+  '2': <Step2When config={travelPlanStep2config} />,
+  '3': <Step3What config={travelPlanStep3config} />,
+  '4': <Step4How config={travelPlanStep4config} />,
+  '5': <Step5Sumup config={travelPlanStep5config} />,
 };
 
 const TravelPlanTemplete = ({ search }) => {

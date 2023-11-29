@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-import { storyType } from '@/components/CommonStory';
+import { StoryType } from '@/components/CommonStory/CommonStory.types';
 
 interface IuserProfileInfoAtom {
   nickName: string;
@@ -11,9 +11,9 @@ interface IuserProfileInfoAtom {
   isPrivacy?: boolean;
   profileImage: string;
   backgroundImage: string;
-  bestRecordStories: storyType[];
-  planStories: storyType[];
-  recordStories: storyType[];
+  bestRecordStories: StoryType[];
+  planStories: StoryType[];
+  recordStories: StoryType[];
   isProfileContentEdit: boolean;
 }
 

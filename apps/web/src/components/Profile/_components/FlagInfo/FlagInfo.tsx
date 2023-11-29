@@ -1,7 +1,10 @@
 'use client';
-import { useAtom } from 'jotai';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from 'ui';
 
+import grayScale from '/public/assets/passport_stamp/gray_scale/n_passport_stamp01.png';
+import { useIndiviualToggle } from '@/hooks/useIndiviualToggle';
 import { isIndividualFlagToggleAtom } from '@/store';
 import materialIcon from '@/utils/materialIcon';
 
@@ -9,13 +12,37 @@ import OneFlagInfo from '../OneFlagInfo/OneFlagInfo';
 import type { FlagInfoDataProps } from './FlagInfo.types';
 
 export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
-  const [isIndividualToggle, setIsIndividualToggle] = useAtom(
-    isIndividualFlagToggleAtom(id)
+  const { toggleState: isIndividualToggle, handleToggle } = useIndiviualToggle(
+    isIndividualFlagToggleAtom,
+    id
   );
 
-  const handleToggleFlags = () => {
-    setIsIndividualToggle((prev) => !prev);
-  };
+  // 발급 국가가 있을 때
+  const IsContinentData = (
+    <div className='my-7 grid grid-cols-5 gap-y-7'>
+      {data.continentData.map((item) => (
+        <OneFlagInfo key={item.name} item={item} />
+      ))}
+    </div>
+  );
+
+  // 발급 국가가 없을 때
+  const emptyContinentData = (
+    <div className='relative flex items-center justify-center p-[72px]'>
+      <Image
+        src={grayScale}
+        width={100}
+        alt={'그레이 스케일 국가 도장'}
+        className='absolute left-32'
+      />
+      <p className='text-primaryGray-500 z-10 mr-4 font-medium'>
+        아직 방문한 국가가 없으신가요? 스토리를 구경하며 여행 계획을 세워보아요!
+      </p>
+      <Button weight='bold'>
+        <Link href='/story_community'>스토리 보러가기</Link>
+      </Button>
+    </div>
+  );
 
   return (
     <>
@@ -24,7 +51,7 @@ export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
           <h1 className='mr-7 text-[22px]'>{data.en}</h1>
           <h1>{data.ko}</h1>
         </div>
-        <p onClick={handleToggleFlags} className='cursor-pointer'>
+        <p onClick={handleToggle} className='cursor-pointer'>
           {materialIcon({
             iconName: isIndividualToggle ? 'expand_less' : 'expand_more',
             size: 32,
@@ -40,13 +67,8 @@ export const FlagInfo = ({ data, id }: FlagInfoDataProps) => {
         alt='대륙별 국기 이미지'
         priority
       />
-      {isIndividualToggle && (
-        <div className='my-7 grid grid-cols-5 gap-y-7'>
-          {data.continentData.map((item) => (
-            <OneFlagInfo key={item.name} item={item} />
-          ))}
-        </div>
-      )}
+      {isIndividualToggle &&
+        (data.continentData.length > 0 ? IsContinentData : emptyContinentData)}
     </>
   );
 };

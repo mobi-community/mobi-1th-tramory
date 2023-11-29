@@ -6,8 +6,8 @@ import { ReactNode } from 'react';
 import Providers from './providers';
 
 export const metadata: Metadata = {
-  title: 'Web App',
-  description: 'Welcome to Next.js 13',
+  title: 'TRAMORY',
+  description: '나만의 특별한 여행 기록',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

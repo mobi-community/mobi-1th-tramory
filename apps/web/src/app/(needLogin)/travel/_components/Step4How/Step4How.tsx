@@ -1,15 +1,15 @@
 'use client';
+
 import { useAtom } from 'jotai';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Pagination } from '@/components';
 import { formModePlanAtom, formModeRecordAtom } from '@/store';
 import { registerStateAtom } from '@/store/travelState.atom';
 
-import { postPlan, postRecord } from '../../apis/planPostApi';
-import type { IStep4Props } from '../../Travel.type';
+import { IStep4Props } from '../../Travel.type';
 import NavigateButton from '../NavigateButton/NavigateButton';
+import { CustomPagination } from './components/Step4Dates/CustomPagination';
 import Step4Dates from './components/Step4Dates/Step4Dates';
 import { dates } from './mocks';
 
@@ -20,17 +20,12 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
   const { handleSubmit, control } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  console.log(planAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
 
   registerState == 'plan'
     ? console.log('plan data', planAtom)
     : console.log('record data', recordAtom);
-
-  useEffect(() => {
-    registerState == 'plan' ? postPlan(planAtom) : postRecord(recordAtom);
-  }, [planAtom, recordAtom, registerState]);
 
   return (
     <>
@@ -48,9 +43,10 @@ const Step4How: React.FC<IStep4Props> = ({ config }) => {
                   control={control}
                   itemsPerPage={itemsPerPage}
                   currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
                 />
                 <div className='absolute mt-[450px]'>
-                  <Pagination
+                  <CustomPagination
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     itemsPerPage={itemsPerPage}

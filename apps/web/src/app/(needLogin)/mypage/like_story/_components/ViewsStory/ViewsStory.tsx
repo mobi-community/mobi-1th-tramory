@@ -1,17 +1,16 @@
-import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-import { Pagination } from '@/components';
-import { viewStoriesAtom } from '@/store/mypage.atoms';
+import { CommonStory, Pagination } from '@/components';
+import { usePagination } from '@/hooks/usePagination';
 
-import { MypageCommonStory } from '../../../_components';
+import { useViewStory } from '../../_hooks/useViewStory';
 
 export const ViewStory = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage] = useState(4);
-  const startIdx = currentPage * itemsPerPage;
-  const endIdx = (currentPage + 1) * itemsPerPage;
-  const [viewStories, setViewStories] = useAtom(viewStoriesAtom);
+  const router = useRouter();
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(4);
+  const { viewStories, setViewStories } = useViewStory();
 
   useEffect(() => {
     const fetchUserViewStories = async () => {
@@ -47,10 +46,16 @@ export const ViewStory = () => {
       <>
         <div className='grid grid-cols-2 gap-8'>
           {viewStories.slice(startIdx, endIdx).map((story) => (
-            <MypageCommonStory story={story} key={Math.random() * 1000} />
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
+              handleMoveToDetail={() =>
+                router.push(`/story_detail/${story.id}`)
+              }
+            />
           ))}
         </div>
-        <div className='my-8 flex justify-center'>
+        <div className='mb-8 mt-20 flex justify-center'>
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}

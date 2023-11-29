@@ -2,25 +2,22 @@
 
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { Pagination } from '@/components';
+import { CommonStory, Pagination } from '@/components';
+import { usePagination } from '@/hooks/usePagination';
 import { userRecordStoriesAtom } from '@/store/mypage.atoms';
 
-import { MypageCommonStory, MyPageContainer } from '../../_components';
+import { MyPageContainer } from '../../_components';
 import { Tabs } from '../_components';
 
 const MyStoryRecordPage = () => {
   const [recordStories, setRecordStories] = useAtom(userRecordStoriesAtom);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(8);
   const dataLength = recordStories.length;
 
   const router = useRouter();
-
-  const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/${id}?page=record`);
-  };
 
   useEffect(() => {
     const fetchUserRecordStories = async () => {
@@ -44,15 +41,17 @@ const MyStoryRecordPage = () => {
   }, [setRecordStories]);
 
   return (
-    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
+    <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 기록'>
-        <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {recordStories.map((stories) => (
-            <MypageCommonStory
-              handleMoveToDetail={handleMoveToDetail}
-              story={stories}
-              key={stories.id}
+        <div className='grid grid-cols-2 gap-8 px-12 pb-12 '>
+          {recordStories.slice(startIdx, endIdx).map((story) => (
+            <CommonStory
+              story={story}
+              key={Math.random() * 1000}
+              handleMoveToDetail={() =>
+                router.push(`/mypage/my_story/${story.id}?page=record`)
+              }
             />
           ))}
         </div>

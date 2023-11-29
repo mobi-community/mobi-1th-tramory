@@ -2,26 +2,16 @@ import Image from 'next/image';
 
 import flagImage from '/public/images/flag.png';
 import { detailPageConfig } from '@/constants/detailPage.constans';
-import materialIcon from '@/utils/materialIcon';
-
-// import type { DetailSectionProps } from './DetailSection.types';
+import { formattedDateFunc } from '@/utils/formattedDate';
 
 export const DetailCardSection = ({ storyDetail }) => {
   const { date = 'Default Date', location = 'Default location' } =
     storyDetail?.content || {};
-
+  const formattedDate = formattedDateFunc(
+    date instanceof Date ? date : new Date(date)
+  );
   const { tags = [] } = storyDetail?.content || {};
-  // const { userId = 'Default User ID', profileImage = '/default-image.jpg' } =
-  //   storyDetail?.user || {};
 
-  console.log(storyDetail);
-
-  // const handleSubtitleDescription = (subtitle) => {
-  //   if (subtitle === '여행지') return location;
-  //   else if (subtitle === '날짜') return date;
-  // else return date;
-  // };
-  // 추후 실제 데이터로 변경 예정
   const country = ['일본', '영국', '프랑스'];
 
   return (
@@ -37,17 +27,6 @@ export const DetailCardSection = ({ storyDetail }) => {
         </div>
       </div>
       <div className='flex w-full flex-col gap-2'>
-        {/* {detailPageConfig.subtitle.map((subtitle, index) => (
-          //  key 유니크한 값으로 변경 예정
-          <div key={index} className='ml-10 flex items-center gap-5'>
-            <div className='border-primaryGray-500 flex h-[30px] w-[120px] items-center justify-center rounded-sm border border-[1px] border-opacity-60 text-[14px] '>
-              {subtitle}
-            </div>
-            <div className=' text-primaryBlue-700 text-[14px] font-semibold'>
-              {handleSubtitleDescription(subtitle)}
-            </div>
-          </div>
-        ))} */}
         <div className='ml-10 flex items-center gap-5'>
           <div className='border-primaryGray-500 flex h-[30px] w-[120px] items-center justify-center rounded-sm border border-[1px] border-opacity-60 text-[14px] '>
             {detailPageConfig.subtitle[0]}
@@ -61,7 +40,7 @@ export const DetailCardSection = ({ storyDetail }) => {
             {detailPageConfig.subtitle[1]}
           </div>
           <div className=' text-primaryBlue-700 text-[14px] font-semibold'>
-            {date}
+            {formattedDate}
           </div>
         </div>
 
@@ -80,12 +59,6 @@ export const DetailCardSection = ({ storyDetail }) => {
             ))}
           </div>
         </div>
-      </div>
-      <div className='border-primaryBlue-700 hover:bg-primaryBlue-700 absolute right-3 top-3 flex h-[22px] w-[22px] cursor-pointer items-center justify-center rounded-full border p-1 hover:text-white hover:opacity-80'>
-        {materialIcon({
-          iconName: 'edit',
-          size: 18,
-        })}
       </div>
     </div>
   );

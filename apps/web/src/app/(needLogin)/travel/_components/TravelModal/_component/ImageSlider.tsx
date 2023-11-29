@@ -25,7 +25,10 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
         variant='outline'
         size='smIcon'
         className='absolute left-0 top-1/2 z-20 -translate-y-1/2 transform rounded-full'
-        onClick={onPrev}
+        onClick={(e) => {
+          e.preventDefault();
+          onPrev();
+        }}
       >
         <span className='material-icons-outlined  text-black'>
           chevron_left
@@ -35,7 +38,10 @@ const ImageSlider: React.FC<ImageSliderProps> = ({
         variant='outline'
         size='smIcon'
         className='absolute right-0 top-1/2 z-20 -translate-y-1/2 transform rounded-full'
-        onClick={onNext}
+        onClick={(e) => {
+          e.preventDefault();
+          onNext();
+        }}
       >
         <span className='material-icons-outlined rotate-180 text-black'>
           chevron_left

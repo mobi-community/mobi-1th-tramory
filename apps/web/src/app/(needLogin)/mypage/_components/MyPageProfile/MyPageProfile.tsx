@@ -44,7 +44,7 @@ export const MyPageProfile = () => {
           />
           <Button
             onClick={bgImageUploadProps.handleUploadButtonClick}
-            className='h-[25px] w-[70px] text-[10px]'
+            className='h-[25px] w-[80px] text-[12px]'
             variant='roundednavyWhite'
             weight='bold'
             size='xsm'
@@ -53,7 +53,7 @@ export const MyPageProfile = () => {
           </Button>
           <Button
             onClick={bgImageUploadProps.handleDeleteImage}
-            className='ml-2 h-[25px] w-[70px] text-[10px]'
+            className='ml-2 h-[25px] w-[80px] text-[12px]'
             variant='roundednavyWhite'
             weight='bold'
             size='xsm'
@@ -87,7 +87,7 @@ export const MyPageProfile = () => {
         </Link>
       </div>
       <div className=' text-primaryBlue-700 flex flex-col items-center justify-center'>
-        <div className='mt-1 text-[14px] font-semibold'>
+        <div className='mt-1 text-[16px] font-semibold'>
           {profileState.nickName}
         </div>
         <div className='flex items-center justify-center'>
@@ -132,7 +132,7 @@ export const MyPageProfile = () => {
               </div>
             ) : (
               <div className='flex'>
-                <div className='ml-4 text-[12px]'>{profileState.content}</div>
+                <div className='ml-4 text-[14px]'>{profileState.content}</div>
                 <div
                   onClick={() => {
                     setProfileState((prev) => ({
@@ -161,7 +161,7 @@ export const MyPageProfile = () => {
           />
           <Button
             onClick={profileImageUploadProps.handleUploadButtonClick}
-            className='h-[25px] w-[70px] text-[10px]'
+            className='text-primaryBlue-700 h-[25px] w-[80px] text-[12px] font-medium'
             variant='roundednavy'
             size='xsm'
           >
@@ -169,7 +169,7 @@ export const MyPageProfile = () => {
           </Button>
           <Button
             onClick={profileImageUploadProps.handleDeleteImage}
-            className='ml-2 h-[25px] w-[70px] text-[10px]'
+            className='text-primaryBlue-700 ml-2 h-[25px] w-[80px] text-[12px] font-medium'
             variant='roundednavy'
             size='xsm'
           >

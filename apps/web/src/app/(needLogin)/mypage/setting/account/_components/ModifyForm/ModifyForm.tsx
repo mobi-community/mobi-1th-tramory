@@ -1,7 +1,5 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { atom, useAtom, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { Button } from 'ui';
 
 import { UserInfo } from '@/app/(needLogin)/mypage/_mocks';
@@ -9,20 +7,13 @@ import { ValidatorInput } from '@/components';
 import { userProfileInfoAtom } from '@/store/mypage.atoms';
 import materialIcon from '@/utils/materialIcon';
 
-import {
-  ACCOUT_SCHEMAS,
-  MODIFYFORM_DEFAULT_VALUES,
-} from '../../_schema/account.schema';
-import type { ModifyType } from './ModifyForm.types';
-const isPWVisibleAtom = atom(false);
+import { useModifyForm } from '../../_hooks/useModifyForm';
+import { defaultStyle, emailStyle, nicknameConfirmStyle } from './style';
 
 export const ModifyForm = ({ modifyType }) => {
-  const { handleSubmit, control, reset } = useForm<ModifyType>({
-    mode: 'onChange',
-    resolver: yupResolver(ACCOUT_SCHEMAS[modifyType]),
-    defaultValues: MODIFYFORM_DEFAULT_VALUES[modifyType],
-  });
   const setSettingUserInfo = useSetAtom(userProfileInfoAtom);
+  const { handleSubmit, control, reset, isPWVisible, handleVisibleState } =
+    useModifyForm(modifyType);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -92,29 +83,6 @@ export const ModifyForm = ({ modifyType }) => {
 
   const isTypePrivacy = modifyType === 'privacy';
 
-  const [isPWVisible, setIsPWVisible] = useAtom(isPWVisibleAtom);
-
-  const defaultStyle = {
-    width: '530px',
-    marginLeft: '0',
-    marginRight: '104px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  };
-
-  const emailStyle = {
-    border: 'none',
-    background: '#eee',
-  };
-
-  const nicknameConfirmStyle = {
-    marginRight: '23px',
-  };
-
-  const handleVisibleState = () => {
-    setIsPWVisible((prev) => !prev);
-  };
-
   const onSubmit = (data: UserInfo) => {
     if (modifyType === 'privacy') {
       editUserPrivacy(data.nickName);
@@ -153,7 +121,7 @@ export const ModifyForm = ({ modifyType }) => {
                     control={control}
                     style={{ ...defaultStyle, ...nicknameConfirmStyle }}
                   />
-                  <Button variant='roundednavy' font='xs' className='h-[36px]'>
+                  <Button variant='roundednavy' className='h-[36px]'>
                     중복 확인
                   </Button>
                 </div>

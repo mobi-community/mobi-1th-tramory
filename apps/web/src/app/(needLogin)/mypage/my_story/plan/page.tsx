@@ -1,10 +1,11 @@
 'use client';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Checkbox } from 'ui';
 
 import { Pagination } from '@/components';
+import { usePagination } from '@/hooks/usePagination';
 import { userPlanStoriesAtom } from '@/store/mypage.atoms';
 
 import { MyPageContainer } from '../../_components';
@@ -12,8 +13,8 @@ import { MyStoryPlanCard, Tabs } from '../_components';
 
 const MyStoryPlanPage = () => {
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8);
+  const { currentPage, setCurrentPage, startIdx, endIdx, itemsPerPage } =
+    usePagination(8);
   const [planStories, setPlanStories] = useAtom(userPlanStoriesAtom);
 
   useEffect(() => {
@@ -38,20 +39,20 @@ const MyStoryPlanPage = () => {
   }, [setPlanStories]);
 
   const handleMoveToDetail = (id) => {
-    router.push(`/mypage/my_story/${id}?page=plan&isEdit=true`);
+    router.push(`/mypage/my_story/${id}?page=plan`);
   };
   const dataLength = planStories.length;
 
   return (
-    <div className='text-primaryBlue-700 ml-10 flex w-full flex-col items-center justify-center'>
+    <div className='text-primaryBlue-700 mb-14 ml-10 flex w-full flex-col items-center justify-center'>
       <Tabs />
       <MyPageContainer title='나의 스토리 - 여행 계획'>
-        <div className='mt-5 flex items-center px-12 text-[13px]'>
+        <div className='mt-7 flex items-center px-12 text-[13px]'>
           <Checkbox id='planAll' />
           <div className='ml-2 font-semibold'>지난 계획 모아보기</div>
         </div>
         <div className='flex flex-row flex-wrap justify-between px-12 pb-12 '>
-          {planStories.map((stories) => (
+          {planStories.slice(startIdx, endIdx).map((stories) => (
             <MyStoryPlanCard
               handleMoveToDetail={handleMoveToDetail}
               key={stories.id}

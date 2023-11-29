@@ -1,14 +1,13 @@
 'use client';
 
-import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
 
 import { storyCommunityPageConfig } from '@/constants';
-import { storyCommunityAtoms } from '@/store';
+
+import { useStoryCommunity } from '../../_hooks/useStoryCommunity';
 
 export const CategoryTab: React.FC = () => {
-  const [selectedCategory, setSelectedCagetory] = useAtom(
-    storyCommunityAtoms.selectedCategoryAtom
-  );
+  const { selectedCategory, handleCategory } = useStoryCommunity();
 
   const isSelected = (category: string) =>
     category === selectedCategory ? 'text-black' : 'text-primaryGray-300';
@@ -16,11 +15,13 @@ export const CategoryTab: React.FC = () => {
   const isLast = (i: number, arr: string[]) =>
     i !== arr.length - 1 ? 'border-primaryGray-300  border-r-[0.5px]' : '';
 
+  const router = useRouter();
+
   return (
     <div className='my-[40px] flex justify-center'>
       {storyCommunityPageConfig.category.map((category, i, arr) => (
         <div
-          onClick={() => setSelectedCagetory(category)}
+          onClick={() => handleCategory(category, router)}
           className={`text-m  w-[100px] cursor-pointer text-center hover:text-black ${isSelected(
             category
           )} ${isLast(i, arr)}`}

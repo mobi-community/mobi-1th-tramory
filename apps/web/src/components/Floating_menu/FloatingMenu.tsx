@@ -24,7 +24,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
   }
 
   const toTravelPlan =
-    travelPlan || (() => router.push('/travel/plan?stepId=0'));
+    travelPlan || (() => router.push('/travel/plan?stepId=1'));
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -35,7 +35,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
   };
 
   return (
-    <div className='fixed bottom-0 right-0 p-5'>
+    <div className='fixed bottom-0 right-0 z-[100] p-5'>
       <div className='space-y-2 rounded-[50px] border bg-gray-200 bg-opacity-50 p-2 py-3'>
         <div className='group relative'>
           <button
@@ -70,7 +70,7 @@ const FloatingMenu: React.FC<FloatingMenuProps> = ({ travelPlan }) => {
         </div>
       </div>
       <TravelModal isOpen={isModalOpen} onClose={closeModal}>
-        <ViewTravelRecordType />
+        <ViewTravelRecordType closeModal={closeModal} />
       </TravelModal>
     </div>
   );
