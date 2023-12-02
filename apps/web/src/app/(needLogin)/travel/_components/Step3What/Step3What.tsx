@@ -1,9 +1,10 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 import { travelTag } from '../../../../../constants/travelStep3Tag.constants';
+import { postPlan } from '../../_apis/planPostApi';
 import { useTravelForm } from '../../_hooks/useTravelRegister';
 import { CATEGORY_SCHEMA } from '../../_schema/travel.schema';
 import type { IStep3Props } from '../../Travel.type';
@@ -12,14 +13,16 @@ import Step3Category from './components/Step3Category/Step3Category';
 import Step3Tag from './components/Step3Tag/Step3Tag';
 
 const Step3What: React.FC<IStep3Props> = ({ config }) => {
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-  const { registerState, step3onSubmit } = useTravelForm();
-  // const mutation = useMutation(postPlan, {
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries();
-  //   },
-  // });
+  const { registerState, step3onSubmit, planAtom } = useTravelForm();
+
+  const { mutate } = useMutation(postPlan(planAtom), {
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
+  });
+
   const { handleSubmit, control } = useForm({
     resolver: yupResolver(CATEGORY_SCHEMA),
   });
